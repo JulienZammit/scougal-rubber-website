@@ -1,6 +1,6 @@
 # Scougal Rubber Website
 
-This repository contains the code for the Scougal Rubber company's website built with React, optimized for SEO, and includes a blog.
+This repository contains the code for the Scougal Rubber company's website built with Next.js, optimized for SEO, and includes a blog.
 
 ## Table of Contents
 
@@ -15,11 +15,11 @@ This repository contains the code for the Scougal Rubber company's website built
 
 ## Introduction
 
-The Scougal Rubber Website is designed to provide a seamless user experience and improve the company's online presence. The site is built using React, offering optimized performance and SEO features. Additionally, a blog section is included to share updates and industry news.
+The Scougal Rubber Website is designed to provide a seamless user experience and improve the company's online presence. The site is built using Next.js, offering optimized performance and SEO features. Additionally, a blog section is included to share updates and industry news.
 
 ## Features
 
-- **React Framework**: Utilizes the latest version of React for modern web development.
+- **Next.js Framework**: Utilizes the latest version of Next.js for modern web development.
 - **SEO Optimization**: Enhanced search engine visibility with sitemap integration.
 - **Blog Section**: Includes a blog for company updates and industry news.
 - **Responsive Design**: Ensures the site looks great on all devices.
@@ -29,6 +29,7 @@ The Scougal Rubber Website is designed to provide a seamless user experience and
 
 ## Technologies
 
+- **Next.js**
 - **React**
 - **JavaScript**
 - **Tailwind CSS**
@@ -90,6 +91,22 @@ yarn build
 
 # bun
 bun run build
+```
+
+Run the production server:
+
+```bash
+# npm
+npm start
+
+# pnpm
+pnpm start
+
+# yarn
+yarn start
+
+# bun
+bun start
 ```
 
 ## Contributing
