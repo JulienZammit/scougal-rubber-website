@@ -132,13 +132,13 @@ export default function Home() {
             }}
             className="z-50 flex flex-col justify-center items-center p-5"
           >
-            <motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
+            <motion.p className="font-bold text-3xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
               Rubber Pads & Bearings
             </motion.p>
-            <p className="text-lg text-neutral-600 dark:text-neutral-100 font-bold text-center">
+            <p className="text-l text-neutral-600 dark:text-neutral-100 font-bold text-center">
               885 Denmark Drive, Suite 103, McCarran, NV, 89437-4425
             </p>
-            <p className="text-lg text-neutral-600 dark:text-neutral-100 font-bold text-center">
+            <p className="text-l text-neutral-600 dark:text-neutral-100 font-bold text-center">
               Email:{" "}
               <a
                 href="mailto:sales@scougalrubber.com"
@@ -156,30 +156,30 @@ export default function Home() {
                 </button>
               </ModalTrigger>
               <ModalBody>
-  <ModalContent>
-    <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
-      Rubber Pads & Bearings
-    </h4>
-    <p className="text-center text-sm md:text-base text-neutral-500 dark:text-neutral-400 mb-4">
-      Explore our high-quality rubber solutions tailored for various industrial applications.
-    </p>
-    <div className="flex flex-col md:flex-row justify-between items-center px-6 space-y-4 md:space-y-0 md:space-x-4">
-      <Link href="/rubber-parts" passHref>
-        <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
-          <span>Rubber Pads →</span>
-          <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-        </button>
-      </Link>
-      <Link href="/bearing-pads" passHref>
-        <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
-          <span>Bearings →</span>
-          <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-        </button>
-      </Link>
-    </div>
-  </ModalContent>
-</ModalBody>
-
+                <ModalContent>
+                  <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
+                    Rubber Pads & Bearings
+                  </h4>
+                  <p className="text-center text-sm md:text-base text-neutral-500 dark:text-neutral-400 mb-4">
+                    Explore our high-quality rubber solutions tailored for
+                    various industrial applications.
+                  </p>
+                  <div className="flex flex-col md:flex-row justify-between items-center px-6 space-y-4 md:space-y-0 md:space-x-4">
+                    <Link href="/rubber-parts" passHref>
+                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
+                        <span>Rubber Pads →</span>
+                        <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+                      </button>
+                    </Link>
+                    <Link href="/bearing-pads" passHref>
+                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
+                        <span>Bearings →</span>
+                        <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+                      </button>
+                    </Link>
+                  </div>
+                </ModalContent>
+              </ModalBody>
             </Modal>
           </motion.div>
         </ImagesSlider>
@@ -231,13 +231,13 @@ export default function Home() {
             }}
             className="z-50 flex flex-col justify-center items-center p-5"
           >
-            <motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
+            <motion.p className="font-bold text-3xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
               Industrial Products
             </motion.p>
-            <p className="text-lg text-neutral-600 dark:text-neutral-100 font-bold text-center">
+            <p className="text-l text-neutral-600 dark:text-neutral-100 font-bold text-center">
               6239 Corson Ave S Seattle, WA, 98108-3443
             </p>
-            <p className="text-lg text-neutral-600 dark:text-neutral-100 font-bold text-center">
+            <p className="text-l text-neutral-600 dark:text-neutral-100 font-bold text-center">
               Email:{" "}
               <a
                 href="mailto:sales@scougalrubber.com"
