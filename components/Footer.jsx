@@ -26,15 +26,19 @@ const Footer = () => {
         </h2>
         <div className="flex flex-wrap justify-between gap-10">
           <div className="flex-1 mb-10">
-            <Image
-              src="/logo/A46117_SRC_Logos-01.png"
-              alt="Logo of America's Custom Molded Rubber Company"
-              width={100}
-              height={70}
-              loading="lazy"
-            />
+            <div style={{ width: 100, height: 70 }}>
+              <Image
+                src="/logo/A46117_SRC_Logos-01.png"
+                alt="Logo of America's Custom Molded Rubber Company"
+                width={100}
+                height={70}
+                loading="lazy"
+                style={{ width: "100%", height: "100%", objectFit: "contain" }} // Utiliser objectFit pour maintenir le ratio d'aspect
+              />
+            </div>
             <p className="mt-4 max-w-xs text-sm">
-              Scougal Rubber is a company that manufactures custom molded rubber products since 1916.
+              Scougal Rubber is a company that manufactures custom molded rubber
+              products since 1916.
             </p>
             <p className="mt-4 text-sm">
               Copyright © 2024 - All rights reserved

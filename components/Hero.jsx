@@ -54,20 +54,16 @@ const Hero = () => {
         </motion.h1>
         <div className="flex justify-center items-center flex-wrap mt-8 space-x-4">
           {certifications.map((cert, index) => (
-            <div key={index} className="m-2">
+            <div key={index} className="m-2" style={{ width: cert.width, height: cert.height }}>
               <Image
                 src={cert.src}
                 alt={cert.alt}
                 width={cert.width}
                 height={cert.height}
                 className="rounded-full"
-                loading="lazy" // Lazy load the images
-                sizes="(max-width: 640px) 40px, (max-width: 768px) 60px, 80px" // Define the sizes attribute for responsive loading
-                srcSet={`
-                  ${cert.src} 40w,
-                  ${cert.src} 60w,
-                  ${cert.src} 80w
-                `} // Define the srcset attribute for responsive loading
+                priority={cert.src === "/certification/cage.webp"} // Ajout de la propriété priority
+                sizes="(max-width: 640px) 40px, (max-width: 768px) 60px, 80px"
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }} // Utilisation de objectFit pour maintenir le ratio d'aspect
               />
             </div>
           ))}

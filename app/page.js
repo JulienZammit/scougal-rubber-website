@@ -2,11 +2,11 @@
 import Head from "next/head";
 import Hero from "../components/Hero";
 import { ImagesSlider } from "../components/ui/images-slider";
-import { TextGenerateEffect } from "../components/ui/text-generate-effect";
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import {
   Modal,
   ModalBody,
@@ -52,6 +52,14 @@ const images2 = [
 ];
 
 export default function Home() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Durée de l'animation
+      easing: "ease-in-out", // Fonction d'animation
+      once: true, // Si vrai, l'animation ne se déclenche qu'une fois
+    });
+    AOS.refresh(); // Actualise AOS pour prendre en compte les nouveaux éléments
+  }, []);
   return (
     <div>
       <Head>
@@ -85,32 +93,16 @@ export default function Home() {
       <Hero />
 
       <div className="flex flex-col p-20 gap-4">
-        {" "}
-        {/* Added gap for spacing between paragraphs */}
-        <TextGenerateEffect
-          duration={1}
-          filter={false}
-          words={text1_words1}
-          startDelay={0.5}
-        />
-        <TextGenerateEffect
-          duration={1}
-          filter={false}
-          words={text1_words2}
-          startDelay={1.5}
-        />
-        <TextGenerateEffect
-          duration={1}
-          filter={false}
-          words={text1_words3}
-          startDelay={2.5}
-        />
-        <TextGenerateEffect
-          duration={1}
-          filter={false}
-          words={text1_words4}
-          startDelay={3.5}
-        />
+        <div
+          data-aos="fade-up"
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          className={`font-bold text-lg md:text-2xl text-black`}
+        >
+          {text1_words1} <br /> <br />
+          {text1_words2} <br /> <br />
+          {text1_words3} <br /> <br />
+          {text1_words4} <br /> <br />
+        </div>
       </div>
 
       <div className="p-0 md:p-10">
@@ -149,11 +141,9 @@ export default function Home() {
               | Phone: (775) 284-8500
             </p>
             <Modal>
-              <ModalTrigger>
-                <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white mx-auto text-center rounded-full relative mt-4">
-                  <span>See more →</span>
-                  <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-blue-500 to-transparent" />
-                </button>
+              <ModalTrigger className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white mx-auto text-center rounded-full relative mt-4">
+                <span>See more →</span>
+                <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-blue-500 to-transparent" />
               </ModalTrigger>
               <ModalBody>
                 <ModalContent>
@@ -186,30 +176,16 @@ export default function Home() {
       </div>
 
       <div className="flex flex-col p-20 gap-4">
-        <TextGenerateEffect
-          duration={1}
-          filter={false}
-          words={text2_words1}
-          startDelay={0.5}
-        />
-        <TextGenerateEffect
-          duration={1}
-          filter={false}
-          words={text2_words2}
-          startDelay={1.5}
-        />
-        <TextGenerateEffect
-          duration={1}
-          filter={false}
-          words={text2_words3}
-          startDelay={2.5}
-        />
-        <TextGenerateEffect
-          duration={1}
-          filter={false}
-          words={text2_words4}
-          startDelay={3.5}
-        />
+        <div
+          data-aos="fade-up"
+          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+          className={`font-bold text-lg md:text-2xl text-black`}
+        >
+          {text2_words1} <br /><br />
+          {text2_words2} <br /><br />
+          {text2_words3} <br /><br />
+          {text2_words4} <br /><br />
+        </div>
       </div>
 
       <div className="p-0 md:p-10">
