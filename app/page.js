@@ -26,29 +26,29 @@ const text2_words3 = `We take pride in our competitive pricing, quality, and agi
 const text2_words4 = `Scougal Rubber maintains a strict quality assurance program in order to exceed your expectations with the adaptation of ISO 9001:2015 and AS9100.`;
 
 const images1 = [
-  "/banner1/Banner1.jpg",
-  "/banner1/Banner2.jpg",
-  "/banner1/Banner3.jpg",
-  "/banner1/Banner4.jpg",
-  "/banner1/Banner5.jpg",
-  "/banner1/Banner6.jpg",
-  "/banner1/Banner7.jpg",
-  "/banner1/Banner8.jpg",
-  "/banner1/Banner9.jpg",
-  "/banner1/Banner10.jpg",
-  "/banner1/Banner11.jpg",
-  "/banner1/Banner12.jpg",
+  "/banner1/Banner1.webp",
+  "/banner1/Banner2.webp",
+  "/banner1/Banner3.webp",
+  "/banner1/Banner4.webp",
+  "/banner1/Banner5.webp",
+  "/banner1/Banner6.webp",
+  "/banner1/Banner7.webp",
+  "/banner1/Banner8.webp",
+  "/banner1/Banner9.webp",
+  "/banner1/Banner10.webp",
+  "/banner1/Banner11.webp",
+  "/banner1/Banner12.webp",
 ];
 
 const images2 = [
-  "/banner2/Banner1.jpg",
-  "/banner2/Banner2.jpg",
-  "/banner2/Banner3.jpg",
-  "/banner2/Banner4.jpg",
-  "/banner2/Banner5.jpg",
-  "/banner2/Banner6.jpg",
-  "/banner2/Banner7.jpg",
-  "/banner2/Banner8.jpg",
+  "/banner2/Banner1.webp",
+  "/banner2/Banner2.webp",
+  "/banner2/Banner3.webp",
+  "/banner2/Banner4.webp",
+  "/banner2/Banner5.webp",
+  "/banner2/Banner6.webp",
+  "/banner2/Banner7.webp",
+  "/banner2/Banner8.webp",
 ];
 
 export default function Home() {

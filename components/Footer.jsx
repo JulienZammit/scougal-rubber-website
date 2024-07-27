@@ -31,7 +31,7 @@ const Footer = () => {
               alt="Logo of America's Custom Molded Rubber Company"
               width={100}
               height={70}
-              priority
+              loading="lazy"
             />
             <p className="mt-4 max-w-xs text-sm">
               Scougal Rubber is a company that manufactures custom molded rubber products since 1916.

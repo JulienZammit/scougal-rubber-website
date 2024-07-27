@@ -6,14 +6,11 @@ import { AuroraBackground } from "./ui/aurora-background";
 
 const Hero = () => {
   const certifications = [
-    { src: "/certification/aisc.png", alt: "AISC Certification" },
-    { src: "/certification/as9100.png", alt: "AS9100 Certification" },
-    { src: "/certification/cage.png", alt: "CAGE Certification" },
-    { src: "/certification/iso9001.png", alt: "ISO 9001 Certification" },
-    {
-      src: "/certification/Seal-Compliassure_Confirm.png",
-      alt: "Seal Compliasure Confirm Certification",
-    },
+    { src: "/certification/aisc.webp", alt: "AISC Certification", width: 80, height: 80 },
+    { src: "/certification/as9100.webp", alt: "AS9100 Certification", width: 80, height: 80 },
+    { src: "/certification/cage.webp", alt: "CAGE Certification", width: 80, height: 80 },
+    { src: "/certification/iso9001.webp", alt: "ISO 9001 Certification", width: 80, height: 80 },
+    { src: "/certification/Seal-Compliassure_Confirm.webp", alt: "Seal Compliasure Confirm Certification", width: 80, height: 80 },
   ];
 
   return (
@@ -61,8 +58,8 @@ const Hero = () => {
               <Image
                 src={cert.src}
                 alt={cert.alt}
-                width={80}
-                height={80}
+                width={cert.width}
+                height={cert.height}
                 className="rounded-full"
                 loading="lazy" // Lazy load the images
                 sizes="(max-width: 640px) 40px, (max-width: 768px) 60px, 80px" // Define the sizes attribute for responsive loading
