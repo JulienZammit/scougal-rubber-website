@@ -6,8 +6,21 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Scougal Rubber',
-  description: 'Scougal Rubber - Custom Molded Rubber Products Since 1916',
+  title: "America's Custom Molded Rubber Company",
+  description: "Leading provider of custom molded rubber solutions since 1916.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://scougalrubber.com/",
+    site_name: "America's Custom Molded Rubber Company",
+  },
+  additionalMetaTags: [
+    {
+      property: "keywords",
+      content:
+        "custom molded, rubber company, industrial rubber, rubber manufacturing",
+    },
+  ],
 };
 
 export default function RootLayout({ children }) {
@@ -19,7 +32,7 @@ export default function RootLayout({ children }) {
         <meta name="author" content="Scougal Rubber" />
       </head>
       <body className={inter.className}>
-        <Header />
+        <Header className="top-2"/>
         <main>{children}</main>
         <Footer />
       </body>

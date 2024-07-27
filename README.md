@@ -10,6 +10,7 @@ This repository contains the code for the Scougal Rubber company's website built
 - [Setup](#setup)
 - [Development Server](#development-server)
 - [Production](#production)
+- [Sitemap](#sitemap)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -107,6 +108,15 @@ yarn start
 
 # bun
 bun start
+```
+
+## Sitemap
+
+Generate the sitemap:
+
+```bash
+# npm
+npm run sitemap
 ```
 
 ## Contributing
