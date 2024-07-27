@@ -10,21 +10,29 @@ const Hero = () => {
     { src: "/certification/as9100.png", alt: "AS9100 Certification" },
     { src: "/certification/cage.png", alt: "CAGE Certification" },
     { src: "/certification/iso9001.png", alt: "ISO 9001 Certification" },
-    { src: "/certification/Seal-Compliassure_Confirm.png", alt: "Seal Compliasure Confirm Certification" },
+    {
+      src: "/certification/Seal-Compliassure_Confirm.png",
+      alt: "Seal Compliasure Confirm Certification",
+    },
   ];
 
   return (
     <AuroraBackground>
       <div className="relative flex flex-col items-center justify-center">
         <div className="flex justify-center">
-          <Image
-            src="/logo.gif"
-            alt="Logo of America's Custom Molded Rubber Company"
-            width={500}
-            height={300}
-            priority
-            style={{ filter: "brightness(15) contrast(1)" }} // Applies a filter to brighten the image
-          />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            width="500"
+            height="300"
+            style={{ filter: "brightness(15) contrast(1)" }}
+          >
+            <source src="/logo-animated.webm" type="video/webm" />
+            <source src="/logo-animated.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
         <motion.h1
           initial={{
@@ -47,17 +55,24 @@ const Hero = () => {
             <Highlight className="text-white">Since 1916</Highlight>
           </p>
         </motion.h1>
-        <div className="flex justify-center items-center flex-wrap mt-8 space-x-8">
+        <div className="flex justify-center items-center flex-wrap mt-8 space-x-4">
           {certifications.map((cert, index) => (
-            <Image
-              key={index}
-              src={cert.src}
-              alt={cert.alt}
-              width={80}
-              height={80}
-              className="rounded-full"
-              loading="lazy" // Lazy load the images
-            />
+            <div key={index} className="m-2">
+              <Image
+                src={cert.src}
+                alt={cert.alt}
+                width={80}
+                height={80}
+                className="rounded-full"
+                loading="lazy" // Lazy load the images
+                sizes="(max-width: 640px) 40px, (max-width: 768px) 60px, 80px" // Define the sizes attribute for responsive loading
+                srcSet={`
+                  ${cert.src} 40w,
+                  ${cert.src} 60w,
+                  ${cert.src} 80w
+                `} // Define the srcset attribute for responsive loading
+              />
+            </div>
           ))}
         </div>
       </div>

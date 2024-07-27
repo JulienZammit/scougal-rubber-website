@@ -76,7 +76,7 @@ export default function Home() {
         <meta property="og:url" content="https://scougalrubber.com/" />
         <meta
           property="og:image"
-          content="https://scougalrubber.com/logo.gif"
+          content="https://scougalrubber.com/logo-animated.webm"
         />
         <link rel="canonical" href="https://scougalrubber.com/" />
         <link rel="icon" href="/favicon.ico" />

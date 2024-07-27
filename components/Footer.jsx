@@ -34,8 +34,7 @@ const Footer = () => {
               priority
             />
             <p className="mt-4 max-w-xs text-sm">
-              Scougal Rubber is a company that manufactures custom molded rubber
-              products since 1916.
+              Scougal Rubber is a company that manufactures custom molded rubber products since 1916.
             </p>
             <p className="mt-4 text-sm">
               Copyright © 2024 - All rights reserved
@@ -58,7 +57,7 @@ const Footer = () => {
               </ul>
             </div>
             <div>
-              <h3 className="text-sm font-semibold leading-6">COMPAGNY</h3>
+              <h3 className="text-sm font-semibold leading-6">COMPANY</h3>
               <ul className="mt-6 space-y-4">
                 {footerNavigation.company.map((item) => (
                   <li key={item.name}>
