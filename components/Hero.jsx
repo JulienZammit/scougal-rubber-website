@@ -53,8 +53,8 @@ const Hero = () => {
               key={index}
               src={cert.src}
               alt={cert.alt}
-              width={120}
-              height={120}
+              width={80}
+              height={80}
               className="rounded-full"
               loading="lazy" // Lazy load the images
             />

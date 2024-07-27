@@ -113,7 +113,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="p-20">
+      <div className="p-0 md:p-10">
         <ImagesSlider
           className="h-[40rem] rounded-xl overflow-hidden"
           images={images1}
@@ -130,7 +130,7 @@ export default function Home() {
             transition={{
               duration: 0.6,
             }}
-            className="z-50 flex flex-col justify-center items-center"
+            className="z-50 flex flex-col justify-center items-center p-5"
           >
             <motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
               Rubber Pads & Bearings
@@ -156,30 +156,30 @@ export default function Home() {
                 </button>
               </ModalTrigger>
               <ModalBody>
-                <ModalContent>
-                  <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
-                    Rubber Pads & Bearings
-                  </h4>
-                  <p className="text-center text-sm md:text-base text-neutral-500 dark:text-neutral-400 mb-4">
-                    Explore our high-quality rubber solutions tailored for
-                    various industrial applications.
-                  </p>
-                  <div className="flex justify-between items-center px-6">
-                  <Link href="/rubber-parts" passHref>
-                    <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
-                      <span>Rubber Pads →</span>
-                      <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-                    </button>
-                  </Link>
-                  <Link href="/bearing-pads" passHref>
-                    <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
-                      <span>Bearings →</span>
-                      <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-                    </button>
-                    </Link>
-                  </div>
-                </ModalContent>
-              </ModalBody>
+  <ModalContent>
+    <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
+      Rubber Pads & Bearings
+    </h4>
+    <p className="text-center text-sm md:text-base text-neutral-500 dark:text-neutral-400 mb-4">
+      Explore our high-quality rubber solutions tailored for various industrial applications.
+    </p>
+    <div className="flex flex-col md:flex-row justify-between items-center px-6 space-y-4 md:space-y-0 md:space-x-4">
+      <Link href="/rubber-parts" passHref>
+        <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
+          <span>Rubber Pads →</span>
+          <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+        </button>
+      </Link>
+      <Link href="/bearing-pads" passHref>
+        <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
+          <span>Bearings →</span>
+          <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+        </button>
+      </Link>
+    </div>
+  </ModalContent>
+</ModalBody>
+
             </Modal>
           </motion.div>
         </ImagesSlider>
@@ -212,7 +212,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="p-20">
+      <div className="p-0 md:p-10">
         <ImagesSlider
           className="h-[40rem] rounded-xl overflow-hidden"
           images={images2}
@@ -229,7 +229,7 @@ export default function Home() {
             transition={{
               duration: 0.6,
             }}
-            className="z-50 flex flex-col justify-center items-center"
+            className="z-50 flex flex-col justify-center items-center p-5"
           >
             <motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
               Industrial Products
