@@ -6,10 +6,10 @@ import { AuroraBackground } from "./ui/aurora-background";
 
 const Hero = () => {
   const certifications = [
-    { src: "/certification/aisc.webp", alt: "AISC Certification", defaultWidth: 135, defaultHeight: 60, rounded: true },
-    { src: "/certification/as9100.webp", alt: "AS9100 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
+    // { src: "/certification/aisc.webp", alt: "AISC Certification", defaultWidth: 135, defaultHeight: 60, rounded: true },
+    // { src: "/certification/as9100.webp", alt: "AS9100 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
     { src: "/certification/cage.webp", alt: "CAGE Certification", defaultWidth: 63, defaultHeight: 75, rounded: true },
-    { src: "/certification/iso9001.webp", alt: "ISO 9001 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
+    // { src: "/certification/iso9001.webp", alt: "ISO 9001 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
     { src: "/certification/Seal-Compliassure_Confirm.webp", alt: "Seal Compliasure Confirm Certification", defaultWidth: 80, defaultHeight: 35, rounded: true },
   ];
 
