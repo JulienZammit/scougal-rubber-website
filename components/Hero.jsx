@@ -32,18 +32,9 @@ const Hero = () => {
           </video>
         </div>
         <motion.h1
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1,
-            y: [20, -5, 0],
-          }}
-          transition={{
-            duration: 0.5,
-            ease: [0.4, 0.0, 0.2, 1],
-          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: [20, -5, 0] }}
+          transition={{ duration: 0.5, ease: [0.4, 0.0, 0.2, 1] }}
           className="text-3xl px-4 md:text-7xl lg:text-5xl font-bold text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto mt-4"
         >
           <p>
@@ -61,9 +52,9 @@ const Hero = () => {
                 width={cert.width}
                 height={cert.height}
                 className="rounded-full"
-                priority={cert.src === "/certification/cage.webp"} // Ajout de la propriété priority
+                priority={index === 2} // Priorité seulement pour la 3ème image
                 sizes="(max-width: 640px) 40px, (max-width: 768px) 60px, 80px"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }} // Utilisation de objectFit pour maintenir le ratio d'aspect
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
           ))}
