@@ -6,11 +6,11 @@ import { AuroraBackground } from "./ui/aurora-background";
 
 const Hero = () => {
   const certifications = [
-    { src: "/certification/aisc.webp", alt: "AISC Certification", width: 80, height: 80 },
-    { src: "/certification/as9100.webp", alt: "AS9100 Certification", width: 80, height: 80 },
-    { src: "/certification/cage.webp", alt: "CAGE Certification", width: 80, height: 80 },
-    { src: "/certification/iso9001.webp", alt: "ISO 9001 Certification", width: 80, height: 80 },
-    { src: "/certification/Seal-Compliassure_Confirm.webp", alt: "Seal Compliasure Confirm Certification", width: 80, height: 80 },
+    { src: "/certification/aisc.webp", alt: "AISC Certification", defaultWidth: 135, defaultHeight: 60, rounded: true },
+    { src: "/certification/as9100.webp", alt: "AS9100 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
+    { src: "/certification/cage.webp", alt: "CAGE Certification", defaultWidth: 63, defaultHeight: 75, rounded: true },
+    { src: "/certification/iso9001.webp", alt: "ISO 9001 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
+    { src: "/certification/Seal-Compliassure_Confirm.webp", alt: "Seal Compliasure Confirm Certification", defaultWidth: 80, defaultHeight: 35, rounded: true },
   ];
 
   return (
@@ -43,18 +43,17 @@ const Hero = () => {
             <Highlight className="text-white">Since 1916</Highlight>
           </p>
         </motion.h1>
-        <div className="flex justify-center items-center flex-wrap mt-8 space-x-4">
+        <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8">
           {certifications.map((cert, index) => (
-            <div key={index} className="m-2" style={{ width: cert.width, height: cert.height }}>
+            <div key={index} className={`m-2 ${cert.rounded ? 'rounded-lg' : ''} certification-logo`} style={{ width: cert.defaultWidth, height: cert.defaultHeight }}>
               <Image
                 src={cert.src}
                 alt={cert.alt}
-                width={cert.width}
-                height={cert.height}
-                className="rounded-full"
+                width={cert.defaultWidth}
+                height={cert.defaultHeight}
                 priority={index === 2} // Priorité seulement pour la 3ème image
                 sizes="(max-width: 640px) 40px, (max-width: 768px) 60px, 80px"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ objectFit: 'contain', borderRadius: cert.rounded ? '10px' : '0' }} // 'contain' pour conserver la forme du logo
               />
             </div>
           ))}

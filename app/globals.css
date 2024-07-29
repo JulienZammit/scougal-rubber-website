@@ -23,3 +23,20 @@ body {
     text-wrap: balance;
   }
 }
+
+.certification-logo {
+  width: 120px; /* Taille par défaut pour les grands écrans */
+  height: auto; /* Maintenir le ratio */
+}
+
+@media (max-width: 640px) {
+  .certification-logo {
+    width: 40px; /* Taille pour les petits écrans */
+  }
+}
+
+@media (max-width: 768px) {
+  .certification-logo {
+    width: 60px; /* Taille pour les écrans moyens */
+  }
+}
