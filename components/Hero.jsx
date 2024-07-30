@@ -15,7 +15,7 @@ const Hero = () => {
 
   return (
     <AuroraBackground>
-      <div className="relative flex flex-col items-center justify-center">
+      <div className="relative flex flex-col items-center justify-center ">
         <div className="flex justify-center">
           <video
             autoPlay
