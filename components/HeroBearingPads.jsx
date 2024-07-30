@@ -4,6 +4,7 @@ import { Boxes } from "./ui/background-boxes";
 import { cn } from "./utils";
 import Image from "next/image";
 
+
 export function HeroBearingPads() {
   const certifications = [
     {
