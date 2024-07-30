@@ -14,6 +14,8 @@ import {
   ModalFooter,
   ModalTrigger,
 } from "../components/ui/animated-modal";
+import CallToAction from "@/components/CallToAction";
+import FaqSection from "@/components/FaqSection";
 
 const text1_words1 = `In 2010, Scougal Rubber opened a new facility in McCarran, NV just outside of Reno dedicated to the production and testing of steel reinforced and plain elastomeric bearings for bridges and buildings.`;
 const text1_words2 = `Starting with an empty slate, we were able to design and build a first-class, modern facility to fit our growing needs. With round-the-clock production, we are producing bearing pads to meet our customers’ needs throughout North America, allowing us to offer the best lead times in the industry.`;
@@ -49,6 +51,38 @@ const images2 = [
   "/banner2/Banner6.webp",
   "/banner2/Banner7.webp",
   "/banner2/Banner8.webp",
+];
+
+
+const faqs = [
+  {
+    id: 1,
+    question: "What are the lead times for your products?",
+    answer:
+      "Scougal Rubber has the best lead times in the industry. We are able to produce and ship most orders within 24 hours.",
+    href: "#",
+  },
+  {
+    id: 2,
+    question: "What are your quality assurance standards?",
+    answer:
+      "Scougal Rubber maintains a strict quality assurance program in order to exceed your expectations with the adaptation of ISO 9001:2015 and AS9100.",
+    href: "#",
+  },
+  {
+    id: 3,
+    question: "What are your production capabilities?",
+    answer:
+      "Scougal Rubber has the capability to produce and test steel reinforced and plain elastomeric bearings for bridges and buildings.",
+    href: "#",
+  },
+  {
+    id: 4,
+    question: "Do you offer inventory programs?",
+    answer:
+      "Yes, Scougal Rubber offers inventory programs to support your just-in-time manufacturing requirements.",
+    href: "#",
+  },
 ];
 
 export default function Home() {
@@ -232,6 +266,14 @@ export default function Home() {
           </motion.div>
         </ImagesSlider>
       </div>
+
+      <div className="p-0 md:p-10">
+        <CallToAction />
+        </div>
+
+        <div className="p-0 md:p-10">
+        <FaqSection faqs={faqs} />
+        </div>
     </div>
   );
 }
