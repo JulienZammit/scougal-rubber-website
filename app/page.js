@@ -127,10 +127,10 @@ export default function Home() {
             <motion.p className="font-bold text-3xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
               Rubber Pads & Bearings
             </motion.p>
-            <p className="text-l text-neutral-600 dark:text-neutral-100 font-bold text-center">
+            <p className="text-l text-neutral-100 font-bold text-center">
               885 Denmark Drive, Suite 103, McCarran, NV, 89437-4425
             </p>
-            <p className="text-l text-neutral-600 dark:text-neutral-100 font-bold text-center">
+            <p className="text-l text-neutral-100 font-bold text-center">
               Email:{" "}
               <a
                 href="mailto:sales@scougalrubber.com"
@@ -147,10 +147,10 @@ export default function Home() {
               </ModalTrigger>
               <ModalBody>
                 <ModalContent>
-                  <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
+                  <h4 className="text-lg md:text-2xl text-neutral-100 font-bold text-center mb-8">
                     Rubber Pads & Bearings
                   </h4>
-                  <p className="text-center text-sm md:text-base text-neutral-500 dark:text-neutral-400 mb-4">
+                  <p className="text-center text-sm md:text-base text-neutral-400 mb-4">
                     Explore our high-quality rubber solutions tailored for
                     various industrial applications.
                   </p>
@@ -210,10 +210,10 @@ export default function Home() {
             <motion.p className="font-bold text-3xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
               Industrial Products
             </motion.p>
-            <p className="text-l text-neutral-600 dark:text-neutral-100 font-bold text-center">
+            <p className="text-l text-neutral-100 font-bold text-center">
               6239 Corson Ave S Seattle, WA, 98108-3443
             </p>
-            <p className="text-l text-neutral-600 dark:text-neutral-100 font-bold text-center">
+            <p className="text-l text-neutral-100 font-bold text-center">
               Email:{" "}
               <a
                 href="mailto:sales@scougalrubber.com"
