@@ -1,4 +1,9 @@
-import SalesMap from "@/components/SalesMap";
+import dynamic from 'next/dynamic';
+import React from 'react';
+import 'leaflet/dist/leaflet.css';
+
+const SalesMap = dynamic(() => import('@/components/SalesMap'), { ssr: false });
+
 
 const salesTerritories = [
   {
