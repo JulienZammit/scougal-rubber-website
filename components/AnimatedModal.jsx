@@ -73,7 +73,7 @@ const AnimatedModal = ({
               </motion.div>
             ))}
           </div>
-          <div className="py-10 flex flex-wrap gap-x-4 gap-y-6 items-start justify-start max-w-sm mx-auto overflow-y-auto max-h-80 scrollbar-custom">
+          <div className="py-10 flex flex-wrap gap-x-4 gap-y-6 items-start justify-start w-full mx-auto overflow-y-auto max-h-80 scrollbar-custom">
             {paragraphs.map((paragraph, idx) => (
               <p key={idx} className="text-neutral-600 ">
                 {paragraph}
