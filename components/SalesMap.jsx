@@ -19,7 +19,7 @@ const customMarker = new L.Icon({
 
 const SalesMap = ({ salesTerritories }) => {
   return (
-    <MapContainer center={[37.7749, -122.4194]} zoom={5} style={{ height: '100%', width: '100%' }}>
+    <MapContainer center={[47.6062, -122.3321]} zoom={5} style={{ height: '100%', width: '100%' }} className='z-0'>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"

@@ -12,31 +12,30 @@ const words = [
   },
 ];
 
-const CallToAction = ({ iconLogo, scrollToSection }) => {
+const CallToAction = () => {
   return (
-    <div className="text-center py-24">
+    <div className="text-center">
       <div className="container mx-auto">
-        <div className="mb-6 flex justify-center">
+        <div className="flex justify-center">
           <Image
-            src="/logo.webp"
+            src="/logo_resized.webp"
             alt="Scougal Rubber Logo"
-            width={451}
-            height={256}
+            width={300}
+            height={180}
           />
         </div>
-        <div className="flex flex-col items-center justify-center ">
-          <p className="text-black sm:text-base  ">
+        <div className="flex flex-col items-center justify-center">
+          <p className="text-black md:text-2xl text-lg p-2">
             Quality, service and reliability have been the "Scougal Standart"
           </p>
           <TypewriterEffectSmooth words={words} />
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
-
-              <a href="mailto:sales@scougalrubber.com" className="w-full">
-                <button className="bg-blue-500 text-white text-sm px-6 py-2 rounded-[20px] border w-full hover:bg-blue-300 transition-all duration-300">
-                  Contact Sales Now
-                </button>
-              </a>
-              </div>
+            <a href="mailto:sales@scougalrubber.com" className="w-full">
+              <button className="bg-blue-500 text-white text-sm md:text-2xl px-6 py-2 rounded-[20px] border w-full hover:bg-blue-300 transition-all duration-300">
+                Contact Sales Now
+              </button>
+            </a>
+          </div>
         </div>
       </div>
     </div>

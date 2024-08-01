@@ -180,23 +180,23 @@ export default function Home() {
                 <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-blue-500 to-transparent" />
               </ModalTrigger>
               <ModalBody>
-                <ModalContent>
-                  <h4 className="text-lg md:text-2xl text-neutral-100 font-bold text-center mb-8">
+                <ModalContent className="bg-neutral-100 p-10 rounded-xl">
+                  <h4 className="text-lg md:text-2xl text-neutral-900 font-bold text-center mb-8">
                     Rubber Pads & Bearings
                   </h4>
-                  <p className="text-center text-sm md:text-base text-neutral-400 mb-4">
+                  <p className="text-center text-sm md:text-xl text-neutral-700 mb-4">
                     Explore our high-quality rubber solutions tailored for
                     various industrial applications.
                   </p>
                   <div className="flex flex-col md:flex-row justify-between items-center px-6 space-y-4 md:space-y-0 md:space-x-4">
                     <Link href="/rubber-parts" passHref>
-                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
+                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-500 mt-12 border-blue-500/20 text-white text-center rounded-full relative">
                         <span>Rubber Pads →</span>
                         <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
                       </button>
                     </Link>
                     <Link href="/bearing-pads" passHref>
-                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white text-center rounded-full relative">
+                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-500 mt-12 border-blue-500/20 text-white text-center rounded-full relative">
                         <span>Bearings →</span>
                         <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
                       </button>

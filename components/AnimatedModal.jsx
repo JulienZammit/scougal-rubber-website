@@ -20,7 +20,7 @@ const AnimatedModal = ({
   triggerImageHeight,
 }) => {
   return (
-    <Modal className="bg-white">
+    <Modal className="bg-white md:mt-0 mt-10">  
       <ModalTrigger className="flex justify-center items-center group/modal-btn ">
         <motion.div
           whileHover={{

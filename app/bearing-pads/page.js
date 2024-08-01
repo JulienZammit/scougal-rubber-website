@@ -38,11 +38,11 @@ export default function BearingPads() {
     <>
       <HeroBearingPads />
       <StickyScrollBearingPads />
-      <div className="p-0 md:p-10">
+      <div className="p-10 md:mb-0 mb-32">
         <CallToAction />
       </div>
 
-      <div className="p-0 md:p-10">
+      <div className="p-10">
         <FaqSection faqs={faqs} />
       </div>
     </>

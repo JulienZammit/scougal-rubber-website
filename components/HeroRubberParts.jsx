@@ -5,7 +5,7 @@ import { cn } from "./utils";
 import Image from "next/image";
 
 
-export function HeroBearingPads() {
+export function HeroRubberParts() {
   const certifications = [
     {
       src: "/certification/aisc.webp",
@@ -41,7 +41,7 @@ export function HeroBearingPads() {
           "md:mt-20 mt-28 md:text-6xl text-3xl text-black font-bold relative z-10"
         )}
       >
-        Bearing Pads
+        Rubber Parts
       </h1>
 
       <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative z-10">

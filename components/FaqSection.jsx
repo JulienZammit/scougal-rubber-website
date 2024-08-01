@@ -11,10 +11,10 @@ const FaqSection = ({ faqs }) => {
     <div className='mx-auto max-w-7xl px-6 pb-8 sm:pb-24 sm:pt-12 lg:px-8 lg:py-32'>
       <div className='lg:grid lg:grid-cols-12 lg:gap-8'>
         <div className='lg:col-span-4'>
-          <h2 className='text-3xl font-bold leading-10 tracking-tight text-gray-900'>
+          <h2 className='md:text-3xl text-2xl font-bold leading-10 tracking-tight text-gray-900'>
             Frequently Asked Questions
           </h2>
-          <p className='mt-4 text-lg leading-7 text-gray-600'>
+          <p className='mt-4 md:text-xl text-lg leading-7 text-gray-600'>
             Have another question? Contact us by <a href="mailto:sales@scougalrubber.com" className="text-blue-500 hover:text-yellow-600">email</a>.
           </p>
         </div>
