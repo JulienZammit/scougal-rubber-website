@@ -26,6 +26,7 @@ const AnimatedModal = ({
           whileHover={{
             scale: 1.05,
             transition: { duration: 0.2 },
+            zIndex: 100,
           }}
           className="flex justify-center items-center"
         >
@@ -40,7 +41,7 @@ const AnimatedModal = ({
         </motion.div>
       </ModalTrigger>
       <ModalBody>
-        <ModalContent className="max-w-7xl mx-auto md:max-w-3xl lg:max-w-5xl">
+        <ModalContent className="max-w-7xl mx-auto md:max-w-3xl lg:max-w-5xl relative">
           <h4 className="text-lg md:text-2xl text-neutral-600 font-bold text-center mb-8">
             {title}
           </h4>
@@ -91,7 +92,7 @@ const AnimatedModal = ({
             ))}
           </div>
         </ModalContent>
-        <ModalFooter className="gap-4">
+        <ModalFooter className="sticky bottom-0 left-0 w-full bg-white p-4 z-50">
           <a href="mailto:sales@scougalrubber.com" className="w-full">
             <button className="bg-blue-500 text-white text-sm px-6 py-2 rounded-md border w-full hover:bg-blue-300 transition-all duration-300">
               Contact Sales Now

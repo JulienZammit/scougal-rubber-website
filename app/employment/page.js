@@ -1,7 +1,7 @@
 "use client";
-import { LampContainer } from "@/components/ui/lamp";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import HeroAboutContact from "@/components/HeroAboutContact";
 
 export default function Employment() {
   const employmentDetails = [
@@ -18,20 +18,11 @@ export default function Employment() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5 mt-12">
       <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
-        <LampContainer>
-          <motion.h1
-            initial={{ opacity: 0.5, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.3,
-              duration: 0.8,
-              ease: "easeInOut",
-            }}
-            className="bg-gradient-to-br text-white bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
-          >
-            Employment
-          </motion.h1>
-        </LampContainer>
+      <HeroAboutContact
+          backgroundImage="/banner1/banner9.webp"
+          title="Employment"
+          subtitle="Join our team and make a difference"
+        />
       </div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -86,7 +77,7 @@ export default function Employment() {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="max-w-4xl w-full p-8 mb-12 text-black"
+        className="max-w-4xl w-full p-8 text-black"
       >
         <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
         <p className="mb-4">

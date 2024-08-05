@@ -1,8 +1,7 @@
 "use client";
-import GoogleMap from "@/components/GoogleMap";
-import { LampContainer } from "@/components/ui/lamp";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import HeroAboutContact from "@/components/HeroAboutContact";
 
 export default function Company() {
   const maps = [
@@ -25,20 +24,11 @@ export default function Company() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5 mt-12">
       <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
-        <LampContainer>
-          <motion.h1
-            initial={{ opacity: 0.5, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.3,
-              duration: 0.8,
-              ease: "easeInOut",
-            }}
-            className="bg-gradient-to-br text-white bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
-          >
-            Our Company
-          </motion.h1>
-        </LampContainer>
+      <HeroAboutContact
+          backgroundImage="/about/banner1.webp"
+          title="Our Company"
+          subtitle="America's Custom Molded Rubber Company Since 1916"
+        />
       </div>
       <div className="max-w-4xl w-full p-8 mb-12">
         <div className="flex flex-col gap-8">

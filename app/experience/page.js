@@ -2,8 +2,8 @@
 import dynamic from "next/dynamic";
 import React from "react";
 import "leaflet/dist/leaflet.css";
-import { LampContainer } from "@/components/ui/lamp";
 import { motion } from "framer-motion";
+import HeroAboutContact from "@/components/HeroAboutContact";
 
 const SalesMap = dynamic(() => import("@/components/SalesMap"), { ssr: false });
 
@@ -418,20 +418,11 @@ export default function Experience() {
   return (
     <div className="flex flex-col items-center overflow-hidden justify-center min-h-screen md:p-20 p-5 mt-12">
       <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
-        <LampContainer>
-          <motion.h1
-            initial={{ opacity: 0.5, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-              delay: 0.3,
-              duration: 0.8,
-              ease: "easeInOut",
-            }}
-            className="bg-gradient-to-br text-white bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
-          >
-            Our Experience
-          </motion.h1>
-        </LampContainer>
+        <HeroAboutContact
+          backgroundImage="/banner1/banner5.webp"
+          title="Our Experience"
+          subtitle="Discover our team of experts and our sales territories"
+        />
       </div>
       <div className="w-full max-w-6xl mt-16 mb-16 px-4">
         <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">

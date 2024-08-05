@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { useMotionValue, motion, useMotionTemplate } from "framer-motion";
 
 const transition = {
@@ -11,14 +12,27 @@ const transition = {
   restSpeed: 0.001,
 };
 
-export const MenuItem = ({
-  setActive,
-  active,
-  item,
-  children,
-}) => {
+export const MenuItem = ({ setActive, active, item, children }) => {
+  let timeout;
+
+  const handleMouseEnter = () => {
+    clearTimeout(timeout);
+    setActive(item);
+  };
+
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 960) {
+      timeout = setTimeout(() => setActive(null), 200);
+    } else {
+      setActive(null);
+    }
+  };
   return (
-    <div onMouseEnter={() => setActive(item)} className="relative md:text-lg text-sm">
+    <div
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className="relative md:text-lg text-sm"
+    >
       <motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer hover:opacity-[0.9] text-white"
@@ -54,9 +68,20 @@ export const MenuItem = ({
 };
 
 export const Menu = ({ setActive, children }) => {
+  let timeout;
+
+  const handleMouseEnter = () => {
+    clearTimeout(timeout);
+  };
+
+  const handleMouseLeave = () => {
+    timeout = setTimeout(() => setActive(null), 500); // 0.5 second delay
+  };
+
   return (
     <nav
-      onMouseLeave={() => setActive(null)} // resets the state
+      onMouseLeave={handleMouseLeave} // resets the state
+      onMouseEnter={handleMouseEnter}
       className="relative rounded-full border bg-slate-800 border-white/[0.2] shadow-input flex justify-center space-x-4 px-8 py-4 "
     >
       {children}
@@ -75,12 +100,8 @@ export const ProductItem = ({ title, description, href, src }) => {
         className="flex-shrink-0 rounded-md shadow-2xl"
       />
       <div>
-        <h4 className="text-xl font-bold mb-1 text-white">
-          {title}
-        </h4>
-        <p className="text-sm max-w-[10rem] text-neutral-300">
-          {description}
-        </p>
+        <h4 className="text-xl font-bold mb-1 text-white">{title}</h4>
+        <p className="text-sm max-w-[10rem] text-neutral-300">{description}</p>
       </div>
     </Link>
   );
@@ -88,10 +109,7 @@ export const ProductItem = ({ title, description, href, src }) => {
 
 export const HoveredLink = ({ children, ...rest }) => {
   return (
-    <Link
-      {...rest}
-      className="text-neutral-200 hover:text-blue-300 md:text-lg text-sm"
-    >
+    <Link {...rest} className="text-neutral-200 hover:text-blue-300 md:text-lg text-sm">
       {children}
     </Link>
   );
