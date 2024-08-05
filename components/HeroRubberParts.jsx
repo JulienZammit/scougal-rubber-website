@@ -45,7 +45,7 @@ export function HeroRubberParts() {
       </h1>
 
       <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative z-10">
-        Qulaity, service and reliability, have been our the "Scougal Standart"
+        Qulaity, service and reliability, have been the "Scougal Standart"
       </p>
       <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8 z-10">
         {certifications.map((cert, index) => (

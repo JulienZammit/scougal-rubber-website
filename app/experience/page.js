@@ -1,9 +1,11 @@
-import dynamic from 'next/dynamic';
-import React from 'react';
-import 'leaflet/dist/leaflet.css';
+"use client";
+import dynamic from "next/dynamic";
+import React from "react";
+import "leaflet/dist/leaflet.css";
+import { LampContainer } from "@/components/ui/lamp";
+import { motion } from "framer-motion";
 
-const SalesMap = dynamic(() => import('@/components/SalesMap'), { ssr: false });
-
+const SalesMap = dynamic(() => import("@/components/SalesMap"), { ssr: false });
 
 const salesTerritories = [
   {
@@ -414,26 +416,66 @@ const teamMembers = [
 
 export default function Experience() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-8 mt-12">
-      <h1 className="text-5xl font-bold mb-8 text-gray-800">Experience</h1>
-      <p className="text-lg text-gray-600 mb-12 text-center max-w-2xl">
-        This map shows the sales territories covered by our dedicated team across the United States and Canada. Click on a marker to see the details of the sales representative for each region.
-      </p>
-      <div className="w-full max-w-4xl h-[500px] rounded-lg border-4 border-white shadow-lg mb-12">
-        <SalesMap salesTerritories={salesTerritories} />
+    <div className="flex flex-col items-center overflow-hidden justify-center min-h-screen md:p-20 p-5 mt-12">
+      <div className="h-[35rem] relative w-full flex flex-col overflow-hidden rounded-md">
+        <LampContainer>
+          <motion.h1
+            initial={{ opacity: 0.5, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              delay: 0.3,
+              duration: 0.8,
+              ease: "easeInOut",
+            }}
+            className="bg-gradient-to-br text-white bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+          >
+            Our Experience
+          </motion.h1>
+        </LampContainer>
       </div>
-      <h2 className="text-4xl font-bold mb-8 text-gray-800">Meet Our Team</h2>
-      <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {teamMembers.map((member, index) => (
-          <div key={index} className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center text-center">
-            <img src={member.image} alt={member.name} className="w-32 h-32 rounded-full mb-4 object-cover"/>
-            <h3 className="text-xl font-bold text-gray-800">{member.name}</h3>
-            <p className="text-gray-600 mb-4">{member.title}</p>
-            <p className="text-gray-600">{member.description}</p>
-          </div>
-        ))}
+      <div className="w-full max-w-6xl mt-16 mb-16 px-4">
+        <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
+          Our Sales Map
+        </h2>
+        <p className="text-lg text-gray-600 mb-12 text-center">
+          This map shows the sales territories covered by our dedicated team
+          across the United States and Canada. Click on a marker to see the
+          details of the sales representative for each region.
+        </p>
+        <div className="w-full h-[500px] rounded-lg border-4 border-white shadow-lg mb-12">
+          <SalesMap salesTerritories={salesTerritories} />
+        </div>
+      </div>
+
+      <div className="w-full max-w-6xl px-4">
+        <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
+          Meet Our Team
+        </h2>
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers.map((member, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{
+                delay: 0.1 * index,
+                duration: 0.5,
+                ease: "easeInOut",
+              }}
+              className="p-4 flex flex-col items-center text-center"
+            >
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-32 h-32 rounded-full mb-4 object-cover shadow-lg"
+              />
+              <h3 className="text-xl font-bold text-gray-800">{member.name}</h3>
+              <p className="text-gray-600 mb-4">{member.position}</p>
+              <p className="text-gray-600">{member.description}</p>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
-  
