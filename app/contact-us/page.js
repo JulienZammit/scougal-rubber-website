@@ -30,7 +30,7 @@ export default function ContactUs() {
     <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5 overflow-hidden mt-12">
       <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
         <HeroAboutContact
-          backgroundImage="/about/banner1.webp"
+          backgroundImage="/banner2/Banner1.webp"
           title="Contact Us"
           subtitle="We are here to help you with your project"
         />
