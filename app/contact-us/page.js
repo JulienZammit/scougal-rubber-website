@@ -42,7 +42,7 @@ export default function ContactUs() {
         </p>
       </div>
 
-      <div className="flex flex-col items-center justify-center w-9/12 p-8 mb-12 space-y-12">
+      <div className="flex flex-col items-center justify-center md:w-9/12 w-full p-8 mb-12 space-y-12">
         {contacts.map((contact, index) => (
           <motion.div
             key={index}
