@@ -17,7 +17,7 @@ export default function Employment() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5 mt-12">
-      <div className="h-[35rem] relative w-full flex flex-col overflow-hidden rounded-md">
+      <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
         <LampContainer>
           <motion.h1
             initial={{ opacity: 0.5, y: 100 }}
@@ -50,8 +50,8 @@ export default function Employment() {
           {employmentDetails.map((detail, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -25 : 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
               transition={{
                 delay: 0.2 * index,
                 duration: 0.8,

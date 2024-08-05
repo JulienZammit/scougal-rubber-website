@@ -27,8 +27,8 @@ export default function ContactUs() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5">
-      <div className="h-[35rem] relative w-full flex flex-col overflow-hidden rounded-md mb-12">
+    <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5 overflow-hidden">
+      <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
         <LampContainer>
           <motion.h1
             initial={{ opacity: 0.5, y: 100 }}
@@ -54,7 +54,7 @@ export default function ContactUs() {
       {contacts.map((contact, index) => (
         <motion.div
           key={index}
-          initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+          initial={{ opacity: 0, x: index % 2 === 0 ? -25 : 25 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{
             delay: 0.2 * index,

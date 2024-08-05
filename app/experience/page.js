@@ -417,7 +417,7 @@ const teamMembers = [
 export default function Experience() {
   return (
     <div className="flex flex-col items-center overflow-hidden justify-center min-h-screen md:p-20 p-5 mt-12">
-      <div className="h-[35rem] relative w-full flex flex-col overflow-hidden rounded-md">
+      <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
         <LampContainer>
           <motion.h1
             initial={{ opacity: 0.5, y: 100 }}
