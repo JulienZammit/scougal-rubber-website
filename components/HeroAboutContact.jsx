@@ -3,6 +3,14 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
+  const scrollToNextSection = () => {
+    const targetPosition = window.innerWidth >= 768 ? 600 : 400; // 768px is the default md breakpoint in Tailwind CSS
+    window.scrollTo({
+      top: targetPosition,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <div className="relative w-full flex flex-col items-center justify-center overflow-hidden rounded-md h-[50vh] bg-gradient-to-br from-blue-500">
       <div className="absolute inset-0 w-full h-full flex items-center justify-center z-0">
@@ -46,7 +54,8 @@ export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="absolute bottom-10 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg z-10"
+        className="absolute bottom-10 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg z-10 cursor-pointer"
+        onClick={scrollToNextSection}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
