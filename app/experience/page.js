@@ -428,7 +428,7 @@ export default function Experience() {
         <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
           Our Sales Map
         </h2>
-        <p className="text-lg text-gray-600 mb-12 text-center">
+        <p className="text-lg text-gray-600 mb-12 text-center" style={{ textAlign: 'justify' }}>
           This map shows the sales territories covered by our dedicated team
           across the United States and Canada. Click on a marker to see the
           details of the sales representative for each region.
@@ -462,7 +462,7 @@ export default function Experience() {
               />
               <h3 className="text-xl font-bold text-gray-800">{member.name}</h3>
               <p className="text-gray-600 mb-4">{member.position}</p>
-              <p className="text-gray-600">{member.description}</p>
+              <p className="text-gray-600" style={{ textAlign: 'justify' }}>{member.description}</p>
             </motion.div>
           ))}
         </div>

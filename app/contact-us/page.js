@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import HeroAboutContact from "@/components/HeroAboutContact";
+import NTPEPIcon from "@/components/NTPEPIcon";
 
 export default function ContactUs() {
   const contacts = [
@@ -29,6 +30,7 @@ export default function ContactUs() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5 overflow-hidden mt-12">
       <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
+
         <HeroAboutContact
           backgroundImage="/banner2/Banner1.webp"
           title="Contact Us"
@@ -37,7 +39,7 @@ export default function ContactUs() {
       </div>
 
       <div className="max-w-4xl w-full p-8 mb-12 text-center">
-        <p className="text-lg mb-8">
+        <p className="text-lg mb-8" style={{ textAlign: 'justify' }}>
           We can offer suggestions regarding molding and polymer selection, inventory programs to support your just-in-time manufacturing requirements, and our team of experienced professionals is ready to assist you with time sensitive projects, competitive pricing, and superior quality.
         </p>
       </div>

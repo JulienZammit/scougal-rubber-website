@@ -63,6 +63,7 @@ export default function Employment() {
               </div>
               <div
                 className="w-full md:w-1/2 p-4 text-center md:text-left"
+                style={{ textAlign: 'justify' }}
                 dangerouslySetInnerHTML={{ __html: detail.text }}
               />
             </motion.div>
@@ -78,6 +79,7 @@ export default function Employment() {
           ease: "easeInOut",
         }}
         className="max-w-4xl w-full p-8 text-black"
+        style={{ textAlign: 'justify' }}
       >
         <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
         <p className="mb-4">

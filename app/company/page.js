@@ -55,7 +55,7 @@ export default function Company() {
                   className="rounded-md"
                 />
               </div>
-              <div className="w-full md:w-1/2 p-4 text-center md:text-left">
+              <div className="w-full md:w-1/2 p-4 text-center md:text-left" style={{ textAlign: 'justify' }}> 
                 <p className="text-lg">{paragraph}</p>
               </div>
             </motion.div>

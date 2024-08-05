@@ -126,11 +126,12 @@ export default function Home() {
 
       <Hero />
 
-      <div className="flex flex-col p-20 gap-4">
+      <div className="flex flex-col md:p-20 p-10 gap-4">
         <div
           data-aos="fade-up"
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          className={`font-bold text-lg md:text-2xl text-black`}
+          className={`text-lg md:text-2xl text-black`}
+          style={{ textAlign: 'justify' }}
         >
           {text1_words1} <br /> <br />
           {text1_words2} <br /> <br />
@@ -209,11 +210,12 @@ export default function Home() {
         </ImagesSlider>
       </div>
 
-      <div className="flex flex-col p-20 gap-4">
+      <div className="flex flex-col md:p-20 p-10 gap-4">
         <div
           data-aos="fade-up"
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          className={`font-bold text-lg md:text-2xl text-black`}
+          className={`text-lg md:text-2xl text-black`}
+          style={{ textAlign: 'justify' }}
         >
           {text2_words1} <br /><br />
           {text2_words2} <br /><br />
