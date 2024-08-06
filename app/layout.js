@@ -33,7 +33,9 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <Header className="top-2"/>
-        <main>{children}</main>
+        <div id="__next">
+          <main>{children}</main>
+        </div>
         <Footer />
       </body>
     </html>

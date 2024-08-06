@@ -17,12 +17,14 @@ function Header({ className }) {
             <HoveredLink href="/bearing-pads">Bearing Pads</HoveredLink>
             <HoveredLink href="/rubber-parts">Rubber Parts</HoveredLink>
             <HoveredLink href="/ramps">Ramps</HoveredLink>
+            <HoveredLink href="/steel">Steel</HoveredLink>
           </div>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="About us">
         <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/experience">Experience</HoveredLink>
             <HoveredLink href="/company">Company</HoveredLink>
+            <HoveredLink href="/experience">Experience</HoveredLink>
+            <HoveredLink href="/projects">Projects</HoveredLink>
           </div>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="Contact">
