@@ -148,9 +148,9 @@ export default function Projects() {
           <h2 className="text-4xl font-bold mb-8 text-center">
             {project.name}
           </h2>
-          <Slider {...settings} className="h-[48rem]">
+          <Slider {...settings} className="md:h-[48rem] h-[26rem]">
             {project.images.map((src, imgIndex) => (
-              <div key={imgIndex} className="relative w-full h-[48rem]">
+              <div key={imgIndex} className="relative w-full md:h-[48rem] h-[26rem]">
                 <Image
                   src={src}
                   alt={`${project.name} image ${imgIndex + 1}`}
