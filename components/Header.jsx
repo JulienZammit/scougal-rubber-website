@@ -17,7 +17,7 @@ function Header({ className }) {
             <HoveredLink href="/bearing-pads">Bearing Pads</HoveredLink>
             <HoveredLink href="/rubber-parts">Rubber Parts</HoveredLink>
             <HoveredLink href="/ramps">Ramps</HoveredLink>
-            <HoveredLink href="/steel">Steel</HoveredLink>
+            <HoveredLink href="/steel">Steel Fabrication</HoveredLink>
           </div>
         </MenuItem>
         <MenuItem setActive={setActive} active={active} item="About us">

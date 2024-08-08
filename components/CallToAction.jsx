@@ -26,7 +26,7 @@ const CallToAction = () => {
         </div>
         <div className="flex flex-col items-center justify-center">
           <p className="text-black md:text-2xl text-lg p-2">
-            Quality, service and reliability have been the "Scougal Standart"
+            Quality, service, and reliability, have been the "Scougal Standard"
           </p>
           <TypewriterEffectSmooth words={words} />
           <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 space-x-0 md:space-x-4">
