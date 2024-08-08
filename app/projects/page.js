@@ -125,14 +125,13 @@ export default function Projects() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5 overflow-hidden mt-12">
-      <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
         <HeroAboutContact
           backgroundImage="/banner1/Banner2.webp"
           title="Our Projects"
           subtitle="Let's see what we have done"
         />
-      </div>
+      <div className="md:p-20 p-5 relative w-full flex flex-col overflow-hidden rounded-md mb-12">
       {projects.map((project, index) => (
         <motion.div
           key={index}
@@ -189,6 +188,7 @@ export default function Projects() {
           />
         </div>
       </Modal>
+      </div>
     </div>
   );
 }

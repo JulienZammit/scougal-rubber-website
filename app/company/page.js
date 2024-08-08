@@ -22,14 +22,13 @@ export default function Company() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5 mt-12">
-      <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
+    <div className="flex flex-col items-center justify-center min-h-screen">
       <HeroAboutContact
           backgroundImage="/about/banner1.webp"
           title="Our Company"
           subtitle="America's Custom Molded Rubber Company Since 1916"
         />
-      </div>
+      <div className="md:p-20 p-5">
       <div className="max-w-4xl w-full p-8 mb-12">
         <div className="flex flex-col gap-8">
           {aboutCompanyText.map((paragraph, index) => (
@@ -101,6 +100,7 @@ export default function Company() {
             </motion.div>
           ))}
         </div>
+      </div>
       </div>
     </div>
   );

@@ -405,85 +405,85 @@ export default function ContactUs() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen md:p-20 p-5 overflow-hidden mt-12">
-      <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
-        <HeroAboutContact
-          backgroundImage="/banner2/Banner1.webp"
-          title="Contact Us"
-          subtitle="Expert advice on molding, polymers, inventory, and time-sensitive projects"
-        />
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
+      <HeroAboutContact
+        backgroundImage="/banner2/Banner1.webp"
+        title="Contact Us"
+        subtitle="Expert advice on molding, polymers, inventory, and time-sensitive projects"
+      />
 
-      <div className="w-full max-w-6xl mt-16 mb-16 px-4">
-        <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
-          Our Sales Map
-        </h2>
-        <p
-          className="text-lg text-gray-600 mb-12 text-center"
-          style={{ textAlign: "justify" }}
-        >
-          This map shows the sales territories covered by our dedicated team
-          across the United States and Canada. Click on a marker to see the
-          details of the sales representative for each region.
-        </p>
-        <div className="w-full h-[500px] rounded-lg border-4 border-white shadow-lg mb-12">
-          <SalesMap salesTerritories={salesTerritories} />
-        </div>
-      </div>
-
-      <div className="flex flex-col items-center justify-center md:w-9/12 w-full p-8 mb-12 space-y-12">
-        <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
-          Our Locations
-        </h2>
-        {contacts.map((contact, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -25 : 25 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{
-              delay: 0.2 * index,
-              duration: 0.8,
-              ease: "easeInOut",
-            }}
-            className={`flex flex-col md:flex-row items-center justify-between w-full gap-8 ${
-              index % 2 === 0 ? "md:flex-row-reverse" : ""
-            }`}
+      <div className="md:p-20 p-5 flex flex-col items-center justify-center md:w-9/12 w-full space-y-12">
+        <div className="w-full max-w-6xl mt-16 mb-16 px-4">
+          <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
+            Our Sales Map
+          </h2>
+          <p
+            className="text-lg text-gray-600 mb-12 text-center"
+            style={{ textAlign: "justify" }}
           >
-            <div className="w-full md:w-1/2 p-4">
-              <Image
-                src={contact.image}
-                alt={`${contact.title} image`}
-                width={400}
-                height={300}
-                className="rounded-md object-cover"
-              />
-            </div>
-            <div className="w-full md:w-1/2 p-4 text-center md:text-left">
-              <h2 className="text-2xl font-bold mb-4">{contact.title}</h2>
-              {contact.address && (
-                <address className="not-italic mb-4">
-                  {contact.address.split(", ").map((line, idx) => (
-                    <div key={idx}>{line}</div>
-                  ))}
-                </address>
-              )}
-              <p>
-                Email:{" "}
-                <a href={`mailto:${contact.email}`} className="text-blue-500">
-                  {contact.email}
-                </a>
-              </p>
-              {contact.phone && (
+            This map shows the sales territories covered by our dedicated team
+            across the United States and Canada. Click on a marker to see the
+            details of the sales representative for each region.
+          </p>
+          <div className="w-full h-[500px] rounded-lg border-4 border-white shadow-lg mb-12">
+            <SalesMap salesTerritories={salesTerritories} />
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-center md:w-9/12 w-full p-8 mb-12 space-y-12">
+          <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
+            Our Contacts
+          </h2>
+          {contacts.map((contact, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -25 : 25 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{
+                delay: 0.2 * index,
+                duration: 0.8,
+                ease: "easeInOut",
+              }}
+              className={`flex flex-col md:flex-row items-center justify-between w-full gap-8 ${
+                index % 2 === 0 ? "md:flex-row-reverse" : ""
+              }`}
+            >
+              <div className="w-full md:w-1/2 p-4">
+                <Image
+                  src={contact.image}
+                  alt={`${contact.title} image`}
+                  width={400}
+                  height={300}
+                  className="rounded-md object-cover"
+                />
+              </div>
+              <div className="w-full md:w-1/2 p-4 text-center md:text-left">
+                <h2 className="text-2xl font-bold mb-4">{contact.title}</h2>
+                {contact.address && (
+                  <address className="not-italic mb-4">
+                    {contact.address.split(", ").map((line, idx) => (
+                      <div key={idx}>{line}</div>
+                    ))}
+                  </address>
+                )}
                 <p>
-                  Phone:{" "}
-                  <a href={`tel:${contact.phone}`} className="text-blue-500">
-                    {contact.phone}
+                  Email:{" "}
+                  <a href={`mailto:${contact.email}`} className="text-blue-500">
+                    {contact.email}
                   </a>
                 </p>
-              )}
-            </div>
-          </motion.div>
-        ))}
+                {contact.phone && (
+                  <p>
+                    Phone:{" "}
+                    <a href={`tel:${contact.phone}`} className="text-blue-500">
+                      {contact.phone}
+                    </a>
+                  </p>
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </div>
   );

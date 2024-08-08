@@ -39,42 +39,45 @@ const teamMembers = [
 
 export default function Experience() {
   return (
-    <div className="flex flex-col items-center overflow-hidden justify-center min-h-screen md:p-20 p-5 mt-12">
-      <div className="relative w-full flex flex-col overflow-hidden rounded-md mb-12">
-        <HeroAboutContact
-          backgroundImage="/banner1/banner5.webp"
-          title="Our Experience"
-          subtitle="Discover our team of experts"
-        />
-      </div>
-
-      <div className="w-full max-w-6xl px-4">
-        <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
-          Meet Our Team
-        </h2>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((member, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{
-                delay: 0.1 * index,
-                duration: 0.5,
-                ease: "easeInOut",
-              }}
-              className="p-4 flex flex-col items-center text-center"
-            >
-              <img
-                src={member.image}
-                alt={member.name}
-                className="w-32 h-32 rounded-full mb-4 object-cover shadow-lg"
-              />
-              <h3 className="text-xl font-bold text-gray-800">{member.name}</h3>
-              <p className="text-gray-600 mb-4">{member.position}</p>
-              <p className="text-gray-600" style={{ textAlign: 'justify' }}>{member.description}</p>
-            </motion.div>
-          ))}
+    <div className="flex flex-col items-center overflow-hidden justify-center min-h-screen">
+      <HeroAboutContact
+        backgroundImage="/banner1/banner5.webp"
+        title="Our Experience"
+        subtitle="Discover our team of experts"
+      />
+      <div className="md:p-20 p-5">
+        <div className="w-full max-w-6xl px-4">
+          <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
+            Meet Our Team
+          </h2>
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{
+                  delay: 0.1 * index,
+                  duration: 0.5,
+                  ease: "easeInOut",
+                }}
+                className="p-4 flex flex-col items-center text-center"
+              >
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-32 h-32 rounded-full mb-4 object-cover shadow-lg"
+                />
+                <h3 className="text-xl font-bold text-gray-800">
+                  {member.name}
+                </h3>
+                <p className="text-gray-600 mb-4">{member.position}</p>
+                <p className="text-gray-600" style={{ textAlign: "justify" }}>
+                  {member.description}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
