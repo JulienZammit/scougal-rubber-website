@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import HeroAboutContact from "@/components/HeroAboutContact";
+import ApplyOnlineForm from "@/components/ApplicationForm";
 
 export default function Employment() {
   const employmentDetails = [
@@ -22,7 +23,18 @@ export default function Employment() {
         title="Employment"
         subtitle="Join our team and make a difference"
       />
-      <div className="md:p-20 p-5">
+      <div className="md:p-15 p-5">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.2,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+        >
+          <ApplyOnlineForm />
+        </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -70,6 +82,7 @@ export default function Employment() {
             ))}
           </div>
         </div>
+
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -81,18 +94,6 @@ export default function Employment() {
           className="max-w-4xl w-full p-8 text-black"
           style={{ textAlign: "justify" }}
         >
-          <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
-          <p className="mb-4">
-            Candidates for production positions may fill out an application in
-            our office; candidates with experience in manufacturing sales or
-            administration are encouraged to{" "}
-            <a
-              href="mailto:info@scougalrubber.com"
-              className="text-blue-500 underline"
-            >
-              email a resume with cover letter.
-            </a>
-          </p>
           <p className="bg-red-500 text-white p-2 rounded-md mb-4 font-bold">
             Please note that Scougal is a drug-free workplace. All positions
             require a pre-employment drug test.
