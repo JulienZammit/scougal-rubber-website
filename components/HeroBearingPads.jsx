@@ -14,6 +14,20 @@ export function HeroBearingPads() {
       defaultHeight: 60,
       rounded: true,
     },
+    {
+      src: "/certification/NTPEP.webp",
+      alt: "NTPEP Certification",
+      defaultWidth: 135,
+      defaultHeight: 60,
+      rounded: true,
+    },
+    {
+      src: "/certification/PennDOT.webp",
+      alt: "PennDOT Certification",
+      defaultWidth: 135,
+      defaultHeight: 60,
+      rounded: true,
+    },
     // { src: "/certification/as9100.webp", alt: "AS9100 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
     {
       src: "/certification/cage.webp",
@@ -44,10 +58,10 @@ export function HeroBearingPads() {
         Bearing Pads
       </h1>
 
-      <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative z-5">
+      <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative ">
         Quality, service, and reliability, have been the "Scougal Standard"
       </p>
-      <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8 z-5">
+      <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8 z-40">
         {certifications.map((cert, index) => (
           <div
             key={index}

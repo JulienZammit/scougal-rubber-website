@@ -4,17 +4,22 @@ import { Boxes } from "./ui/background-boxes";
 import { cn } from "./utils";
 import Image from "next/image";
 
-
 export function HeroRubberParts() {
   const certifications = [
+    // {
+    //   src: "/certification/aisc.webp",
+    //   alt: "AISC Certification",
+    //   defaultWidth: 135,
+    //   defaultHeight: 60,
+    //   rounded: true,
+    // },
     {
-      src: "/certification/aisc.webp",
-      alt: "AISC Certification",
-      defaultWidth: 135,
-      defaultHeight: 60,
-      rounded: true,
+      src: "/certification/as9100.webp",
+      alt: "AS9100 Certification",
+      defaultWidth: 100,
+      defaultHeight: 100,
+      rounded: false,
     },
-    // { src: "/certification/as9100.webp", alt: "AS9100 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
     {
       src: "/certification/cage.webp",
       alt: "CAGE Certification",
@@ -22,7 +27,13 @@ export function HeroRubberParts() {
       defaultHeight: 75,
       rounded: true,
     },
-    // { src: "/certification/iso9001.webp", alt: "ISO 9001 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
+    {
+      src: "/certification/iso9001.webp",
+      alt: "ISO 9001 Certification",
+      defaultWidth: 100,
+      defaultHeight: 100,
+      rounded: false,
+    },
     {
       src: "/certification/Seal-Compliassure_Confirm.webp",
       alt: "Seal Compliasure Confirm Certification",
@@ -38,16 +49,16 @@ export function HeroRubberParts() {
       <Boxes />
       <h1
         className={cn(
-          "md:mt-20 mt-28 md:text-6xl text-3xl text-black font-bold relative z-5"
+          "md:mt-20 mt-28 md:text-6xl text-3xl text-black font-bold relative z-40"
         )}
       >
         Industrial Rubber Parts
       </h1>
 
-      <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative z-5">
+      <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative">
         Quality, service, and reliability, have been the "Scougal Standard"
       </p>
-      <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8 z-5">
+      <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8 z-40">
         {certifications.map((cert, index) => (
           <div
             key={index}

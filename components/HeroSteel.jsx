@@ -7,29 +7,30 @@ import Image from "next/image";
 
 export function HeroSteel() {
   const certifications = [
-    // {
-    //   src: "/certification/aisc.webp",
-    //   alt: "AISC Certification",
-    //   defaultWidth: 135,
-    //   defaultHeight: 60,
-    //   rounded: true,
-    // },
-    // // { src: "/certification/as9100.webp", alt: "AS9100 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
-    // {
-    //   src: "/certification/cage.webp",
-    //   alt: "CAGE Certification",
-    //   defaultWidth: 63,
-    //   defaultHeight: 75,
-    //   rounded: true,
-    // },
+    {
+      src: "/certification/aisc.webp",
+      alt: "AISC Certification",
+      defaultWidth: 135,
+      defaultHeight: 60,
+      rounded: true,
+    },
+    {
+      src: "/certification/NTPEP.webp",
+      alt: "NTPEP Certification",
+      defaultWidth: 100,
+      defaultHeight: 60,
+      rounded: true,
+    },
+    // { src: "/certification/as9100.webp", alt: "AS9100 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
+    {
+      src: "/certification/cage.webp",
+      alt: "CAGE Certification",
+      defaultWidth: 63,
+      defaultHeight: 75,
+      rounded: true,
+    },
     // { src: "/certification/iso9001.webp", alt: "ISO 9001 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
-    // {
-    //   src: "/certification/Seal-Compliassure_Confirm.webp",
-    //   alt: "Seal Compliasure Confirm Certification",
-    //   defaultWidth: 80,
-    //   defaultHeight: 35,
-    //   rounded: true,
-    // },
+    
   ];
   return (
     <div className="md:h-[48rem] h-[32rem] relative w-full overflow-hidden flex flex-col items-center justify-center rounded-lg">
@@ -38,16 +39,16 @@ export function HeroSteel() {
       <Boxes />
       <h1
         className={cn(
-          "md:mt-20 mt-28 md:text-6xl text-3xl text-black font-bold relative z-5"
+          "md:mt-20 mt-28 md:text-6xl text-3xl text-black font-bold relative z-40"
         )}
       >
         Steel Fabrication
       </h1>
 
-      <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative z-5">
+      <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative">
         Quality, service, and reliability, have been the "Scougal Standard"
       </p>
-      <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8 z-5">
+      <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8 z-40">
         {certifications.map((cert, index) => (
           <div
             key={index}
