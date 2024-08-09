@@ -198,14 +198,7 @@ const salesTerritories = [
     phone: "206-686-9190",
   },
   {
-    position: [37.7749, -122.4194],
-    name: "San Francisco",
-    rep: "Scott Nelson",
-    email: "scott.nelson@scougalrubber.com",
-    phone: "206-686-9190",
-  },
-  {
-    position: [35.0077519, -97.092877],
+    position: [43.8041334, -120.5542012],
     name: "Oregon",
     rep: "Scott Nelson",
     email: "scott.nelson@scougalrubber.com",

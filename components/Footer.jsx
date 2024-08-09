@@ -6,8 +6,8 @@ const footerNavigation = {
   product: [
     { name: "Home", href: "/" },
     { name: "Bearing Pads", href: "/bearing-pads" },
-    { name: "Rubber Parts", href: "/rubber-parts" },
-    { name: "Ramps", href: "/ramps" },
+    { name: "Industrial Rubber Parts", href: "/rubber-parts" },
+    { name: "Scougal Ramps", href: "/ramps" },
   ],
   company: [
     { name: "Company", href: "/company" },

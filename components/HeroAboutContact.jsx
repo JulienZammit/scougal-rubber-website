@@ -12,7 +12,7 @@ export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
   };
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center overflow-hidden rounded-md h-[50vh] bg-gradient-to-br from-blue-500">
+    <div className="relative w-full flex flex-col items-center justify-center overflow-hidden rounded-md h-[90vh] bg-gradient-to-br from-blue-500">
       <div className="absolute inset-0 w-full h-full flex items-center justify-center z-0">
         <Image
           src={backgroundImage}
