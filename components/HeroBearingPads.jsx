@@ -17,14 +17,14 @@ export function HeroBearingPads() {
     {
       src: "/certification/NTPEP.webp",
       alt: "NTPEP Certification",
-      defaultWidth: 135,
+      defaultWidth: 100,
       defaultHeight: 60,
       rounded: true,
     },
     {
       src: "/certification/PennDOT.webp",
       alt: "PennDOT Certification",
-      defaultWidth: 135,
+      defaultWidth: 100,
       defaultHeight: 60,
       rounded: true,
     },

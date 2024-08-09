@@ -15,16 +15,16 @@ export function HeroRamps() {
       <Boxes />
       <h1
         className={cn(
-          "md:mt-20 mt-28 md:text-6xl text-3xl text-black font-bold relative z-5"
+          "md:mt-20 mt-28 md:text-6xl text-3xl text-black font-bold relative z-40"
         )}
       >
         Scougal Ramps
       </h1>
 
-      <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative z-5">
+      <p className="text-center md:text-3xl text-xl mt-2 p-2 text-black font-bold relative">
         RAMP UP YOUR PRODUCTIVITY
       </p>
-      <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8 z-5"> 
+      <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8 z-40"> 
         {image.map((cert, index) => (
           <div
             key={index}
