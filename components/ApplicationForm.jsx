@@ -23,7 +23,7 @@ export default function ApplyOnlineForm() {
   const onSubmit = async (data) => {
     setSubmitting(true);
     try {
-      const response = await fetch("/.netlify/functions/submit-application", {
+      const response = await fetch("/.netlify/functions/submit-application", { // PROD : api/submit-application
         method: "POST",
         headers: {
           "Content-Type": "application/json",

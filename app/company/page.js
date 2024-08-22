@@ -7,7 +7,7 @@ export default function Company() {
   const maps = [
     {
       address: "885 Denmark Dr, Sparks, NV 89437, États-Unis",
-      src: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d50407853.19421591!2d-119.47069200000001!3d39.544922!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80991f7dd081d623%3A0x43cfac11d31dd352!2s885%20Denmark%20Dr%2C%20Sparks%2C%20NV%2089437%2C%20USA!5e0!3m2!1sen!2sin!4v1722606885297!5m2!1sen!2sin",
+      src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d769.1635496100836!2d-119.47181328921722!3d39.5448542779333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80993f2f92c5ec87%3A0xfc1547a496c0a744!2sScougal%20Rubber!5e0!3m2!1sen!2snl!4v1724346679762!5m2!1sen!2snl",
     },
     {
       address: "Scougal Rubber Corporation, Seattle, WA",
