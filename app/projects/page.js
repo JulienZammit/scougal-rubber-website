@@ -131,7 +131,7 @@ export default function Projects() {
           title="Our Projects"
           subtitle="Let's see what we have done"
         />
-      <div className="md:p-20 p-5 relative w-full flex flex-col overflow-hidden rounded-md mb-12">
+      <div className="md:p-20 p-5 relative w-full flex flex-col overflow-hidden rounded-[5px] mb-12">
       {projects.map((project, index) => (
         <motion.div
           key={index}
@@ -154,7 +154,7 @@ export default function Projects() {
                   src={src}
                   alt={`${project.name} image ${imgIndex + 1}`}
                   fill
-                  className="object-cover rounded-md cursor-pointer"
+                  className="object-cover rounded-[5px] cursor-pointer"
                   onClick={() => openModal(src)}
                 />
               </div>
@@ -184,7 +184,7 @@ export default function Projects() {
             width={800}
             height={600}
             objectFit="contain"
-            className="rounded-md"
+            className="rounded-[5px]"
           />
         </div>
       </Modal>

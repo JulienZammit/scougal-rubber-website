@@ -51,7 +51,7 @@ export default function Company() {
                   alt={`About image ${index + 1}`}
                   width={400}
                   height={300}
-                  className="rounded-md"
+                  className="rounded-[5px]"
                 />
               </div>
               <div className="w-full md:w-1/2 p-4 text-center md:text-left" style={{ textAlign: 'justify' }}> 
@@ -74,7 +74,7 @@ export default function Company() {
                 duration: 0.8,
                 ease: "easeInOut",
               }}
-              className="w-full rounded-lg border-4 border-white shadow-lg overflow-hidden relative"
+              className="w-full rounded-[5px] border-4 border-white shadow-lg overflow-hidden relative"
             >
               <iframe
                 src={map.src}

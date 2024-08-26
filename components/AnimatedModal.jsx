@@ -35,7 +35,7 @@ const AnimatedModal = ({
             layout="intrinsic"
             width={triggerImageWidth}
             height={triggerImageHeight}
-            className="rounded-lg cursor-pointer"
+            className="rounded-[5px] cursor-pointer"
             alt="Modal Trigger"
           />
         </motion.div>
@@ -62,14 +62,14 @@ const AnimatedModal = ({
                   rotate: 0,
                   zIndex: 100,
                 }}
-                className="rounded-xl -mr-4 mt-4 p-1 bg-white border border-neutral-100 flex-shrink-0 overflow-hidden"
+                className="rounded-[5px] -mr-4 mt-4 p-1 bg-white border border-neutral-100 flex-shrink-0 overflow-hidden"
               >
                 <Image
                   src={image}
                   alt={title}
                   width="500"
                   height="500"
-                  className="rounded-lg h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
+                  className="rounded-[5px] h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
                 />
               </motion.div>
             ))}
@@ -87,14 +87,14 @@ const AnimatedModal = ({
                 alt={`Special Image ${idx + 1}`}
                 width={idx === 0 ? 853 : 853}
                 height={idx === 0 ? 217 : 250}
-                className="rounded-lg h-40 w-40 md:h-auto md:w-auto object-cover flex-shrink-0 hidden md:block"
+                className="rounded-[5px] h-40 w-40 md:h-auto md:w-auto object-cover flex-shrink-0 hidden md:block"
               />
             ))}
           </div>
         </ModalContent>
         <ModalFooter className="sticky bottom-0 left-0 w-full bg-white p-4 z-50">
           <a href="mailto:sales@scougalrubber.com" className="w-full">
-            <button className="bg-blue-500 text-white text-sm px-6 py-2 rounded-md border w-full hover:bg-blue-300 transition-all duration-300">
+            <button className="bg-blue-500 text-white text-sm px-6 py-2 rounded-[5px] border w-full hover:bg-slate-700 transition-all duration-300">
               Contact Sales Now
             </button>
           </a>

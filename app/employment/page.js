@@ -43,7 +43,7 @@ export default function Employment() {
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="my-12 p-8 bg-gradient-to-r bg-blue-500 text-white rounded-md shadow-lg text-center text-2xl font-bold"
+          className="my-12 p-8 bg-gradient-to-r bg-blue-500 text-white rounded-[5px] shadow-lg text-center text-2xl font-bold"
         >
           Scougal Rubber is an Equal Opportunity Employer and Welcomes Your
           Inquiry.
@@ -70,7 +70,7 @@ export default function Employment() {
                     alt={`Employment image ${index + 1}`}
                     width={400}
                     height={300}
-                    className="rounded-md"
+                    className="rounded-[5px]"
                   />
                 </div>
                 <div
@@ -94,7 +94,7 @@ export default function Employment() {
           className="max-w-4xl w-full p-8 text-black"
           style={{ textAlign: "justify" }}
         >
-          <p className="bg-red-500 text-white p-2 rounded-md mb-4 font-bold">
+          <p className="bg-red-500 text-white p-2 rounded-[5px] mb-4 font-bold">
             Please note that Scougal is a drug-free workplace. All positions
             require a pre-employment drug test.
           </p>

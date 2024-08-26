@@ -60,7 +60,7 @@ export const Highlight = ({ children, className }) => {
   return (
     <span
       className={cn(
-        `relative inline-block pb-1 px-1 rounded-lg bg-gradient-to-r from-blue-500 to-blue-300`,
+        `relative inline-block pb-1 px-1 rounded-[5px] bg-gradient-to-r from-blue-500 to-slate-700`,
         className
       )}
     >

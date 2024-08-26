@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
   const scrollToNextSection = () => {
-    const targetPosition = window.innerWidth >= 768 ? 600 : 400; // 768px is the default md breakpoint in Tailwind CSS
+    const targetPosition = window.innerHeight - 50;
     window.scrollTo({
       top: targetPosition,
       behavior: 'smooth',
@@ -12,7 +12,7 @@ export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
   };
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center overflow-hidden rounded-md md:h-[90vh] h-[60vh] bg-gradient-to-br from-blue-500">
+    <div className="relative w-full flex flex-col items-center justify-center overflow-hidden h-screen bg-gradient-to-br from-slate-700 to-blue-500">
       <div className="absolute inset-0 w-full h-full flex items-center justify-center z-0">
         <Image
           src={backgroundImage}
@@ -54,7 +54,7 @@ export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="absolute bottom-10 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg z-10 cursor-pointer"
+        className="absolute bottom-10 w-10 h-10 bg-white rounded-[5px] flex items-center justify-center shadow-lg z-10 cursor-pointer"
         onClick={scrollToNextSection}
       >
         <svg

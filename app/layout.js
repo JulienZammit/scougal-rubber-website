@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import Header from "../components/Header";
+import HeaderV3 from "../components/HeaderV3";
 import Footer from "../components/Footer";
 import "./globals.css";
 
@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
         <script src="../node_modules/preline/dist/preline.js"></script>
       </head>
       <body className={inter.className}>
-        <Header className="top-2" />
+        <HeaderV3 />
         <div id="__next">
           <main>{children}</main>
         </div>

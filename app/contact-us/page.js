@@ -418,7 +418,7 @@ export default function ContactUs() {
             across the United States and Canada. Click on a marker to see the
             details of the sales representative for each region.
           </p>
-          <div className="w-full h-[500px] rounded-lg border-4 border-white shadow-lg mb-12">
+          <div className="w-full h-[500px] rounded-[5px] border-4 border-white shadow-lg mb-12">
             <SalesMap salesTerritories={salesTerritories} />
           </div>
         </div>
@@ -447,7 +447,7 @@ export default function ContactUs() {
                   alt={`${contact.title} image`}
                   width={400}
                   height={300}
-                  className="rounded-md object-cover"
+                  className="rounded-[5px] object-cover"
                 />
               </div>
               <div className="w-full md:w-1/2 p-4 text-center md:text-left">

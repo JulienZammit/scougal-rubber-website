@@ -9,7 +9,7 @@ export function HeroRamps() {
     { src: "/ramps/ramps.webp", alt: "ramps scougal", defaultWidth: 908, defaultHeight: 291, rounded: false },
   ];
   return (
-    <div className="md:h-[48rem] h-[32rem] relative w-full overflow-hidden flex flex-col items-center justify-center rounded-lg">
+    <div className="md:h-[48rem] h-[32rem] relative w-full overflow-hidden flex flex-col items-center justify-center rounded-[5px]">
       <div className="absolute inset-0 w-full h-full z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
 
       <Boxes />

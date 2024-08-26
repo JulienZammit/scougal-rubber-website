@@ -9,7 +9,7 @@ const teamMembers = [
     name: "Rob Anderson",
     position: "President",
     description: `After stints with Boeing and a commercial window manufacturer, Rob came to Scougal in 1992 and has played a role in virtually every facet of the company. He has managed growth in production, operations, and sales. Rob is currently running both the Seattle and Reno operations. His expertise in steel reinforced elastomeric bearings has earned him a noteworthy voice in the bridge bearing community. He has served as a liaison between regulatory and academic entities regarding bearing design and testing standards. Rob has a passion for empowering people to be successful through teamwork and leadership.`,
-    image: "/employees/ra.jpg", // Assurez-vous d'avoir ces images dans votre dossier public
+    image: "/employees/ra.jpg",
   },
   {
     name: "Scott Nelson",
@@ -53,29 +53,31 @@ export default function Experience() {
           <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{
-                  delay: 0.1 * index,
-                  duration: 0.5,
-                  ease: "easeInOut",
-                }}
-                className="p-4 flex flex-col items-center text-center"
-              >
+              key={index}
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{
+                delay: 0.1 * index,
+                duration: 0.5,
+                ease: "easeInOut",
+              }}
+              className="p-4 flex flex-col items-center text-center"
+            >
+              <div className="w-52 h-80 rounded-[5px] overflow-hidden shadow-lg mb-4 border-2 border-gray-200">
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-32 h-32 rounded-full mb-4 object-cover shadow-lg"
+                  className="w-full h-full object-cover"
                 />
-                <h3 className="text-xl font-bold text-gray-800">
-                  {member.name}
-                </h3>
-                <p className="text-gray-600 mb-4">{member.position}</p>
-                <p className="text-gray-600" style={{ textAlign: "justify" }}>
-                  {member.description}
-                </p>
-              </motion.div>
+              </div>
+              <h3 className="text-xl font-bold text-gray-800">
+                {member.name}
+              </h3>
+              <p className="text-gray-600 mb-4">{member.position}</p>
+              <p className="text-gray-600" style={{ textAlign: "justify" }}>
+                {member.description}
+              </p>
+            </motion.div>
             ))}
           </div>
         </div>

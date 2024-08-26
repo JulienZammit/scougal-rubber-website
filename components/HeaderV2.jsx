@@ -42,11 +42,11 @@ const Header = () => {
     <div className="w-full text-gray-700 bg-white">
       <div className="flex flex-col max-w-screen-xl px-4 mx-auto md:items-center md:justify-between md:flex-row md:px-6 lg:px-8">
         <div className="flex flex-row items-center justify-between p-4">
-          <Link href="/" className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-lg focus:outline-none focus:shadow-outline">
+          <Link href="/" className="text-lg font-semibold tracking-widest text-gray-900 uppercase rounded-[5px] focus:outline-none focus:shadow-outline">
             <Image src="/logo_resized.webp" alt="logo scougal rubber" width={150} height={50} />
           </Link>
           <button
-            className="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
+            className="rounded-[5px] md:hidden focus:outline-none focus:shadow-outline"
             onClick={() => setIsOpen(!isOpen)}
           >
             <svg fill="currentColor" viewBox="0 0 20 20" className="w-6 h-6">
@@ -67,14 +67,14 @@ const Header = () => {
             isOpen ? 'flex' : 'hidden'
           } flex-col flex-grow pb-4 md:pb-0 md:flex md:justify-end md:flex-row transition-all duration-300 ease-in-out`}
         >
-          <Link href="/" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
+          <Link href="/" className="px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-[5px] md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline">
             Home
           </Link>
           {menuItems.map((item, index) => (
             <div key={index} className="relative">
               <button
                 onClick={() => toggleDropdown(index)}
-                className="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                className="flex flex-row items-center w-full px-4 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-[5px] md:w-auto md:inline md:mt-0 md:ml-4 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
               >
                 <span>{item.title}</span>
                 <svg
@@ -92,13 +92,13 @@ const Header = () => {
                 </svg>
               </button>
               {activeDropdown === index && (
-                <div className="absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48 z-50 transition-opacity duration-300 ease-in-out">
-                  <div className="px-2 py-2 bg-white rounded-md shadow">
+                <div className="absolute right-0 w-full mt-2 origin-top-right rounded-[5px] shadow-lg md:w-48 z-50 transition-opacity duration-300 ease-in-out">
+                  <div className="px-2 py-2 bg-white rounded-[5px] shadow">
                     {item.links.map((link, linkIndex) => (
                       <Link
                         key={linkIndex}
                         href={link.href}
-                        className="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                        className="block px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-[5px] md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
                       >
                         {link.text}
                       </Link>

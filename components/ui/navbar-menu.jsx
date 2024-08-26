@@ -50,7 +50,7 @@ export const MenuItem = ({ setActive, active, item, children }) => {
               <motion.div
                 transition={transition}
                 layoutId="active" // layoutId ensures smooth animation
-                className="bg-slate-800 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/[0.2] shadow-xl"
+                className="bg-slate-800 backdrop-blur-sm rounded-[5px] overflow-hidden border border-white/[0.2] shadow-lg"
               >
                 <motion.div
                   layout // layout ensures smooth animation
@@ -82,7 +82,7 @@ export const Menu = ({ setActive, children }) => {
     <nav
       onMouseLeave={handleMouseLeave} // resets the state
       onMouseEnter={handleMouseEnter}
-      className="relative rounded-full border bg-slate-800 border-white/[0.2] shadow-input flex justify-center space-x-4 px-8 py-4 "
+      className="relative rounded-[5px] border bg-slate-800 border-white/[0.2] shadow-lg flex justify-center space-x-4 px-8 py-4 "
     >
       {children}
     </nav>
@@ -97,7 +97,7 @@ export const ProductItem = ({ title, description, href, src }) => {
         width={140}
         height={70}
         alt={title}
-        className="flex-shrink-0 rounded-md shadow-2xl"
+        className="flex-shrink-0 rounded-[5px] shadow-lg"
       />
       <div>
         <h4 className="text-xl font-bold mb-1 text-white">{title}</h4>
@@ -109,7 +109,7 @@ export const ProductItem = ({ title, description, href, src }) => {
 
 export const HoveredLink = ({ children, ...rest }) => {
   return (
-    <Link {...rest} className="text-neutral-200 hover:text-blue-300 md:text-lg text-sm">
+    <Link {...rest} className="text-neutral-200 hover:text-slate-700 md:text-lg text-sm">
       {children}
     </Link>
   );

@@ -142,7 +142,7 @@ export default function Home() {
 
       <div className="p-0 md:p-10">
         <ImagesSlider
-          className="h-[40rem] rounded-xl overflow-hidden"
+          className="h-[40rem] rounded-[5px] overflow-hidden"
           images={images1}
         >
           <motion.div
@@ -169,19 +169,19 @@ export default function Home() {
               Email:{" "}
               <a
                 href="mailto:sales@scougalrubber.com"
-                className="text-blue-500 hover:text-blue-700"
+                className="text-blue-500 hover:text-slate-700"
               >
                 sales@scougalrubber.com
               </a>{" "}
               | Phone: (775) 284-8500
             </p>
             <Modal>
-              <ModalTrigger className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white mx-auto text-center rounded-full relative mt-4">
+              <ModalTrigger className="px-4 py-2 backdrop-blur-sm border bg-slate-700/10 border-blue-500/20 text-white mx-auto text-center rounded-[5px] relative mt-4">
                 <span>See more →</span>
                 <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-blue-500 to-transparent" />
               </ModalTrigger>
               <ModalBody>
-                <ModalContent className="bg-neutral-100 p-10 rounded-xl">
+                <ModalContent className="bg-neutral-100 p-10 rounded-[5px]">
                   <h4 className="text-lg md:text-2xl text-neutral-900 font-bold text-center mb-8">
                     Rubber Pads & Bearings
                   </h4>
@@ -191,13 +191,13 @@ export default function Home() {
                   </p>
                   <div className="flex flex-col md:flex-row justify-between items-center px-6 space-y-4 md:space-y-0 md:space-x-4">
                     <Link href="/rubber-parts" passHref>
-                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-500 mt-12 border-blue-500/20 text-white text-center rounded-full relative">
+                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-500 mt-12 border-blue-500/20 text-white text-center rounded-[5px] relative">
                         <span>Rubber Pads →</span>
                         <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
                       </button>
                     </Link>
                     <Link href="/bearing-pads" passHref>
-                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-500 mt-12 border-blue-500/20 text-white text-center rounded-full relative">
+                      <button className="px-4 py-2 backdrop-blur-sm border bg-blue-500 mt-12 border-blue-500/20 text-white text-center rounded-[5px] relative">
                         <span>Bearings →</span>
                         <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
                       </button>
@@ -226,7 +226,7 @@ export default function Home() {
 
       <div className="p-0 md:p-10">
         <ImagesSlider
-          className="h-[40rem] rounded-xl overflow-hidden"
+          className="h-[40rem] rounded-[5px] overflow-hidden"
           images={images2}
         >
           <motion.div
@@ -253,14 +253,14 @@ export default function Home() {
               Email:{" "}
               <a
                 href="mailto:sales@scougalrubber.com"
-                className="text-blue-500 hover:text-blue-700"
+                className="text-blue-500 hover:text-slate-700"
               >
                 sales@scougalrubber.com
               </a>{" "}
               | Phone: (206) 763-2650
             </p>
             <Link href="/ramps" passHref>
-              <button className="px-4 py-2 backdrop-blur-sm border bg-blue-300/10 border-blue-500/20 text-white mx-auto text-center rounded-full relative mt-4">
+              <button className="px-4 py-2 backdrop-blur-sm border bg-slate-700/10 border-blue-500/20 text-white mx-auto text-center rounded-[5px] relative mt-4">
                 <span>See more →</span>
                 <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-blue-500 to-transparent" />
               </button>

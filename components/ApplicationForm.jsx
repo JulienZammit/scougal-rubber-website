@@ -78,10 +78,10 @@ export default function ApplyOnlineForm() {
   };
 
   const inputClasses =
-    "py-3 px-4 block w-full border-2 border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none shadow-sm";
+    "py-3 px-4 block w-full border-2 border-gray-300 rounded-[5px] text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none shadow-lg";
   const labelClasses = "block text-sm font-medium text-gray-700 mb-2";
   const checkboxClasses =
-    "h-5 w-5 rounded border-2 border-gray-300 text-blue-600 focus:ring-blue-500";
+    "h-5 w-5 rounded border-2 border-gray-300 text-slate-700 focus:ring-blue-500";
 
   const handleEmploymentTypeChange = (type) => {
     setValue("employmentType.fullTime", type === "fullTime");
@@ -113,7 +113,7 @@ export default function ApplyOnlineForm() {
           </p>
         </div>
 
-        <div className="bg-white shadow-xl rounded-3xl overflow-hidden">
+        <div className="bg-white shadow-lg rounded-[5px] overflow-hidden">
           <div className="p-6 sm:p-10">
             <h2 className="md:text-2xl text-xl font-semibold text-gray-800 mb-6">
               Application Form
@@ -333,7 +333,7 @@ export default function ApplyOnlineForm() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-[5px] border border-transparent bg-blue-500 text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {submitting ? (
                     <>

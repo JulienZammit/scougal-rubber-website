@@ -1,0 +1,119 @@
+J'aimerai que tu deviennes le meilleur designe imaginatif classe et élégant. j'aimerai que tu me fasses un composant pour afficher les produit (ce que je vend). J'aimerai que tu mettes en valeurs mes produits et que et que tu sois imaginatif classe et élégant. J'aimerai que tu fasses le meilleur design pour mettre en valeur mes produits. Voici le composant à améliorer
+
+import React, { useState } from 'react';
+import { FaTimes, FaInfoCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+
+const ProductDisplay = ({ content }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [expandedImage, setExpandedImage] = useState(null);
+  const [showInfo, setShowInfo] = useState(false);
+
+  const nextProduct = () => {
+    setActiveIndex((prevIndex) => (prevIndex + 1) % content.length);
+    setShowInfo(false);
+  };
+
+  const prevProduct = () => {
+    setActiveIndex((prevIndex) => (prevIndex - 1 + content.length) % content.length);
+    setShowInfo(false);
+  };
+
+  const product = content[activeIndex];
+
+  const closeExpandedImage = () => {
+    setExpandedImage(null);
+  };
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative">
+      <button
+        onClick={prevProduct}
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-[5px] hover:bg-blue-600 transition-colors duration-300 flex items-center shadow-lg"
+      >
+      <FaChevronLeft className="mr-2" />
+      </button>
+      <button
+        onClick={nextProduct}
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white px-4 py-2 rounded-[5px] hover:bg-blue-600 transition-colors duration-300 flex items-center shadow-lg"
+      >
+      <FaChevronRight className="ml-2" />
+      </button>
+      <div className="bg-white shadow-2xl rounded-[5px] overflow-hidden border-5 border-blue-500">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-3/5 p-8 relative">
+            <div className="relative group max-w-lg mx-auto">
+              <img
+                src={product.ImageMain}
+                alt={product.title}
+                width={product.ImageMainWidth}
+                height={product.ImageMainHeight}
+                className="w-full h-auto object-cover rounded-[5px] shadow-md cursor-pointer transition-transform duration-300 group-hover:scale-105"
+                onClick={() => setExpandedImage(product.ImageMain)}
+                style={{ maxWidth: '100%', maxHeight: '400px' }}
+              />
+              <div className="absolute inset-0 bg-blue-500 bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300 rounded-[5px] flex items-center justify-center pointer-events-none">
+                <FaInfoCircle className="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </div>
+            <div className="mt-6 grid grid-cols-3 gap-4">
+              {product.images.map((img, index) => (
+                <div key={index} className="relative group">
+                  <img
+                    src={img}
+                    alt={`${product.title} - ${index + 1}`}
+                    className="w-full h-32 object-cover rounded-[5px] shadow-sm cursor-pointer transition-transform duration-300 group-hover:scale-105"
+                    onClick={() => setExpandedImage(img)}
+                  />
+                  <div className="absolute inset-0 bg-blue-500 bg-opacity-0 group-hover:bg-opacity-20 transition-opacity duration-300 rounded-[5px] pointer-events-none" />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="md:w-2/5 p-8 bg-slate-50">
+            <h2 className="text-4xl font-bold text-slate-700 mb-6 border-b-2 border-blue-500 pb-4">{product.title}</h2>
+            <button 
+              onClick={() => setShowInfo(!showInfo)} 
+              className="mb-6 text-blue-500 hover:text-slate-700 flex items-center text-lg font-semibold transition-colors duration-300"
+            >
+              <FaInfoCircle className="mr-2" /> {showInfo ? 'Hide' : 'Show'} Details
+            </button>
+            {showInfo && (
+              <div className="space-y-4 animate-fadeIn">
+                {product.paragraphs.map((paragraph, index) => (
+                  <p key={index} className="text-slate-700 leading-relaxed">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+      {expandedImage && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50"
+          onClick={closeExpandedImage}
+        >
+          <div className="max-w-5xl max-h-full p-4 relative" onClick={(e) => e.stopPropagation()}>
+            <img
+              src={expandedImage}
+              alt="Expanded view"
+              className="max-w-full max-h-full object-contain rounded-[5px]"
+            />
+            <button
+              onClick={closeExpandedImage}
+              className="absolute top-4 right-4 text-white text-3xl bg-blue-500 rounded-[5px] p-2 hover:bg-blue-600 transition-colors duration-300"
+            >
+              <FaTimes />
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ProductDisplay;
+
+
+A savoir également que les j'utilise tailwind et que dans mon site il ne faut utiliser que les couleurs blue-500 et slate-700. Les bordures seront toutes mises à 5px. Ensuite si tu veux mettre des icons il faudra utiliser react-icons/fa. Maintenant que tu à toutes les informations j'aimerai que tu me fasses le style le plus beau et le plus classe que tu puisses faire pour afficher les données que je t'ai donné. Suurprend moi et surtout soit imaginatif et sobre

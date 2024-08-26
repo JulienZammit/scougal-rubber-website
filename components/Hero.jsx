@@ -38,14 +38,12 @@ const Hero = () => {
           className="text-3xl px-4 md:text-7xl lg:text-5xl font-bold text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto mt-4"
         >
           <p>
-            America's Custom Molded Rubber Company
-            <span> </span>
-            <Highlight className="text-white">Since 1916</Highlight>
+            America's Custom Molded Rubber Company Since 1916
           </p>
         </motion.h1>
         <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8">
           {certifications.map((cert, index) => (
-            <div key={index} className={`m-2 ${cert.rounded ? 'rounded-lg' : ''} certification-logo`} style={{ width: cert.defaultWidth, height: cert.defaultHeight }}>
+            <div key={index} className={`m-2 ${cert.rounded ? 'rounded-[5px]' : ''} certification-logo`} style={{ width: cert.defaultWidth, height: cert.defaultHeight }}>
               <Image
                 src={cert.src}
                 alt={cert.alt}
