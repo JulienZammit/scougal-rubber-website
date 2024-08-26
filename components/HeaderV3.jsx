@@ -49,8 +49,7 @@ const Header = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setActiveMenu(null);
-        setMenuOpen(false);
+        closeAllMenus();
       }
     };
 
@@ -60,6 +59,11 @@ const Header = () => {
     };
   }, []);
 
+  const closeAllMenus = () => {
+    setActiveMenu(null);
+    setMenuOpen(false);
+  };
+
   const toggleMenu = (index) => {
     setActiveMenu(activeMenu === index ? null : index);
   };
@@ -68,10 +72,14 @@ const Header = () => {
     return item.links.some((link) => pathname.startsWith(link.href));
   };
 
+  const handleLinkClick = () => {
+    closeAllMenus();
+  };
+
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={styles.companyBar}>
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo} onClick={handleLinkClick}>
           <Image
             src="./logo_resized.webp"
             alt="Scougal Rubber Logo"
@@ -94,7 +102,7 @@ const Header = () => {
       <nav className={`${styles.navbar} ${menuOpen ? styles.active : ""}`} ref={menuRef}>
         <ul>
           <li>
-            <Link href="/" className={pathname === "/" ? styles.active : ""}>
+            <Link href="/" className={pathname === "/" ? styles.active : ""} onClick={handleLinkClick}>
               Home
             </Link>
           </li>
@@ -137,6 +145,7 @@ const Header = () => {
                         className={
                           pathname.startsWith(link.href) ? styles.active : ""
                         }
+                        onClick={handleLinkClick}
                       >
                         {link.text}
                       </Link>
@@ -150,6 +159,7 @@ const Header = () => {
             <Link
               href="/employment"
               className={pathname === "/employment" ? styles.active : ""}
+              onClick={handleLinkClick}
             >
               Employment
             </Link>
@@ -158,13 +168,14 @@ const Header = () => {
             <Link
               href="/contact-us"
               className={pathname === "/contact-us" ? styles.active : ""}
+              onClick={handleLinkClick}
             >
               Contact Us
             </Link>
           </li>
         </ul>
       </nav>
-      <Link href="/contact-us" className={styles.contactButton}>
+      <Link href="/contact-us" className={styles.contactButton} onClick={handleLinkClick}>
         Contact Us
       </Link>
     </header>
