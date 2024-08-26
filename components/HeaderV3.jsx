@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -31,6 +31,7 @@ const Header = () => {
   const [activeMenu, setActiveMenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +44,20 @@ const Header = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setActiveMenu(null);
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
   }, []);
 
   const toggleMenu = (index) => {
@@ -76,7 +91,7 @@ const Header = () => {
         {menuOpen ? <MdClose size={30} /> : <MdMenu size={30} />}
       </label>
 
-      <nav className={`${styles.navbar} ${menuOpen ? styles.active : ""}`}>
+      <nav className={`${styles.navbar} ${menuOpen ? styles.active : ""}`} ref={menuRef}>
         <ul>
           <li>
             <Link href="/" className={pathname === "/" ? styles.active : ""}>
@@ -87,7 +102,10 @@ const Header = () => {
             <li key={index}>
               <a
                 href="#"
-                onClick={() => toggleMenu(index)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  toggleMenu(index);
+                }}
                 className={`${styles.dropdown} ${
                   isActive(item) ? styles.active : ""
                 }`}
@@ -106,7 +124,6 @@ const Header = () => {
                   />
                 </span>
               </a>
-              {/* Only render submenu if it's active */}
               {activeMenu === index && (
                 <ul
                   className={`${styles.submenu} ${
