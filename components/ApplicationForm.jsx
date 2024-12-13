@@ -78,7 +78,7 @@ export default function ApplyOnlineForm() {
   };
 
   const inputClasses =
-    "py-3 px-4 block w-full border-2 border-gray-300 rounded-[5px] text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none shadow-lg";
+    "py-3 px-4 block w-full border-2 border-gray-300 rounded-[5px] text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none";
   const labelClasses = "block text-sm font-medium text-gray-700 mb-2";
   const checkboxClasses =
     "h-5 w-5 rounded border-2 border-gray-300 text-slate-700 focus:ring-blue-500";
@@ -113,7 +113,7 @@ export default function ApplyOnlineForm() {
           </p>
         </div>
 
-        <div className="bg-white shadow-lg rounded-[5px] overflow-hidden">
+        <div className="bg-white shadow-md rounded-[5px] overflow-hidden">
           <div className="p-6 sm:p-10">
             <h2 className="md:text-2xl text-xl font-semibold text-gray-800 mb-6">
               Application Form

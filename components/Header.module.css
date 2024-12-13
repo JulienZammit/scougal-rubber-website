@@ -162,6 +162,11 @@
   display: none;
 }
 
+.socialIcons {
+  display: flex;
+  gap: 15px;
+}
+
 /* Responsive Styles */
 @media (max-width: 1170px) {
   .header {

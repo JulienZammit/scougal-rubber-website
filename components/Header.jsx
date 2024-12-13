@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { MdMenu, MdClose, MdKeyboardArrowDown } from "react-icons/md";
+import { FaFacebook, FaLinkedin } from "react-icons/fa";
 import styles from "./Header.module.css";
 
 const menuItems = [
@@ -99,10 +100,17 @@ const Header = () => {
         {menuOpen ? <MdClose size={30} /> : <MdMenu size={30} />}
       </label>
 
-      <nav className={`${styles.navbar} ${menuOpen ? styles.active : ""}`} ref={menuRef}>
+      <nav
+        className={`${styles.navbar} ${menuOpen ? styles.active : ""}`}
+        ref={menuRef}
+      >
         <ul>
           <li>
-            <Link href="/" className={pathname === "/" ? styles.active : ""} onClick={handleLinkClick}>
+            <Link
+              href="/"
+              className={pathname === "/" ? styles.active : ""}
+              onClick={handleLinkClick}
+            >
               Home
             </Link>
           </li>
@@ -175,9 +183,33 @@ const Header = () => {
           </li>
         </ul>
       </nav>
-      <Link href="/contact-us" className={styles.contactButton} onClick={handleLinkClick}>
+      <Link
+        href="/contact-us"
+        className={styles.contactButton}
+        onClick={handleLinkClick}
+      >
         Contact Us
       </Link>
+      <div className={styles.socialIcons}>
+        <a
+          href="https://www.linkedin.com/company/scougal-rubber-corporation"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          className="hover:text-gray-500 transition"
+        >
+          <FaLinkedin size={24} />
+        </a>
+        <a
+          href="https://www.facebook.com/scougalrubbercorp/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          className="hover:text-gray-500 transition"
+        >
+          <FaFacebook size={24} />
+        </a>
+      </div>
     </header>
   );
 };

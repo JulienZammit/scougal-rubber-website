@@ -3,6 +3,7 @@ import HeroAboutContact from "@/components/HeroAboutContact";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { FaFacebook, FaLinkedin } from "react-icons/fa";
 
 const SalesMap = dynamic(() => import("@/components/SalesMap"), { ssr: false });
 
@@ -396,6 +397,11 @@ export default function ContactUsClient() {
     },
   ];
 
+  const socialLinks = {
+    linkedin: "https://www.linkedin.com/company/scougal-rubber-corporation", // Remplacez par votre URL LinkedIn
+    facebook: "https://www.facebook.com/scougalrubbercorp/"
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
       <HeroAboutContact
@@ -405,6 +411,7 @@ export default function ContactUsClient() {
       />
 
       <div className="md:p-20 p-5 flex flex-col items-center justify-center md:w-9/12 w-full space-y-12">
+        {/* Section Carte des ventes */}
         <div className="w-full max-w-6xl mt-16 mb-16 px-4">
           <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
             Our Sales Map
@@ -422,10 +429,30 @@ export default function ContactUsClient() {
           </div>
         </div>
 
+        {/* Section Contacts */}
         <div className="flex flex-col items-center justify-center md:w-9/12 w-full p-8 mb-12 space-y-12">
           <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
             Our Contacts
           </h2>
+          {/* Liens vers les réseaux sociaux */}
+          <div className="flex items-center justify-center space-x-6 mb-12">
+            <a
+              href={socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-75 transition-opacity"
+            >
+              <FaLinkedin size={40} />
+            </a>
+            <a
+              href={socialLinks.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-75 transition-opacity"
+            >
+              <FaFacebook size={40} />
+            </a>
+          </div>
           {contacts.map((contact, index) => (
             <motion.div
               key={index}

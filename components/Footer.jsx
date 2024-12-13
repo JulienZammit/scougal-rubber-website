@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { FaFacebook, FaLinkedin } from "react-icons/fa";
 
 const footerNavigation = {
   product: [
@@ -33,13 +34,33 @@ const Footer = () => {
                 width={100}
                 height={70}
                 loading="lazy"
-                style={{ width: "100%", height: "100%", objectFit: "contain" }} // Utiliser objectFit pour maintenir le ratio d'aspect
+                style={{ width: "100%", height: "100%", objectFit: "contain" }}
               />
             </div>
             <p className="mt-4 max-w-xs text-sm">
               Scougal Rubber is a company that manufactures custom molded rubber
               products since 1916.
             </p>
+            <div className="mt-4 flex gap-4">
+              <a
+                href="https://www.linkedin.com/company/scougal-rubber-corporation"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="hover:text-gray-500 transition"
+              >
+                <FaLinkedin size={24} />
+              </a>
+              <a
+                href="https://www.facebook.com/scougalrubbercorp/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="hover:text-gray-500 transition"
+              >
+                <FaFacebook size={24} />
+              </a>
+            </div>
             <p className="mt-4 text-sm">
               Copyright © 2024 - All rights reserved
             </p>
