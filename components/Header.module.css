@@ -64,6 +64,12 @@
   transition: filter 0.3s ease;
 }
 
+.rightContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 /* Scrolled state - revert to black */
 .header.scrolled .logo img, 
 .header.scrolled label svg {
@@ -147,7 +153,12 @@
   color: #333;
   cursor: pointer;
   display: none;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
 }
+
 
 .contactButton {
   background-color: #3b82f6; /* blue-500 */
@@ -172,6 +183,10 @@
   .header {
     padding: 0px 5%;
     color: black;
+  }
+
+  .socialIcons {
+    display: none;
   }
 
   .contact {

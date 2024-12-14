@@ -42,7 +42,6 @@ const Header = () => {
         setScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -53,7 +52,6 @@ const Header = () => {
         closeAllMenus();
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -172,43 +170,37 @@ const Header = () => {
               Employment
             </Link>
           </li>
-          <li className={styles.contact}>
-            <Link
-              href="/contact-us"
-              className={pathname === "/contact-us" ? styles.active : ""}
-              onClick={handleLinkClick}
-            >
-              Contact Us
-            </Link>
-          </li>
         </ul>
       </nav>
-      <Link
-        href="/contact-us"
-        className={styles.contactButton}
-        onClick={handleLinkClick}
-      >
-        Contact Us
-      </Link>
-      <div className={styles.socialIcons}>
-        <a
-          href="https://www.linkedin.com/company/scougal-rubber-corporation"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="LinkedIn"
-          className="hover:text-gray-500 transition"
+
+      <div className={styles.rightContainer}>
+        <div className={styles.socialIcons}>
+          <a
+            href="https://www.linkedin.com/company/scougal-rubber-corporation"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:text-gray-500 transition"
+          >
+            <FaLinkedin size={24} />
+          </a>
+          <a
+            href="https://www.facebook.com/scougalrubbercorp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            className="hover:text-gray-500 transition"
+          >
+            <FaFacebook size={24} />
+          </a>
+        </div>
+        <Link
+          href="/contact-us"
+          className={styles.contactButton}
+          onClick={handleLinkClick}
         >
-          <FaLinkedin size={24} />
-        </a>
-        <a
-          href="https://www.facebook.com/scougalrubbercorp/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Facebook"
-          className="hover:text-gray-500 transition"
-        >
-          <FaFacebook size={24} />
-        </a>
+          Contact Us
+        </Link>
       </div>
     </header>
   );
