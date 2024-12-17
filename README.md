@@ -1,6 +1,6 @@
 # Scougal Rubber Website
 
-This repository contains the code for the Scougal Rubber company's website built with Next.js, optimized for SEO, and includes a blog.
+This repository contains the code for the Scougal Rubber company's website built with Next.js, optimized for SEO, and includes a blog INTERACTIVE.
 
 ## Table of Contents
 
