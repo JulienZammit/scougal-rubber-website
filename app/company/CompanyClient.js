@@ -76,7 +76,7 @@ export default function CompanyClient() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen overflow-x-hidden">
       <HeroAboutContact
         backgroundImage="/about/banner1.webp"
         title="Our Company"
