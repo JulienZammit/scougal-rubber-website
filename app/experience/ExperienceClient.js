@@ -1,87 +1,194 @@
 "use client";
 import React from "react";
-import "leaflet/dist/leaflet.css";
 import { motion } from "framer-motion";
 import HeroAboutContact from "@/components/HeroAboutContact";
+import { CheckCircle, Users, Trophy, Target, ArrowRight, Building, Briefcase, Linkedin } from "lucide-react";
+
+const companyStats = [
+  { number: "100+", label: "Years of Expertise", icon: Trophy },
+  { number: "200+", label: "Projects Delivered Annually", icon: Target },
+  { number: "24/7", label: "Continuous Production", icon: CheckCircle },
+  { number: "50+", label: "Regular Clients Across North America", icon: Users },
+];
+
+const companyValues = [
+  {
+    title: "Innovation",
+    description: "Redefining manufacturing standards with customized rubber solutions.",
+    icon: Building
+  },
+  {
+    title: "Quality",
+    description: "Upholding rigorous AISC-certified standards to ensure exceptional products.",
+    icon: Trophy
+  },
+  {
+    title: "Responsiveness",
+    description: "Meeting tight deadlines with a commitment to agility and reliability.",
+    icon: Users
+  },
+  {
+    title: "Integrity",
+    description: "Operating with transparency and ethical practices in every project.",
+    icon: Briefcase
+  }
+];
 
 const teamMembers = [
   {
     name: "Rob Anderson",
     position: "President",
-    description: `After stints with Boeing and a commercial window manufacturer, Rob came to Scougal in 1992 and has played a role in virtually every facet of the company. He has managed growth in production, operations, and sales. Rob is currently running both the Seattle and Reno operations. His expertise in steel reinforced elastomeric bearings has earned him a noteworthy voice in the bridge bearing community. He has served as a liaison between regulatory and academic entities regarding bearing design and testing standards. Rob has a passion for empowering people to be successful through teamwork and leadership.`,
+    description: `Rob joined Scougal in 1992 and has contributed to every aspect of the company. His expertise in steel-reinforced elastomeric bearings has made him a respected figure in the bridge bearing industry.`,
     image: "/employees/ra.jpg",
+    expertise: ["Strategic Leadership", "Innovation in Engineering", "Operational Excellence"],
+    linkedin: "https://www.linkedin.com/in/rob-anderson-158aaa17a/"
   },
   {
     name: "Scott Nelson",
     position: "Vice President Sales & Marketing",
-    description: `Scott joined the Sales/Estimating Team in 2006 after graduating from University of Washington with a B.A. in Political Science. He played an instrumental role in moving Scougal Rubber to the new plant in McCarran, NV in 2011, and was responsible for the training and oversight of the estimating team at the new location. Scott was promoted to the position of Sales Manager in 2014, and completed his MBA at University of Nevada in 2016.`,
+    description: `Since 2006, Scott has played a vital role in overseeing sales and marketing, as well as guiding Scougal’s transition to a state-of-the-art facility in Nevada.`,
     image: "/employees/sn.jpg",
-  },
-  {
-    name: "Alfredo Shanklin",
-    position: "Plant Manager - Seattle",
-    description: `Al has worked at Scougal for over 16 years, starting in Quality Control, but quickly finding his specialty in Production. Each year that Al has been with Scougal, he has been instrumental in keeping the company competitive in the rubber manufacturing world. Outside of work, Al enjoys spending time with his grandchildren, showing them the joys of bird watching. The one thing on his bucket list is to see every species of bird in Washington state.`,
-    image: "/employees/as.jpg",
+    expertise: ["Sales Strategy", "Market Expansion", "Client Relations"],
+    linkedin: "https://www.linkedin.com/in/scott-nelson-5a573b94/"
   },
   {
     name: "Ahsan Ativalu",
     position: "Plant Manager - Reno",
-    description: `Ahsan started with Scougal Rubber in 1999.  He quickly established himself as a hard worker with a great mind for tackling challenging fabrication issues.  He was promoted to shift supervisor in 2006, and was instrumental in helping to plan and implement the relocation of several critical pieces of equipment to McCarran, NV in 2010 with the opening of the new plant.  During that time Ahsan was promoted to Production Manager, and finally Plant Manager.  He continues to be a vital part of the Scougal Rubber Team.  Ahsan is an avid football fan, and rarely leaves home without wearing the Seahawks emblem.`,
+    description: `Starting in 1999, Ahsan has been instrumental in Scougal's manufacturing advancements and the relocation of critical equipment to the Reno facility.`,
     image: "/employees/aa.jpg",
+    expertise: ["Production Management", "Process Optimization", "Team Development"],
+    linkedin: "https://www.linkedin.com/in/ahsan-ativalu-28a529122/"
   },
   {
     name: "Brad Streeter",
     position: "Quality Manager",
-    description: `Brad oversees the quality function for the company and brings a wealth of experience and training to the position. He was responsible for implementing formal quality management and continuous improvement programs across the country for over 30 years and is a part the Scougal Rubber success by initiating, developing, and maintaining certifications for AISC at the Nevada site and AS9100 at the Washington site. His love for classic automobiles includes the occasional drive through the desert in his 1968 Pontiac GTO and enjoys the NFL but is a Patriots fan.`,
+    description: `Brad oversees quality assurance, ensuring compliance with rigorous AISC standards and implementing continuous improvement initiatives.`,
     image: "/employees/bs.jpg",
-  },
+    expertise: ["Quality Control", "Process Improvement", "Certification Management"],
+    linkedin: "https://www.linkedin.com/in/brad-streeter-560193153/"
+  }
 ];
 
-export default function ExperienceClient() {
+const ExperienceClient = () => {
   return (
-    <div className="flex flex-col items-center overflow-hidden justify-center min-h-screen">
+    <div className="flex flex-col items-center overflow-hidden">
       <HeroAboutContact
         backgroundImage="/banner1/banner5.webp"
         title="Our Experience"
-        subtitle="Discover our team of experts"
+        subtitle="Excellence Through Innovation"
       />
-      <div className="md:p-20 p-5">
-        <div className="w-full max-w-6xl px-4">
-          <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
-            Meet Our Team
-          </h2>
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
+
+      {/* Mission Statement Section */}
+      <section className="w-full bg-gradient-to-b from-blue-50 to-white py-16">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Leading the Industry Since 1992</h2>
+            <p className="text-lg text-gray-600">
+              We specialize in innovative rubber manufacturing solutions, combining decades of expertise with cutting-edge technology to deliver exceptional products and services to our clients worldwide.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="w-full bg-white py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {companyStats.map((stat, index) => (
               <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{
-                delay: 0.1 * index,
-                duration: 0.5,
-                ease: "easeInOut",
-              }}
-              className="p-4 flex flex-col items-center text-center"
-            >
-              <div className="w-52 h-80 rounded-[5px] overflow-hidden shadow-lg mb-4 border-2 border-gray-200">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-800">
-                {member.name}
-              </h3>
-              <p className="text-gray-600 mb-4">{member.position}</p>
-              <p className="text-gray-600" style={{ textAlign: "justify" }}>
-                {member.description}
-              </p>
-            </motion.div>
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+              >
+                <stat.icon className="w-12 h-12 text-blue-600 mb-4" />
+                <h3 className="text-3xl font-bold text-gray-800 mb-2">{stat.number}</h3>
+                <p className="text-gray-600 text-center">{stat.label}</p>
+              </motion.div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Values Section */}
+      <section className="w-full bg-gray-50 py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Our Core Values</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {companyValues.map((value, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
+              >
+                <value.icon className="w-8 h-8 text-blue-600 mb-4" />
+                <h3 className="text-xl font-bold text-gray-800 mb-3">{value.title}</h3>
+                <p className="text-gray-600">{value.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Leadership Team Section */}
+      <section className="w-full bg-white py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">Our Leadership Team</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 }}
+                className="group relative overflow-hidden rounded-lg bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full"
+              >
+                <div className="aspect-w-3 aspect-h-4 overflow-hidden">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+                <div className="p-6 flex-grow flex flex-col">
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">{member.name}</h3>
+                    <p className="text-blue-600 mb-4">{member.position}</p>
+                    <p className="text-gray-600 text-sm mb-4">{member.description}</p>
+                    <div className="space-y-2">
+                      {member.expertise.map((skill, skillIndex) => (
+                        <span key={skillIndex} className="inline-block mr-2 mb-2 px-3 py-1 bg-blue-50 text-blue-600 text-xs rounded-full">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <a
+                    href={member.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-auto pt-4 flex items-center justify-center text-blue-600 hover:text-blue-800 transition-colors group"
+                  >
+                    <span className="flex items-center">
+                      <Linkedin className="w-5 h-5 mr-2" />
+                      View Profile
+                    </span>
+                    <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default ExperienceClient;
