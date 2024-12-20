@@ -4,20 +4,27 @@ import nodemailer from 'nodemailer';
 export async function POST(request) {
   const body = await request.json();
 
-  const { firstName, lastName, email, phone, address, location, employmentType, expectedWage, details } = body;
+  const { firstName, lastName, email, phone, address, location, preferredShift, details, resumeBase64 } = body;
 
-  // Validate input data
-  if (!firstName || !lastName || !email || !phone || !address || !location || !employmentType || !expectedWage || !details) {
+  // Validation des champs requis
+  if (!firstName || !lastName || !email || !phone || !address || !location || !preferredShift || !details || !resumeBase64) {
     console.error('Missing required fields:', body);
     return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
   }
 
+  // Vérification rudimentaire du PDF (facultatif mais recommandé)
+  // Les fichiers PDF commencent généralement par "%PDF" -> Base64 "JVBER"
+  if (!resumeBase64.startsWith('JVBER')) {
+    console.error('The uploaded file does not appear to be a valid PDF');
+    return NextResponse.json({ message: 'Invalid file format. PDF only.' }, { status: 400 });
+  }
+
   try {
-    // Create a Nodemailer transporter
+    // Création du transport Nodemailer
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: process.env.SMTP_PORT,
-      secure: process.env.SMTP_SECURE === 'true', // use TLS
+      secure: process.env.SMTP_SECURE === 'true', // utilisation TLS
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -27,7 +34,10 @@ export async function POST(request) {
       }
     });
 
-    // Prepare email content
+    // Conversion du base64 en buffer
+    const resumeBuffer = Buffer.from(resumeBase64, 'base64');
+
+    // Options de l'email
     const mailOptions = {
       from: process.env.FROM_EMAIL,
       to: 'info@scogualrubber.com',
@@ -41,13 +51,19 @@ export async function POST(request) {
         Address: ${address}
         Email: ${email}
         Phone: ${phone}
-        Employment Type: ${employmentType}
-        Expected Wage: ${expectedWage}
+        Preferred Shift: ${preferredShift}
         Details: ${details}
       `,
+      attachments: [
+        {
+          filename: 'resume.pdf',
+          content: resumeBuffer,
+          contentType: 'application/pdf'
+        }
+      ]
     };
 
-    // Send email
+    // Envoi de l'email
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ message: 'Application submitted successfully' }, { status: 200 });

@@ -15,24 +15,64 @@ export default function ApplyOnlineForm() {
   } = useForm();
   const [submitting, setSubmitting] = useState(false);
 
-  const watchEmploymentType = watch([
-    "employmentType.fullTime",
-    "employmentType.partTime",
-  ]);
-
-  const onSubmit = async (data) => {
+  const onSubmit = async (formData) => {
     setSubmitting(true);
+
+    // On récupère le fichier PDF
+    const file = formData.resume && formData.resume[0];
+    if (!file) {
+      toast.error("Please upload your resume in PDF format.", {
+        position: "top-right",
+        autoClose: 4000,
+        theme: "light",
+        transition: Bounce,
+      });
+      setSubmitting(false);
+      return;
+    }
+
+    // Vérifier le type MIME côté client (optionnel mais recommandé)
+    if (file.type !== "application/pdf") {
+      toast.error("Only PDF files are allowed.", {
+        position: "top-right",
+        autoClose: 4000,
+        theme: "light",
+        transition: Bounce,
+      });
+      setSubmitting(false);
+      return;
+    }
+
     try {
-      const response = await fetch("/.netlify/functions/submit-application", { // PROD : api/submit-application
+      // Convertir le fichier en base64
+      const base64String = await fileToBase64(file);
+
+      // Ajouter le CV encodé en base64 à l'objet data
+      const dataToSend = {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: formData.phone,
+        address: formData.address,
+        location: {
+          reno: !!formData.location?.reno,
+          seattle: !!formData.location?.seattle,
+        },
+        preferredShift: formData.preferredShift,
+        details: formData.details,
+        resumeBase64: base64String,
+      };
+
+      const response = await fetch("/.netlify/functions/submit-application", { 
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(dataToSend),
       });
 
       if (response.ok) {
-        toast.success("Application submitted successfull, thank you!", {
+        toast.success("Application submitted successfully, thank you!", {
           position: "top-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -52,23 +92,18 @@ export default function ApplyOnlineForm() {
         setValue("address", "");
         setValue("location.reno", false);
         setValue("location.seattle", false);
-        setValue("employmentType.fullTime", false);
-        setValue("employmentType.partTime", false);
-        setValue("expectedWage", "");
+        setValue("preferredShift", "");
         setValue("details", "");
+        setValue("resume", null);
         window.scrollTo(0, 0);
       } else {
         throw new Error("Failed to submit application");
       }
     } catch (error) {
+      console.error(error);
       toast.error("Failed to submit application. Please try again.", {
         position: "top-right",
         autoClose: 4000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
         theme: "light",
         transition: Bounce,
       });
@@ -77,16 +112,26 @@ export default function ApplyOnlineForm() {
     }
   };
 
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file); 
+      reader.onload = () => {
+        // On récupère la string base64 complète au format data:application/pdf;base64,xxxxxxx
+        // On va juste extraire la partie après la virgule
+        const base64 = reader.result.split(",")[1];
+        resolve(base64);
+      };
+      reader.onerror = (error) => reject(error);
+    });
+  };
+
   const inputClasses =
     "py-3 px-4 block w-full border-2 border-gray-300 rounded-[5px] text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none";
   const labelClasses = "block text-sm font-medium text-gray-700 mb-2";
   const checkboxClasses =
     "h-5 w-5 rounded border-2 border-gray-300 text-slate-700 focus:ring-blue-500";
-
-  const handleEmploymentTypeChange = (type) => {
-    setValue("employmentType.fullTime", type === "fullTime");
-    setValue("employmentType.partTime", type === "partTime");
-  };
+  const radioClasses = "h-5 w-5 border-2 border-gray-300 text-slate-700 rounded-full focus:ring-blue-500";
 
   return (
     <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -253,63 +298,66 @@ export default function ApplyOnlineForm() {
               </div>
 
               <div>
-                <label className={labelClasses}>Employment Type</label>
-                <div className="grid grid-cols-2 gap-4">
+                <label className={labelClasses}>Preferred Shift</label>
+                <div className="space-y-3">
                   <label className="flex items-center space-x-3">
                     <input
                       type="radio"
-                      id="fullTime"
-                      {...register("employmentType")}
-                      value="fullTime"
-                      checked={watchEmploymentType[0]}
-                      onChange={() => handleEmploymentTypeChange("fullTime")}
-                      className={checkboxClasses}
+                      {...register("preferredShift", { required: "Preferred shift is required" })}
+                      value="Day (7:00am to 3:30pm)"
+                      className={radioClasses}
                     />
                     <span className="text-sm font-medium text-gray-700">
-                      Full Time
+                      Day (7:00am to 3:30pm)
                     </span>
                   </label>
                   <label className="flex items-center space-x-3">
                     <input
                       type="radio"
-                      id="partTime"
-                      {...register("employmentType")}
-                      value="partTime"
-                      checked={watchEmploymentType[1]}
-                      onChange={() => handleEmploymentTypeChange("partTime")}
-                      className={checkboxClasses}
+                      {...register("preferredShift")}
+                      value="Swing (3:00pm to 11:30pm)"
+                      className={radioClasses}
                     />
                     <span className="text-sm font-medium text-gray-700">
-                      Part Time
+                      Swing (3:00pm to 11:30pm)
+                    </span>
+                  </label>
+                  <label className="flex items-center space-x-3">
+                    <input
+                      type="radio"
+                      {...register("preferredShift")}
+                      value="Graveyard (11:00pm to 7:00am)"
+                      className={radioClasses}
+                    />
+                    <span className="text-sm font-medium text-gray-700">
+                      Graveyard (11:00pm to 7:00am)
                     </span>
                   </label>
                 </div>
+                {errors.preferredShift && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.preferredShift.message}
+                  </p>
+                )}
               </div>
 
+              {/* Nouveau champ pour le CV (PDF uniquement) */}
               <div>
-                <label htmlFor="expectedWage" className={labelClasses}>
-                  Expected Wage per year
+                <label htmlFor="resume" className={labelClasses}>
+                  Resume (PDF only)
                 </label>
-                <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <span className="text-gray-500 sm:text-sm">$</span>
-                  </div>
-                  <input
-                    type="number"
-                    id="expectedWage"
-                    {...register("expectedWage", {
-                      required: "Expected wage is required",
-                      valueAsNumber: true,
-                      validate: (value) =>
-                        value > 0 || "Expected wage must be a positive number",
-                    })}
-                    className={`${inputClasses} pl-7`}
-                    placeholder="0.00"
-                  />
-                </div>
-                {errors.expectedWage && (
+                <input
+                  type="file"
+                  id="resume"
+                  accept="application/pdf"
+                  {...register("resume", {
+                    required: "Resume is required",
+                  })}
+                  className={inputClasses}
+                />
+                {errors.resume && (
                   <p className="text-red-500 text-xs mt-1">
-                    {errors.expectedWage.message}
+                    {errors.resume.message}
                   </p>
                 )}
               </div>
@@ -327,6 +375,11 @@ export default function ApplyOnlineForm() {
                   className={`${inputClasses} resize-none`}
                   placeholder="Tell us more about yourself and why you're interested in this position..."
                 ></textarea>
+                {errors.details && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors.details.message}
+                  </p>
+                )}
               </div>
 
               <div className="pt-4">

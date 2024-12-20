@@ -8,7 +8,6 @@ export const metadata = {
     "custom molded rubber, industrial rubber, elastomeric bearings, bridge bearings, steel fabrication, rubber manufacturing, rubber to metal bonding, vulcanized rubber, AISC certified, Buy American certified",
   robots: "index, follow",
   author: "Scougal Rubber Corporation",
-  viewport: "width=device-width, initial-scale=1.0",
   openGraph: {
     title:
       "America's Leading Custom Molded Rubber Manufacturer | Scougal Rubber",
@@ -35,6 +34,11 @@ export const metadata = {
     'contact:address': '885 Denmark Drive Suite 103, McCarran, NV 89437-4425, USA',
   },
 };
+
+export const viewport = {
+  width: "device-width",
+  initialScale: "1.0",
+}
 
 // Structured Data (JSON-LD) for Main Page
 const structuredData = {
