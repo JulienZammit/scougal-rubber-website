@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
 import { Check } from "lucide-react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -18,7 +18,6 @@ export default function ApplyOnlineForm() {
   const onSubmit = async (formData) => {
     setSubmitting(true);
 
-    // On récupère le fichier PDF
     const file = formData.resume && formData.resume[0];
     if (!file) {
       toast.error("Please upload your resume in PDF format.", {
@@ -31,7 +30,6 @@ export default function ApplyOnlineForm() {
       return;
     }
 
-    // Vérifier le type MIME côté client (optionnel mais recommandé)
     if (file.type !== "application/pdf") {
       toast.error("Only PDF files are allowed.", {
         position: "top-right",
@@ -44,10 +42,8 @@ export default function ApplyOnlineForm() {
     }
 
     try {
-      // Convertir le fichier en base64
       const base64String = await fileToBase64(file);
 
-      // Ajouter le CV encodé en base64 à l'objet data
       const dataToSend = {
         firstName: formData.firstName,
         lastName: formData.lastName,
@@ -63,14 +59,14 @@ export default function ApplyOnlineForm() {
         resumeBase64: base64String,
       };
 
-      const response = await fetch("/.netlify/functions/submit-application", { 
+      const response = await fetch("/api/submit-application", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(dataToSend),
       });
-
+      
       if (response.ok) {
         toast.success("Application submitted successfully, thank you!", {
           position: "top-right",
@@ -84,7 +80,6 @@ export default function ApplyOnlineForm() {
           transition: Bounce,
         });
 
-        //reset form
         setValue("firstName", "");
         setValue("lastName", "");
         setValue("email", "");
@@ -115,7 +110,7 @@ export default function ApplyOnlineForm() {
   const fileToBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.readAsDataURL(file); 
+      reader.readAsDataURL(file);
       reader.onload = () => {
         // On récupère la string base64 complète au format data:application/pdf;base64,xxxxxxx
         // On va juste extraire la partie après la virgule
@@ -131,7 +126,8 @@ export default function ApplyOnlineForm() {
   const labelClasses = "block text-sm font-medium text-gray-700 mb-2";
   const checkboxClasses =
     "h-5 w-5 rounded border-2 border-gray-300 text-slate-700 focus:ring-blue-500";
-  const radioClasses = "h-5 w-5 border-2 border-gray-300 text-slate-700 rounded-full focus:ring-blue-500";
+  const radioClasses =
+    "h-5 w-5 border-2 border-gray-300 text-slate-700 rounded-full focus:ring-blue-500";
 
   return (
     <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
@@ -303,7 +299,9 @@ export default function ApplyOnlineForm() {
                   <label className="flex items-center space-x-3">
                     <input
                       type="radio"
-                      {...register("preferredShift", { required: "Preferred shift is required" })}
+                      {...register("preferredShift", {
+                        required: "Preferred shift is required",
+                      })}
                       value="Day (7:00am to 3:30pm)"
                       className={radioClasses}
                     />
