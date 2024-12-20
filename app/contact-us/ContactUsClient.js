@@ -430,7 +430,7 @@ export default function ContactUsClient() {
         </div>
 
         {/* Section Contacts */}
-        <div className="flex flex-col items-center justify-center md:w-9/12 w-full p-8 mb-12 space-y-12">
+        <div className="flex flex-col items-center justify-center max-w-7xl w-full p-8 mb-12 space-y-12">
           <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
             Our Contacts
           </h2>

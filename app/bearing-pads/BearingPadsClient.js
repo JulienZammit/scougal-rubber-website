@@ -4,6 +4,8 @@ import FaqSection from "@/components/FaqSection";
 import HeroProduct from "../../components/HeroProduct";
 import ProductDisplay from "../../components/ProductDisplay";
 import { TextContentProduct } from "../../components/TextContentProduct";
+import { useEffect } from "react";
+
 export default function BearingPadsClient() {
   const faqs = [
     {
@@ -122,6 +124,11 @@ export default function BearingPadsClient() {
       ],
     },
   ];
+
+  useEffect(() => {
+      document.body.style.overflow = 'unset';
+      window.scrollTo(0, 0);
+    }, []);
 
   return (
     <>

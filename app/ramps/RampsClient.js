@@ -4,6 +4,7 @@ import FaqSection from "@/components/FaqSection";
 import ProductDisplay from "../../components/ProductDisplay";
 import {TextContentProduct} from "../../components/TextContentProduct";
 import HeroProduct from "../../components/HeroProduct";
+import { useEffect } from "react";
 
 export default function RampsClient() {
   const faqs = [
@@ -56,7 +57,7 @@ export default function RampsClient() {
     {
       title: "Clean up your worksite.",
       description:
-        "Scougal Ramps are durable and pay for themselves in weeks. Use them on job after job. One standard 60 length will save laying down cold mix every evening and pulling it up the next day. See how quickly that adds up.",
+        "Scougal Ramps are durable and pay for themselves in weeks. Use them on job after job. One standard 60” length will save laying down cold mix every evening and pulling it up the next day. See how quickly that adds up.",
     },
     {
       title: "Be green and eliminate disposal issues.",
@@ -86,6 +87,11 @@ export default function RampsClient() {
       ],
     },
   ];
+
+  useEffect(() => {
+    document.body.style.overflow = 'unset';
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

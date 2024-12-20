@@ -48,7 +48,7 @@ export default function EmploymentClient() {
           Scougal Rubber is an Equal Opportunity Employer and Welcomes Your
           Inquiry.
         </motion.div>
-        <div className="max-w-4xl w-full p-8 mb-12">
+        <div className="max-w-7xl w-full p-8 mb-12">
           <div className="flex flex-col gap-8">
             {employmentDetails.map((detail, index) => (
               <motion.div
@@ -91,10 +91,10 @@ export default function EmploymentClient() {
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="max-w-4xl w-full p-8 text-black"
+          className="max-w-7xl w-full p-8 text-black"
           style={{ textAlign: "justify" }}
         >
-          <p className="bg-red-500 text-white p-2 rounded-[5px] mb-4 font-bold">
+          <p className="bg-red-500 text-white p-2 rounded-[5px] mb-4 font-bold items-center justify-center text-center">
             Please note that Scougal is a drug-free workplace. All positions
             require a pre-employment drug test.
           </p>

@@ -19,7 +19,7 @@ const companyHighlights = [
   {
     icon: Users,
     title: "Industry Expertise",
-    description: "A team of dedicated professionals with over a century of combined experience in rubber engineering.",
+    description: "A team of dedicated professionals with over a century of combined experience in rubber molding and fabrication.",
   },
   {
     icon: Globe,
@@ -60,7 +60,7 @@ const timelineEvents = [
 export default function CompanyClient() {
   const maps = [
     {
-      address: "885 Denmark Dr, Sparks, NV 89437, États-Unis",
+      address: "885 Denmark Dr, McCarran, NV 89437, United States",
       src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d769.1635496100836!2d-119.47181328921722!3d39.5448542779333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80993f2f92c5ec87%3A0xfc1547a496c0a744!2sScougal%20Rubber!5e0!3m2!1sen!2snl!4v1724346679762!5m2!1sen!2snl",
     },
     {

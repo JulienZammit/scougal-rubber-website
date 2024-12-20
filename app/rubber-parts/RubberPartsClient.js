@@ -4,6 +4,7 @@ import HeroProduct from "../../components/HeroProduct";
 import ProductDisplay from "../../components/ProductDisplay";
 import {TextContentProduct} from "../../components/TextContentProduct";
 import FaqSection from "@/components/FaqSection";
+import { useEffect } from "react";
 
 export default function RubberPartsClient() {
   const faqs = [
@@ -121,6 +122,12 @@ export default function RubberPartsClient() {
       ],
     },
   ];
+
+  useEffect(() => {
+    document.body.style.overflow = 'unset';
+    window.scrollTo(0, 0);
+  }, []);
+
 
   return (
     <>

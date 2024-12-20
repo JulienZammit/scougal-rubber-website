@@ -2,6 +2,8 @@
 import CallToAction from "@/components/CallToAction";
 import HeroProduct from "../../components/HeroProduct";
 import FaqSection from "@/components/FaqSection";
+import { useEffect } from "react";
+
 export default function SteelClient() {
   const faqs = [
     {
@@ -60,6 +62,13 @@ export default function SteelClient() {
     // { src: "/certification/iso9001.webp", alt: "ISO 9001 Certification", defaultWidth: 100, defaultHeight: 100, rounded: false },
     
   ];
+
+  useEffect(() => {
+      document.body.style.overflow = 'unset';
+      window.scrollTo(0, 0);
+    }, []);
+
+
   return (
     <>
       <HeroProduct
