@@ -1,4 +1,5 @@
 import MainPageClient from './MainPageClient';
+import { unstable_noStore as noStore } from 'next/cache';
 
 export const metadata = {
   title: "America's Leading Custom Molded Rubber Manufacturer | Scougal Rubber",
@@ -130,6 +131,10 @@ const structuredData = {
 };
 
 export default function Home() {
+  noStore(); // Disable caching for this page
+
+  const timeOnServer = new Date().toLocaleTimeString('en-US');
+
   return (
     <>
       {/* Inject JSON-LD structured data */}
