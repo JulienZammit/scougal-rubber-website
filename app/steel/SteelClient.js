@@ -2,6 +2,7 @@
 import CallToAction from "@/components/CallToAction";
 import HeroProduct from "../../components/HeroProduct";
 import FaqSection from "@/components/FaqSection";
+import ComingSoonSection from "@/components/ComingSoonSection";
 import { useEffect } from "react";
 
 export default function SteelClient() {
@@ -76,6 +77,7 @@ export default function SteelClient() {
         subtitle="Quality, service, and reliability, have been the 'Scougal Standard'"
         certifications={certifications}
       />
+      <ComingSoonSection />
       <div className="p-10 md:mb-0 mb-32">
         <CallToAction />
       </div>

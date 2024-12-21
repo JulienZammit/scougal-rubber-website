@@ -78,7 +78,7 @@ export default function CompanyClient() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-x-hidden">
       <HeroAboutContact
-        backgroundImage="/about/banner1.webp"
+        backgroundImage="/about/Banner1.webp"
         title="Our Company"
         subtitle="America's Custom Molded Rubber Company Since 1916"
       />
@@ -144,46 +144,74 @@ export default function CompanyClient() {
       </div>
 
       {/* Company Timeline Section */}
-      <section className="w-full py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16">Our Journey</h2>
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200"></div>
-            <div className="space-y-16">
-              {timelineEvents.map((event, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`flex ${
-                    index % 2 === 0 ? "justify-start" : "justify-end"
-                  } relative`}
-                >
-                  <div className="w-1/2 flex items-center">
-                    <div
-                      className={`bg-white p-8 rounded-lg shadow-lg ${
-                        index % 2 === 0 ? "mr-8" : "ml-8"
-                      }`}
-                    >
-                      <div className="flex items-center mb-2">
-                        <Calendar className="w-5 h-5 text-blue-600 mr-2" />
-                        <span className="text-blue-600 font-bold">
-                          {event.year}
-                        </span>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-800 mb-2">
-                        {event.title}
-                      </h3>
-                      <p className="text-gray-600">{event.description}</p>
+      <section className="w-full py-8 md:py-16">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">
+          Our Journey
+        </h2>
+        
+        {/* Desktop Timeline */}
+        <div className="hidden md:block relative">
+          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-blue-200"></div>
+          <div className="space-y-8 md:space-y-16">
+            {timelineEvents.map((event, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"} relative`}
+              >
+                <div className="w-5/12">
+                  <div className={`bg-white p-4 md:p-6 rounded-lg shadow-md ${
+                    index % 2 === 0 ? "mr-4 md:mr-6" : "ml-4 md:ml-6"
+                  }`}>
+                    <div className="flex items-center mb-2">
+                      <Calendar className="w-4 h-4 md:w-5 md:h-5 text-blue-600 mr-2" />
+                      <span className="text-blue-600 font-bold">{event.year}</span>
                     </div>
+                    <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">
+                      {event.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-gray-600">{event.description}</p>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
-      </section>
+
+        {/* Mobile Timeline */}
+        <div className="md:hidden relative">
+          <div className="absolute left-4 top-0 h-full w-0.5 bg-blue-200"></div>
+          <div className="space-y-6">
+            {timelineEvents.map((event, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="ml-12 relative"
+              >
+                <div className="absolute -left-12 top-2 w-4 h-4 rounded-full bg-blue-600"></div>
+                <div className="bg-white p-4 rounded-lg shadow-md">
+                  <div className="flex items-center mb-2">
+                    <Calendar className="w-4 h-4 text-blue-600 mr-2" />
+                    <span className="text-blue-600 font-bold">{event.year}</span>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">
+                    {event.title}
+                  </h3>
+                  <p className="text-sm text-gray-600">{event.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
 
       {/* LinkedIn Feed Section */}
       <section className="w-full py-16">
@@ -228,7 +256,7 @@ export default function CompanyClient() {
                 key={index}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 + index * 0.1, duration: 0.8 }}
+                transition={{ delay: 0.3 + index * 0.1, duration: 0.3 }}
                 className="w-full h-[400px] rounded-lg shadow-lg overflow-hidden relative"
               >
                 <iframe
@@ -244,7 +272,7 @@ export default function CompanyClient() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.9, duration: 0.8 }}
+                  transition={{ delay: 0.4, duration: 0.3 }}
                   className="absolute bottom-0 w-full text-center bg-white bg-opacity-90 py-3"
                 >
                   <p className="font-bold text-gray-800">{map.address}</p>
