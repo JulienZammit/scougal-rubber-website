@@ -95,7 +95,7 @@ export default function CompanyClient() {
                 transition={{ delay: index * 0.1 }}
                 className="p-6 rounded-lg shadow-sm hover:shadow-lg transition-shadow bg-white"
               >
-                <highlight.icon className="w-10 h-10 text-blue-600 mb-4" />
+                <highlight.icon className="w-10 h-10 text-blue-500 mb-4" />
                 <h3 className="text-xl font-bold text-gray-800 mb-2">
                   {highlight.title}
                 </h3>
@@ -168,8 +168,8 @@ export default function CompanyClient() {
                     index % 2 === 0 ? "mr-4 md:mr-6" : "ml-4 md:ml-6"
                   }`}>
                     <div className="flex items-center mb-2">
-                      <Calendar className="w-4 h-4 md:w-5 md:h-5 text-blue-600 mr-2" />
-                      <span className="text-blue-600 font-bold">{event.year}</span>
+                      <Calendar className="w-4 h-4 md:w-5 md:h-5 text-blue-500 mr-2" />
+                      <span className="text-blue-500 font-bold">{event.year}</span>
                     </div>
                     <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">
                       {event.title}
@@ -195,11 +195,11 @@ export default function CompanyClient() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="ml-12 relative"
               >
-                <div className="absolute -left-12 top-2 w-4 h-4 rounded-full bg-blue-600"></div>
+                <div className="absolute -left-12 top-2 w-4 h-4 rounded-full bg-blue-500"></div>
                 <div className="bg-white p-4 rounded-lg shadow-md">
                   <div className="flex items-center mb-2">
-                    <Calendar className="w-4 h-4 text-blue-600 mr-2" />
-                    <span className="text-blue-600 font-bold">{event.year}</span>
+                    <Calendar className="w-4 h-4 text-blue-500 mr-2" />
+                    <span className="text-blue-500 font-bold">{event.year}</span>
                   </div>
                   <h3 className="text-lg font-bold text-gray-800 mb-2">
                     {event.title}

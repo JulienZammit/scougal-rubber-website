@@ -19,7 +19,7 @@ export default function EmploymentClient() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <HeroAboutContact
-        backgroundImage="/banner1/banner9.webp"
+        backgroundImage="/banner1/Banner9.webp"
         title="Employment"
         subtitle="Join our team and make a difference"
       />

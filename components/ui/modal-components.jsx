@@ -48,10 +48,10 @@ export const ModalButton = ({ onClick, children }) => {
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="group relative px-4 py-2 rounded-lg bg-blue-500 text-white transition-colors hover:bg-blue-600"
+      className="group relative px-4 py-2 rounded-lg bg-blue-500 text-white transition-colors hover:bg-blue-500"
     >
       <span className="relative z-10">{children}</span>
-      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
     </motion.button>
   );
 };
@@ -62,7 +62,7 @@ export const NavigationLink = ({ href, children }) => {
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        className="w-full px-4 py-2 rounded-lg bg-blue-500 text-white transition-colors hover:bg-blue-600 flex items-center justify-center space-x-2"
+        className="w-full px-4 py-2 rounded-lg bg-blue-500 text-white transition-colors hover:bg-blue-500 flex items-center justify-center space-x-2"
       >
         <span>{children}</span>
         <svg
