@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cp -r .next/static .next/standalone/.next/ && cp -r public .next/standalone/",
+    "build": "next build && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public",
+    "start": "PORT=8080 node .next/standalone/server.js",
     "postbuild": "next-sitemap",
-    "start": "next start -p 8080",
     "lint": "next lint",
     "sitemap": "next-sitemap"
   },

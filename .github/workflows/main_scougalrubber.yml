@@ -15,12 +15,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20.x'
-      - name: npm install, build, and test
+      - name: npm install and build
         run: |
           npm ci
           npm run build
+      - name: Adjust standalone files
+        run: |
+          cp -r .next/static .next/standalone/.next/static
+          cp -r public .next/standalone/public
       - name: Zip artifact for deployment
-        run: zip release.zip .next node_modules package.json package-lock.json -r
+        run: zip release.zip .next/standalone node_modules package.json package-lock.json -r
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -44,9 +48,9 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_5D26ECE85B3F4D968A12714C66BE2624 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_5035FD619AA74FFB926F308861E67391 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5FD29BC4236D4647A7EB76F5837B1B07 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID }}
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         with:
