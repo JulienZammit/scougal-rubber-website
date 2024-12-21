@@ -40,7 +40,7 @@ export async function POST(request) {
     // Options de l'email
     const mailOptions = {
       from: process.env.FROM_EMAIL,
-      to: 'julien.zammit@live.fr', // info@scogualrubber.com
+      to: 'info@scogualrubber.com',
       subject: 'New Job Application',
       text: `
         New job application received:
