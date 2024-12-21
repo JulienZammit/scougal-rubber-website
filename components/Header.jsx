@@ -192,7 +192,7 @@ const Header = () => {
               className={pathname === "/blog" ? styles.active : ""}
               onClick={handleLinkClick}
             >
-              Blog
+              Insights
             </Link>
           </li>
         </ul>

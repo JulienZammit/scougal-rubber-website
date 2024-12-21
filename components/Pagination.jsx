@@ -34,7 +34,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           ${
             currentPage === page
               ? 'bg-blue-500 text-white'
-              : 'text-gray-300 hover:bg-gray-700'
+              : 'text-black hover:bg-gray-200'
           }
           ${typeof page === 'number' ? 'cursor-pointer' : 'cursor-default'}
         `}
@@ -52,7 +52,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         disabled={currentPage === 1}
         className={`
           h-10 w-10 flex items-center justify-center rounded-md transition-all
-          text-gray-300 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed
+          text-black hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed
         `}
       >
         <ChevronLeft className="w-5 h-5" />
@@ -63,7 +63,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         disabled={currentPage === totalPages}
         className={`
           h-10 w-10 flex items-center justify-center rounded-md transition-all
-          text-gray-300 hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed
+          text-black hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed
         `}
       >
         <ChevronRight className="w-5 h-5" />

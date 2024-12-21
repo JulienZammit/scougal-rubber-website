@@ -1,18 +1,18 @@
 "use client";
-import React from "react";
 import FadeInAnimation from "@/components/FadeInAnimation";
 import Pagination from "@/components/Pagination";
 import {
-  Filter,
-  Search,
-  Share2,
-  Clock,
-  Tag,
-  ArrowRight,
-  Bell,
+    ArrowRight,
+    Bell,
+    Clock,
+    Filter,
+    Search,
+    Share2,
+    Tag,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import React, { useEffect } from "react";
 
 const POSTS_PER_PAGE = 6;
 
@@ -47,27 +47,9 @@ export default function BlogPageClient({ allPosts }) {
     currentPage * POSTS_PER_PAGE
   );
 
-  // Méthode de partage
-  const handleShare = (e, post) => {
-    // Empêche le clic sur la carte globale
-    e.stopPropagation();
-
-    // Vérifie si l'API navigator.share est disponible
-    if (navigator.share) {
-      navigator
-        .share({
-          title: post.title,
-          text: post.description,
-          url: `/blog/${post.slug}`,
-        })
-        .catch((err) => {
-          console.error("Erreur de partage:", err);
-        });
-    } else {
-      // Fallback si l'API n'est pas supportée
-      alert("Le partage n’est pas pris en charge sur ce navigateur.");
-    }
-  };
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, searchTerm]);
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
@@ -88,9 +70,9 @@ export default function BlogPageClient({ allPosts }) {
               Industrial Insights & Expertise
             </h1>
             <p className="text-xl text-gray-700 max-w-2xl mx-auto mb-8">
-              Discover the latest innovations in elastomeric bearings, industrial
-              rubber, and manufacturing solutions from Scougal Rubber's expert
-              team.
+              Discover the latest innovations in elastomeric bearings,
+              industrial rubber, and manufacturing solutions from Scougal
+              Rubber's expert team.
             </p>
 
             {/* Latest News Section */}
@@ -189,6 +171,7 @@ export default function BlogPageClient({ allPosts }) {
 
         {/* Liste des posts (grid ou list) */}
         <div
+          key={`page-${currentPage}`}
           className={
             viewMode === "grid"
               ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
@@ -196,7 +179,10 @@ export default function BlogPageClient({ allPosts }) {
           }
         >
           {currentPosts.map((post, index) => (
-            <FadeInAnimation key={post.slug} delay={index * 0.1}>
+            <FadeInAnimation
+              key={`page-${currentPage}-${post.slug}`}
+              delay={index * 0.1}
+            >
               {/* Wrap l'article dans un Link pour le rendre cliquable partout */}
               <Link
                 href={`/blog/${post.slug}`}
@@ -282,20 +268,19 @@ export default function BlogPageClient({ allPosts }) {
 
                     {/* Bouton share */}
                     <button
-  onClick={(e) => {
-    e.stopPropagation(); // Empêche le clic de remonter au Link
-    e.preventDefault(); // Évite toute autre redirection
-    navigator.share({
-      title: post.title,
-      text: post.description,
-      url: `/blog/${post.slug}`,
-    });
-  }}
-  className="p-2 rounded-full hover:bg-gray-50 transition-colors relative z-10" 
->
-  <Share2 className="w-5 h-5 text-gray-400" />
-</button>
-
+                      onClick={(e) => {
+                        e.stopPropagation(); // Empêche le clic de remonter au Link
+                        e.preventDefault(); // Évite toute autre redirection
+                        navigator.share({
+                          title: post.title,
+                          text: post.description,
+                          url: `/blog/${post.slug}`,
+                        });
+                      }}
+                      className="p-2 rounded-full hover:bg-gray-50 transition-colors relative z-10"
+                    >
+                      <Share2 className="w-5 h-5 text-gray-400" />
+                    </button>
                   </div>
                 </div>
               </Link>

@@ -1,35 +1,33 @@
 "use client";
 import HeroAboutContact from "@/components/HeroAboutContact";
 import { motion } from "framer-motion";
-import {
-  Award,
-  Building,
-  Calendar,
-  Globe,
-  Users
-} from "lucide-react";
+import { Award, Building, Calendar, Globe, Users } from "lucide-react";
 import Image from "next/image";
 
 const companyHighlights = [
   {
     icon: Building,
     title: "Advanced Manufacturing",
-    description: "Cutting-edge facilities in Seattle and Reno designed for precision and efficiency.",
+    description:
+      "Cutting-edge facilities in Seattle and Reno designed for precision and efficiency.",
   },
   {
     icon: Users,
     title: "Industry Expertise",
-    description: "A team of dedicated professionals with over a century of combined experience in rubber molding and fabrication.",
+    description:
+      "A team of dedicated professionals with over a century of combined experience in rubber molding and fabrication.",
   },
   {
     icon: Globe,
     title: "North American Leader",
-    description: "Supporting infrastructure and industrial projects across the U.S. and Canada with tailored solutions.",
+    description:
+      "Supporting infrastructure and industrial projects across the U.S. and Canada with tailored solutions.",
   },
   {
     icon: Award,
     title: "Uncompromising Quality",
-    description: "AISC-certified processes and rigorous testing standards for reliable, durable products.",
+    description:
+      "AISC-certified processes and rigorous testing standards for reliable, durable products.",
   },
 ];
 
@@ -37,25 +35,28 @@ const timelineEvents = [
   {
     year: "1916",
     title: "Foundation",
-    description: "Scougal Rubber Company established, marking the beginning of a legacy in rubber manufacturing.",
+    description:
+      "Scougal Rubber Company established, marking the beginning of a legacy in rubber manufacturing.",
   },
   {
     year: "1992",
     title: "Expansion",
-    description: "Significant growth in production capacity, modernizing facilities to meet increasing demand.",
+    description:
+      "Significant growth in production capacity, modernizing facilities to meet increasing demand.",
   },
   {
     year: "2010",
     title: "New Facility",
-    description: "Launch of the state-of-the-art manufacturing plant in McCarran, NV, tailored for bridge bearing production.",
+    description:
+      "Launch of the state-of-the-art manufacturing plant in McCarran, NV, tailored for bridge bearing production.",
   },
   {
     year: "2024",
     title: "Innovation",
-    description: "Integration of advanced manufacturing technologies to enhance precision and efficiency.",
+    description:
+      "Integration of advanced manufacturing technologies to enhance precision and efficiency.",
   },
 ];
-
 
 export default function CompanyClient() {
   const maps = [
@@ -145,73 +146,83 @@ export default function CompanyClient() {
 
       {/* Company Timeline Section */}
       <section className="w-full py-8 md:py-16">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">
-          Our Journey
-        </h2>
-        
-        {/* Desktop Timeline */}
-        <div className="hidden md:block relative">
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-blue-200"></div>
-          <div className="space-y-8 md:space-y-16">
-            {timelineEvents.map((event, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"} relative`}
-              >
-                <div className="w-5/12">
-                  <div className={`bg-white p-4 md:p-6 rounded-lg shadow-md ${
-                    index % 2 === 0 ? "mr-4 md:mr-6" : "ml-4 md:ml-6"
-                  }`}>
-                    <div className="flex items-center mb-2">
-                      <Calendar className="w-4 h-4 md:w-5 md:h-5 text-blue-500 mr-2" />
-                      <span className="text-blue-500 font-bold">{event.year}</span>
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">
+            Our Journey
+          </h2>
+
+          {/* Desktop Timeline */}
+          <div className="hidden md:block relative">
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-blue-200"></div>
+            <div className="space-y-8 md:space-y-16">
+              {timelineEvents.map((event, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className={`flex ${
+                    index % 2 === 0 ? "justify-start" : "justify-end"
+                  } relative`}
+                >
+                  <div className="w-5/12">
+                    <div
+                      className={`bg-white p-4 md:p-6 rounded-lg shadow-md ${
+                        index % 2 === 0 ? "mr-4 md:mr-6" : "ml-4 md:ml-6"
+                      }`}
+                    >
+                      <div className="flex items-center mb-2">
+                        <Calendar className="w-4 h-4 md:w-5 md:h-5 text-blue-500 mr-2" />
+                        <span className="text-blue-500 font-bold">
+                          {event.year}
+                        </span>
+                      </div>
+                      <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">
+                        {event.title}
+                      </h3>
+                      <p className="text-sm md:text-base text-gray-600">
+                        {event.description}
+                      </p>
                     </div>
-                    <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Timeline */}
+          <div className="md:hidden relative">
+            <div className="absolute left-4 top-0 h-full w-0.5 bg-blue-200"></div>
+            <div className="space-y-6">
+              {timelineEvents.map((event, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="ml-12 relative"
+                >
+                  <div className="absolute -left-12 top-2 w-4 h-4 rounded-full bg-blue-500"></div>
+                  <div className="bg-white p-4 rounded-lg shadow-md">
+                    <div className="flex items-center mb-2">
+                      <Calendar className="w-4 h-4 text-blue-500 mr-2" />
+                      <span className="text-blue-500 font-bold">
+                        {event.year}
+                      </span>
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">
                       {event.title}
                     </h3>
-                    <p className="text-sm md:text-base text-gray-600">{event.description}</p>
+                    <p className="text-sm text-gray-600">{event.description}</p>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
-
-        {/* Mobile Timeline */}
-        <div className="md:hidden relative">
-          <div className="absolute left-4 top-0 h-full w-0.5 bg-blue-200"></div>
-          <div className="space-y-6">
-            {timelineEvents.map((event, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="ml-12 relative"
-              >
-                <div className="absolute -left-12 top-2 w-4 h-4 rounded-full bg-blue-500"></div>
-                <div className="bg-white p-4 rounded-lg shadow-md">
-                  <div className="flex items-center mb-2">
-                    <Calendar className="w-4 h-4 text-blue-500 mr-2" />
-                    <span className="text-blue-500 font-bold">{event.year}</span>
-                  </div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-2">
-                    {event.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">{event.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
       {/* LinkedIn Feed Section */}
       <section className="w-full py-16">
@@ -222,24 +233,22 @@ export default function CompanyClient() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="rounded-lg shadow-lg p-6 bg-white">
               <iframe
-                src="https://www.linkedin.com/posts/scougal-rubber-corporation_to-meet-evolving-customer-demands-we-have-activity-7270186472748531713--e20?utm_source=share&utm_medium=member_desktop"
-                height="600"
-                width="100%"
-                frameBorder="0"
-                allowFullScreen=""
-                title="Embedded LinkedIn Post 1"
-                className="rounded-lg"
+                src="https://www.linkedin.com/embed/feed/update/urn:li:share:7260030827755896832"
+                height="612"
+                width="504"
+                frameborder="0"
+                allowfullscreen=""
+                title="Post intégré"
               ></iframe>
             </div>
             <div className="rounded-lg shadow-lg p-6 bg-white">
               <iframe
-                src="https://www.linkedin.com/posts/scougal-rubber-corporation_another-post-example-url-here"
-                height="600"
-                width="100%"
-                frameBorder="0"
-                allowFullScreen=""
-                title="Embedded LinkedIn Post 2"
-                className="rounded-lg"
+                src="https://www.linkedin.com/embed/feed/update/urn:li:share:7264403255131041796"
+                height="764"
+                width="504"
+                frameborder="0"
+                allowfullscreen=""
+                title="Post intégré"
               ></iframe>
             </div>
           </div>
