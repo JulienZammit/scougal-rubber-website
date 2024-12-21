@@ -98,7 +98,7 @@ const ExperienceClient = () => {
   return (
     <div className="flex flex-col items-center overflow-hidden">
       <HeroAboutContact
-        backgroundImage="/banner1/banner5.webp"
+        backgroundImage="/banner1/Banner5.webp"
         title="Our Experience"
         subtitle="Excellence Through Innovation"
       />
