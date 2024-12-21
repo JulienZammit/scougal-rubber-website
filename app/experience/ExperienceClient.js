@@ -136,7 +136,7 @@ const ExperienceClient = () => {
                 transition={{ delay: index * 0.1 }}
                 className="flex flex-col items-center p-6 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow"
               >
-                <stat.icon className="w-12 h-12 text-blue-600 mb-4" />
+                <stat.icon className="w-12 h-12 text-blue-500 mb-4" />
                 <h3 className="text-3xl font-bold text-gray-800 mb-2">
                   {stat.number}
                 </h3>
@@ -161,7 +161,7 @@ const ExperienceClient = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <value.icon className="w-8 h-8 text-blue-600 mb-4" />
+                <value.icon className="w-8 h-8 text-blue-500 mb-4" />
                 <h3 className="text-xl font-bold text-gray-800 mb-3">
                   {value.title}
                 </h3>
@@ -200,7 +200,7 @@ const ExperienceClient = () => {
                     <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-1 md:mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-blue-600 text-sm md:text-base mb-2 md:mb-4">
+                    <p className="text-blue-500 text-sm md:text-base mb-2 md:mb-4">
                       {member.position}
                     </p>
                     <p className="text-gray-600 text-xs md:text-sm mb-3 md:mb-4 line-clamp-3 md:line-clamp-none">
@@ -210,7 +210,7 @@ const ExperienceClient = () => {
                       {member.expertise.map((skill, skillIndex) => (
                         <span
                           key={skillIndex}
-                          className="inline-block px-2 md:px-3 py-0.5 md:py-1 bg-blue-50 text-blue-600 text-xs rounded-full"
+                          className="inline-block px-2 md:px-3 py-0.5 md:py-1 bg-blue-50 text-blue-500 text-xs rounded-full"
                         >
                           {skill}
                         </span>
@@ -221,7 +221,7 @@ const ExperienceClient = () => {
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 md:mt-auto pt-2 md:pt-4 flex items-center justify-center text-blue-600 hover:text-blue-800 transition-colors group"
+                    className="mt-4 md:mt-auto pt-2 md:pt-4 flex items-center justify-center text-blue-500 hover:text-blue-800 transition-colors group"
                   >
                     <span className="flex items-center text-sm md:text-base">
                       <Linkedin className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />

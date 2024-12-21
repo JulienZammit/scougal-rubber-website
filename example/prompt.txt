@@ -1,0 +1,60 @@
+Tu es maintenant un expert en rédaction de blog. 
+J'aimeari que tu m'écrives un artile de blog en anglais sur scougal sur le sujet que tu veux en markdown. 
+De plus tu devras également fournir avant d'écirre l'article remplir toutes ces infromations. 
+Ici je te donne un exemple bien sur tu devras tout adaapter à l'article de blog que tu veux écrire : 
+
+---
+# SEO Metadata
+title: "The Engineering Marvels of Elastomeric Bearings: A Look Inside Scougal Rubber"
+description: "Discover the innovations behind Scougal Rubber's elastomeric bearings. Learn how their advanced manufacturing and testing redefine infrastructure reliability."
+slug: "engineering-marvels-elastomeric-bearings"
+canonicalUrl: "/blog/Banner1.webp"
+coverImage: "/blog/Banner1.webp"
+
+# Social Sharing
+ogImage: "/blog/Banner1.webp"
+twitterCard: "summary_large_image"
+twitterCreator: "@scougalrubber"
+
+# Content Organization
+category: "Infrastructure & Engineering"
+tags:
+  - Elastomeric Bearings
+  - Engineering
+  - Infrastructure
+  - Scougal Rubber
+  - Manufacturing
+
+# Publication Info
+date: "2024-12-21T09:00:00Z"
+lastModified: "2024-12-21T14:30:00Z"
+status: "published"
+featured: true
+trending: true
+
+# Author Information
+author:
+  name: "Scott Nelson"
+  title: "Experts in Sales Strategy"
+  bio: "Since 2006, Scott has played a vital role in overseeing sales and marketing, as well as guiding Scougal’s transition to a state-of-the-art facility in Nevada."
+  avatar: "/employees/sn.jpg"
+  twitter: "@scougalrubber"
+  linkedin: "https://www.linkedin.com/in/scott-nelson-5a573b94/"
+
+# Content Metrics
+readingTime: 8
+wordCount: 1600
+
+# Related Content
+related:
+  - "understanding-elastomeric-bearing-pads"
+  - "custom-industrial-rubber-solutions"
+  - "scougal-ramps-productivity-guide"
+
+# Additional Metadata
+prerequisites:
+  - "Basic understanding of infrastructure engineering"
+  - "Interest in innovative manufacturing"
+---
+
+Et ensuite tu peux mettrre le contenu. Peux tu le faire ?

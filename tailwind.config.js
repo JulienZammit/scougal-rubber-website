@@ -35,6 +35,8 @@ module.exports = {
   },
   plugins: [
     require('preline/plugin'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
     addVariablesForColors,
     function ({ matchUtilities, theme }) {
       matchUtilities(

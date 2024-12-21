@@ -31,10 +31,21 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
+
   const pathname = usePathname();
+  const isBlogPage = pathname === "/blog" || pathname.startsWith("/blog/");
+
   const menuRef = useRef(null);
 
+  // Gérer le style scrolled
   useEffect(() => {
+    if (isBlogPage) {
+      // Sur les pages blog, on force scrolled à true
+      setScrolled(true);
+      return;
+    }
+
+    // Sur les autres pages, on active le comportement classique au scroll
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setScrolled(true);
@@ -42,10 +53,14 @@ const Header = () => {
         setScrolled(false);
       }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isBlogPage]);
+
+  // Fermer tous les menus si on clique en dehors
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -67,6 +82,7 @@ const Header = () => {
     setActiveMenu(activeMenu === index ? null : index);
   };
 
+  // Pour mettre en surbrillance les items actifs
   const isActive = (item) => {
     return item.links.some((link) => pathname.startsWith(link.href));
   };
@@ -168,6 +184,15 @@ const Header = () => {
               onClick={handleLinkClick}
             >
               Employment
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/blog"
+              className={pathname === "/blog" ? styles.active : ""}
+              onClick={handleLinkClick}
+            >
+              Insights
             </Link>
           </li>
         </ul>
