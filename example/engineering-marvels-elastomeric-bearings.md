@@ -8,8 +8,6 @@ coverImage: "/blog/Banner1.webp"
 
 # Social Sharing
 ogImage: "/blog/Banner1.webp"
-twitterCard: "summary_large_image"
-twitterCreator: "@scougalrubber"
 
 # Content Organization
 category: "Infrastructure & Engineering"
@@ -33,7 +31,6 @@ author:
   title: "Experts in Sales Strategy"
   bio: "Since 2006, Scott has played a vital role in overseeing sales and marketing, as well as guiding Scougal’s transition to a state-of-the-art facility in Nevada."
   avatar: "/employees/sn.jpg"
-  twitter: "@scougalrubber"
   linkedin: "https://www.linkedin.com/in/scott-nelson-5a573b94/"
 
 # Content Metrics
