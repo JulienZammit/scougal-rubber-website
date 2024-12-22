@@ -114,7 +114,7 @@ export default function MainPageClient() {
 
       <Hero />
 
-      <div className="flex flex-col md:p-20 p-10 gap-4">
+      <div className="flex flex-col md:p-20 p-4 gap-4">
         <motion.div
           data-aos="fade-up"
           initial={{ opacity: 0, y: 20 }}
@@ -185,7 +185,7 @@ export default function MainPageClient() {
         </div>
       </ImprovedModal>
 
-      <div className="flex flex-col md:p-20 p-10 gap-4">
+      <div className="flex flex-col md:p-20 p-4 gap-4">
         <motion.div
           data-aos="fade-up"
           initial={{ opacity: 0, y: 20 }}
