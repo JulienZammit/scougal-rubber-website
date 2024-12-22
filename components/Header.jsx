@@ -96,7 +96,7 @@ const Header = () => {
       <div className={styles.companyBar}>
         <Link href="/" className={styles.logo} onClick={handleLinkClick}>
           <Image
-            src="./logo_resized.webp"
+            src="/logo_resized.webp"
             alt="Scougal Rubber Logo"
             width={200}
             height={180}
