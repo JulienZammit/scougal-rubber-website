@@ -116,7 +116,7 @@ export default function CompanyClient() {
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -25 : 25 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 * index, duration: 0.8 }}
+                transition={{ delay: 0.2 * index, duration: 0.5 }}
                 className={`flex flex-col md:flex-row items-center justify-between gap-12 ${
                   index % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}

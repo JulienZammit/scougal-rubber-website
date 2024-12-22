@@ -27,7 +27,7 @@ export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{
           delay: 0.3,
-          duration: 0.8,
+          duration: 0.5,
           ease: "easeInOut",
         }}
         className="bg-gradient-to-br from-yellow-400 to-red-600 text-white bg-clip-text text-center text-4xl font-bold tracking-tight text-transparent md:text-7xl z-10"
@@ -39,7 +39,7 @@ export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
         animate={{ opacity: 1, y: 0 }}
         transition={{
           delay: 0.5,
-          duration: 0.8,
+          duration: 0.5,
           ease: "easeInOut",
         }}
         className="text-white text-center text-lg md:text-2xl mt-4 z-10"
@@ -51,7 +51,7 @@ export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{
           delay: 0.7,
-          duration: 0.8,
+          duration: 0.5,
           ease: "easeInOut",
         }}
         className="absolute bottom-10 w-10 h-10 bg-white rounded-[5px] flex items-center justify-center shadow-lg z-10 cursor-pointer"

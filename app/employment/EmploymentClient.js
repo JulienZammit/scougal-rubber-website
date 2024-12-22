@@ -29,7 +29,7 @@ export default function EmploymentClient() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
             delay: 0.2,
-            duration: 0.8,
+            duration: 0.5,
             ease: "easeInOut",
           }}
         >
@@ -40,10 +40,10 @@ export default function EmploymentClient() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
             delay: 0.2,
-            duration: 0.8,
+            duration: 0.5,
             ease: "easeInOut",
           }}
-          className="my-12 p-8 bg-gradient-to-r bg-blue-500 text-white rounded-[5px] shadow-lg text-center text-2xl font-bold"
+          className="my-12 p-8 bg-blue-500 text-white rounded-[5px] shadow-lg text-center text-2xl font-bold"
         >
           Scougal Rubber is an Equal Opportunity Employer and Welcomes Your
           Inquiry.
@@ -57,7 +57,7 @@ export default function EmploymentClient() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{
                   delay: 0.2 * index,
-                  duration: 0.8,
+                  duration: 0.5,
                   ease: "easeInOut",
                 }}
                 className={`flex flex-col md:flex-row items-center justify-between w-full gap-8 ${
@@ -87,8 +87,8 @@ export default function EmploymentClient() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            delay: 0.8,
-            duration: 0.8,
+            delay: 0.2,
+            duration: 0.5,
             ease: "easeInOut",
           }}
           className="max-w-7xl w-full p-8 text-black"

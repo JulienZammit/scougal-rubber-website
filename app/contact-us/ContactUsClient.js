@@ -460,7 +460,7 @@ export default function ContactUsClient() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{
                 delay: 0.2 * index,
-                duration: 0.8,
+                duration: 0.5,
                 ease: "easeInOut",
               }}
               className={`flex flex-col md:flex-row items-center justify-between w-full gap-8 ${

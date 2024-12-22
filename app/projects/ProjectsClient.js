@@ -139,7 +139,7 @@ export default function ProjectsClient() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
             delay: 0.2 * index,
-            duration: 0.8,
+            duration: 0.5,
             ease: "easeInOut",
           }}
           className="w-full mb-12 p-8"
