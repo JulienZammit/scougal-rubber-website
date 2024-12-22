@@ -239,7 +239,7 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                           url: `/blog/${post.slug}`,
                         });
                       }}
-                      className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-500 rounded-full hover:bg-blue-100 transition-colors"
+                      className="inline-flex ml-5 items-center px-4 py-2 bg-blue-50 text-blue-500 rounded-full hover:bg-blue-100 transition-colors"
                     >
                       <Share2 className="w-4 h-4 mr-2" />
                       Share Article
