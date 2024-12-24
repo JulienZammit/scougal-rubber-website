@@ -4,6 +4,22 @@ const nextConfig = {
     unoptimized: true,
   },
   output: "standalone",
-  };
-  
-  export default nextConfig;
+
+  async redirects() {
+    return [
+      {
+        source: "/", 
+        has: [
+          {
+            type: "host",
+            value: "scougalrubber.com",
+          },
+        ],
+        destination: "https://www.scougalrubber.com",
+        permanent: true,
+      },
+    ];
+  },
+};
+
+export default nextConfig;

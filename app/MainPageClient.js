@@ -103,12 +103,12 @@ export default function MainPageClient() {
           content="Leading provider of custom molded rubber solutions since 1916. Discover our products and services."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scougalrubber.com/" />
+        <meta property="og:url" content="https://www.scougalrubber.com/" />
         <meta
           property="og:image"
-          content="https://scougalrubber.com/logo-animated.webm"
+          content="https://www.scougalrubber.com/logo-animated.webm"
         />
-        <link rel="canonical" href="https://scougalrubber.com/" />
+        <link rel="canonical" href="https://www.scougalrubber.com/" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

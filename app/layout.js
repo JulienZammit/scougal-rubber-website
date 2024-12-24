@@ -11,7 +11,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://scougalrubber.com/",
+    url: "https://www.scougalrubber.com/",
     site_name: "America's Custom Molded Rubber Company",
   },
   additionalMetaTags: [
@@ -36,6 +36,7 @@ export default function RootLayout({ children }) {
           content="rubber, molded rubber, custom rubber products"
         />
         <meta name="author" content="Scougal Rubber" />
+        <link rel="canonical" href="https://www.scougalrubber.com"></link>
         <script src="../node_modules/preline/dist/preline.js"></script>
       </head>
       <body className={inter.className}>

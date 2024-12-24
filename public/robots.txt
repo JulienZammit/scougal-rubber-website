@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://scougalrubber.com/
+Host: https://www.scougalrubber.com/
 
 # Sitemaps
-Sitemap: https://scougalrubber.com/sitemap.xml
+Sitemap: https://www.scougalrubber.com/sitemap.xml
