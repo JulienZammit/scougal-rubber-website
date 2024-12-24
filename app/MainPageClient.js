@@ -108,7 +108,6 @@ export default function MainPageClient() {
           property="og:image"
           content="https://www.scougalrubber.com/logo-animated.webm"
         />
-        <link rel="canonical" href="https://www.scougalrubber.com/" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
