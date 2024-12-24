@@ -79,7 +79,7 @@ export default function CompanyClient() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-x-hidden">
       <HeroAboutContact
-        backgroundImage="/about/Banner1.webp"
+        backgroundImage="/compagny/banner.webp"
         title="Our Company"
         subtitle="America's Custom Molded Rubber Company Since 1916"
       />

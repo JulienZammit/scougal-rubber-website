@@ -127,7 +127,7 @@ export default function ProjectsClient() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-hidden">
         <HeroAboutContact
-          backgroundImage="/banner1/Banner2.webp"
+          backgroundImage="/project/banner.webp"
           title="Our Projects"
           subtitle="Let's see what we have done"
         />
