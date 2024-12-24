@@ -31,10 +31,6 @@ const Hero = () => {
             loop
             muted
             playsInline
-            /*
-              Par défaut (mobile first), la vidéo fait 300x180.
-              À partir de md: (>= 768px), elle passe à 500x300.
-            */
             className="
               w-[300px]
               h-[180px]
@@ -42,7 +38,6 @@ const Hero = () => {
               md:w-[500px]
               md:h-[300px]
             "
-            style={{ filter: "brightness(9999) saturate(0)" }}
           >
             <source src="/logo-animated.webm" type="video/webm" />
             <source src="/logo-animated.mp4" type="video/mp4" />
