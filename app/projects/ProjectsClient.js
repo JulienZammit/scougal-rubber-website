@@ -131,7 +131,7 @@ export default function ProjectsClient() {
           title="Our Projects"
           subtitle="Let's see what we have done"
         />
-      <div className="md:p-20 p-5 relative w-full flex flex-col overflow-hidden rounded-[5px] mb-12">
+      <div className="md:p-20 px-4 py-10 relative w-full flex flex-col overflow-hidden rounded-[5px] mb-12">
       {projects.map((project, index) => (
         <motion.div
           key={index}
@@ -142,7 +142,7 @@ export default function ProjectsClient() {
             duration: 0.5,
             ease: "easeInOut",
           }}
-          className="w-full mb-12 p-8"
+          className="w-full mb-12"
         >
           <h2 className="text-4xl font-bold mb-8 text-center">
             {project.name}

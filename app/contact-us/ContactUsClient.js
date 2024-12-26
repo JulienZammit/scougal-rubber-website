@@ -410,9 +410,9 @@ export default function ContactUsClient() {
         subtitle="Expert advice on molding, polymers, inventory, and time-sensitive projects"
       />
 
-      <div className="md:p-20 p-5 flex flex-col items-center justify-center md:w-9/12 w-full space-y-12">
+      <div className="md:p-20 px-4 py-10 flex flex-col items-center justify-center w-full space-y-12">
         {/* Section Carte des ventes */}
-        <div className="w-full max-w-6xl mt-16 mb-16 px-4">
+        <div className="w-full max-w-6xl">
           <h2 className="text-4xl font-bold mb-10 text-gray-800 text-center">
             Our Sales Map
           </h2>
