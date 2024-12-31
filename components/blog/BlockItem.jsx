@@ -1,5 +1,4 @@
 "use client";
-
 import { toast } from "react-toastify";
 
 export default function BlockItem({ block, index, blocks, setBlocks, onMove, onDelete }) {
@@ -9,32 +8,21 @@ export default function BlockItem({ block, index, blocks, setBlocks, onMove, onD
     setBlocks(copy);
   }
 
-  async function handleImageUpload(e) {
+  function handleImageSelect(e) {
     const file = e.target.files?.[0];
     if (!file) return;
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const res = await fetch("/api/upload-image", {
-        method: "POST",
-        body: formData,
-      });
-      if (!res.ok) {
-        toast.error("Block image upload failed");
-        return;
-      }
-      const { imageUrl } = await res.json();
-      updateBlock("url", imageUrl);
-      toast.success(`Image uploaded: ${imageUrl}`);
-    } catch (err) {
-      toast.error(err.message);
-    }
+    const localUrl = URL.createObjectURL(file);
+
+    updateBlock("url", localUrl);
+    updateBlock("_file", file); 
+    updateBlock("alt", block.alt || "");
   }
 
   function addBold() {
     const text = block.text || "";
     updateBlock("text", `**${text}**`);
   }
+
   function addLink() {
     const text = block.text || "";
     updateBlock("text", `[${text}](https://example.com)`);
@@ -62,11 +50,10 @@ export default function BlockItem({ block, index, blocks, setBlocks, onMove, onD
           X
         </button>
       </div>
-      {block.type === "h1" || block.type === "h2" || block.type === "h3" ? (
+
+      {["h1", "h2", "h3"].includes(block.type) ? (
         <>
-          <label className="block font-bold mb-1">
-            {block.type.toUpperCase()}
-          </label>
+          <label className="block font-bold mb-1">{block.type.toUpperCase()}</label>
           <input
             type="text"
             className="w-full border border-gray-300 px-2 py-1 rounded"
@@ -103,9 +90,9 @@ export default function BlockItem({ block, index, blocks, setBlocks, onMove, onD
       ) : block.type === "image" ? (
         <>
           <label className="block font-bold mb-1">Image Block</label>
-          <input type="file" onChange={handleImageUpload} />
+          <input type="file" onChange={handleImageSelect} />
           {block.url && (
-            <p className="text-xs mt-1 text-green-600">Uploaded: {block.url}</p>
+            <p className="text-xs mt-1 text-green-600">Preview: {block.url}</p>
           )}
           <label className="block font-semibold mt-2">Alt Text</label>
           <input

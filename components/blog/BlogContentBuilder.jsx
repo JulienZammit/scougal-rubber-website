@@ -1,14 +1,7 @@
-/* ------------------------------------------------------------------
-   BlogContentBuilder.jsx
-   The only difference is: we remove the max-h on the preview.
-   We'll add a prop "noMaxHeight" if you want no max-h style. 
------------------------------------------------------------------- */
-
 "use client";
 
 import ReactMarkdown from "react-markdown";
 import BlockItem from "./BlockItem";
-import { useState } from "react";
 
 export default function BlogContentBuilder({
   blocks,
@@ -58,6 +51,7 @@ export default function BlogContentBuilder({
       } else if (block.type === "text") {
         md += `${block.text}\n\n`;
       } else if (block.type === "image") {
+        // We rely on block.url for local or final. 
         md += `![${block.alt || "image"}](${block.url})\n\n`;
       }
     }
@@ -126,7 +120,7 @@ export default function BlogContentBuilder({
           </button>
         </div>
 
-        {/* Right: live preview => NO max-h style */}
+        {/* Right: live preview => no max-h style */}
         <div className="border p-4 rounded bg-gray-50 overflow-auto">
           <h4 className="text-md font-semibold mb-2">Live Preview</h4>
           <div className="prose prose-sm sm:prose lg:prose-lg">

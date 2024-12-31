@@ -1,8 +1,3 @@
-/* ------------------------------------------------------------------
-   MetadataForm.jsx
-   (Same as before, just provide the standard code)
------------------------------------------------------------------- */
-
 "use client";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -11,6 +6,9 @@ export default function MetadataForm({ metadata, setMetadata }) {
   const [categories, setCategories] = useState([]);
   const [showNewCategory, setShowNewCategory] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState("");
+
+  // We'll store local object URLs in e.g. metadata._coverFile, metadata._coverUrl
+  // or do a separate piece of state. For simplicity, let's store them in metadata.
 
   useEffect(() => {
     fetch("/api/list-categories")
@@ -49,30 +47,24 @@ export default function MetadataForm({ metadata, setMetadata }) {
     setNewCategoryName("");
   }
 
-  async function handleImageUpload(e, field) {
+  // Instead of uploading to Azure, just store file in memory
+  function handleImageSelect(e, field) {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      const res = await fetch("/api/upload-image", {
-        method: "POST",
-        body: formData,
-      });
-      if (!res.ok) {
-        toast.error("Image upload failed");
-        return;
-      }
-      const { imageUrl, error } = await res.json();
-      if (error) {
-        toast.error(error);
-        return;
-      }
-      setMetadata((prev) => ({ ...prev, [field]: imageUrl }));
-      toast.success(`Image uploaded: ${imageUrl}`);
-    } catch (err) {
-      toast.error(err.message);
+    const localUrl = URL.createObjectURL(file);
+    // e.g. store them in _coverFile / _coverUrl
+    if (field === "coverImage") {
+      setMetadata((prev) => ({
+        ...prev,
+        _coverFile: file,
+        _coverLocalUrl: localUrl,
+      }));
+    } else {
+      setMetadata((prev) => ({
+        ...prev,
+        _ogFile: file,
+        _ogLocalUrl: localUrl,
+      }));
     }
   }
 
@@ -149,17 +141,19 @@ export default function MetadataForm({ metadata, setMetadata }) {
         </div>
       </div>
 
-      {/* Cover & OG Image */}
+      {/* Cover & OG Image => no immediate upload, just local preview */}
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <label className="block font-semibold mb-1">Cover Image</label>
           <input
             name="file"
             type="file"
-            onChange={(e) => handleImageUpload(e, "coverImage")}
+            onChange={(e) => handleImageSelect(e, "coverImage")}
           />
-          {metadata.coverImage && (
-            <p className="text-xs mt-1 text-green-600">{metadata.coverImage}</p>
+          {metadata._coverLocalUrl && (
+            <p className="text-xs mt-1 text-green-600">
+              Local preview: {metadata._coverLocalUrl}
+            </p>
           )}
         </div>
         <div>
@@ -167,10 +161,12 @@ export default function MetadataForm({ metadata, setMetadata }) {
           <input
             name="file"
             type="file"
-            onChange={(e) => handleImageUpload(e, "ogImage")}
+            onChange={(e) => handleImageSelect(e, "ogImage")}
           />
-          {metadata.ogImage && (
-            <p className="text-xs mt-1 text-green-600">{metadata.ogImage}</p>
+          {metadata._ogLocalUrl && (
+            <p className="text-xs mt-1 text-green-600">
+              Local preview: {metadata._ogLocalUrl}
+            </p>
           )}
         </div>
       </div>

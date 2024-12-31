@@ -13,7 +13,7 @@ export async function POST(request) {
     const metadata = data.metadata;
     const blocks = data.blocks;
 
-    // Build frontmatter like before
+    // Build frontmatter
     const lines = [];
     lines.push("---");
     lines.push(`# SEO Metadata`);
@@ -78,7 +78,7 @@ export async function POST(request) {
 
     const finalStr = lines.join("\n");
 
-    // Now upload the .md to Azure Blob
+    // Upload to Azure
     const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
     const containerClient = blobServiceClient.getContainerClient("posts");
     await containerClient.createIfNotExists();
@@ -87,7 +87,6 @@ export async function POST(request) {
     if (!slugFile.endsWith(".md")) slugFile += ".md";
 
     const blockBlobClient = containerClient.getBlockBlobClient(slugFile);
-    // Overwrites if exists => acts as "update" if the file is there
     await blockBlobClient.uploadData(Buffer.from(finalStr, "utf8"), {
       blobHTTPHeaders: { blobContentType: "text/markdown" },
     });

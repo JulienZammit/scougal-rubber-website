@@ -1,11 +1,3 @@
-/* ------------------------------------------------------------------
-   ArticleCreation.jsx
-   This component has its own sub-nav:
-     - "Metadata"
-     - "Blog Content"
-   All in one place, no max-h on the live preview.
------------------------------------------------------------------- */
-
 "use client";
 
 import { useState } from "react";
@@ -22,15 +14,13 @@ export default function ArticleCreation({
   // Sub-tabs: "metadata" or "content"
   const [subTab, setSubTab] = useState("metadata");
 
-  // The combined generate logic
   async function handleGeneratePost() {
-    // Validate readingTime
+    // 1) Basic validations
     const rt = Number(metadata.readingTime);
     if (rt < 0 || rt > 60) {
       toast.error("Reading Time must be between 0 and 60 minutes.");
       return;
     }
-    // required fields
     if (!metadata.title?.trim()) {
       toast.error("Title (H1) is required");
       setSubTab("metadata");
@@ -51,13 +41,78 @@ export default function ArticleCreation({
       setSubTab("metadata");
       return;
     }
-
     if (!blocks || blocks.length === 0) {
       toast.error("Blog content is empty!");
       setSubTab("content");
       return;
     }
 
+    // 2) Upload images for blocks and metadata
+    try {
+      // (A) Blocks
+      for (const block of blocks) {
+        if (block.type === "image" && block._file) {
+          const formData = new FormData();
+          formData.append("file", block._file);
+
+          const uploadRes = await fetch("/api/upload-image", {
+            method: "POST",
+            body: formData,
+          });
+          if (!uploadRes.ok) {
+            toast.error("Error uploading block image");
+            return;
+          }
+          const uploadData = await uploadRes.json();
+          if (uploadData.error) {
+            toast.error("Upload error: " + uploadData.error);
+            return;
+          }
+          // Replace local preview with Azure URL
+          block.url = uploadData.imageUrl;
+          block._file = null;
+        }
+      }
+
+      // (B) Metadata images
+      if (metadata._coverFile) {
+        const formData = new FormData();
+        formData.append("file", metadata._coverFile);
+
+        const res = await fetch("/api/upload-image", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        if (data.error) {
+          toast.error("Error uploading cover image: " + data.error);
+          return;
+        }
+        metadata.coverImage = data.imageUrl;
+        metadata._coverFile = null;
+      }
+      if (metadata._ogFile) {
+        const formData = new FormData();
+        formData.append("file", metadata._ogFile);
+
+        const res = await fetch("/api/upload-image", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        if (data.error) {
+          toast.error("Error uploading OG image: " + data.error);
+          return;
+        }
+        metadata.ogImage = data.imageUrl;
+        metadata._ogFile = null;
+      }
+    } catch (err) {
+      toast.error("Error uploading images: " + err.message);
+      return;
+    }
+
+    // 3) Now call /api/generate-post
     try {
       const payload = { metadata, blocks };
       const res = await fetch("/api/generate-post", {
@@ -104,18 +159,18 @@ export default function ArticleCreation({
         </button>
       </div>
 
-      {subTab === "metadata" && (
+      {/* Instead of conditional *unmount*, we always render but hide with display */}
+      <div style={{ display: subTab === "metadata" ? "block" : "none" }}>
         <MetadataForm metadata={metadata} setMetadata={setMetadata} />
-      )}
-      {subTab === "content" && (
+      </div>
+      <div style={{ display: subTab === "content" ? "block" : "none" }}>
         <BlogContentBuilder
           blocks={blocks}
           setBlocks={setBlocks}
-          // We'll pass handleGeneratePost here so user can finalize from content tab
           onGeneratePost={handleGeneratePost}
           noMaxHeight
         />
-      )}
+      </div>
     </div>
   );
 }
