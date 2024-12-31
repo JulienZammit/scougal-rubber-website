@@ -374,10 +374,11 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                   </footer>
                 </div>
               </article>
+              <RelatedPosts currentPost={post} posts={allPosts} />
             </FadeInAnimation>
 
             {/* Articles liés */}
-            <RelatedPosts currentPost={post} posts={allPosts} />
+            
           </main>
 
           {/* Barre latérale */}
