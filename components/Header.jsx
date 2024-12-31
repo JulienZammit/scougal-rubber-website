@@ -33,8 +33,12 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const pathname = usePathname();
+<<<<<<< Updated upstream
   const isBlogPage = pathname === "/blog" || pathname.startsWith("/blog/");
 
+=======
+  const isBlogPage = pathname === "/blog" || pathname.startsWith("/blog/") || pathname === "/blog-management" || pathname.startsWith("/blog-management/");
+>>>>>>> Stashed changes
   const menuRef = useRef(null);
 
   // Gérer le style scrolled
