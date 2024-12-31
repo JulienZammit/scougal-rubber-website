@@ -138,7 +138,10 @@ export default function CompanyClient() {
                   />
                 </div>
                 <div className="w-full md:w-1/2">
-                  <p className="text-lg text-gray-700" style={{ textAlign: "justify" }}>
+                  <p
+                    className="text-lg text-gray-700"
+                    style={{ textAlign: "justify" }}
+                  >
                     {paragraph}
                   </p>
                 </div>
@@ -162,7 +165,9 @@ export default function CompanyClient() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"} relative`}
+                  className={`flex ${
+                    index % 2 === 0 ? "justify-start" : "justify-end"
+                  } relative`}
                 >
                   <div className="w-5/12">
                     <div
@@ -221,13 +226,35 @@ export default function CompanyClient() {
       </section>
       <section className="w-full py-16">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16">Latest Updates on LinkedIn</h2>
+          <h2 className="text-4xl font-bold text-center mb-16">
+            Latest Updates on LinkedIn
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {posts.map((post, index) => (
+            {/* {posts.map((post, index) => (
               <div key={index} className="bg-white rounded-lg shadow-lg p-6">
                 <p className="text-gray-700 text-sm break-words">{JSON.stringify(post)}</p>
               </div>
-            ))}
+            ))} */}
+            <div className="rounded-lg shadow-lg p-6 bg-white">
+              <iframe
+                src="https://www.linkedin.com/embed/feed/update/urn:li:share:7260030827755896832"
+                height="612"
+                width="504"
+                frameborder="0"
+                allowfullscreen=""
+                title="Post intégré"
+              ></iframe>
+            </div>
+            <div className="rounded-lg shadow-lg p-6 bg-white">
+              <iframe
+                src="https://www.linkedin.com/embed/feed/update/urn:li:share:7264403255131041796"
+                height="764"
+                width="504"
+                frameborder="0"
+                allowfullscreen=""
+                title="Post intégré"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>
