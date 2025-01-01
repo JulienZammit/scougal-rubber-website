@@ -22,7 +22,10 @@ export async function POST(request) {
       return NextResponse.json({ error: "Bad Request" }, { status: 400 });
     }
 
-    let uploadedUrl = null;
+    // We'll store the file data in memory
+    let fileBuffer = null;
+    let fileExt = "";
+    let fileMime = "";
 
     const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
     const containerClient = blobServiceClient.getContainerClient("images");
@@ -33,49 +36,55 @@ export async function POST(request) {
 
       bb.on("file", (fieldname, file, info) => {
         if (fieldname !== "file") {
-          // skip if not the right field
+          // skip any other fields
           file.resume();
           return;
         }
         const { filename, mimeType } = info;
-        const chunks = [];
+        fileMime = mimeType;
+        fileExt = filename
+          ? filename.substring(filename.lastIndexOf(".")) 
+          : "";
 
+        // We'll accumulate all chunks in memory
+        const chunks = [];
         file.on("data", (chunk) => {
           chunks.push(chunk);
         });
 
-        file.on("end", async () => {
-          // Actually upload to Azure
-          const buffer = Buffer.concat(chunks);
-          const ext = filename ? filename.substring(filename.lastIndexOf(".")) : "";
-          const blobName = `${randomUUID()}${ext}`;
-
-          try {
-            const blockBlobClient = containerClient.getBlockBlobClient(blobName);
-            await blockBlobClient.uploadData(buffer, {
-              blobHTTPHeaders: { blobContentType: mimeType },
-            });
-            uploadedUrl = blockBlobClient.url;
-          } catch (err) {
-            reject(err);
-          }
+        file.on("end", () => {
+          // Store the entire file in memory for later
+          fileBuffer = Buffer.concat(chunks);
         });
       });
 
-      // IMPORTANT: use "finish" instead of "close"
-      bb.on("finish", () => {
-        if (uploadedUrl) {
-          resolve(NextResponse.json({ imageUrl: uploadedUrl }));
-        } else {
-          resolve(
-            NextResponse.json({ error: "No file uploaded" }, { status: 400 })
-          );
+      bb.on("finish", async () => {
+        try {
+          if (!fileBuffer) {
+            // We never got a file
+            return resolve(
+              NextResponse.json({ error: "No file uploaded" }, { status: 400 })
+            );
+          }
+
+          // Now do the actual Azure upload
+          const blobName = `${randomUUID()}${fileExt}`;
+          const blockBlobClient = containerClient.getBlockBlobClient(blobName);
+          await blockBlobClient.uploadData(fileBuffer, {
+            blobHTTPHeaders: { blobContentType: fileMime },
+          });
+
+          const uploadedUrl = blockBlobClient.url;
+          // Return final result
+          return resolve(NextResponse.json({ imageUrl: uploadedUrl }));
+        } catch (err) {
+          return reject(err);
         }
       });
 
       bb.on("error", (err) => reject(err));
 
-      // Read request body with getReader + push to busboy
+      // Pipe the request body to busboy
       const reader = request.body.getReader();
 
       async function read() {

@@ -4,10 +4,84 @@ import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 /**
- * Props:
- *  - onEditPost(post)
- *  - onNewArticle()
+ * Utility function to parse raw markdown into blocks for generating.
+ * If your /api/generate-post expects 'blocks', we need to replicate the logic
+ * used in your existing code. This is a minimal example.
  */
+function mdToBlocks(md) {
+  const lines = md.split("\n");
+  const blocksArray = [];
+  let paragraph = [];
+
+  const flushParagraph = () => {
+    if (paragraph.length > 0) {
+      const text = paragraph.join("\n").trim();
+      if (text) {
+        blocksArray.push({ type: "text", text });
+      }
+      paragraph = [];
+    }
+  };
+
+  for (const line of lines) {
+    if (line.startsWith("### ")) {
+      flushParagraph();
+      blocksArray.push({ type: "h3", text: line.slice(4) });
+    } else if (line.startsWith("## ")) {
+      flushParagraph();
+      blocksArray.push({ type: "h2", text: line.slice(3) });
+    } else if (line.startsWith("# ")) {
+      flushParagraph();
+      blocksArray.push({ type: "h1", text: line.slice(2) });
+    } else if (line.trim().startsWith("![")) {
+      flushParagraph();
+      const match = line.match(/^!\[([^)]*)\]\(([^)]*)\)/);
+      if (match) {
+        blocksArray.push({
+          type: "image",
+          alt: match[1].trim() || "image",
+          url: match[2].trim(),
+        });
+      }
+    } else {
+      // Accumulate into paragraph
+      paragraph.push(line);
+    }
+  }
+  flushParagraph();
+  return blocksArray;
+}
+
+/**
+ * Convert frontmatter (gray-matter style) => generate-post 'metadata' shape
+ * You might also merge tags, date, author, etc. as needed.
+ */
+function frontmatterToMetadata(frontmatter, newStatus) {
+  return {
+    title: frontmatter.title || "",
+    description: frontmatter.description || "",
+    slug: frontmatter.slug || "",
+    canonicalUrl: frontmatter.canonicalUrl || "",
+    coverImage: frontmatter.coverImage || "",
+    ogImage: frontmatter.ogImage || "",
+    category: frontmatter.category || "",
+    tags:
+      Array.isArray(frontmatter.tags) ? frontmatter.tags.join(", ") : frontmatter.tags || "",
+    date: frontmatter.date || "",
+    lastModified: frontmatter.lastModified || "",
+    status: newStatus, // <--- The only real override
+    featured: !!frontmatter.featured,
+    trending: !!frontmatter.trending,
+    authorName: frontmatter.author?.name || "",
+    authorTitle: frontmatter.author?.title || "",
+    authorBio: frontmatter.author?.bio || "",
+    authorAvatar: frontmatter.author?.avatar || "/employees/sn.jpg",
+    readingTime: frontmatter.readingTime || 0,
+    related: "", // or from frontmatter
+    prerequisites: "", // or from frontmatter
+  };
+}
+
 export default function PostsListManager({ onEditPost, onNewArticle }) {
   const [posts, setPosts] = useState([]);
 
@@ -63,50 +137,51 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
 
   // -------------------------
   // Toggle Publish/Unpublish
+  // We do NOT overwrite the content with placeholder text.
+  // Instead, we fetch the original .md, parse the blocks,
+  // update only frontmatter.status => newStatus,
+  // re-generate post with original blocks
   // -------------------------
   async function handleToggleStatus(post) {
     const newStatus = post.status === "published" ? "draft" : "published";
 
-    // minimal approach: we re-upload with new status
-    const payload = {
-      metadata: {
-        title: post.title || "",
-        description: post.description || "",
-        slug: post.slug || "",
-        canonicalUrl: post.canonicalUrl || "",
-        coverImage: post.coverImage || "",
-        ogImage: post.ogImage || "",
-        category: post.category || "",
-        tags: "",
-        date: post.date || "",
-        lastModified: post.lastModified || "",
-        status: newStatus,
-        featured: !!post.featured,
-        trending: !!post.trending,
-        authorName: "",
-        authorTitle: "",
-        authorBio: "",
-        authorAvatar: "/employees/sn.jpg",
-        readingTime: 0,
-        related: "",
-        prerequisites: "",
-      },
-      blocks: [
-        { type: "text", text: "Placeholder content for status toggle." },
-      ],
-    };
-
     try {
-      const res = await fetch("/api/generate-post", {
+      // 1) Fetch the existing full content from /api/get-post?slug=post.slug
+      //    We rely on post.slug or post.name if needed.
+      const slug = post.slug || post.name.replace(".md", "");
+      const getURL = `/api/get-post?slug=${encodeURIComponent(slug)}`;
+      const getRes = await fetch(getURL);
+      if (!getRes.ok) {
+        const errMsg = await getRes.json();
+        toast.error(errMsg.error || "Cannot fetch existing post");
+        return;
+      }
+      const getData = await getRes.json();
+      // getData = { slug, frontmatter, content }
+
+      // 2) Convert frontmatter => new metadata with updated status
+      const updatedMetadata = frontmatterToMetadata(getData.frontmatter, newStatus);
+
+      // 3) Convert raw content => blocks
+      //    so the re-generated post keeps the original text, images, etc.
+      const blocks = mdToBlocks(getData.content);
+
+      // 4) Call /api/generate-post with updated metadata + same blocks
+      const payload = {
+        metadata: updatedMetadata,
+        blocks,
+      };
+
+      const genRes = await fetch("/api/generate-post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) {
+      if (!genRes.ok) {
         toast.error("Error toggling status");
         return;
       }
-      const result = await res.json();
+      const result = await genRes.json();
       if (result.success) {
         toast.success(`Status changed to ${newStatus}`);
         fetchPosts();
@@ -114,16 +189,14 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
         toast.error("Error toggling status");
       }
     } catch (err) {
-      toast.error(err.message);
+      console.error(err);
+      toast.error("Failed to toggle status: " + err.message);
     }
   }
 
   // -------------------------
   // Local Searching/Filtering/Sorting
   // -------------------------
-  // 1) Filter by status: all, draft, published
-  // 2) Filter by searchTerm in title or slug
-  // 3) Sort by date ascending or descending
   function getFilteredAndSortedPosts() {
     let filtered = [...posts];
 
@@ -137,13 +210,12 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
     if (term) {
       filtered = filtered.filter(
         (p) =>
-          p.title.toLowerCase().includes(term) ||
-          p.slug.toLowerCase().includes(term)
+          p.title?.toLowerCase().includes(term) ||
+          p.slug?.toLowerCase().includes(term)
       );
     }
 
     // sort by date
-    // p.date might be "2024-01-01T12:00:00Z" or something
     filtered.sort((a, b) => {
       const ad = new Date(a.date).getTime();
       const bd = new Date(b.date).getTime();
