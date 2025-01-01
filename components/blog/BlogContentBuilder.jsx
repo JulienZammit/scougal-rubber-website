@@ -7,7 +7,6 @@ export default function BlogContentBuilder({
   blocks,
   setBlocks,
   onGeneratePost,
-  noMaxHeight = false,
 }) {
   function addBlock(type) {
     if (["h1", "h2", "h3", "text"].includes(type)) {
@@ -51,7 +50,6 @@ export default function BlogContentBuilder({
       } else if (block.type === "text") {
         md += `${block.text}\n\n`;
       } else if (block.type === "image") {
-        // We rely on block.url for local or final. 
         md += `![${block.alt || "image"}](${block.url})\n\n`;
       }
     }
@@ -61,11 +59,8 @@ export default function BlogContentBuilder({
   return (
     <div className="mt-4">
       <h3 className="text-lg font-semibold mb-2">Blog Content</h3>
-      <p className="text-sm text-gray-600 mb-4">
-        Build your article blocks. You have a live preview on the right.
-      </p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Left: block editor */}
+        {/* Editor */}
         <div>
           <div className="flex space-x-2 mb-4">
             <button
@@ -120,9 +115,9 @@ export default function BlogContentBuilder({
           </button>
         </div>
 
-        {/* Right: live preview => no max-h style */}
-        <div className="border p-4 rounded bg-gray-50 overflow-auto">
-          <h4 className="text-md font-semibold mb-2">Live Preview</h4>
+        {/* Preview */}
+        <div className="border p-4 rounded bg-gray-50">
+          <h4 className="font-semibold mb-2">Live Preview</h4>
           <div className="prose prose-sm sm:prose lg:prose-lg">
             <ReactMarkdown>{blocksToMarkdown()}</ReactMarkdown>
           </div>

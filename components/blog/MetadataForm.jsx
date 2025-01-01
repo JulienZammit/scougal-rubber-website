@@ -1,14 +1,17 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
+/**
+ * The form for metadata (title, slug, images, category, date, etc.)
+ * We only store local _coverFile and _ogFile for images, 
+ * then actually upload them in handleGeneratePost of ArticleCreation.
+ */
 export default function MetadataForm({ metadata, setMetadata }) {
   const [categories, setCategories] = useState([]);
   const [showNewCategory, setShowNewCategory] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState("");
-
-  // We'll store local object URLs in e.g. metadata._coverFile, metadata._coverUrl
-  // or do a separate piece of state. For simplicity, let's store them in metadata.
 
   useEffect(() => {
     fetch("/api/list-categories")
@@ -47,12 +50,11 @@ export default function MetadataForm({ metadata, setMetadata }) {
     setNewCategoryName("");
   }
 
-  // Instead of uploading to Azure, just store file in memory
   function handleImageSelect(e, field) {
     const file = e.target.files?.[0];
     if (!file) return;
     const localUrl = URL.createObjectURL(file);
-    // e.g. store them in _coverFile / _coverUrl
+
     if (field === "coverImage") {
       setMetadata((prev) => ({
         ...prev,
@@ -71,19 +73,15 @@ export default function MetadataForm({ metadata, setMetadata }) {
   return (
     <div>
       <h3 className="text-lg font-semibold mb-2">Metadata</h3>
-      <p className="text-gray-600 mb-4">
-        (*) Title, Slug, Category, and Date are required.
-      </p>
+      <p className="text-gray-600 mb-4">Title, Slug, Date, and Category are required.</p>
 
-      {/* Title & Description */}
       <div className="grid grid-cols-2 gap-4 mb-4">
+        {/* Title */}
         <div>
-          <label className="font-semibold block mb-1">
-            Title (H1)<span className="text-red-500 ml-1">*</span>
-          </label>
+          <label className="font-semibold block mb-1">Title (H1)*</label>
           <input
             type="text"
-            placeholder="Short, descriptive title..."
+            placeholder="Short descriptive title..."
             className="w-full border border-gray-300 px-2 py-1 rounded"
             value={metadata.title}
             onChange={(e) =>
@@ -91,29 +89,25 @@ export default function MetadataForm({ metadata, setMetadata }) {
             }
           />
         </div>
+        {/* Description */}
         <div>
           <label className="font-semibold block mb-1">Description (meta)</label>
           <input
             type="text"
-            placeholder="A brief summary for SEO..."
+            placeholder="Brief summary for SEO..."
             className="w-full border border-gray-300 px-2 py-1 rounded"
             value={metadata.description}
             onChange={(e) =>
-              setMetadata((prev) => ({
-                ...prev,
-                description: e.target.value,
-              }))
+              setMetadata((prev) => ({ ...prev, description: e.target.value }))
             }
           />
         </div>
       </div>
 
-      {/* Slug & Canonical */}
       <div className="grid grid-cols-2 gap-4 mb-4">
+        {/* Slug */}
         <div>
-          <label className="font-semibold block mb-1">
-            Slug<span className="text-red-500 ml-1">*</span>
-          </label>
+          <label className="font-semibold block mb-1">Slug*</label>
           <input
             type="text"
             placeholder="my-new-article"
@@ -124,6 +118,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
             }
           />
         </div>
+        {/* Canonical */}
         <div>
           <label className="font-semibold block mb-1">Canonical URL</label>
           <input
@@ -141,17 +136,16 @@ export default function MetadataForm({ metadata, setMetadata }) {
         </div>
       </div>
 
-      {/* Cover & OG Image => no immediate upload, just local preview */}
+      {/* Cover & OG Image */}
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <label className="block font-semibold mb-1">Cover Image</label>
           <input
-            name="file"
             type="file"
             onChange={(e) => handleImageSelect(e, "coverImage")}
           />
           {metadata._coverLocalUrl && (
-            <p className="text-xs mt-1 text-green-600">
+            <p className="text-xs text-green-600 mt-1">
               Local preview: {metadata._coverLocalUrl}
             </p>
           )}
@@ -159,12 +153,11 @@ export default function MetadataForm({ metadata, setMetadata }) {
         <div>
           <label className="block font-semibold mb-1">OG Image</label>
           <input
-            name="file"
             type="file"
             onChange={(e) => handleImageSelect(e, "ogImage")}
           />
           {metadata._ogLocalUrl && (
-            <p className="text-xs mt-1 text-green-600">
+            <p className="text-xs text-green-600 mt-1">
               Local preview: {metadata._ogLocalUrl}
             </p>
           )}
@@ -173,9 +166,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
 
       {/* Category */}
       <div className="mb-4">
-        <label className="font-semibold block mb-1">
-          Category<span className="text-red-500 ml-1">*</span>
-        </label>
+        <label className="font-semibold block mb-1">Category*</label>
         <select
           className="w-full border border-gray-300 px-2 py-1 rounded"
           value={showNewCategory ? "__new__" : metadata.category || ""}
@@ -208,15 +199,15 @@ export default function MetadataForm({ metadata, setMetadata }) {
         )}
       </div>
 
-      {/* Tags & Date */}
       <div className="grid grid-cols-2 gap-4 mb-4">
+        {/* Tags */}
         <div>
           <label className="font-semibold block mb-1">
             Tags (comma separated)
           </label>
           <input
             type="text"
-            placeholder="CNC, Efficiency, Innovation"
+            placeholder="CNC, Efficiency..."
             className="w-full border border-gray-300 px-2 py-1 rounded"
             value={metadata.tags}
             onChange={(e) =>
@@ -224,10 +215,9 @@ export default function MetadataForm({ metadata, setMetadata }) {
             }
           />
         </div>
+        {/* Date */}
         <div>
-          <label className="font-semibold block mb-1">
-            Date<span className="text-red-500 ml-1">*</span>
-          </label>
+          <label className="font-semibold block mb-1">Date*</label>
           <input
             type="datetime-local"
             className="w-full border border-gray-300 px-2 py-1 rounded"
@@ -239,8 +229,8 @@ export default function MetadataForm({ metadata, setMetadata }) {
         </div>
       </div>
 
-      {/* LastModified & Status */}
       <div className="grid grid-cols-2 gap-4 mb-4">
+        {/* LastModified */}
         <div>
           <label className="font-semibold block mb-1">Last Modified</label>
           <input
@@ -255,6 +245,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
             }
           />
         </div>
+        {/* Status */}
         <div>
           <label className="font-semibold block mb-1">Publication Status</label>
           <select
@@ -270,7 +261,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
         </div>
       </div>
 
-      {/* Featured & Trending */}
+      {/* featured & trending */}
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div className="flex items-center space-x-2">
           <input
@@ -300,7 +291,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
           <label className="font-semibold block mb-1">Author Name</label>
           <input
             type="text"
-            placeholder="Scott Nelson"
+            placeholder="John Smith"
             className="w-full border border-gray-300 px-2 py-1 rounded"
             value={metadata.authorName}
             onChange={(e) =>
@@ -312,7 +303,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
           <label className="font-semibold block mb-1">Author Title</label>
           <input
             type="text"
-            placeholder="Expert in Sales Strategy"
+            placeholder="Expert in Manufacturing"
             className="w-full border border-gray-300 px-2 py-1 rounded"
             value={metadata.authorTitle}
             onChange={(e) =>
@@ -321,12 +312,13 @@ export default function MetadataForm({ metadata, setMetadata }) {
           />
         </div>
       </div>
+
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <label className="font-semibold block mb-1">Author Bio</label>
           <input
             type="text"
-            placeholder="Short introduction for the author..."
+            placeholder="Short intro for author..."
             className="w-full border border-gray-300 px-2 py-1 rounded"
             value={metadata.authorBio}
             onChange={(e) =>
@@ -347,17 +339,15 @@ export default function MetadataForm({ metadata, setMetadata }) {
               }))
             }
           />
-          <p className="text-xs text-gray-400">
-            Default: /employees/sn.jpg (e.g. initials for the employee)
-          </p>
+          <p className="text-xs text-gray-400">Default: /employees/sn.jpg</p>
         </div>
       </div>
 
-      {/* Reading Time & Prerequisites */}
+      {/* readingTime & prerequisites */}
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div>
           <label className="font-semibold block mb-1">
-            Reading Time (0-60 minutes)
+            Reading Time (0-60 min)
           </label>
           <input
             type="number"
@@ -375,7 +365,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
           <label className="font-semibold block mb-1">Prerequisites</label>
           <input
             type="text"
-            placeholder="comma-separated (e.g. Basic knowledge...)"
+            placeholder="comma-separated..."
             className="w-full border border-gray-300 px-2 py-1 rounded"
             value={metadata.prerequisites}
             onChange={(e) =>

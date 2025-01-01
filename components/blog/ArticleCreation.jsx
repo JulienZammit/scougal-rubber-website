@@ -1,9 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import MetadataForm from "@/components/blog/MetadataForm";
-import BlogContentBuilder from "@/components/blog/BlogContentBuilder";
+import MetadataForm from "./MetadataForm";
+import BlogContentBuilder from "./BlogContentBuilder";
+
+/**
+ * Single "Article Creation" UI with sub-tabs:
+ *   - "metadata"
+ *   - "content"
+ *
+ * We do final generation in handleGeneratePost, 
+ * validating that user has required fields: title, slug, date, category.
+ * Then uploading images & calling /api/generate-post.
+ * On success, we redirect to tab=manage so user sees updated post list.
+ */
 
 export default function ArticleCreation({
   metadata,
@@ -11,18 +23,15 @@ export default function ArticleCreation({
   blocks,
   setBlocks,
 }) {
-  // Sub-tabs: "metadata" or "content"
+  const router = useRouter();
+
+  // subTab: 'metadata' or 'content'
   const [subTab, setSubTab] = useState("metadata");
 
   async function handleGeneratePost() {
     // 1) Basic validations
-    const rt = Number(metadata.readingTime);
-    if (rt < 0 || rt > 60) {
-      toast.error("Reading Time must be between 0 and 60 minutes.");
-      return;
-    }
     if (!metadata.title?.trim()) {
-      toast.error("Title (H1) is required");
+      toast.error("Title is required");
       setSubTab("metadata");
       return;
     }
@@ -31,25 +40,28 @@ export default function ArticleCreation({
       setSubTab("metadata");
       return;
     }
-    if (!metadata.category?.trim()) {
-      toast.error("Category is required");
-      setSubTab("metadata");
-      return;
-    }
     if (!metadata.date?.trim()) {
       toast.error("Date is required");
       setSubTab("metadata");
       return;
     }
+    if (!metadata.category?.trim()) {
+      toast.error("Category is required");
+      setSubTab("metadata");
+      return;
+    }
+    // optionally check readingTime, etc.
+
+    // must have at least one block
     if (!blocks || blocks.length === 0) {
-      toast.error("Blog content is empty!");
+      toast.error("No blog content! Add at least one block.");
       setSubTab("content");
       return;
     }
 
-    // 2) Upload images for blocks and metadata
+    // 2) Upload images (both blocks + metadata)
     try {
-      // (A) Blocks
+      // (A) blocks
       for (const block of blocks) {
         if (block.type === "image" && block._file) {
           const formData = new FormData();
@@ -60,21 +72,20 @@ export default function ArticleCreation({
             body: formData,
           });
           if (!uploadRes.ok) {
-            toast.error("Error uploading block image");
+            toast.error("Error uploading a block image");
             return;
           }
           const uploadData = await uploadRes.json();
           if (uploadData.error) {
-            toast.error("Upload error: " + uploadData.error);
+            toast.error("Block image upload error: " + uploadData.error);
             return;
           }
-          // Replace local preview with Azure URL
-          block.url = uploadData.imageUrl;
+          block.url = uploadData.imageUrl; // replace local with azure
           block._file = null;
         }
       }
 
-      // (B) Metadata images
+      // (B) metadata images
       if (metadata._coverFile) {
         const formData = new FormData();
         formData.append("file", metadata._coverFile);
@@ -91,6 +102,7 @@ export default function ArticleCreation({
         metadata.coverImage = data.imageUrl;
         metadata._coverFile = null;
       }
+
       if (metadata._ogFile) {
         const formData = new FormData();
         formData.append("file", metadata._ogFile);
@@ -108,25 +120,27 @@ export default function ArticleCreation({
         metadata._ogFile = null;
       }
     } catch (err) {
-      toast.error("Error uploading images: " + err.message);
+      toast.error("Image upload error: " + err.message);
       return;
     }
 
     // 3) Now call /api/generate-post
     try {
       const payload = { metadata, blocks };
-      const res = await fetch("/api/generate-post", {
+      const genRes = await fetch("/api/generate-post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) {
+      if (!genRes.ok) {
         toast.error("Error generating post");
         return;
       }
-      const result = await res.json();
+      const result = await genRes.json();
       if (result.success) {
-        toast.success("Post generated (or updated) successfully");
+        toast.success("Post created/updated successfully");
+        // redirect to manage
+        router.push("/blog-management?tab=manage");
       } else {
         toast.error("Error generating post");
       }
@@ -139,7 +153,6 @@ export default function ArticleCreation({
     <div className="bg-white p-4 rounded shadow">
       <h2 className="text-xl font-bold mb-4">Article Creation</h2>
 
-      {/* Sub-navigation for "metadata" / "content" */}
       <div className="space-x-4 mb-6">
         <button
           onClick={() => setSubTab("metadata")}
@@ -159,16 +172,15 @@ export default function ArticleCreation({
         </button>
       </div>
 
-      {/* Instead of conditional *unmount*, we always render but hide with display */}
       <div style={{ display: subTab === "metadata" ? "block" : "none" }}>
         <MetadataForm metadata={metadata} setMetadata={setMetadata} />
       </div>
+
       <div style={{ display: subTab === "content" ? "block" : "none" }}>
         <BlogContentBuilder
           blocks={blocks}
           setBlocks={setBlocks}
           onGeneratePost={handleGeneratePost}
-          noMaxHeight
         />
       </div>
     </div>

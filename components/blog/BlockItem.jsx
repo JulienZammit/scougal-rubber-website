@@ -1,7 +1,13 @@
 "use client";
-import { toast } from "react-toastify";
 
-export default function BlockItem({ block, index, blocks, setBlocks, onMove, onDelete }) {
+export default function BlockItem({
+  block,
+  index,
+  blocks,
+  setBlocks,
+  onMove,
+  onDelete,
+}) {
   function updateBlock(field, value) {
     const copy = [...blocks];
     copy[index] = { ...copy[index], [field]: value };
@@ -13,8 +19,9 @@ export default function BlockItem({ block, index, blocks, setBlocks, onMove, onD
     if (!file) return;
     const localUrl = URL.createObjectURL(file);
 
+    // store local preview + the raw file
     updateBlock("url", localUrl);
-    updateBlock("_file", file); 
+    updateBlock("_file", file);
     updateBlock("alt", block.alt || "");
   }
 
@@ -22,7 +29,6 @@ export default function BlockItem({ block, index, blocks, setBlocks, onMove, onD
     const text = block.text || "";
     updateBlock("text", `**${text}**`);
   }
-
   function addLink() {
     const text = block.text || "";
     updateBlock("text", `[${text}](https://example.com)`);
@@ -31,22 +37,13 @@ export default function BlockItem({ block, index, blocks, setBlocks, onMove, onD
   return (
     <div className="mb-4 border p-2 rounded relative bg-gray-50">
       <div className="absolute top-2 right-2 space-x-2">
-        <button
-          onClick={() => onMove(index, "up")}
-          className="text-xs bg-gray-200 px-1 rounded"
-        >
+        <button onClick={() => onMove(index, "up")} className="text-xs bg-gray-200 px-1 rounded">
           ↑
         </button>
-        <button
-          onClick={() => onMove(index, "down")}
-          className="text-xs bg-gray-200 px-1 rounded"
-        >
+        <button onClick={() => onMove(index, "down")} className="text-xs bg-gray-200 px-1 rounded">
           ↓
         </button>
-        <button
-          onClick={() => onDelete(index)}
-          className="text-xs bg-red-200 px-1 rounded"
-        >
+        <button onClick={() => onDelete(index)} className="text-xs bg-red-200 px-1 rounded">
           X
         </button>
       </div>
