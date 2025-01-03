@@ -2,7 +2,17 @@ import { NextResponse } from "next/server";
 import { BlobServiceClient } from "@azure/storage-blob";
 import matter from "gray-matter";
 
+// IMPORT NextAuth
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 export async function POST(request) {
+  // 1) Vérifier la session
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   console.log("[delete-post] Start");
   try {
     const { filename } = await request.json();
@@ -63,7 +73,6 @@ export async function POST(request) {
     console.log("[delete-post] Found image URLs in content:", imageUrls);
 
     // 5) Also check frontmatter for coverImage & ogImage
-    //    so that images from metadata are also deleted
     if (frontmatter.coverImage) {
       console.log("[delete-post] Adding frontmatter.coverImage:", frontmatter.coverImage);
       imageUrls.push(frontmatter.coverImage);

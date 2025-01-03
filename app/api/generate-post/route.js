@@ -3,6 +3,10 @@ import { BlobServiceClient } from "@azure/storage-blob";
 import { randomUUID } from "crypto";
 import matter from "gray-matter";
 
+// IMPORT NextAuth
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 /**
  * Petit utilitaire pour lire un stream en entier et le transformer en Buffer
  */
@@ -41,6 +45,12 @@ function extractImageUrls(mdContent) {
 }
 
 export async function POST(request) {
+  // 1) Vérifier la session
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   try {
     const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
     if (!connectionString) {
@@ -56,8 +66,6 @@ export async function POST(request) {
 
     // ---------------------------------------------------------
     // 1) Vérifier s'il existe déjà un .md avec ce slug
-    //    Si oui, on récupère les anciennes URLs pour pouvoir
-    //    supprimer les images qui ne sont plus utilisées
     // ---------------------------------------------------------
     const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
     const containerClient = blobServiceClient.getContainerClient("posts");
@@ -71,8 +79,8 @@ export async function POST(request) {
     let oldImages = [];
     const exists = await blockBlobClient.exists();
     if (exists) {
-      // Le post existe déjà -> on va le télécharger, parser les images,
-      // et ainsi détecter celles à supprimer si plus utilisées.
+      // Le post existe déjà -> on va télécharger, parser les images,
+      // et détecter celles à supprimer si plus utilisées.
       const downloadResponse = await blockBlobClient.download(0);
       const fileBuffer = await streamToBuffer(downloadResponse.readableStreamBody);
       const oldMdContent = fileBuffer.toString("utf8");
@@ -140,7 +148,6 @@ export async function POST(request) {
       else if (block.type === "h3") lines.push(`### ${block.text}\n`);
       else if (block.type === "text") lines.push(`${block.text}\n`);
       else if (block.type === "image") {
-        // insérer la balise Markdown
         lines.push(`![${block.alt || "image"}](${block.url})\n`);
       }
     }
@@ -153,9 +160,7 @@ export async function POST(request) {
     const newImages = extractImageUrls(finalStr);
 
     // ---------------------------------------------------------
-    // 4) Déterminer quelles images supprimer (dans oldImages,
-    //    mais plus présentes dans newImages) ET qui appartiennent
-    //    effectivement à notre container images
+    // 4) Déterminer quelles images supprimer
     // ---------------------------------------------------------
     const imagesDomain =
       process.env.IMAGE_DOMAIN || "myblogimages.blob.core.windows.net";
@@ -176,11 +181,8 @@ export async function POST(request) {
 
       for (const imgUrl of imagesToDelete) {
         try {
-          // Récupérer le blobName (dernier segment après le '/')
           const parts = imgUrl.split("/");
           const blobName = parts[parts.length - 1];
-
-          // Supprimer le blob si exists
           const imageBlobClient = imagesContainer.getBlockBlobClient(blobName);
           const delImageRes = await imageBlobClient.deleteIfExists();
           if (delImageRes.succeeded) {
