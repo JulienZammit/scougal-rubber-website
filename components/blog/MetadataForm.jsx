@@ -156,7 +156,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
           </div>
           
           <div>
-            <label className={labelClass}>OG Image</label>
+            <label className={labelClass}>OG Image (for sharing)</label>
             <div className="relative">
               <input
                 type="file"
@@ -268,7 +268,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
         </div>
 
         {/* Flags */}
-        <div className="flex gap-6 mb-8">
+        {/* <div className="flex gap-6 mb-8">
           <label className="flex items-center gap-2 cursor-pointer">
             <input
               type="checkbox"
@@ -287,7 +287,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
             />
             <span className="text-sm text-gray-700">Trending Article</span>
           </label>
-        </div>
+        </div> */}
 
         {/* Author Information */}
         <div className="border-t border-gray-100 pt-8">
@@ -352,7 +352,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
                 onChange={(e) => setMetadata((prev) => ({ ...prev, readingTime: e.target.value }))}
               />
             </div>
-            <div>
+            {/* <div>
               <label className={labelClass}>Prerequisites</label>
               <input
                 type="text"
@@ -361,7 +361,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
                 value={metadata.prerequisites}
                 onChange={(e) => setMetadata((prev) => ({ ...prev, prerequisites: e.target.value }))}
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

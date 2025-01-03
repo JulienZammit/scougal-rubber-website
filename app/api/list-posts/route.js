@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { BlobServiceClient } from "@azure/storage-blob";
 import matter from "gray-matter";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   try {
     const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING;
