@@ -7,6 +7,7 @@ import Providers from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
+  metadataBase: new URL("https://www.scougalrubber.com"),
   title: "America's Custom Molded Rubber Company",
   description: "Leading provider of custom molded rubber solutions since 1916.",
   openGraph: {
