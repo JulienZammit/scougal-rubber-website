@@ -1,7 +1,8 @@
-import { Inter } from "next/font/google";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+// app/layout.js (Server Component, NO "use client" at the top)
 import "./globals.css";
+import { Inter } from "next/font/google";
+import LayoutClient from "./LayoutClient";
+import Providers from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,14 +37,18 @@ export default function RootLayout({ children }) {
           content="rubber, molded rubber, custom rubber products"
         />
         <meta name="author" content="Scougal Rubber" />
+        {/* If you need this script, keep it here */}
         <script src="../node_modules/preline/dist/preline.js"></script>
       </head>
       <body className={inter.className}>
-        <Header />
-        <div id="__next">
-          <main>{children}</main>
-        </div>
-        <Footer />
+        <Providers>
+          {/* 
+          We hand off the *rest* of the UI to a 
+          client component that can do route checks 
+          and skip <Header>/<Footer> if needed.
+        */}
+          <LayoutClient>{children}</LayoutClient>
+        </Providers>
       </body>
     </html>
   );

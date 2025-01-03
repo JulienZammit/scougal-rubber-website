@@ -12,24 +12,29 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useState , useEffect } from "react";
 
 const POSTS_PER_PAGE = 6;
 
 export default function BlogPageClient({ allPosts }) {
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [selectedCategory, setSelectedCategory] = React.useState("all");
-  const [searchTerm, setSearchTerm] = React.useState("");
-  const [viewMode, setViewMode] = React.useState("grid");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [viewMode, setViewMode] = useState("grid");
 
-  // Catégories uniques
-  const categories = ["All", ...new Set(allPosts.map((post) => post.category))];
+  // 1) Filter out draft posts upfront
+  const publishedPosts = (allPosts || []).filter(
+    (post) => post.status !== "draft"
+  );
 
-  // Derniers articles
-  const latestPosts = allPosts.slice(0, 3);
+  // 2) Unique categories (including "All")
+  const categories = ["All", ...new Set(publishedPosts.map((p) => p.category))];
 
-  // Filtrage par catégorie + recherche
-  const filteredPosts = allPosts
+  // 3) Latest posts: just take the first 3 published
+  const latestPosts = publishedPosts.slice(0, 3);
+
+  // 4) Filtering by category + search
+  const filteredPosts = publishedPosts
     .filter(
       (post) =>
         selectedCategory === "all" ||
@@ -41,7 +46,7 @@ export default function BlogPageClient({ allPosts }) {
         post.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-  // Pagination
+  // 5) Pagination
   const currentPosts = filteredPosts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
     currentPage * POSTS_PER_PAGE
@@ -50,6 +55,7 @@ export default function BlogPageClient({ allPosts }) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
+    // Reset to page 1 if category or search changes
     setCurrentPage(1);
   }, [selectedCategory, searchTerm]);
 
@@ -199,7 +205,7 @@ export default function BlogPageClient({ allPosts }) {
           </header>
         </FadeInAnimation>
 
-        {/* Liste des posts (grid ou list) */}
+        {/* List of posts (grid or list) */}
         <div
           key={`page-${currentPage}`}
           className={
@@ -213,14 +219,14 @@ export default function BlogPageClient({ allPosts }) {
               key={`page-${currentPage}-${post.slug}`}
               delay={index * 0.1}
             >
-              {/* Wrap l'article dans un Link pour le rendre cliquable partout */}
+              {/* Wrap the article in a Link to make it clickable */}
               <Link
                 href={`/blog/${post.slug}`}
                 className={`group relative bg-white rounded-md shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden ${
                   viewMode === "list" ? "flex" : "block"
                 }`}
               >
-                {/* Overlay gradient au survol */}
+                {/* Overlay gradient on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
                 {/* Image */}
@@ -245,7 +251,7 @@ export default function BlogPageClient({ allPosts }) {
                   )}
                 </div>
 
-                {/* Contenu texte */}
+                {/* Text Content */}
                 <div className={`p-6 ${viewMode === "list" ? "w-2/3" : ""}`}>
                   <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
                     <time>
@@ -261,7 +267,7 @@ export default function BlogPageClient({ allPosts }) {
                     </div>
                   </div>
 
-                  {/* Titre */}
+                  {/* Title */}
                   <h2 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-500 transition-colors">
                     {post.title}
                   </h2>
@@ -271,9 +277,9 @@ export default function BlogPageClient({ allPosts }) {
                     {post.description}
                   </p>
 
-                  {/* Footer auteur + bouton share */}
+                  {/* Footer: author + share button */}
                   <div className="flex items-center justify-between mt-6">
-                    {/* Auteur */}
+                    {/* Author */}
                     {post.author && (
                       <div className="flex items-center">
                         {post.author.avatar && (
@@ -296,11 +302,11 @@ export default function BlogPageClient({ allPosts }) {
                       </div>
                     )}
 
-                    {/* Bouton share */}
+                    {/* Share button */}
                     <button
                       onClick={(e) => {
-                        e.stopPropagation(); // Empêche le clic de remonter au Link
-                        e.preventDefault(); // Évite toute autre redirection
+                        e.stopPropagation(); // stop Link
+                        e.preventDefault(); // no redirect
                         navigator.share({
                           title: post.title,
                           text: post.description,
@@ -337,18 +343,18 @@ export default function BlogPageClient({ allPosts }) {
               Technical Categories
             </h3>
             <div className="flex flex-wrap gap-3">
-              {categories.map((category) =>
-                category !== "All" ? (
+              {categories.map((cat) =>
+                cat !== "All" ? (
                   <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category.toLowerCase())}
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat.toLowerCase())}
                     className={`px-4 py-2 rounded-md text-sm font-medium ${
-                      selectedCategory === category.toLowerCase()
+                      selectedCategory === cat.toLowerCase()
                         ? "bg-blue-500 text-white shadow-sm"
                         : "bg-gray-100/80 text-gray-700 hover:bg-gray-200/80"
                     } transition-all duration-300`}
                   >
-                    {category}
+                    {cat}
                   </button>
                 ) : null
               )}
