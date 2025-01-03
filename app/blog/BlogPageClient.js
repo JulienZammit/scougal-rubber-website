@@ -21,7 +21,6 @@ export default function BlogPageClient({ allPosts }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState("grid");
-  const [isOpen, setIsOpen] = useState(false);
 
   // 1) Filter out draft posts upfront
   const publishedPosts = (allPosts || []).filter(
