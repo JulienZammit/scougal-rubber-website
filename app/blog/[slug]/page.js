@@ -117,6 +117,8 @@ function generateJSONLD(post) {
   };
 }
 
+export const dynamic = "force-dynamic";
+
 /* --------------------------------------------------
    4) COMPOSANT DE PAGE (SERVER COMPONENT)
    -------------------------------------------------- */

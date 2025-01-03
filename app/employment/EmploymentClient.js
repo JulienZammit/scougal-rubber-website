@@ -25,6 +25,7 @@ export default function EmploymentClient() {
         justify-center 
         min-h-screen
         overflow-x-hidden
+        overflow-y-hidden
       "
     >
       <HeroAboutContact
