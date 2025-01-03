@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
 import ArticleCreation from "@/components/blog/ArticleCreation";
 import PostsListManager from "@/components/blog/PostsListManager";
+import { Files, FileText, Layout, PenSquare } from "lucide-react";
+import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /**
  * The main client page with two top-level tabs:
@@ -248,85 +249,143 @@ export default function BlogManagementPageClient() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        style={{ marginTop: "50px" }}
+        theme="light"
+        className="mt-16"
       />
+
       {!isAuth ? (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-          <div className="w-full max-w-sm bg-white p-6 rounded-md shadow-md">
-            <h2 className="text-xl font-bold mb-4 text-center">Login</h2>
-            <form onSubmit={handleLogin} className="space-y-4">
-              <div>
-                <label className="block font-semibold mb-1">Username</label>
-                <input
-                  type="text"
-                  className="w-full border border-gray-300 px-3 py-2 rounded-md"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
+        // Login Page
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center p-4">
+          <div className="w-full max-w-md">
+            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+              <div className="flex items-center justify-center mb-8">
+                <Layout className="w-10 h-10 text-blue-600 mr-3" />
+                <h2 className="text-2xl font-semibold text-gray-800">
+                  Blog Dashboard
+                </h2>
               </div>
-              <div>
-                <label className="block font-semibold mb-1">Password</label>
-                <input
-                  type="password"
-                  className="w-full border border-gray-300 px-3 py-2 rounded-md"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 transition"
-              >
-                Sign In
-              </button>
-            </form>
+
+              <form onSubmit={handleLogin} className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Enter your username"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+                >
+                  <span>Sign In</span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       ) : (
-        <>
-          <header className="p-4 bg-white shadow flex justify-between items-center">
-            <h1 className="text-xl font-bold">Blog Management</h1>
-            <nav className="space-x-4">
-              <button
-                onClick={() => setActiveTab("manage")}
-                className={`px-3 py-1 rounded ${
-                  activeTab === "manage"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200"
-                }`}
-              >
-                Manage Articles
-              </button>
-              <button
-                onClick={() => setActiveTab("creation")}
-                className={`px-3 py-1 rounded ${
-                  activeTab === "creation"
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-200"
-                }`}
-              >
-                Article Creation
-              </button>
-            </nav>
-          </header>
-
-          <div className="p-4">
-            {activeTab === "manage" && (
-              <PostsListManager
-                onEditPost={handleEditPost}
-                onNewArticle={handleCreateNew}
-              />
-            )}
-            {activeTab === "creation" && (
-              <ArticleCreation
-                metadata={metadata}
-                setMetadata={setMetadata}
-                blocks={blocks}
-                setBlocks={setBlocks}
-              />
-            )}
+        // Dashboard
+        <div className="min-h-screen flex flex-col">
+          {/* Header */}
+          <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-col sm:flex-row justify-between items-center py-4 sm:h-16 space-y-4 sm:space-y-0">
+      {/* Logo & Title - Responsive layout */}
+      <div className="flex items-center space-x-3 w-full sm:w-auto justify-center sm:justify-start">
+        <FileText className="w-6 h-6 text-blue-600 flex-shrink-0" />
+        <h1 className="text-xl font-semibold text-gray-800 whitespace-nowrap">
+          Blog Management
+        </h1>
+        <div className="hidden sm:flex items-center space-x-2">
+          <span className="text-xl font-semibold text-gray-800 whitespace-nowrap">X</span>
+          <div className="relative">
+            <Image
+              src="./logo_resized.webp"
+              alt="Scougal Rubber Logo"
+              width={200}
+              height={180}
+              className="object-contain"
+            />
           </div>
-        </>
+        </div>
+      </div>
+
+      {/* Navigation - Improved responsive design */}
+      <div className="flex items-center w-full sm:w-auto justify-center sm:justify-end">
+        <nav className="flex bg-gray-50 p-1 rounded-lg shadow-sm w-full sm:w-auto">
+          <button
+            onClick={() => setActiveTab("manage")}
+            className={`
+              flex items-center px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200
+              flex-1 sm:flex-initial justify-center
+              ${
+                activeTab === "manage"
+                  ? "bg-white text-blue-600 shadow-sm ring-1 ring-gray-200"
+                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+              }
+            `}
+          >
+            <Files className="w-4 h-4 mr-2 flex-shrink-0" />
+            <span className="whitespace-nowrap">Manage Articles</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("creation")}
+            className={`
+              flex items-center px-3 sm:px-4 py-2 rounded-md text-sm font-medium transition-all duration-200
+              flex-1 sm:flex-initial justify-center
+              ${
+                activeTab === "creation"
+                  ? "bg-white text-blue-600 shadow-sm ring-1 ring-gray-200"
+                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+              }
+            `}
+          >
+            <PenSquare className="w-4 h-4 mr-2 flex-shrink-0" />
+            <span className="whitespace-nowrap">New Article</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+          {/* Main Content */}
+          <main className="flex-1 sm:px-6 lg:px-8 py-4 px-4">
+            <div className="transition-all duration-200 animate-in fade-in">
+              {activeTab === "manage" && (
+                <PostsListManager
+                  onEditPost={handleEditPost}
+                  onNewArticle={handleCreateNew}
+                />
+              )}
+              {activeTab === "creation" && (
+                <ArticleCreation
+                  metadata={metadata}
+                  setMetadata={setMetadata}
+                  blocks={blocks}
+                  setBlocks={setBlocks}
+                />
+              )}
+            </div>
+          </main>
+        </div>
       )}
     </div>
   );
