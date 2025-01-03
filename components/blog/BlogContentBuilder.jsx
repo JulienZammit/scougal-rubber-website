@@ -1,9 +1,11 @@
 import ReactMarkdown from "react-markdown";
 import BlockItem from "./BlockItem";
-import { PlusCircle, Type, Image as ImageIcon, FileText, Heading1, Heading2, Heading3, Eye } from "lucide-react";
+import { PlusCircle, Type, Image as ImageIcon, FileText, Heading1, Heading2, Heading3, Eye, Loader2 } from "lucide-react";
+import { useState } from "react";
 
 export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }) {
-  // Keeping all existing functions unchanged
+  const [isGenerating, setIsGenerating] = useState(false);
+
   function addBlock(type) {
     if (["h1", "h2", "h3", "text"].includes(type)) {
       setBlocks((prev) => [...prev, { type, text: "" }]);
@@ -76,6 +78,15 @@ export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }
     { type: "image", icon: ImageIcon, label: "Image" },
   ];
 
+  async function handleGeneratePost() {
+    setIsGenerating(true);
+    try {
+      await onGeneratePost();
+    } finally {
+      setIsGenerating(false);
+    }
+  }
+
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-100">
       <div className="p-6">
@@ -128,10 +139,22 @@ export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }
 
             {blocks.length > 0 && (
               <button
-                onClick={onGeneratePost}
-                className="w-full py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
+                onClick={handleGeneratePost}
+                disabled={isGenerating}
+                className={`w-full py-3 px-4 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center ${
+                  isGenerating
+                    ? "bg-blue-500 text-blue-100"
+                    : "bg-blue-600 hover:bg-blue-700 text-white"
+                }`}
               >
-                Generate/Update Post
+                {isGenerating ? (
+                  <>
+                    <Loader2 className="w-5 h-5 mr-2 spin" />
+                    Generating...
+                  </>
+                ) : (
+                  "Generate/Update Post"
+                )}
               </button>
             )}
           </div>
