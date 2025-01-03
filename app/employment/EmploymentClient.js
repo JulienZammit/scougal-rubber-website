@@ -17,38 +17,59 @@ export default function EmploymentClient() {
   ];
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div
+      className="
+        flex 
+        flex-col 
+        items-center 
+        justify-center 
+        min-h-screen
+        overflow-x-hidden
+      "
+    >
       <HeroAboutContact
         backgroundImage="/banner1/Banner9.webp"
         title="Employment"
         subtitle="Join our team and make a difference"
       />
-      <div className="md:p-15 p-5">
+      <div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
             delay: 0.2,
-            duration: 0.8,
+            duration: 0.5,
             ease: "easeInOut",
           }}
         >
           <ApplyOnlineForm />
         </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
             delay: 0.2,
-            duration: 0.8,
+            duration: 0.5,
             ease: "easeInOut",
           }}
-          className="my-12 p-8 bg-gradient-to-r bg-blue-500 text-white rounded-[5px] shadow-lg text-center text-2xl font-bold"
+          className="
+            my-12 
+            p-4 
+            mx-4 
+            bg-blue-500 
+            text-white 
+            rounded-[5px] 
+            shadow-lg 
+            text-center 
+            text-2xl 
+            font-bold
+          "
         >
-          Scougal Rubber is an Equal Opportunity Employer and Welcomes Your
-          Inquiry.
+          Scougal Rubber is an Equal Opportunity Employer and Welcomes Your Inquiry.
         </motion.div>
-        <div className="max-w-7xl w-full p-8 mb-12">
+
+        <div className="max-w-7xl mx-auto mb-12">
           <div className="flex flex-col gap-8">
             {employmentDetails.map((detail, index) => (
               <motion.div
@@ -57,12 +78,19 @@ export default function EmploymentClient() {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{
                   delay: 0.2 * index,
-                  duration: 0.8,
+                  duration: 0.5,
                   ease: "easeInOut",
                 }}
-                className={`flex flex-col md:flex-row items-center justify-between w-full gap-8 ${
-                  index % 2 === 0 ? "md:flex-row-reverse" : ""
-                }`}
+                className={`
+                  flex 
+                  flex-col 
+                  md:flex-row 
+                  items-center 
+                  justify-between 
+                  w-full 
+                  gap-8 
+                  ${index % 2 === 0 ? "md:flex-row-reverse" : ""}
+                `}
               >
                 <div className="w-full md:w-1/2 p-4">
                   <Image
@@ -87,16 +115,29 @@ export default function EmploymentClient() {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{
-            delay: 0.8,
-            duration: 0.8,
+            delay: 0.2,
+            duration: 0.5,
             ease: "easeInOut",
           }}
-          className="max-w-7xl w-full p-8 text-black"
+          className="max-w-7xl w-full text-black"
           style={{ textAlign: "justify" }}
         >
-          <p className="bg-red-500 text-white p-2 rounded-[5px] mb-4 font-bold items-center justify-center text-center">
-            Please note that Scougal is a drug-free workplace. All positions
-            require a pre-employment drug test.
+          <p
+            className="
+              bg-red-500 
+              text-white 
+              p-2 
+              mx-4 
+              rounded-[5px] 
+              mb-4 
+              font-bold 
+              items-center 
+              justify-center 
+              text-center
+            "
+          >
+            Please note that Scougal is a drug-free workplace. 
+            All positions require a pre-employment drug test.
           </p>
         </motion.div>
       </div>

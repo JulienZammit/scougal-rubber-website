@@ -1,22 +1,22 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import ReactMarkdown from "react-markdown";
+import FadeInAnimation from "@/components/FadeInAnimation";
 import {
   ArrowLeft,
-  Share2,
-  Clock,
-  ChevronRight,
-  Calendar,
   ArrowUpRight,
   BookOpen,
-  User,
-  Tag,
+  Calendar,
+  ChevronRight,
+  Clock,
   MessageSquare,
+  Share2,
+  Tag,
+  User,
 } from "lucide-react";
-import FadeInAnimation from "@/components/FadeInAnimation";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 
 /* ---------------------------------------------------
    Table of Contents
@@ -210,7 +210,7 @@ export default function BlogPostDetailClient({ post, allPosts }) {
     <div className="relative w-full min-h-screen">
       {/* Motif en fond (optionnel) */}
       <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-25 pointer-events-none" />
-      
+
       {/* Barre de progression */}
       <ProgressBar post={post} />
 
@@ -239,7 +239,7 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                           url: `/blog/${post.slug}`,
                         });
                       }}
-                      className="inline-flex items-center px-4 py-2 bg-blue-50 text-blue-500 rounded-full hover:bg-blue-100 transition-colors"
+                      className="inline-flex ml-5 items-center px-4 py-2 bg-blue-50 text-blue-500 rounded-full hover:bg-blue-100 transition-colors"
                     >
                       <Share2 className="w-4 h-4 mr-2" />
                       Share Article
@@ -312,7 +312,10 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                             .toLowerCase()
                             .replace(/[^\w]+/g, "-");
                           return (
-                            <h2 id={slug} className="flex items-center gap-4 group">
+                            <h2
+                              id={slug}
+                              className="flex items-center gap-4 group"
+                            >
                               {children}
                               {/* Permet un lien direct en hover */}
                               <a
@@ -330,7 +333,10 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                             .toLowerCase()
                             .replace(/[^\w]+/g, "-");
                           return (
-                            <h3 id={slug} className="flex items-center gap-4 group">
+                            <h3
+                              id={slug}
+                              className="flex items-center gap-4 group"
+                            >
                               {children}
                               <a
                                 href={`#${slug}`}
@@ -371,14 +377,14 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                         Contact us for more information
                       </div>
                     </div>
+
+                    {/* Articles liés */}
+                    <RelatedPosts currentPost={post} posts={allPosts} />
                   </footer>
                 </div>
               </article>
               <RelatedPosts currentPost={post} posts={allPosts} />
             </FadeInAnimation>
-
-            {/* Articles liés */}
-            
           </main>
 
           {/* Barre latérale */}

@@ -103,23 +103,22 @@ export default function MainPageClient() {
           content="Leading provider of custom molded rubber solutions since 1916. Discover our products and services."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://scougalrubber.com/" />
+        <meta property="og:url" content="https://www.scougalrubber.com/" />
         <meta
           property="og:image"
-          content="https://scougalrubber.com/logo-animated.webm"
+          content="https://www.scougalrubber.com/logo-animated.webm"
         />
-        <link rel="canonical" href="https://scougalrubber.com/" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Hero />
 
-      <div className="flex flex-col md:p-20 p-10 gap-4">
+      <div className="flex flex-col md:p-20 p-4 gap-4">
         <motion.div
           data-aos="fade-up"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="text-lg md:text-2xl text-black space-y-6"
           style={{ textAlign: 'justify' }}
         >
@@ -138,7 +137,7 @@ export default function MainPageClient() {
           <motion.div
             initial={{ opacity: 0, y: -80 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             className="z-50 flex flex-col justify-center items-center p-5"
           >
             <motion.h2 className="font-bold text-3xl md:text-6xl text-center text-white mb-4">
@@ -185,12 +184,12 @@ export default function MainPageClient() {
         </div>
       </ImprovedModal>
 
-      <div className="flex flex-col md:p-20 p-10 gap-4">
+      <div className="flex flex-col md:p-20 p-4 gap-4">
         <motion.div
           data-aos="fade-up"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="text-lg md:text-2xl text-black space-y-6"
           style={{ textAlign: 'justify' }}
         >
@@ -209,7 +208,7 @@ export default function MainPageClient() {
           <motion.div
             initial={{ opacity: 0, y: -80 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             className="z-50 flex flex-col justify-center items-center p-5"
           >
             <motion.h2 className="font-bold text-3xl md:text-6xl text-center text-white mb-4">

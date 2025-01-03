@@ -39,12 +39,9 @@ const Header = () => {
   // Gérer le style scrolled
   useEffect(() => {
     if (isBlogPage) {
-      // Sur les pages blog, on force scrolled à true
       setScrolled(true);
       return;
     }
-
-    // Sur les autres pages, on active le comportement classique au scroll
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setScrolled(true);
@@ -52,7 +49,6 @@ const Header = () => {
         setScrolled(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -81,7 +77,6 @@ const Header = () => {
     setActiveMenu(activeMenu === index ? null : index);
   };
 
-  // Pour mettre en surbrillance les items actifs
   const isActive = (item) => {
     return item.links.some((link) => pathname.startsWith(link.href));
   };
@@ -95,7 +90,7 @@ const Header = () => {
       <div className={styles.companyBar}>
         <Link href="/" className={styles.logo} onClick={handleLinkClick}>
           <Image
-            src="./logo_resized.webp"
+            src="/logo_resized.webp"
             alt="Scougal Rubber Logo"
             width={200}
             height={180}
@@ -194,10 +189,21 @@ const Header = () => {
               Insights
             </Link>
           </li>
+          {/* Lien mobile uniquement : "Contact" */}
+          <li className="block md:hidden">
+            <Link
+              href="/contact-us"
+              className={pathname === "/contact-us" ? styles.active : ""}
+              onClick={handleLinkClick}
+            >
+              Contact
+            </Link>
+          </li>
         </ul>
       </nav>
 
-      <div className={styles.rightContainer}>
+      {/* Container du bouton "Contact Us" (desktop only) */}
+      <div className={`${styles.rightContainer} hidden md:flex`}>
         <div className={styles.socialIcons}>
           <a
             href="https://www.linkedin.com/company/scougal-rubber-corporation"

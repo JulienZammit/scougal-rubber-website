@@ -1,0 +1,36 @@
+// Test récupération orga id
+
+$headers = @{
+    Authorization = "Bearer $accessToken"
+}
+
+$organizationName = "scougal-rubber-corporation"
+$url = "https://api.linkedin.com/v2/organizations?q=vanityName&vanityName=$organizationName"
+
+$response = Invoke-RestMethod -Method GET -Uri $url -Headers $headers
+$response
+
+
+// Test récupération post orga
+
+$body = @{
+    grant_type = "client_credentials"
+    client_id = "78qm724spbii64"
+    client_secret = "WPL_AP1.bkBOngTYqwp1BVys.BtvnHQ=="
+}
+
+$bodyEncoded = ($body.GetEnumerator() | ForEach-Object { "$($_.Key)=$($_.Value)" }) -join "&"
+$tokenResponse = Invoke-RestMethod -Method Post -Uri "https://www.linkedin.com/oauth/v2/accessToken" -ContentType "application/x-www-form-urlencoded" -Body $bodyEncoded
+$accessToken = $tokenResponse.access_token
+
+$orgId = "urn:li:organization:YOUR_ORGANIZATION_ID"
+$encodedOrgId = $orgId -replace ":", "%3A"
+$url = "https://api.linkedin.com/v2/ugcPosts?q=authors&authors=List($encodedOrgId)&sortBy=LAST_MODIFIED"
+
+$headers = @{
+    Authorization = "Bearer $accessToken"
+    "X-Restli-Protocol-Version" = "2.0.0"
+}
+
+$postsResponse = Invoke-RestMethod -Method GET -Uri $url -Headers $headers
+$postsResponse

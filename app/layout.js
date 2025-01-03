@@ -12,7 +12,7 @@ export const metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://scougalrubber.com/",
+    url: "https://www.scougalrubber.com/",
     site_name: "America's Custom Molded Rubber Company",
   },
   additionalMetaTags: [

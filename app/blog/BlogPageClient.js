@@ -2,13 +2,13 @@
 import FadeInAnimation from "@/components/FadeInAnimation";
 import Pagination from "@/components/Pagination";
 import {
-    ArrowRight,
-    Bell,
-    Clock,
-    Filter,
-    Search,
-    Share2,
-    Tag,
+  ArrowRight,
+  Bell,
+  Clock,
+  Filter,
+  Search,
+  Share2,
+  Tag,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,6 +52,8 @@ export default function BlogPageClient({ allPosts }) {
     (currentPage - 1) * POSTS_PER_PAGE,
     currentPage * POSTS_PER_PAGE
   );
+
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     // Reset to page 1 if category or search changes
@@ -136,19 +138,47 @@ export default function BlogPageClient({ allPosts }) {
               </div>
               <div className="relative">
                 <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
-                <select
-                  value={selectedCategory}
-                  onChange={(e) =>
-                    setSelectedCategory(e.target.value.toLowerCase())
-                  }
-                  className="pl-10 pr-8 py-3 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white/80 backdrop-blur-sm cursor-pointer transition-shadow w-full sm:w-48"
-                >
-                  {categories.map((category) => (
-                    <option key={category} value={category?.toLowerCase()}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
+                <div className="relative">
+                  <label htmlFor="category-select" className="sr-only">
+                    Select a category
+                  </label>
+                  <select
+                    id="category-select"
+                    value={selectedCategory}
+                    onChange={(e) =>
+                      setSelectedCategory(e.target.value.toLowerCase())
+                    }
+                    onFocus={() => setIsOpen(true)} // Trigger when the select gets focus (opened)
+                    onBlur={() => setTimeout(() => setIsOpen(false), 150)} // Add delay to detect closure
+                    className="pl-10 pr-8 py-3 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white/80 backdrop-blur-sm cursor-pointer transition-shadow w-full sm:w-48"
+                  >
+                    {categories.map((category) => (
+                      <option key={category} value={category?.toLowerCase()}>
+                        {category}
+                      </option>
+                    ))}
+                  </select>
+                  <div
+                    className={`absolute top-1/2 right-3 transform -translate-y-1/2 transition-transform duration-200 pointer-events-none ${
+                      isOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 text-gray-500"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </div>
+                </div>
               </div>
               <div className="flex gap-2">
                 <button

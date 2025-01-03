@@ -3,6 +3,7 @@ import HeroAboutContact from "@/components/HeroAboutContact";
 import { motion } from "framer-motion";
 import { Award, Building, Calendar, Globe, Users } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const companyHighlights = [
   {
@@ -59,6 +60,7 @@ const timelineEvents = [
 ];
 
 export default function CompanyClient() {
+  const [posts, setPosts] = useState([]);
   const maps = [
     {
       address: "885 Denmark Dr, McCarran, NV 89437, United States",
@@ -76,15 +78,22 @@ export default function CompanyClient() {
     "We are committed to contributing positively to the communities we serve by ensuring the safety and reliability of the projects that our products support. With a history of pride in excellence coupled with a strong vision for the future, SRC is a leader in the world of rubber fabrication.",
   ];
 
+  useEffect(() => {
+    async function fetchPosts() {
+      const res = await fetch("/api/linkedin-latest-posts");
+      const data = await res.json();
+      setPosts(data.elements || []);
+    }
+    fetchPosts();
+  }, []);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-x-hidden">
       <HeroAboutContact
-        backgroundImage="/about/Banner1.webp"
+        backgroundImage="/compagny/banner.webp"
         title="Our Company"
         subtitle="America's Custom Molded Rubber Company Since 1916"
       />
-
-      {/* Company Highlights Section */}
       <section className="w-full py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -106,8 +115,6 @@ export default function CompanyClient() {
           </div>
         </div>
       </section>
-
-      {/* About Company Section with Existing Content */}
       <div className="w-full py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col gap-16">
@@ -116,7 +123,7 @@ export default function CompanyClient() {
                 key={index}
                 initial={{ opacity: 0, x: index % 2 === 0 ? -25 : 25 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 * index, duration: 0.8 }}
+                transition={{ delay: 0.2 * index, duration: 0.5 }}
                 className={`flex flex-col md:flex-row items-center justify-between gap-12 ${
                   index % 2 === 0 ? "md:flex-row-reverse" : ""
                 }`}
@@ -143,15 +150,11 @@ export default function CompanyClient() {
           </div>
         </div>
       </div>
-
-      {/* Company Timeline Section */}
       <section className="w-full py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16">
             Our Journey
           </h2>
-
-          {/* Desktop Timeline */}
           <div className="hidden md:block relative">
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-blue-200"></div>
             <div className="space-y-8 md:space-y-16">
@@ -190,8 +193,6 @@ export default function CompanyClient() {
               ))}
             </div>
           </div>
-
-          {/* Mobile Timeline */}
           <div className="md:hidden relative">
             <div className="absolute left-4 top-0 h-full w-0.5 bg-blue-200"></div>
             <div className="space-y-6">
@@ -223,14 +224,17 @@ export default function CompanyClient() {
           </div>
         </div>
       </section>
-
-      {/* LinkedIn Feed Section */}
       <section className="w-full py-16">
         <div className="max-w-7xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16">
             Latest Updates on LinkedIn
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* {posts.map((post, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-lg p-6">
+                <p className="text-gray-700 text-sm break-words">{JSON.stringify(post)}</p>
+              </div>
+            ))} */}
             <div className="rounded-lg shadow-lg p-6 bg-white">
               <iframe
                 src="https://www.linkedin.com/embed/feed/update/urn:li:share:7260030827755896832"
@@ -254,8 +258,6 @@ export default function CompanyClient() {
           </div>
         </div>
       </section>
-
-      {/* Locations Section */}
       <div className="w-full py-16">
         <h2 className="text-4xl font-bold text-center mb-16">Our Locations</h2>
         <div className="max-w-7xl mx-auto px-4">
