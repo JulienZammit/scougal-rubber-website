@@ -7,6 +7,8 @@ import matter from "gray-matter";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
+export const dynamic = "force-dynamic";
+
 /**
  * Petit utilitaire pour lire un stream en entier et le transformer en Buffer
  */

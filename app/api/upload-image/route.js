@@ -7,10 +7,10 @@ import { randomUUID } from "crypto";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
+export const dynamic = "force-dynamic";
+
 // Nécessaire pour exécuter cette API côté "nodejs" (pour Busboy)
-export const config = {
-  runtime: "nodejs",
-};
+export const runtime = "nodejs"
 
 export async function POST(request) {
   // 1) Vérification de la session

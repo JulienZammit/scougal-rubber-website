@@ -1,3 +1,5 @@
+// app/blog/[slug]/page.js
+
 import React from "react";
 import { getAllPosts, getPostBySlug } from "@/lib/postsAzure";
 import BlogPostDetailClient from "./BlogPostDetailClient";
@@ -7,7 +9,7 @@ import { notFound } from "next/navigation";
    1) GÉNÉRATION DES MÉTADONNÉES DYNAMIQUES
    -------------------------------------------------- */
 export async function generateMetadata({ params }) {
-  const post = await getPostBySlug(params.slug); // <--- On "await" ici
+  const post = await getPostBySlug(params.slug); // on attend le post
 
   if (!post) {
     return {
@@ -22,14 +24,9 @@ export async function generateMetadata({ params }) {
   const ogImage = post.ogImage || `${baseUrl}/default-og-image.jpg`;
 
   return {
-    // --- Métadonnées de base
     title: post.title,
     description: post.description,
-
-    // --- Mots-clés (optionnel)
     keywords: post.tags ?? [],
-
-    // --- Open Graph
     openGraph: {
       title: post.title,
       description: post.description,
@@ -41,16 +38,12 @@ export async function generateMetadata({ params }) {
           alt: post.title,
         },
       ],
-      // Type "article" pour un article de blog
       type: "article",
-      // Informations propres aux articles
       publishedTime: post.date,
       modifiedTime: post.lastModified || post.date,
       authors: [post.author?.name || "Scougal Rubber"],
       tags: post.tags,
     },
-
-    // --- Twitter Card
     twitter: {
       card: "summary_large_image",
       title: post.title,
@@ -58,13 +51,9 @@ export async function generateMetadata({ params }) {
       creator: post.author?.twitter || "@ScougalRubber",
       images: [ogImage],
     },
-
-    // --- Canonical
     alternates: {
       canonical: post.canonicalUrl || postUrl,
     },
-
-    // --- Robots directives
     robots: {
       index: true,
       follow: true,
@@ -79,9 +68,10 @@ export async function generateMetadata({ params }) {
    2) GÉNÉRATION DES ROUTES STATIQUES (SSG)
    -------------------------------------------------- */
 export async function generateStaticParams() {
-  const posts = await getAllPosts(); // <--- On "await" ici
+  // On appelle directement Azure
+  const posts = await getAllPosts();
   return posts.map((post) => ({
-    slug: post.slug,
+    slug: post.slug, // sans .md
   }));
 }
 
@@ -104,7 +94,6 @@ function generateJSONLD(post) {
     author: {
       "@type": "Person",
       name: post.author?.name || "Scougal Rubber",
-      // si post.author.twitter est défini, on peut l'ajouter en sameAs
       ...(post.author?.twitter && {
         sameAs: [`https://twitter.com/${post.author.twitter}`],
       }),
@@ -132,13 +121,13 @@ function generateJSONLD(post) {
    4) COMPOSANT DE PAGE (SERVER COMPONENT)
    -------------------------------------------------- */
 export default async function BlogPostPage({ params }) {
-  // On "await" ici pour récupérer le post et la liste
   const post = await getPostBySlug(params.slug);
-  const allPosts = await getAllPosts();
-
   if (!post) {
     notFound();
   }
+
+  // On récupère la liste des posts pour l'affichage des "Autres posts", etc.
+  const allPosts = await getAllPosts();
 
   const structuredData = generateJSONLD(post);
 
