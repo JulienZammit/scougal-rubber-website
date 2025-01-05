@@ -1,5 +1,6 @@
 "use client";
 import HeroAboutContact from "@/components/HeroAboutContact";
+import LinkedInPostGrid from "@/components/LinkedInPostGrid";
 import { motion } from "framer-motion";
 import { Award, Building, Calendar, Globe, Users } from "lucide-react";
 import Image from "next/image";
@@ -82,7 +83,7 @@ export default function CompanyClient() {
     async function fetchPosts() {
       const res = await fetch("/api/linkedin-latest-posts");
       const data = await res.json();
-      setPosts(data.elements || []);
+      setPosts(data || []);
     }
     fetchPosts();
   }, []);
@@ -229,33 +230,7 @@ export default function CompanyClient() {
           <h2 className="text-4xl font-bold text-center mb-16">
             Latest Updates on LinkedIn
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* {posts.map((post, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg p-6">
-                <p className="text-gray-700 text-sm break-words">{JSON.stringify(post)}</p>
-              </div>
-            ))} */}
-            <div className="rounded-lg shadow-lg p-6 bg-white">
-              <iframe
-                src="https://www.linkedin.com/embed/feed/update/urn:li:share:7260030827755896832"
-                height="612"
-                width="504"
-                frameborder="0"
-                allowfullscreen=""
-                title="Post intégré"
-              ></iframe>
-            </div>
-            <div className="rounded-lg shadow-lg p-6 bg-white">
-              <iframe
-                src="https://www.linkedin.com/embed/feed/update/urn:li:share:7264403255131041796"
-                height="764"
-                width="504"
-                frameborder="0"
-                allowfullscreen=""
-                title="Post intégré"
-              ></iframe>
-            </div>
-          </div>
+          <LinkedInPostGrid posts={posts} />
         </div>
       </section>
       <div className="w-full py-16">

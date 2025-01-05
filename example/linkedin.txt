@@ -1,17 +1,22 @@
 // Test récupération orga id
 
 $headers = @{
-    Authorization = "Bearer $accessToken"
+    Authorization = "Bearer AQWjn4DAp4qUGkJoRkrY8GVGgqmV1680hBMGgJmxC4wKkCmekQzwIZoN7siLsAe3MgxGq_-43ow1tbsrLArAN0r4GOAK5jRC8JleOBXZh0UuiZwZ5RQyH1JCWKNE9zpV4Mmku0O4mTu4jUlqJY_nVlaiRO4mAT5p89CmU7GAss1jfClJ06lrHSelXdyikDFyqfxbe3NMVJ9C8s5mxLGYf885uYge9qgNhPM36EEDlpjXerhPxV8AsUVgMderEahsHmfA6cNQPbvxPVzv-qmdCkBab-9WouNcyNaT4SiEV6MCEKV6waGG7HbRCHQLI3QUl6WOYDuUjioBhnAQqbGwJqt7iX-usw"
 }
 
 $organizationName = "scougal-rubber-corporation"
 $url = "https://api.linkedin.com/v2/organizations?q=vanityName&vanityName=$organizationName"
 
 $response = Invoke-RestMethod -Method GET -Uri $url -Headers $headers
-$response
+
+# Extraire l'ID
+$organizationId = $response.elements[0].id
+
+# Afficher l'ID
+$organizationId
 
 
-// Test récupération post orga
+// Test récupération post orga sans access_token
 
 $body = @{
     grant_type = "client_credentials"
@@ -34,3 +39,29 @@ $headers = @{
 
 $postsResponse = Invoke-RestMethod -Method GET -Uri $url -Headers $headers
 $postsResponse
+
+// test récupération post orga avec access_token
+
+# Étape 1 : Définir les variables
+$accessToken = "AQWjn4DAp4qUGkJoRkrY8GVGgqmV1680hBMGgJmxC4wKkCmekQzwIZoN7siLsAe3MgxGq_-43ow1tbsrLArAN0r4GOAK5jRC8JleOBXZh0UuiZwZ5RQyH1JCWKNE9zpV4Mmku0O4mTu4jUlqJY_nVlaiRO4mAT5p89CmU7GAss1jfClJ06lrHSelXdyikDFyqfxbe3NMVJ9C8s5mxLGYf885uYge9qgNhPM36EEDlpjXerhPxV8AsUVgMderEahsHmfA6cNQPbvxPVzv-qmdCkBab-9WouNcyNaT4SiEV6MCEKV6waGG7HbRCHQLI3QUl6WOYDuUjioBhnAQqbGwJqt7iX-usw"
+$orgId = "urn:li:organization:15962711"
+$encodedOrgId = $orgId -replace ":", "%3A"
+
+# Étape 2 : Construire l'URL de la requête
+$url = "https://api.linkedin.com/v2/ugcPosts?q=authors&authors=List($encodedOrgId)&sortBy=LAST_MODIFIED"
+
+# Étape 3 : Définir les en-têtes
+$headers = @{
+    Authorization = "Bearer $accessToken"
+    "X-Restli-Protocol-Version" = "2.0.0"
+}
+
+# Étape 4 : Faire la requête pour récupérer les posts
+$postsResponse = Invoke-RestMethod -Method GET -Uri $url -Headers $headers
+
+# Étape 5 : Afficher les posts
+$postsResponse
+
+# Étape 6 : Afficher le premier élément sous forme de JSON
+$postsResponse.elements[0] | ConvertTo-Json -Depth 10
+
