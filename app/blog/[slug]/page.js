@@ -1,7 +1,7 @@
 // app/blog/[slug]/page.js
 
 import React from "react";
-import { getAllPosts, getPostBySlug } from "@/lib/postsAzure";
+import { getAllPosts, getPostBySlug } from "@/service/postsAzure";
 import BlogPostDetailClient from "./BlogPostDetailClient";
 import { notFound } from "next/navigation";
 

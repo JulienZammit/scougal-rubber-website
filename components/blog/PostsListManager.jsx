@@ -3,20 +3,57 @@
 import { Edit2, Loader2, Power, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { createSlugFromText } from "../utils"; // your slug utility
 
+/**
+ * The main manager for listing articles and importing from LinkedIn in a popup.
+ */
 export default function PostsListManager({ onEditPost, onNewArticle }) {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // For toggling statuses, deleting, editing
   const [loadingStates, setLoadingStates] = useState({
-    publish: null, // stocke l'ID du post en cours de publication
-    delete: null,  // stocke l'ID du post en cours de suppression
-    edit: null,    // stocke l'ID du post en cours d'édition
+    publish: null,
+    delete: null,
+    edit: null,
   });
+
+  // For searching / filtering
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("desc");
 
-  // Récupération des posts au montage
+  // ----------------------------------------------------------------
+  // Modal (popup) states & logic
+  // ----------------------------------------------------------------
+  const [showImportModal, setShowImportModal] = useState(false);
+  const [useAi, setUseAi] = useState(false); // determines if we want AI generation
+  const [importSteps, setImportSteps] = useState([]);
+  const [isImporting, setIsImporting] = useState(false);
+
+  function openImportModal() {
+    // Reset everything each time we open
+    setUseAi(false);
+    setImportSteps([]);
+    setIsImporting(false);
+    setShowImportModal(true);
+  }
+
+  function closeImportModal() {
+    setShowImportModal(false);
+  }
+
+  // Called after the import is fully done
+  function finalizeImport() {
+    // Optionally fetch posts again
+    fetchPosts();
+    setIsImporting(false);
+  }
+
+  // ----------------------------------------------------------------
+  // 1) useEffect: Fetch existing posts on mount
+  // ----------------------------------------------------------------
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -38,6 +75,9 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
     }
   }
 
+  // ----------------------------------------------------------------
+  // 2) Deleting a post
+  // ----------------------------------------------------------------
   async function handleDeletePost(filename) {
     if (!confirm(`Delete ${filename}?`)) return;
 
@@ -62,12 +102,15 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
     }
   }
 
+  // ----------------------------------------------------------------
+  // 3) Toggle status (published / draft)
+  // ----------------------------------------------------------------
   async function handleToggleStatus(post) {
     const newStatus = post.status === "published" ? "draft" : "published";
-
     setLoadingStates((prev) => ({ ...prev, publish: post.name }));
+
     try {
-      // Récupération du contenu du post
+      // fetch existing post content
       const getRes = await fetch(
         `/api/get-post?slug=${encodeURIComponent(post.slug)}`
       );
@@ -76,16 +119,15 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
         toast.error(errMsg.error || "Cannot fetch existing post");
         return;
       }
-      const { frontmatter, content } = await getRes.json();
 
-      // On met à jour le status
+      const { frontmatter, content } = await getRes.json();
       frontmatter.status = newStatus;
 
-      // Conversion du markdown en blocks
+      // convert markdown to blocks
       const blocks = parseMDToBlocks(content);
       const payload = { metadata: frontmatterToMetadata(frontmatter), blocks };
 
-      // Génération du nouveau post
+      // post updated data to /api/generate-post
       const genRes = await fetch("/api/generate-post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -110,17 +152,177 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
     }
   }
 
-  const handleEdit = (post) => {
+  // ----------------------------------------------------------------
+  // 4) Edit a post
+  // ----------------------------------------------------------------
+  function handleEdit(post) {
     setLoadingStates((prev) => ({ ...prev, edit: post.name }));
     onEditPost?.(post);
 
-    // On réinitialise l'état de chargement après un court délai
     setTimeout(() => {
       setLoadingStates((prev) => ({ ...prev, edit: null }));
     }, 500);
-  };
+  }
 
-  // Conversion du contenu markdown en blocks
+  // ----------------------------------------------------------------
+  // 5) The import process (triggered by modal)
+  // ----------------------------------------------------------------
+  async function handleStartImport() {
+    setIsImporting(true);
+    setImportSteps(["Fetching the latest LinkedIn posts..."]);
+
+    try {
+      // Step A: get the 2 latest LinkedIn posts
+      const linkedinRes = await fetch("/api/linkedin-latest-posts");
+      if (!linkedinRes.ok) {
+        throw new Error("Failed to fetch LinkedIn posts");
+      }
+      const linkedinPosts = await linkedinRes.json();
+      setImportSteps((prev) => [
+        ...prev,
+        "LinkedIn posts retrieved successfully.",
+      ]);
+
+      // Step B: For each post, generate a slug from the first 4 words
+      for (const post of linkedinPosts) {
+        const commentary =
+          post?.specificContent?.["com.linkedin.ugc.ShareContent"]
+            ?.shareCommentary?.text;
+        if (!commentary) continue; // skip empty
+
+        const newSlug = createSlugFromText(commentary, 4);
+        setImportSteps((prev) => [
+          ...prev,
+          `Checking existence of "${newSlug}"...`,
+        ]);
+
+        // Check if already exists
+        const checkRes = await fetch(
+          `/api/get-post?slug=${encodeURIComponent(newSlug)}`
+        );
+        // In handleStartImport (where you're checking if the post exists)
+        if (checkRes.ok) {
+          setImportSteps((prev) => [
+            ...prev,
+            `Post "${newSlug}" already exists, skipping.`,
+          ]);
+          toast.info("These LinkedIn posts have already been generated."); // <-- Add this
+          setShowImportModal(false); // <-- Close the popup
+          continue;
+        }
+
+        // Doesn't exist => create
+        let payload;
+        if (useAi) {
+          // AI approach
+          setImportSteps((prev) => [
+            ...prev,
+            `Generating AI-based content for "${newSlug}"...`,
+          ]);
+          payload = await createDraftWithAi(
+            commentary,
+            newSlug,
+            post?.firstPublishedAt
+          );
+        } else {
+          // Minimal approach
+          setImportSteps((prev) => [
+            ...prev,
+            `Creating a basic draft for "${newSlug}"...`,
+          ]);
+          payload = createDraftFromLinkedIn(
+            commentary,
+            newSlug,
+            post?.firstPublishedAt
+          );
+        }
+
+        // Upload final JSON to /api/generate-post
+        setImportSteps((prev) => [
+          ...prev,
+          `Uploading article for "${newSlug}"...`,
+        ]);
+        const genRes = await fetch("/api/generate-post", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!genRes.ok) {
+          setImportSteps((prev) => [...prev, `Error creating "${newSlug}".`]);
+        } else {
+          setImportSteps((prev) => [
+            ...prev,
+            `Article "${newSlug}" created as draft.`,
+          ]);
+        }
+      }
+
+      setImportSteps((prev) => [...prev, "Verification completed."]);
+    } catch (err) {
+      console.error("Import error:", err);
+      setImportSteps((prev) => [...prev, `Error: ${err.message}`]);
+    } finally {
+      finalizeImport();
+    }
+  }
+
+  // Minimal approach (no AI)
+  function createDraftFromLinkedIn(commentary = "", slug, publishedAt) {
+    const date = publishedAt
+      ? new Date(publishedAt).toISOString()
+      : new Date().toISOString();
+
+    // default “Scott Nelson” data
+    const defaultAuthor = {
+      name: "Scott Nelson",
+      title: "Vice President Sales & Marketing",
+      bio: "Since 2006, Scott has played a vital role in overseeing sales and marketing, as well as guiding Scougal’s transition to a state-of-the-art facility in Nevada.",
+      avatar: "/employees/sn.jpg",
+    };
+
+    const frontmatter = {
+      title: `${slug}`,
+      description: commentary.substring(0, 160),
+      slug,
+      status: "draft",
+      date,
+      authorName: defaultAuthor.name,
+      authorTitle: defaultAuthor.title,
+      authorBio: defaultAuthor.bio,
+      authorAvatar: defaultAuthor.avatar,
+    };
+
+    const blocks = [{ type: "text", text: commentary }];
+
+    return {
+      metadata: frontmatterToMetadata(frontmatter),
+      blocks,
+    };
+  }
+
+  // AI approach => call /api/ai/generate-post-data
+  async function createDraftWithAi(commentary = "", slug, publishedAt) {
+    const date = publishedAt
+      ? new Date(publishedAt).toISOString()
+      : new Date().toISOString();
+
+    const aiRes = await fetch("/api/ai/generate-post-data", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ commentary, slug, date }),
+    });
+
+    if (!aiRes.ok) {
+      throw new Error("Failed to generate AI-based content");
+    }
+    const aiData = await aiRes.json();
+    return aiData;
+  }
+
+  // ----------------------------------------------------------------
+  // 6) parseMDToBlocks & frontmatterToMetadata
+  // ----------------------------------------------------------------
   function parseMDToBlocks(md) {
     if (!md) return [];
     const lines = md.split("\n");
@@ -167,7 +369,6 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
     return blocksArray;
   }
 
-  // Conversion du frontmatter en metadata
   function frontmatterToMetadata(fm) {
     return {
       title: fm.title || "",
@@ -183,10 +384,10 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
       status: fm.status || "draft",
       featured: !!fm.featured,
       trending: !!fm.trending,
-      authorName: fm.author?.name || "",
-      authorTitle: fm.author?.title || "",
-      authorBio: fm.author?.bio || "",
-      authorAvatar: fm.author?.avatar || "/employees/sn.jpg",
+      authorName: fm.authorName || "Scott Nelson",
+      authorTitle: fm.authorTitle || "Vice President Sales & Marketing",
+      authorBio: fm.authorBio || "Since 2006, Scott has played a vital role...",
+      authorAvatar: fm.authorAvatar || "/employees/sn.jpg",
       readingTime: fm.readingTime || 0,
       related: Array.isArray(fm.related)
         ? fm.related.join(", ")
@@ -197,7 +398,9 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
     };
   }
 
-  // Filtrage et tri des posts
+  // ----------------------------------------------------------------
+  // 7) Filter & sort for display
+  // ----------------------------------------------------------------
   function getFilteredSortedPosts() {
     let filtered = [...posts];
 
@@ -226,21 +429,30 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
   const displayed = getFilteredSortedPosts();
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 mx-auto">
-      {/* Header + bouton Create New */}
+    <div className="relative bg-white rounded-lg shadow-lg p-6 mx-auto">
+      {/* Header + Create & Import Buttons */}
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-2xl font-bold text-gray-800">Manage Articles</h2>
-        <button
-          onClick={onNewArticle}
-          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-200 flex items-center gap-2"
-        >
-          <span className="hidden sm:inline">Create New Article</span>
-          <span className="sm:hidden">New</span>
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={openImportModal}
+            className="bg-white text-black border border-gray-300 hover:bg-gray-100 px-4 py-2 rounded-md transition-colors duration-200 flex items-center gap-2"
+          >
+            Import Post from LinkedIn
+          </button>
+          <button
+            onClick={onNewArticle}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-200 flex items-center gap-2"
+          >
+            <span className="hidden sm:inline">Create New Article</span>
+            <span className="sm:hidden">New</span>
+          </button>
+        </div>
       </div>
 
-      {/* Filtres */}
+      {/* Filters */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {/* Search */}
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-700">
             Search
@@ -254,6 +466,7 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
           />
         </div>
 
+        {/* Status */}
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-700">
             Status
@@ -269,6 +482,7 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
           </select>
         </div>
 
+        {/* Sort Order */}
         <div className="space-y-2">
           <label className="block text-sm font-medium text-gray-700">
             Sort
@@ -284,7 +498,7 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
         </div>
       </div>
 
-      {/* Liste des posts ou chargement */}
+      {/* List of posts or loading */}
       {isLoading ? (
         <div className="flex flex-col items-center justify-center py-12 space-y-4">
           <Loader2 className="w-12 h-12 text-blue-500 spin" />
@@ -315,7 +529,7 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
               </div>
 
               <div className="flex flex-wrap gap-2">
-                {/* Publish / Unpublish */}
+                {/* Toggle status */}
                 <button
                   onClick={() => handleToggleStatus(p)}
                   disabled={loadingStates.publish === p.name}
@@ -379,6 +593,68 @@ export default function PostsListManager({ onEditPost, onNewArticle }) {
             </li>
           ))}
         </ul>
+      )}
+
+      {/* The Import Modal (popup) */}
+      {showImportModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
+          <div className="bg-white rounded shadow-lg p-6 max-w-md w-full relative">
+            <button
+              onClick={closeImportModal}
+              className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
+            >
+              ✕
+            </button>
+
+            <h3 className="text-xl font-semibold mb-4">
+              Import Posts from LinkedIn
+            </h3>
+            <p className="text-gray-600 text-sm mb-4">
+              This will fetch the latest LinkedIn posts and create draft posts
+              for you.
+            </p>
+
+            {!isImporting ? (
+              <>
+                {/* Ask if we want AI */}
+                <div className="flex items-center gap-2 mb-4">
+                  <input
+                    type="checkbox"
+                    id="useAiCheckbox"
+                    checked={useAi}
+                    onChange={(e) => setUseAi(e.target.checked)}
+                  />
+                  <label htmlFor="useAiCheckbox" className="text-sm">
+                    Use AI generation?
+                  </label>
+                </div>
+
+                <div className="flex justify-end">
+                  <button
+                    onClick={handleStartImport}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors duration-200 flex items-center gap-2"
+                  >
+                    Start Import
+                  </button>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center gap-2 mb-2">
+                  <Loader2 className="w-5 h-5 text-blue-500 spin" />
+                  <span className="font-medium text-sm">
+                    Importing LinkedIn posts...
+                  </span>
+                </div>
+                <div className="p-2 border rounded h-40 overflow-auto text-sm">
+                  {importSteps.map((step, i) => (
+                    <div key={i}>• {step}</div>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

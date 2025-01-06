@@ -1,5 +1,5 @@
 import React from "react";
-import { getAllPosts } from "@/lib/postsAzure";
+import { getAllPosts } from "@/service/postsAzure";
 import BlogPageClient from "./BlogPageClient";
 
 export const dynamic = "force-dynamic";
