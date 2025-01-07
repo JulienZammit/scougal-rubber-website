@@ -1,17 +1,54 @@
 import ReactMarkdown from "react-markdown";
 import BlockItem from "./BlockItem";
-import { PlusCircle, Type, Image as ImageIcon, FileText, Heading1, Heading2, Heading3, Eye, Loader2 } from "lucide-react";
+import { 
+  PlusCircle, 
+  Type, 
+  Image as ImageIcon, 
+  FileText, 
+  Heading1, 
+  Heading2, 
+  Heading3, 
+  Eye, 
+  Loader2 
+} from "lucide-react";
 import { useState } from "react";
 
 export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }) {
   const [isGenerating, setIsGenerating] = useState(false);
 
+  // Existing block types (top toolbar)
+  const blockTypes = [
+    { type: "h1", icon: Heading1, label: "Heading 1" },
+    { type: "h2", icon: Heading2, label: "Heading 2" },
+    { type: "h3", icon: Heading3, label: "Heading 3" },
+    { type: "text", icon: Type, label: "Paragraph" },
+    { type: "image", icon: ImageIcon, label: "Image" },
+  ];
+
+  /**
+   * Add a block at the END (top toolbar usage).
+   */
   function addBlock(type) {
     if (["h1", "h2", "h3", "text"].includes(type)) {
       setBlocks((prev) => [...prev, { type, text: "" }]);
     } else if (type === "image") {
       setBlocks((prev) => [...prev, { type: "image", url: "", alt: "" }]);
     }
+  }
+
+  /**
+   * // NEW
+   * Insert a block at a SPECIFIC index in the array.
+   * This allows adding new blocks above or below a particular block.
+   */
+  function insertBlockAt(index, type) {
+    const newBlocks = [...blocks];
+    if (["h1", "h2", "h3", "text"].includes(type)) {
+      newBlocks.splice(index, 0, { type, text: "" });
+    } else if (type === "image") {
+      newBlocks.splice(index, 0, { type: "image", url: "", alt: "" });
+    }
+    setBlocks(newBlocks);
   }
 
   function moveBlock(index, direction) {
@@ -30,6 +67,9 @@ export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }
     setBlocks(newBlocks);
   }
 
+  /**
+   * Convert blocks to Markdown for the preview
+   */
   function blocksToMarkdown() {
     let md = "";
     for (const block of blocks) {
@@ -56,7 +96,10 @@ export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }
 
   const renderers = {
     paragraph: ({ children }) => {
-      if (typeof children[0] === "string" && children[0].includes("Image not displayed in preview")) {
+      if (
+        typeof children[0] === "string" &&
+        children[0].includes("Image not displayed in preview")
+      ) {
         return (
           <div className="p-4 border-2 border-dashed border-yellow-400 bg-yellow-50 rounded-lg">
             <p className="text-yellow-700 font-medium flex items-center">
@@ -70,14 +113,9 @@ export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }
     },
   };
 
-  const blockTypes = [
-    { type: "h1", icon: Heading1, label: "Heading 1" },
-    { type: "h2", icon: Heading2, label: "Heading 2" },
-    { type: "h3", icon: Heading3, label: "Heading 3" },
-    { type: "text", icon: Type, label: "Paragraph" },
-    { type: "image", icon: ImageIcon, label: "Image" },
-  ];
-
+  /**
+   * Trigger the generate/update post logic
+   */
   async function handleGeneratePost() {
     setIsGenerating(true);
     try {
@@ -98,9 +136,9 @@ export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Editor Panel */}
           <div className="space-y-6">
-            {/* Block Type Buttons */}
+            {/* Block Type Buttons (TOP) */}
             <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600 mb-3">Add Content Blocks</p>
+              <p className="text-sm text-gray-600 mb-3">Add Content Blocks (at the end)</p>
               <div className="flex flex-wrap gap-2">
                 {blockTypes.map(({ type, icon: Icon, label }) => (
                   <button
@@ -120,23 +158,45 @@ export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }
               {blocks.length === 0 ? (
                 <div className="text-center py-12 bg-gray-50 rounded-lg border-2 border-dashed border-gray-200">
                   <PlusCircle className="w-8 h-8 text-gray-400 mx-auto mb-3" />
-                  <p className="text-gray-500">Add your first content block using the buttons above</p>
+                  <p className="text-gray-500">
+                    Add your first content block using the buttons above
+                  </p>
                 </div>
               ) : (
                 blocks.map((block, i) => (
-                  <BlockItem
-                    key={i}
-                    block={block}
-                    index={i}
-                    blocks={blocks}
-                    setBlocks={setBlocks}
-                    onMove={moveBlock}
-                    onDelete={deleteBlock}
-                  />
+                  <div key={i} className="bg-white border rounded-lg p-4 shadow-sm">
+                    {/* Reuse your existing <BlockItem> or inline code */}
+                    <BlockItem
+                      block={block}
+                      index={i}
+                      blocks={blocks}
+                      setBlocks={setBlocks}
+                      onMove={moveBlock}
+                      onDelete={deleteBlock}
+                    />
+
+                    {/* // NEW: "Add block below" interface */}
+                    <div className="mt-3 flex flex-wrap gap-2 border-t border-gray-100 pt-3">
+                      <span className="text-sm text-gray-500">
+                        Add block below:
+                      </span>
+                      {blockTypes.map(({ type, icon: Icon, label }) => (
+                        <button
+                          key={type}
+                          onClick={() => insertBlockAt(i + 1, type)}
+                          className="inline-flex items-center px-2 py-1 bg-gray-50 border border-gray-200 rounded text-xs text-gray-700 hover:bg-gray-100 hover:border-gray-300 transition-all duration-200"
+                        >
+                          <Icon className="w-3 h-3 mr-1" />
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 ))
               )}
             </div>
 
+            {/* Generate/Update Post */}
             {blocks.length > 0 && (
               <button
                 onClick={handleGeneratePost}
@@ -168,7 +228,7 @@ export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }
                   Live Preview
                 </h4>
               </div>
-              <div className="p-6 overflow-y-auto max-h-[800px]">
+              <div className="p-6">
                 <div className="prose prose-sm sm:prose lg:prose-lg prose-blue max-w-none">
                   <ReactMarkdown components={renderers}>
                     {blocksToMarkdown()}
@@ -178,7 +238,7 @@ export default function BlogContentBuilder({ blocks, setBlocks, onGeneratePost }
             </div>
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   );
 }
