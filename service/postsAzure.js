@@ -15,11 +15,9 @@ export async function getAllPosts() {
 
     // On liste tous les blobs .md
     const posts = [];
-    console.log("Listing blobs in container: posts (prod)");
     let count = 0;
     for await (const blob of containerClient.listBlobsFlat()) {
       count++;
-      console.log("Found blob:", blob.name);
       if (!blob.name.endsWith(".md")) continue;
 
       // Télécharge le contenu de ce blob
@@ -40,7 +38,6 @@ export async function getAllPosts() {
         ...frontmatter,
       });
     }
-    console.log("Total found in production:", count);
 
     // Trier par date si nécessaire
     posts.sort((a, b) => new Date(b.date) - new Date(a.date));
