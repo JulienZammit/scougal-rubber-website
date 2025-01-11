@@ -42,9 +42,7 @@ export async function GET() {
     // Utilisez l'access token pour récupérer les posts LinkedIn
     const orgId = "urn:li:organization:15962711";
     const encodedOrgId = encodeURIComponent(orgId);
-    const url = `https://api.linkedin.com/v2/ugcPosts
-                ?q=authors
-                &authors=List(${encodedOrgId})`;
+    const url = `https://api.linkedin.com/v2/ugcPosts?q=authors&authors=List(${encodedOrgId})`;
 
     const postsResponse = await fetch(url, {
       method: "GET",
