@@ -51,7 +51,7 @@ const faqs = [
   {
     id: 1,
     question: "What are the lead times for your products?",
-    answer: "Scougal Rubber has the best lead times in the industry. We are able to produce and ship most orders within 24 hours.",
+    answer: "Scougal Rubber is committed to providing the fastest lead times in the industry. No matter the size or scope of your project, we have the expertise to deliver exceptional results. Our dedicated outreach program ensures that our customer service team responds to every inquiry within 24 hours, demonstrating our commitment to your satisfaction.",
   },
   {
     id: 2,
