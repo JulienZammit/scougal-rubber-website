@@ -97,6 +97,7 @@ export const ProductItem = ({ title, description, href, src }) => {
         width={140}
         height={70}
         alt={title}
+        loading="lazy"
         className="flex-shrink-0 rounded-[5px] shadow-lg"
       />
       <div>

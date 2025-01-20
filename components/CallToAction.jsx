@@ -23,6 +23,7 @@ const CallToAction = () => {
             alt="Scougal Rubber Logo"
             width={300}
             height={180}
+            loading="lazy"
           />
         </div>
         <div className="flex flex-col items-center justify-center">

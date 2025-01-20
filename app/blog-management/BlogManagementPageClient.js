@@ -313,6 +313,7 @@ export default function BlogManagementPage() {
                       alt="Scougal Rubber Logo"
                       width={200}
                       height={180}
+                      loading="lazy"
                       className="object-contain"
                     />
                   </div>

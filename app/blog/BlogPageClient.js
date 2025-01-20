@@ -239,6 +239,7 @@ export default function BlogPageClient({ allPosts }) {
                     src={post.coverImage || "/placeholder-blog.jpg"}
                     alt={post.title}
                     fill
+                    loading="lazy"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
@@ -288,6 +289,7 @@ export default function BlogPageClient({ allPosts }) {
                             alt={post.author.name}
                             width={40}
                             height={40}
+                            loading="lazy"
                             className="rounded-full border-2 border-white shadow-sm"
                           />
                         )}

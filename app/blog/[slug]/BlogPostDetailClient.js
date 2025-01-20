@@ -134,6 +134,7 @@ function RelatedPosts({ currentPost, posts }) {
                 src={post.coverImage}
                 alt={post.title}
                 fill
+                loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -295,6 +296,7 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                         src={post.coverImage}
                         alt={post.title}
                         fill
+                        loading="lazy"
                         className="object-cover"
                         priority
                       />
@@ -410,6 +412,7 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                             alt={post.author.name}
                             width={64}
                             height={64}
+                            loading="lazy"
                             className="rounded-full ring-2 ring-white"
                           />
                         </div>

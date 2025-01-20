@@ -37,6 +37,7 @@ const AnimatedModal = ({
             height={triggerImageHeight}
             className="rounded-[5px] cursor-pointer"
             alt="Modal Trigger"
+            loading="lazy"
           />
         </motion.div>
       </ModalTrigger>
@@ -69,6 +70,7 @@ const AnimatedModal = ({
                   alt={title}
                   width="500"
                   height="500"
+                  loading="lazy"
                   className="rounded-[5px] h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
                 />
               </motion.div>
@@ -87,6 +89,7 @@ const AnimatedModal = ({
                 alt={`Special Image ${idx + 1}`}
                 width={idx === 0 ? 853 : 853}
                 height={idx === 0 ? 217 : 250}
+                loading="lazy"
                 className="rounded-[5px] h-40 w-40 md:h-auto md:w-auto object-cover flex-shrink-0 hidden md:block"
               />
             ))}

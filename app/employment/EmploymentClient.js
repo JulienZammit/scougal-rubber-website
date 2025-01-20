@@ -99,6 +99,7 @@ export default function EmploymentClient() {
                     alt={`Employment image ${index + 1}`}
                     width={400}
                     height={300}
+                    loading="lazy"
                     className="rounded-[5px]"
                   />
                 </div>

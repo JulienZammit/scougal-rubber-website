@@ -135,6 +135,7 @@ export default function CompanyClient() {
                     alt={`About image ${index + 1}`}
                     width={800}
                     height={600}
+                    loading="lazy"
                     className="rounded-lg shadow-lg w-full h-auto"
                   />
                 </div>

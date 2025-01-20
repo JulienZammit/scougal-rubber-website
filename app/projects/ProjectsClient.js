@@ -154,6 +154,7 @@ export default function ProjectsClient() {
                   src={src}
                   alt={`${project.name} image ${imgIndex + 1}`}
                   fill
+                  loading="lazy"
                   className="object-cover rounded-[5px] cursor-pointer"
                   onClick={() => openModal(src)}
                 />
@@ -183,6 +184,7 @@ export default function ProjectsClient() {
             layout="responsive"
             width={800}
             height={600}
+            loading="lazy"
             objectFit="contain"
             className="rounded-[5px]"
           />

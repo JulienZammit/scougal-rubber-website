@@ -473,6 +473,7 @@ export default function ContactUsClient() {
                   alt={`${contact.title} image`}
                   width={400}
                   height={300}
+                  loading="lazy"
                   className="rounded-[5px] object-cover"
                 />
               </div>

@@ -84,6 +84,7 @@ const HeroProduct = ({ title, subtitle, certifications }) => {
               <Image
                 src={cert.src}
                 alt={cert.alt}
+                loading="lazy"
                 width={cert.defaultWidth || 80}   // Use the passed width, or fallback to 80
                 height={cert.defaultHeight || 48} // Use the passed height, or fallback to 48
                 className="object-contain transition-transform duration-300 rounded-[5px]"
