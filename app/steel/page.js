@@ -17,7 +17,7 @@ export const metadata = {
     images: [
       {
         url: "https://www.scougalrubber.com/logo.webp",
-        alt: "Scougal Rubber Company Logo"
+        alt: "Scougal Rubber Company Logo",
       },
     ],
   },
@@ -36,55 +36,60 @@ export const metadata = {
 // Structured Data (JSON-LD) for Steel Fabrication Page
 const structuredData = {
   "@context": "https://schema.org",
+  "@id": "https://www.scougalrubber.com/steel",
   "@type": "Product",
-  "name": "Steel Fabrication - Precision and Reliability",
-  "provider": {
+  name: "Steel Fabrication - Precision and Reliability",
+  provider: {
     "@type": "Organization",
-    "name": "Scougal Rubber Corporation",
-    "url": "https://www.scougalrubber.com",
-    "logo": "https://www.scougalrubber.com/logo.webp",
-    "contactPoint": {
+    name: "Scougal Rubber Corporation",
+    url: "https://www.scougalrubber.com",
+    logo: "https://www.scougalrubber.com/logo.webp",
+    contactPoint: {
       "@type": "ContactPoint",
-      "telephone": "+1-775-284-8500",
-      "contactType": "Customer Service",
-      "email": "info@scougalrubber.com",
-      "availableLanguage": ["English"],
-      "areaServed": "US"
-    }
+      telephone: "+1-775-284-8500",
+      contactType: "Customer Service",
+      email: "info@scougalrubber.com",
+      availableLanguage: ["English"],
+      areaServed: "US",
+    },
   },
-  "description": "Scougal Rubber provides advanced steel fabrication services, delivering custom metal fabrication, CNC machining, and certified steel solutions for industrial and infrastructure projects.",
-  "areaServed": {
+  description:
+    "Scougal Rubber provides advanced steel fabrication services, delivering custom metal fabrication, CNC machining, and certified steel solutions for industrial and infrastructure projects.",
+  areaServed: {
     "@type": "Place",
-    "name": "US"
+    name: "US",
   },
-  "offers": {
+  name: "Steel Fabrication Services",
+  description:
+    "Precision steel fabrication services, including CNC machining and custom metal solutions for industrial applications.",
+  url: "https://www.scougalrubber.com/steel",
+  image: "https://www.scougalrubber.com/logo.webp",
+  offers: {
     "@type": "Offer",
-    "url": "https://www.scougalrubber.com/steel",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Scougal Rubber Corporation"
-    }
+    url: "https://www.scougalrubber.com/steel",
+    priceCurrency: "USD",
+    price: 0,
+    availability: "https://schema.org/InStock",
   },
-  "additionalType": "http://www.productontology.org/id/Metal_fabrication",
-  "additionalProperty": [
+  additionalType: "http://www.productontology.org/id/Metal_fabrication",
+  additionalProperty: [
     {
       "@type": "PropertyValue",
-      "name": "Certifications",
-      "value": "AISC, NTPEP, CAGE"
+      name: "Certifications",
+      value: "AISC, NTPEP, CAGE",
     },
     {
       "@type": "PropertyValue",
-      "name": "Capabilities",
-      "value": "CNC machining, custom metal fabrication, large-scale steel projects"
+      name: "Capabilities",
+      value:
+        "CNC machining, custom metal fabrication, large-scale steel projects",
     },
     {
       "@type": "PropertyValue",
-      "name": "Precision",
-      "value": "High precision steel fabrication for industrial applications"
-    }
-  ]
+      name: "Precision",
+      value: "High precision steel fabrication for industrial applications",
+    },
+  ],
 };
 
 export default function Steel() {

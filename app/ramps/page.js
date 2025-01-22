@@ -38,63 +38,67 @@ export const metadata = {
 // Structured Data (JSON-LD) for Scougal Ramps Page
 const structuredData = {
   "@context": "https://schema.org",
+  "@id": "https://www.scougalrubber.com/ramps",
   "@type": "Product",
-  "name": "Scougal Ramps - Road Plate Management",
-  "image": "https://www.scougalrubber.com/ramps/ramps.webp",
-  "description": "Durable, reusable ramps for road plate management that reduce cold mix usage and prevent site damage. Ideal for construction sites to improve workflow efficiency and safety.",
-  "provider": {
+  name: "Scougal Ramps - Road Plate Management",
+  image: "https://www.scougalrubber.com/ramps/ramps.webp",
+  description:
+    "Durable, reusable ramps for road plate management that reduce cold mix usage and prevent site damage. Ideal for construction sites to improve workflow efficiency and safety.",
+  provider: {
     "@type": "Organization",
-    "name": "Scougal Rubber Corporation",
-    "url": "https://www.scougalrubber.com",
-    "logo": "https://www.scougalrubber.com/logo.webp",
-    "contactPoint": {
+    name: "Scougal Rubber Corporation",
+    url: "https://www.scougalrubber.com",
+    logo: "https://www.scougalrubber.com/logo.webp",
+    contactPoint: {
       "@type": "ContactPoint",
-      "telephone": "+1-775-284-8500",
-      "contactType": "Customer Service",
-      "email": "info@scougalrubber.com",
-      "availableLanguage": ["English"],
-      "areaServed": "US"
-    }
+      telephone: "+1-775-284-8500",
+      contactType: "Customer Service",
+      email: "info@scougalrubber.com",
+      availableLanguage: ["English"],
+      areaServed: "US",
+    },
   },
-  "areaServed": {
+  areaServed: {
     "@type": "Place",
-    "name": "US"
+    name: "US",
   },
-  "offers": {
+  name: "Scougal Ramps",
+  description:
+    "Reusable, durable ramps designed for efficient road plate management, reducing cold mix usage and improving road safety.",
+  url: "https://www.scougalrubber.com/ramps",
+  image: "https://www.scougalrubber.com/ramps/ramp1.webp",
+  offers: {
     "@type": "Offer",
-    "url": "https://www.scougalrubber.com/ramps",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock",
-    "seller": {
-      "@type": "Organization",
-      "name": "Scougal Rubber Corporation"
-    }
+    url: "https://www.scougalrubber.com/ramps",
+    priceCurrency: "USD",
+    price: 0,
+    availability: "https://schema.org/InStock",
   },
-  "additionalProperty": [
+  additionalProperty: [
     {
       "@type": "PropertyValue",
-      "name": "Durability",
-      "value": "Reusable for long-term projects"
+      name: "Durability",
+      value: "Reusable for long-term projects",
     },
     {
       "@type": "PropertyValue",
-      "name": "Efficiency",
-      "value": "Reduces cold mix and eliminates disposal issues"
+      name: "Efficiency",
+      value: "Reduces cold mix and eliminates disposal issues",
     },
     {
       "@type": "PropertyValue",
-      "name": "Safety",
-      "value": "Prevents site damage and enhances road safety"
-    }
+      name: "Safety",
+      value: "Prevents site damage and enhances road safety",
+    },
   ],
-  "contactPoint": {
+  contactPoint: {
     "@type": "ContactPoint",
-    "telephone": "+1-775-284-8500",
-    "contactType": "Customer Service",
-    "email": "info@scougalrubber.com",
-    "availableLanguage": ["English"],
-    "areaServed": "US"
-  }
+    telephone: "+1-775-284-8500",
+    contactType: "Customer Service",
+    email: "info@scougalrubber.com",
+    availableLanguage: ["English"],
+    areaServed: "US",
+  },
 };
 
 export default function Ramps() {
