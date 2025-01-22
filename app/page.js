@@ -51,7 +51,7 @@ const structuredData = {
       "@id": "https://www.scougalrubber.com",
       url: "https://www.scougalrubber.com/",
       name: "Scougal Rubber Corporation",
-      logo: "https://www.scougalrubber.com#organization",
+      logo: "https://www.scougalrubber.com/logo.webp",
       contactPoint: {
         "@type": "ContactPoint",
         telephone: "+1-775-284-8500",
