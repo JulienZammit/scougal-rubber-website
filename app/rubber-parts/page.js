@@ -12,7 +12,7 @@ export const metadata = {
     title: 'Industrial Rubber Parts - Custom Molded Solutions | Scougal Rubber',
     description:
       "Explore Scougal Rubber's custom rubber parts, from molded products to rubber rollers and mandrel-built solutions. Designed for aerospace, marine, food processing, and other industries.",
-    url: 'https://www.scougalrubber.com/industrial-rubber-parts',
+    url: 'https://www.scougalrubber.com/rubber-parts',
     type: 'website',
     images: [
       {
@@ -22,7 +22,7 @@ export const metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://www.scougalrubber.com/industrial-rubber-parts',
+    canonical: 'https://www.scougalrubber.com/rubber-parts',
   },
   icons: {
     icon: '/favicon.ico',
@@ -38,7 +38,7 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Industrial Rubber Parts - Custom Molded Solutions",
-  "image": "https://www.scougalrubber.com/images/industrial-rubber-parts-banner.jpg",
+  "image": "https://www.scougalrubber.com/images/rubber-parts-banner.jpg",
   "description": "Scougal Rubber provides high-quality industrial rubber parts, including custom molded solutions, rubber rollers, and mandrel-built products, designed for industries like aerospace, marine, and food processing.",
   "brand": {
     "@type": "Organization",
@@ -48,7 +48,7 @@ const structuredData = {
   },
   "offers": {
     "@type": "Offer",
-    "url": "https://www.scougalrubber.com/industrial-rubber-parts",
+    "url": "https://www.scougalrubber.com/rubber-parts",
     "priceCurrency": "USD",
     "availability": "https://schema.org/InStock",
     "seller": {

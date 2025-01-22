@@ -12,7 +12,7 @@ export const metadata = {
     title: "Steel Fabrication - Precision and Reliability | Scougal Rubber",
     description:
       "Discover Scougal Rubber’s steel fabrication capabilities, from CNC machining to large-scale custom projects. Certified for quality and committed to exceeding expectations.",
-    url: "https://www.scougalrubber.com/steel-fabrication",
+    url: "https://www.scougalrubber.com/steel",
     type: "website",
     images: [
       {
@@ -22,7 +22,7 @@ export const metadata = {
     ],
   },
   alternates: {
-    canonical: "https://www.scougalrubber.com/steel-fabrication",
+    canonical: "https://www.scougalrubber.com/steel",
   },
   icons: {
     icon: "/favicon.ico",
@@ -59,7 +59,7 @@ const structuredData = {
   },
   "offers": {
     "@type": "Offer",
-    "url": "https://www.scougalrubber.com/steel-fabrication",
+    "url": "https://www.scougalrubber.com/steel",
     "priceCurrency": "USD",
     "availability": "https://schema.org/InStock",
     "seller": {

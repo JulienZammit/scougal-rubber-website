@@ -44,91 +44,124 @@ export const viewport = {
 // Structured Data (JSON-LD) for Main Page
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Scougal Rubber Corporation",
-  "url": "https://www.scougalrubber.com/",
-  "logo": "https://www.scougalrubber.com/logo.webp",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+1-775-284-8500",
-    "contactType": "Customer Service",
-    "email": "info@scougalrubber.com",
-    "availableLanguage": ["English"],
-    "areaServed": "US"
-  },
-  "description": "Scougal Rubber is a leading custom molded rubber manufacturer providing elastomeric bearings, rubber-to-metal bonding, and industrial rubber solutions for bridges and infrastructure since 1916.",
-  "sameAs": [
-    "https://www.linkedin.com/company/scougal-rubber-corporation/",
-    "https://www.facebook.com/scougalrubbercorp"
-  ],
-  "foundingDate": "1916",
-  "founders": [
+  "@graph": [
     {
-      "@type": "Person",
-      "name": "Rob Anderson"
-    }
-  ],
-  "address": [
-    {
-      "@type": "PostalAddress",
-      "streetAddress": "885 Denmark Drive Suite 103",
-      "addressLocality": "McCarran",
-      "addressRegion": "NV",
-      "postalCode": "89437-4425",
-      "addressCountry": "USA"
+      "@type": "Organization",
+      "@id": "https://www.scougalrubber.com",
+      "url": "https://www.scougalrubber.com/",
+      "name": "Scougal Rubber Corporation",
+      "logo": "https://www.scougalrubber.com#organization",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+1-775-284-8500",
+        "contactType": "Customer Service",
+        "email": "info@scougalrubber.com",
+        "availableLanguage": ["English"],
+        "areaServed": "US"
+      },
+      "description": "Scougal Rubber is a leading custom molded rubber manufacturer providing elastomeric bearings, rubber-to-metal bonding, and industrial rubber solutions for bridges and infrastructure since 1916.",
+      "sameAs": [
+        "https://www.linkedin.com/company/scougal-rubber-corporation/",
+        "https://www.facebook.com/scougalrubbercorp"
+      ],
+      "foundingDate": "1916",
+      "founders": [
+        {
+          "@type": "Person",
+          "name": "Rob Anderson"
+        }
+      ],
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "885 Denmark Drive Suite 103",
+          "addressLocality": "McCarran",
+          "addressRegion": "NV",
+          "postalCode": "89437-4425",
+          "addressCountry": "USA"
+        },
+        {
+          "@type": "PostalAddress",
+          "streetAddress": "6239 Corson Ave S",
+          "addressLocality": "Seattle",
+          "addressRegion": "WA",
+          "postalCode": "98108-3443",
+          "addressCountry": "USA"
+        }
+      ]
     },
+
+    // =========== PRODUCT 1 ===========
     {
-      "@type": "PostalAddress",
-      "streetAddress": "6239 Corson Ave S",
-      "addressLocality": "Seattle",
-      "addressRegion": "WA",
-      "postalCode": "98108-3443",
-      "addressCountry": "USA"
-    }
-  ],
-  "makesOffer": [
-    {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "Bearings and Bearing Pads",
-        "description": "High-quality elastomeric bearings for bridge and industrial applications, Buy American certified and AISC certified.",
+      "@type": "Product",
+      "@id": "https://www.scougalrubber.com/bearing-pads",
+      "name": "Bearings and Bearing Pads",
+      "description": "High-quality elastomeric bearings for bridge and industrial applications, Buy American certified and AISC certified.",
+      "url": "https://www.scougalrubber.com/bearing-pads",
+      "image": "https://www.scougalrubber.com/bearing/bearingPad_loadPlate_217.jpg",
+      "offers": {
+        "@type": "Offer",
         "url": "https://www.scougalrubber.com/bearing-pads",
-        "image": "https://www.scougalrubber.com/bearing/bearingPad_loadPlate_217.jpg"
+        "priceCurrency": "USD",
+        "price": "0.00",
+        "availability": "https://schema.org/InStock",
+        "itemCondition": "https://schema.org/NewCondition"
       }
     },
+
+    // =========== PRODUCT 2 ===========
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "Custom Molded Rubber Solutions",
-        "description": "Custom molded rubber components for industrial applications, including vulcanized rubber and rubber-to-metal bonding.",
-        "url": "https://www.scougalrubber.com/industrial-rubber-parts",
-        "image": "https://www.scougalrubber.com/rubber/mandrel.webp"
+      "@type": "Product",
+      "@id": "https://www.scougalrubber.com/rubber-parts",
+      "name": "Custom Molded Rubber Solutions",
+      "description": "Custom molded rubber components for industrial applications, including vulcanized rubber and rubber-to-metal bonding.",
+      "url": "https://www.scougalrubber.com/rubber-parts",
+      "image": "https://www.scougalrubber.com/rubber/mandrel.webp",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.scougalrubber.com/rubber-parts",
+        "priceCurrency": "USD",
+        "price": "0.00",
+        "availability": "https://schema.org/InStock"
       }
     },
+
+    // =========== PRODUCT 3 ===========
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "Steel Fabrication Services",
-        "description": "Precision steel fabrication services, including CNC machining and custom metal solutions for industrial applications.",
-        "url": "https://www.scougalrubber.com/steel-fabrication",
-        "image": "https://www.scougalrubber.com/logo.webp"
+      "@type": "Product",
+      "@id": "https://www.scougalrubber.com/steel",
+      "name": "Steel Fabrication Services",
+      "description": "Precision steel fabrication services, including CNC machining and custom metal solutions for industrial applications.",
+      "url": "https://www.scougalrubber.com/steel",
+      "image": "https://www.scougalrubber.com/logo.webp",
+      "offers": {
+        "@type": "Offer",
+        "url": "https://www.scougalrubber.com/steel",
+        "priceCurrency": "USD",
+        "price": "0.00",
+        "availability": "https://schema.org/InStock"
       }
     },
+
+    // =========== PRODUCT 4 ===========
     {
-      "@type": "Offer",
-      "itemOffered": {
-        "@type": "Product",
-        "name": "Scougal Ramps",
-        "description": "Reusable, durable ramps designed for efficient road plate management, reducing cold mix usage and improving road safety.",
+      "@type": "Product",
+      "@id": "https://www.scougalrubber.com/ramps",
+      "name": "Scougal Ramps",
+      "description": "Reusable, durable ramps designed for efficient road plate management, reducing cold mix usage and improving road safety.",
+      "url": "https://www.scougalrubber.com/ramps",
+      "image": "https://www.scougalrubber.com/ramps/ramp1.webp",
+      "offers": {
+        "@type": "Offer",
         "url": "https://www.scougalrubber.com/ramps",
-        "image": "https://www.scougalrubber.com/ramps/ramp1.webp"
+        "priceCurrency": "USD",
+        "price": "0.00",
+        "availability": "https://schema.org/InStock"
       }
     }
   ]
 };
+
 
 export default function Home() {
   noStore(); // Disable caching for this page
