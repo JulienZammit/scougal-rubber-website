@@ -41,11 +41,23 @@ const structuredData = {
   "name": "Elastomeric Bearing Pads",
   "image": "https://www.scougalrubber.com/bearing/bearingPad_loadPlate_217.jpg",
   "description": "Scougal Rubber provides premium elastomeric bearing pads, offering durable and flexible solutions for bridge and industrial applications. Our products are Buy American and AISC certified.",
-  "brand": {
+  "provider": {
     "@type": "Organization",
     "name": "Scougal Rubber Corporation",
+    "url": "https://www.scougalrubber.com",
     "logo": "https://www.scougalrubber.com/logo.webp",
-    "url": "https://www.scougalrubber.com"
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-775-284-8500",
+      "contactType": "Customer Service",
+      "email": "info@scougalrubber.com",
+      "availableLanguage": ["English"],
+      "areaServed": "US"
+    }
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "US"
   },
   "offers": {
     "@type": "Offer",

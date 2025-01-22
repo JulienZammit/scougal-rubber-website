@@ -36,8 +36,8 @@ export const metadata = {
 // Structured Data (JSON-LD) for Steel Fabrication Page
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Service",
-  "serviceType": "Steel Fabrication",
+  "@type": "Product",
+  "name": "Steel Fabrication - Precision and Reliability",
   "provider": {
     "@type": "Organization",
     "name": "Scougal Rubber Corporation",

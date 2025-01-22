@@ -38,14 +38,26 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Industrial Rubber Parts - Custom Molded Solutions",
-  "image": "https://www.scougalrubber.com/images/rubber-parts-banner.jpg",
-  "description": "Scougal Rubber provides high-quality industrial rubber parts, including custom molded solutions, rubber rollers, and mandrel-built products, designed for industries like aerospace, marine, and food processing.",
-  "brand": {
+  "provider": {
     "@type": "Organization",
     "name": "Scougal Rubber Corporation",
+    "url": "https://www.scougalrubber.com",
     "logo": "https://www.scougalrubber.com/logo.webp",
-    "url": "https://www.scougalrubber.com"
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-775-284-8500",
+      "contactType": "Customer Service",
+      "email": "info@scougalrubber.com",
+      "availableLanguage": ["English"],
+      "areaServed": "US"
+    }
   },
+  "areaServed": {
+    "@type": "Place",
+    "name": "US"
+  },
+  "image": "https://www.scougalrubber.com/rubber/mandrel.webp",
+  "description": "Scougal Rubber provides high-quality industrial rubber parts, including custom molded solutions, rubber rollers, and mandrel-built products, designed for industries like aerospace, marine, and food processing.",
   "offers": {
     "@type": "Offer",
     "url": "https://www.scougalrubber.com/rubber-parts",

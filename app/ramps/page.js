@@ -40,13 +40,25 @@ const structuredData = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Scougal Ramps - Road Plate Management",
-  "image": "https://www.scougalrubber.com/images/ramps-banner.jpg",
+  "image": "https://www.scougalrubber.com/ramps/ramps.webp",
   "description": "Durable, reusable ramps for road plate management that reduce cold mix usage and prevent site damage. Ideal for construction sites to improve workflow efficiency and safety.",
-  "brand": {
+  "provider": {
     "@type": "Organization",
     "name": "Scougal Rubber Corporation",
+    "url": "https://www.scougalrubber.com",
     "logo": "https://www.scougalrubber.com/logo.webp",
-    "url": "https://www.scougalrubber.com"
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+1-775-284-8500",
+      "contactType": "Customer Service",
+      "email": "info@scougalrubber.com",
+      "availableLanguage": ["English"],
+      "areaServed": "US"
+    }
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "US"
   },
   "offers": {
     "@type": "Offer",
