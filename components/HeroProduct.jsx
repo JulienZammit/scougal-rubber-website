@@ -59,14 +59,14 @@ const HeroProduct = ({ title, subtitle, certifications }) => {
       >
         <motion.h1
           variants={itemVariants}
-          className="mb-6 text-4xl font-extrabold tracking-tight text-white md:text-4xl"
+          className="mb-6 text-xl font-extrabold tracking-tight text-white md:text-4xl"
         >
           {title}
         </motion.h1>
 
         <motion.h2
           variants={itemVariants}
-          className="max-w-2xl mb-12 text-lg font-medium text-slate-100 md:text-2xl"
+          className="max-w-2xl mb-12 text-md font-medium text-slate-100 md:text-2xl"
         >
           {subtitle}
         </motion.h2>
@@ -101,13 +101,6 @@ const HeroProduct = ({ title, subtitle, certifications }) => {
           Learn More
         </motion.button>
       </motion.div>
-
-      {/* Animated scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-        <div className="w-6 h-10 border-2 border-white rounded-[5px] p-1">
-          <div className="w-1 h-3 bg-white rounded-[5px] animate-scroll-indicator" />
-        </div>
-      </div>
     </div>
   );
 };
