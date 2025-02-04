@@ -2,18 +2,18 @@ import RampsClient from "./RampsClient";
 
 export const metadata = {
   title:
-    "Scougal Ramps - Efficient Road Plate Management for Enhanced Productivity",
+    "Scougal Ramps - Efficient Road Plate Management & Cold Mix Reduction | Scougal Rubber",
   description:
-    "Scougal Ramps provide a durable, reusable solution for road plate management. Reduce cold mix usage, prevent site damage, and improve safety with our innovative ramp system for efficient construction workflows.",
+    "Boost productivity with Scougal Ramps, durable and reusable solutions for efficient road plate management. Our ramps reduce cold mix usage, prevent site damage, and enhance road safety on construction sites.",
   keywords:
     "Scougal Rubber ramps, road plate management, construction ramps, reusable ramps, cold mix reduction, road safety solutions, durable ramps, efficient road plate handling, prevent damage claims",
   robots: "index, follow",
   author: "Scougal Rubber Corporation",
   openGraph: {
     title:
-      "Scougal Ramps - Efficient Road Plate Management for Enhanced Productivity",
+      "Scougal Ramps - Efficient Road Plate Management & Cold Mix Reduction | Scougal Rubber",
     description:
-      "Boost productivity and improve safety with Scougal Ramps. Our reusable ramps streamline road plate management, reduce cold mix usage, and protect worksites from damage.",
+      "Enhance your construction workflow with Scougal Ramps. Our reusable ramps streamline road plate management, reduce cold mix usage, and protect worksites, ensuring enhanced road safety and productivity.",
     url: "https://www.scougalrubber.com/ramps",
     type: "website",
     images: [
@@ -35,36 +35,13 @@ export const metadata = {
   },
 };
 
-// Structured Data (JSON-LD) for Scougal Ramps Page
 const structuredData = {
   "@context": "https://schema.org",
-  "@id": "https://www.scougalrubber.com/ramps",
   "@type": "Product",
-  name: "Scougal Ramps - Road Plate Management",
-  image: "https://www.scougalrubber.com/ramps/ramps.webp",
+  "@id": "https://www.scougalrubber.com/ramps",
+  name: "Scougal Ramps - Efficient Road Plate Management",
   description:
-    "Durable, reusable ramps for road plate management that reduce cold mix usage and prevent site damage. Ideal for construction sites to improve workflow efficiency and safety.",
-  provider: {
-    "@type": "Organization",
-    name: "Scougal Rubber Corporation",
-    url: "https://www.scougalrubber.com",
-    logo: "https://www.scougalrubber.com/logo.webp",
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+1-775-284-8500",
-      contactType: "Customer Service",
-      email: "info@scougalrubber.com",
-      availableLanguage: ["English"],
-      areaServed: "US",
-    },
-  },
-  areaServed: {
-    "@type": "Place",
-    name: "US",
-  },
-  name: "Scougal Ramps",
-  description:
-    "Reusable, durable ramps designed for efficient road plate management, reducing cold mix usage and improving road safety.",
+    "Reusable, durable ramps designed for efficient road plate management. Scougal Ramps reduce cold mix usage, prevent site damage, and enhance road safety on construction sites.",
   url: "https://www.scougalrubber.com/ramps",
   image: "https://www.scougalrubber.com/ramps/ramp1.webp",
   offers: {
@@ -91,6 +68,24 @@ const structuredData = {
       value: "Prevents site damage and enhances road safety",
     },
   ],
+  provider: {
+    "@type": "Organization",
+    name: "Scougal Rubber Corporation",
+    url: "https://www.scougalrubber.com",
+    logo: "https://www.scougalrubber.com/logo.webp",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+1-775-284-8500",
+      contactType: "Customer Service",
+      email: "info@scougalrubber.com",
+      availableLanguage: ["English"],
+      areaServed: "US",
+    },
+  },
+  areaServed: {
+    "@type": "Place",
+    name: "US",
+  },
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+1-775-284-8500",
@@ -104,13 +99,10 @@ const structuredData = {
 export default function Ramps() {
   return (
     <>
-      {/* Inject JSON-LD structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-
-      {/* Page content */}
       <RampsClient />
     </>
   );

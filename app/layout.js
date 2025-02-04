@@ -1,4 +1,5 @@
-// app/layout.js (Server Component, NO "use client" at the top)
+// Dans app/layout.js
+import Script from "next/script";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import LayoutClient from "./LayoutClient";
@@ -18,9 +19,13 @@ export const metadata = {
   },
   additionalMetaTags: [
     {
-      property: "keywords",
+      name: "keywords",
       content:
-        "custom molded, rubber company, industrial rubber, rubber manufacturing",
+        "custom molded, rubber company, industrial rubber, rubber manufacturing, molded rubber products",
+    },
+    {
+      name: "author",
+      content: "Scougal Rubber",
     },
   ],
 };
@@ -29,25 +34,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <meta
-          name="description"
-          content="Scougal Rubber is a company that manufactures custom molded rubber products since 1916."
-        />
-        <meta
-          name="keywords"
-          content="rubber, molded rubber, custom rubber products"
-        />
-        <meta name="author" content="Scougal Rubber" />
-        {/* If you need this script, keep it here */}
-        <script src="../node_modules/preline/dist/preline.js"></script>
+        <Script src="/js/preline.js" strategy="defer" />
       </head>
       <body className={inter.className}>
         <Providers>
-          {/* 
-          We hand off the *rest* of the UI to a 
-          client component that can do route checks 
-          and skip <Header>/<Footer> if needed.
-        */}
           <LayoutClient>{children}</LayoutClient>
         </Providers>
       </body>

@@ -2,16 +2,16 @@ import BearingPadsClient from "./BearingPadsClient";
 
 export const metadata = {
   title:
-    "Elastomeric Bearing Pads - High-Quality Bridge and Industrial Bearings | Scougal Rubber",
+    "Elastomeric Bearing Pads - Bridge, Industrial & Seismic Isolation Solutions | Scougal Rubber",
   description:
-    "Discover Scougal Rubber’s premium elastomeric bearing pads, designed for bridge and industrial applications. We offer laminated, plain, and steel-reinforced bearing pads with Buy American and AISC certifications.",
+    "Discover Scougal Rubber’s premium elastomeric bearing pads – including bridge bearing neoprene and natural rubber pads, laminated and plain solutions – designed for bridge, industrial and seismic isolation applications. Buy American, AASHTO M-251, AISC and NTPEP certified.",
   keywords:
-    "elastomeric bearing pads, bearing pads, bridge bearings, laminated bearing pads, steel-reinforced pads, neoprene bearing pads, rubber bridge pads, industrial bearings, custom bearing pads, Buy American certified, AISC certified, industrial rubber solutions",
+    "elastomeric bearing pads, bridge bearings, bridge bearing neoprene rubber pads, bridge bearing natural rubber pads, laminated elastomeric bearing pads, plain elastomeric bearings, seismic isolation device or pad, steel reinforced elastomeric bearing, AASHTO M-251 compliant bearings, AISC certified fabricator and erector, NTPEP datamine tested, government project custom rubber molding, rubber parts, industrial rubber manufacturing, aerospace molded rubber engineering, O-Rings, rubber gasket materials, elastomer, shims, internal plates, vulcanizing, AREMA, CHSR, rocker bearings, steel bearings, elastomeric washers, round elastomeric bearing pads",
   robots: "index, follow",
   author: "Scougal Rubber Corporation",
   openGraph: {
     title:
-      "Elastomeric Bearing Pads - Durable and Certified Solutions | Scougal Rubber",
+      "Elastomeric Bearing Pads (AASHTO M-251, NTPEP) | Bridge & Industrial Bearings – Scougal Rubber",
     description:
       "Explore Scougal Rubber’s durable and reliable elastomeric bearing pads, trusted for bridge and industrial applications. Buy American and AISC certified for top-tier performance.",
     url: "https://www.scougalrubber.com/bearing-pads",
@@ -44,7 +44,7 @@ const structuredData = {
   name: "Elastomeric Bearing Pads",
   image: "https://www.scougalrubber.com/bearing/bearingPad_loadPlate_217.jpg",
   description:
-    "Scougal Rubber provides premium elastomeric bearing pads, offering durable and flexible solutions for bridge and industrial applications. Our products are Buy American and AISC certified.",
+    "Scougal Rubber offers high-quality elastomeric bearing pads for bridge, industrial and seismic isolation applications. Our range includes bridge bearing neoprene and natural rubber pads, laminated and plain solutions, all Buy American, AASHTO M-251, AISC and NTPEP certified.",
   provider: {
     "@type": "Organization",
     name: "Scougal Rubber Corporation",
@@ -54,81 +54,55 @@ const structuredData = {
       "@type": "ContactPoint",
       telephone: "+1-775-284-8500",
       contactType: "Customer Service",
-      email: "info@scougalrubber.com",
+      email: "sales@scougalrubber.com",
       availableLanguage: ["English"],
-      areaServed: "US",
-    },
+      areaServed: "US"
+    }
   },
-  areaServed: {
-    "@type": "Place",
-    name: "US",
-  },
-  name: "Bearings and Bearing Pads",
-  description:
-    "High-quality elastomeric bearings for bridge and industrial applications, Buy American certified and AISC certified.",
-  url: "https://www.scougalrubber.com/bearing-pads",
-  image: "https://www.scougalrubber.com/bearing/bearingPad_loadPlate_217.jpg",
   offers: {
     "@type": "Offer",
     url: "https://www.scougalrubber.com/bearing-pads",
     priceCurrency: "USD",
     price: 0,
     availability: "https://schema.org/InStock",
-    itemCondition: "https://schema.org/NewCondition",
+    itemCondition: "https://schema.org/NewCondition"
   },
   additionalProperty: [
     {
       "@type": "PropertyValue",
       name: "Type",
-      value: "Laminated, Plain, and Steel-Reinforced",
+      value: "Laminated, Plain, and Steel-Reinforced"
     },
     {
       "@type": "PropertyValue",
       name: "Material",
-      value: "Neoprene and natural rubber options",
+      value: "Neoprene and Natural Rubber"
     },
     {
       "@type": "PropertyValue",
       name: "Certifications",
-      value: "Buy American, AISC certified",
+      value: "Buy American, AASHTO M-251, AISC, NTPEP"
     },
     {
       "@type": "PropertyValue",
       name: "Applications",
-      value: "Bridges, industrial structures, seismic isolation",
+      value: "Bridges, Industrial Structures, Seismic Isolation"
     },
     {
       "@type": "PropertyValue",
       name: "Customization",
-      value: "Available in custom sizes and designs",
-    },
-  ],
-  review: {
-    "@type": "Review",
-    reviewRating: {
-      "@type": "Rating",
-      ratingValue: "4.9",
-      bestRating: "5",
-    },
-    author: {
-      "@type": "Person",
-      name: "John Smith",
-    },
-    reviewBody:
-      "The elastomeric bearing pads from Scougal Rubber are durable and reliable, ideal for our bridge construction projects.",
-  },
+      value: "Available in custom sizes and designs"
+    }
+  ]
 };
 
 export default function BearingPads() {
   return (
     <>
-      {/* Inject JSON-LD structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-
-      {/* Page content */}
       <BearingPadsClient />
     </>
   );

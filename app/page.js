@@ -4,16 +4,15 @@ import { unstable_noStore as noStore } from "next/cache";
 export const metadata = {
   title: "America's Leading Custom Molded Rubber Manufacturer | Scougal Rubber",
   description:
-    "Since 1916, Scougal Rubber has been the leader in custom molded rubber solutions for industrial and infrastructure applications. Explore our elastomeric bearings, custom rubber products, and precision steel fabrication for projects of all sizes.",
-  keywords:
-    "custom molded rubber, industrial rubber, elastomeric bearings, bridge bearings, steel fabrication, rubber manufacturing, rubber to metal bonding, vulcanized rubber, AISC certified, Buy American certified",
+    "Since 1916, Scougal Rubber has led in custom molded rubber for industrial, infrastructure & government projects. Explore our bearings, rubber-metal bonding & steel fabrication.", keywords:
+    "custom molded rubber, industrial rubber solutions, elastomeric bearings, bridge bearings, rubber-to-metal bonding, vulcanized rubber, government project custom rubber molding, steel fabrication, Buy American certified, AISC certified",
   robots: "index, follow",
   author: "Scougal Rubber Corporation",
   openGraph: {
     title:
       "America's Leading Custom Molded Rubber Manufacturer | Scougal Rubber",
     description:
-      "Scougal Rubber, America's premier provider of custom molded rubber products and elastomeric bearings. Serving the industrial and infrastructure sectors with high-quality, certified solutions since 1916.",
+      "Scougal Rubber, America's premier provider of custom molded rubber solutions, offers innovative elastomeric and bridge bearings, rubber-to-metal bonding, and precision steel fabrication for industrial and government projects since 1916.",
     type: "website",
     url: "https://www.scougalrubber.com/",
     images: [
@@ -32,8 +31,7 @@ export const metadata = {
   other: {
     "contact:phone_number": "+1 (775) 284-8500",
     "contact:email": "info@scougalrubber.com",
-    "contact:address":
-      "885 Denmark Drive Suite 103, McCarran, NV 89437-4425, USA",
+    "contact:address": "885 Denmark Drive Suite 103, McCarran, NV 89437-4425, USA",
   },
 };
 
@@ -61,7 +59,7 @@ const structuredData = {
         areaServed: "US",
       },
       description:
-        "Scougal Rubber is a leading custom molded rubber manufacturer providing elastomeric bearings, rubber-to-metal bonding, and industrial rubber solutions for bridges and infrastructure since 1916.",
+        "Scougal Rubber is America's leading custom molded rubber manufacturer offering innovative elastomeric bearings, rubber-to-metal bonding, and precision steel fabrication solutions for industrial, infrastructure, and government projects since 1916.",
       sameAs: [
         "https://www.linkedin.com/company/scougal-rubber-corporation/",
         "https://www.facebook.com/scougalrubbercorp",
@@ -92,7 +90,6 @@ const structuredData = {
         },
       ],
     },
-
     // =========== PRODUCT 1 ===========
     {
       "@type": "Product",
@@ -101,8 +98,7 @@ const structuredData = {
       description:
         "High-quality elastomeric bearings for bridge and industrial applications, Buy American certified and AISC certified.",
       url: "https://www.scougalrubber.com/bearing-pads",
-      image:
-        "https://www.scougalrubber.com/bearing/bearingPad_loadPlate_217.jpg",
+      image: "https://www.scougalrubber.com/bearing/bearingPad_loadPlate_217.jpg",
       offers: {
         "@type": "Offer",
         url: "https://www.scougalrubber.com/bearing-pads",
@@ -112,7 +108,6 @@ const structuredData = {
         itemCondition: "https://schema.org/NewCondition",
       },
     },
-
     // =========== PRODUCT 2 ===========
     {
       "@type": "Product",
@@ -130,7 +125,6 @@ const structuredData = {
         availability: "https://schema.org/InStock",
       },
     },
-
     // =========== PRODUCT 3 ===========
     {
       "@type": "Product",
@@ -148,7 +142,6 @@ const structuredData = {
         availability: "https://schema.org/InStock",
       },
     },
-
     // =========== PRODUCT 4 ===========
     {
       "@type": "Product",
@@ -170,19 +163,16 @@ const structuredData = {
 };
 
 export default function Home() {
-  noStore(); // Disable caching for this page
+  noStore();
 
   const timeOnServer = new Date().toLocaleTimeString("en-US");
 
   return (
     <>
-      {/* Inject JSON-LD structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-
-      {/* Page content */}
       <MainPageClient />
     </>
   );

@@ -135,7 +135,7 @@ export default function CompanyClient() {
                     alt={`About image ${index + 1}`}
                     width={800}
                     height={600}
-                    loading="lazy"
+                    priority
                     className="rounded-lg shadow-lg w-full h-auto"
                   />
                 </div>
@@ -226,14 +226,16 @@ export default function CompanyClient() {
           </div>
         </div>
       </section>
-      <section className="w-full py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16">
-            Latest Updates on LinkedIn
-          </h2>
-          <LinkedInPostGrid posts={posts} />
-        </div>
-      </section>
+      {posts.length > 0 && (
+        <section className="w-full py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-center mb-16">
+              Latest Updates on LinkedIn
+            </h2>
+            <LinkedInPostGrid posts={posts} />
+          </div>
+        </section>
+      )}
       <div className="w-full py-16">
         <h2 className="text-4xl font-bold text-center mb-16">Our Locations</h2>
         <div className="max-w-7xl mx-auto px-4">

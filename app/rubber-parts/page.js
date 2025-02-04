@@ -1,17 +1,17 @@
 import RubberPartsClient from "./RubberPartsClient";
 
 export const metadata = {
-  title: "Industrial Rubber Parts - Custom Molded Solutions | Scougal Rubber",
+  title: "Industrial Rubber Parts - Custom Molded & Aerospace Solutions | Scougal Rubber",
   description:
-    "Discover Scougal Rubber’s high-quality industrial rubber parts, including custom molded products, rubber rollers, and mandrel-built solutions. With over 100 years of experience, we deliver precision and durability across industries.",
+    "Discover Scougal Rubber’s high-quality industrial rubber parts. Our custom molded rubber solutions serve diverse industries, including aerospace molded rubber engineering, government project custom rubber molding, and more. Precision, durability, and compliance for all your rubber component needs.",
   keywords:
-    "industrial rubber parts, custom molded rubber, rubber rollers, mandrel-built products, vulcanized rubber to metal, Scougal Rubber, custom rubber solutions, rubber components",
+    "industrial rubber parts, custom molded rubber, aerospace molded rubber engineering, government project custom rubber molding, rubber parts, industrial rubber manufacturing, O-Rings, rubber gasket materials, elastomer, vulcanizing, custom rubber solutions, rubber components",
   robots: "index, follow",
   author: "Scougal Rubber Corporation",
   openGraph: {
-    title: "Industrial Rubber Parts - Custom Molded Solutions | Scougal Rubber",
+    title: "Industrial Rubber Parts - Custom Molded & Aerospace Solutions | Scougal Rubber",
     description:
-      "Explore Scougal Rubber's custom rubber parts, from molded products to rubber rollers and mandrel-built solutions. Designed for aerospace, marine, food processing, and other industries.",
+      "Explore Scougal Rubber's custom rubber parts, from molded products to rubber rollers and hand-built mandrel solutions. Designed for aerospace, government projects, and other industries.",
     url: "https://www.scougalrubber.com/rubber-parts",
     type: "website",
     images: [
@@ -33,12 +33,11 @@ export const metadata = {
   },
 };
 
-// Structured Data (JSON-LD) for Industrial Rubber Parts Page
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Product",
   "@id": "https://www.scougalrubber.com/rubber-parts",
-  name: "Industrial Rubber Parts - Custom Molded Solutions",
+  name: "Industrial Rubber Parts - Custom Molded & Aerospace Solutions",
   provider: {
     "@type": "Organization",
     name: "Scougal Rubber Corporation",
@@ -57,9 +56,8 @@ const structuredData = {
     "@type": "Place",
     name: "US",
   },
-  name: "Custom Molded Rubber Solutions",
   description:
-    "Custom molded rubber components for industrial applications, including vulcanized rubber and rubber-to-metal bonding.",
+    "Custom molded rubber components for industrial applications, including vulcanized rubber, rubber-to-metal bonding, and aerospace molded rubber engineering. Our solutions meet stringent government project requirements.",
   url: "https://www.scougalrubber.com/rubber-parts",
   image: "https://www.scougalrubber.com/rubber/mandrel.webp",
   offers: {
@@ -73,7 +71,7 @@ const structuredData = {
     {
       "@type": "PropertyValue",
       name: "Custom Molded Rubber",
-      value: "Designed to fit various industry-specific applications",
+      value: "Engineered for diverse industrial and aerospace applications",
     },
     {
       "@type": "PropertyValue",
@@ -104,13 +102,10 @@ const structuredData = {
 export default function RubberParts() {
   return (
     <>
-      {/* Inject JSON-LD structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-
-      {/* Page content */}
       <RubberPartsClient />
     </>
   );

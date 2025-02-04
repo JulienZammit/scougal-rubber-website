@@ -33,7 +33,7 @@ const LinkedInPostGrid = ({ posts }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {posts.map((post, index) => {
+      {Array.isArray(posts) && posts.map((post, index) => {
         const { text, media, timestamp, shareMediaCategory, url } = getPostContent(post);
         
         return (

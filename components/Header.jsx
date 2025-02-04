@@ -92,7 +92,7 @@ const Header = () => {
           <Image
             src="/logo_resized.webp"
             alt="Scougal Rubber Logo"
-            loading="lazy"
+            priority
             width={200}
             height={180}
           />

@@ -1,17 +1,19 @@
 import SteelClient from "./SteelClient";
 
 export const metadata = {
-  title: "Steel Fabrication - Precision and Reliability | Scougal Rubber",
+  title:
+    "Steel Fabrication Services - Precision, Reliability & Certified Quality | Scougal Rubber",
   description:
-    "Scougal Rubber offers advanced steel fabrication services with precision, efficiency, and adherence to high-quality standards. Explore our expertise in handling complex projects and delivering custom metal fabrication solutions.",
+    "Scougal Rubber provides advanced steel fabrication services with precision and reliability. Our custom metal fabrication and CNC machining solutions are AISC, NTPEP, CAGE, AS9100, and ISO 9001 certified—delivering high-quality industrial steel solutions for infrastructure projects.",
   keywords:
-    "steel fabrication, custom metal fabrication, precision steel work, CNC machining, industrial metal fabrication, Scougal Rubber steel services, AISC certified, NTPEP certified, CAGE certified",
+    "steel fabrication, custom metal fabrication, precision steel work, CNC machining, industrial metal fabrication, AISC certified fabricator and erector, NTPEP datamine tested, CAGE code certified, AS9100, ISO 9001, steel bearings, structural bearings, steel reinforced elastomeric bearing",
   robots: "index, follow",
   author: "Scougal Rubber Corporation",
   openGraph: {
-    title: "Steel Fabrication - Precision and Reliability | Scougal Rubber",
+    title:
+      "Steel Fabrication Services - Precision, Reliability & Certified Quality | Scougal Rubber",
     description:
-      "Discover Scougal Rubber’s steel fabrication capabilities, from CNC machining to large-scale custom projects. Certified for quality and committed to exceeding expectations.",
+      "Discover Scougal Rubber’s advanced steel fabrication capabilities, including custom metal fabrication, CNC machining, and industrial steel solutions certified by AISC, NTPEP, CAGE, AS9100, and ISO 9001.",
     url: "https://www.scougalrubber.com/steel",
     type: "website",
     images: [
@@ -33,12 +35,22 @@ export const metadata = {
   },
 };
 
-// Structured Data (JSON-LD) for Steel Fabrication Page
 const structuredData = {
   "@context": "https://schema.org",
-  "@id": "https://www.scougalrubber.com/steel",
   "@type": "Product",
-  name: "Steel Fabrication - Precision and Reliability",
+  "@id": "https://www.scougalrubber.com/steel",
+  name: "Steel Fabrication Services - Precision, Reliability & Certified Quality",
+  description:
+    "Scougal Rubber provides advanced steel fabrication services with custom metal fabrication, CNC machining, and industrial steel solutions. Our processes are AISC, NTPEP, CAGE, AS9100, and ISO 9001 certified—ensuring high precision and durability in every project.",
+  url: "https://www.scougalrubber.com/steel",
+  image: "https://www.scougalrubber.com/logo.webp",
+  offers: {
+    "@type": "Offer",
+    url: "https://www.scougalrubber.com/steel",
+    priceCurrency: "USD",
+    price: 0,
+    availability: "https://schema.org/InStock",
+  },
   provider: {
     "@type": "Organization",
     name: "Scougal Rubber Corporation",
@@ -53,55 +65,46 @@ const structuredData = {
       areaServed: "US",
     },
   },
-  description:
-    "Scougal Rubber provides advanced steel fabrication services, delivering custom metal fabrication, CNC machining, and certified steel solutions for industrial and infrastructure projects.",
   areaServed: {
     "@type": "Place",
     name: "US",
-  },
-  name: "Steel Fabrication Services",
-  description:
-    "Precision steel fabrication services, including CNC machining and custom metal solutions for industrial applications.",
-  url: "https://www.scougalrubber.com/steel",
-  image: "https://www.scougalrubber.com/logo.webp",
-  offers: {
-    "@type": "Offer",
-    url: "https://www.scougalrubber.com/steel",
-    priceCurrency: "USD",
-    price: 0,
-    availability: "https://schema.org/InStock",
   },
   additionalType: "http://www.productontology.org/id/Metal_fabrication",
   additionalProperty: [
     {
       "@type": "PropertyValue",
       name: "Certifications",
-      value: "AISC, NTPEP, CAGE",
+      value: "AISC, NTPEP, CAGE, AS9100, ISO 9001",
     },
     {
       "@type": "PropertyValue",
       name: "Capabilities",
       value:
-        "CNC machining, custom metal fabrication, large-scale steel projects",
+        "CNC machining, custom metal fabrication, large-scale steel projects, precision steel work",
     },
     {
       "@type": "PropertyValue",
-      name: "Precision",
-      value: "High precision steel fabrication for industrial applications",
+      name: "Specialties",
+      value: "Steel bearings, structural bearings, steel reinforced elastomeric bearing solutions",
     },
   ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+1-775-284-8500",
+    contactType: "Customer Service",
+    email: "info@scougalrubber.com",
+    availableLanguage: ["English"],
+    areaServed: "US",
+  },
 };
 
 export default function Steel() {
   return (
     <>
-      {/* Inject JSON-LD structured data */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-
-      {/* Page content */}
       <SteelClient />
     </>
   );

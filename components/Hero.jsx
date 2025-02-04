@@ -25,19 +25,16 @@ const Hero = () => {
   return (
     <AuroraBackground>
       <div className="relative flex flex-col items-center justify-center">
+        {/* Vidéo optimisée */}
         <div className="flex justify-center">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="
-              w-[300px]
-              h-[180px]
-              max-w-full
-              md:w-[500px]
-              md:h-[300px]
-            "
+            preload="metadata"
+            poster="/logo-placeholder.webp"
+            className="w-[300px] h-[180px] max-w-full md:w-[500px] md:h-[300px]"
           >
             <source src="/logo-animated.webm" type="video/webm" />
             <source src="/logo-animated.mp4" type="video/mp4" />
@@ -45,37 +42,22 @@ const Hero = () => {
           </video>
         </div>
 
+        {/* Titre animé avec framer-motion */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: [20, -5, 0] }}
           transition={{ duration: 0.5, ease: [0.4, 0.0, 0.2, 1] }}
-          className="
-            text-3xl 
-            px-4 
-            md:text-7xl 
-            lg:text-5xl 
-            font-bold 
-            text-white 
-            max-w-4xl 
-            leading-relaxed 
-            lg:leading-snug 
-            text-center 
-            mx-auto 
-            mt-4
-          "
+          className="text-3xl px-4 md:text-7xl lg:text-5xl font-bold text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto mt-4"
         >
-          <p>America&apos;s Custom Molded Rubber Company Since 1916</p>
+          America&apos;s Custom Molded Rubber Company Since 1916
         </motion.h1>
 
+        {/* Certifications */}
         <div className="flex justify-center items-center flex-wrap mt-8 gap-8 mb-8">
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className={`
-                m-2 
-                ${cert.rounded ? "rounded-[5px]" : ""} 
-                certification-logo
-              `}
+              className={`m-2 ${cert.rounded ? "rounded-[5px]" : ""} certification-logo`}
               style={{ width: cert.defaultWidth, height: cert.defaultHeight }}
             >
               <Image

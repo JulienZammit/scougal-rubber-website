@@ -1,0 +1,131 @@
+Tu es maintenant un expert en SEO et j'aiemerai que tu m'aides à améliorer mes pages SEO. 
+Ok super
+Premièrement j'aimerai que tu me tries les mots clés afin de les mettre dans les metadata dans la bonne page. Voici la liste de mots clés que je dois placer :
+
+Bridge Bearing Manufacturers near me
+Bridge bearing natural rubber pads
+Bridge bearing neoprene rubber pads
+Government project custom rubber molding
+Rubber parts
+Industrial rubber manufacturing
+Aerospace molded rubber engineering
+O-Rings
+Rubber gasket materials
+Elastomeric pads
+Seismic isolation device or pad
+Steel reinforced elastomeric bearing
+Pin bearing
+Structural bearings
+AASHTO M-251 compliant bearings
+AISC certified fabricator and erector
+AASHTO compliant
+NTPEP datamine tested
+Bulletin 15 approved Pennsylvania PennDOT
+Department of transportation
+NIST compliant
+Compliassure secured powered by Aperia
+Cage code certified 9SFQ3 defense logistics agency liaison
+AS9100
+ISO 9001
+Elastomer
+Shims
+Internal plates
+Plain pads
+Plain elastomeric bearings
+Vulcanizing
+AREMA
+CHSR (California High-Speed Rail)
+Rocker bearings
+Steel bearings
+Elastomeric washers
+Round elastomeric bearing pads
+Laminated elastomeric bearing pads
+
+Nous allons commencer par la page Rubber parts. 
+J'aimerai que tu appliques tous tes conseils à l'optimisation du SEO qui était les suivant pour rappel : 
+
+Voici une approche en plusieurs étapes pour optimiser votre référencement (SEO) sur l’ensemble des mots-clés que vous avez listés. L’idée est à la fois de structurer le contenu existant (titres, balises, textes, URLs, maillage interne, etc.) et de créer de nouvelles pages/sections si nécessaire pour couvrir tous vos mots-clés de façon cohérente. Je vous détaille ci-dessous les points essentiels à mettre en place dans votre projet Next.js.
+
+────────────────────────────────────────────────────────
+1) Regrouper et hiérarchiser les mots-clés
+────────────────────────────────────────────────────────
+• Première étape : faire un regroupement thématique de vos mots-clés. Par exemple :
+  – Mots-clés liés aux “bearing pads”, “bridge bearings”, “seismic isolation”, normes AASHTO, etc.  
+  – Mots-clés liés au “rubber molding” (industrial rubber manufacturing, aerospace molded rubber, etc.)  
+  – Mots-clés liés à la “steel fabrication” (AISC certified, NTPEP, cage code, AS9100, ISO 9001, etc.)  
+  – Mots-clés spécifiques “government project custom rubber molding”, “bridge bearing manufacturers near me”, etc.
+
+• Pourquoi ? Parce que Google privilégie les pages qui couvrent un sujet principal plutôt que d’essayer de jongler avec trop de sujets/mots-clés sur une seule et même page. Vous pouvez ainsi créer (ou retravailler) des pages ou sections dédiées à chaque thème clé.
+
+────────────────────────────────────────────────────────
+2) Créer ou optimiser les pages dédiées (mapping des mots-clés)
+────────────────────────────────────────────────────────
+• Vous avez déjà 4 pages produits (ramps, rubber-parts, steel, bearing-pads). Vérifiez si elles couvrent vraiment tous les groupes de mots-clés.  
+  – Page “bearing-pads” : elle peut couvrir tous les mots-clés liés aux ponts (bridge bearings), aux normes AASHTO M-251, NTPEP, etc.  
+  – Page “rubber-parts” : inclure plus de détails sur “aerospace molded rubber”, “government project custom rubber molding”, “rubber gasket materials”, etc.  
+  – Page “steel” : inclure les certifications AISC, CAGE code 9SFQ3, AS9100, mentionner la capacité de “fabricator and erector”, etc.  
+  – Page “ramps” : éventuellement lier aux mots-clés annexes si cela a du sens, ou la laisser centrée sur les rampes.
+
+• Si certains mots-clés importants (par exemple “Bridge Bearing Manufacturers near me” ou “Seismic isolation device or pad”) ne sont pas assez couverts dans vos textes, créez soit de nouvelles sections sur la page la plus pertinente, soit rédigez un paragraphe dédié qui traite explicitement ce mot-clé, et ajustez le champ lexical.
+
+• Assurez-vous que chaque page a :
+  – Un titre principal (balise <h1>) parlant.  
+  – Des sous-titres (balises <h2>, <h3>) reprenant des variantes de mots-clés pour plus de clarté.  
+  – Un contenu texte d’au moins 300-500 mots détaillant les avantages/ usages / certifications / spécifications, en incluant naturellement vos mots-clés.  
+  – Des balises meta (title, description) cohérentes et contenant le mot-clé principal.  
+  – Des URLs propres (par exemple /rubber-parts, /bearing-pads) en phase avec votre contenu.
+
+────────────────────────────────────────────────────────
+3) Optimiser la structure on-page (balises <title>, <meta>, headings, etc.)
+────────────────────────────────────────────────────────
+• Dans Next.js, vous gérez déjà l’objet “metadata” (title, description, keywords, etc.). Vérifiez que vos balises contiennent réellement les mots-clés majeurs ciblés par la page.  
+• Dans le corps de la page, structurez le contenu avec des <h1> et <h2>, en incluant des variantes de mots-clés :  
+  – Exemple : un <h1> “Bridge and Structural Bearings (AASHTO M-251, AREMA, CHSR)” si vous voulez regrouper ces termes.  
+  – Puis des <h2> “Seismic Isolation Pads” / “Steel-Reinforced Elastomeric Bearings” / “Plain Elastomeric Bearings” / etc.
+
+• Évitez le “keyword stuffing” : intégrez tout de manière fluide. Google pénalise la sur-optimisation, donc reprenez chaque terme une à trois fois dans le texte si nécessaire, mais pas 20 fois.
+
+────────────────────────────────────────────────────────
+4) Enrichir le contenu texte et les éléments multimédia
+────────────────────────────────────────────────────────
+• Ajoutez des descriptions de produits / d’applications / d’études de cas afin d’intégrer naturellement vos mots-clés. Par exemple, si vous souhaitez cibler “Government project custom rubber molding”, créez un paragraphe ou une sous-section :
+  “Notre expertise dans la conception et la fabrication sur mesure de pièces en caoutchouc pour les projets gouvernementaux (exemple : Department of Transportation, PennDOT, etc.)…”
+
+• Utilisez des images associées à ces termes, et donnez-leur un attribut alt descriptif :
+  – Exemple d’alt : alt=“Bridge bearing neoprene rubber pad de type AASHTO M-251 pour ponts ferroviaires”.  
+• Les images doivent idéalement inclure le mot-clé dans leur nom de fichier, tout en restant concis.
+
+────────────────────────────────────────────────────────
+5) Optimiser vos JSON-LD (Structured Data)
+────────────────────────────────────────────────────────
+• Vous avez déjà du structured data pour chaque page. C’est très bien !  
+• Vérifiez l’exactitude du “@type” (Product, Organization, etc.) et que la description et le nom de produit contiennent vos mots-clés principaux.  
+• Pour certains cas, vous pouvez ajouter des FAQ en JSON-LD si vous voulez cibler des questions précises autour de vos mots-clés. Exemple, “Quels sont les avantages d’un steel reinforced elastomeric bearing ?” / “Comment choisir un pin bearing ?”. Google aime beaucoup les FAQ structurées.
+
+────────────────────────────────────────────────────────
+6) Maillage interne (internal linking)
+────────────────────────────────────────────────────────
+• Sur chaque page produit, faites des liens vers vos autres pages si c’est pertinent.  
+  – Par exemple, sur “rubber-parts”, insérez un lien : “Découvrez aussi nos bearings certifiés AASHTO” (lien : /bearing-pads).  
+  – Sur “bearing-pads”, renvoyez vers “steel” si vous parlez de pièces en acier ou de fixations.  
+• Ancrez le lien avec un texte optimisé : “Nos Bridge Bearing Pads conformes AASHTO M-251” plutôt qu’un simple “cliquez ici”.
+
+
+────────────────────────────────────────────────────────
+7) Optimiser pour la recherche locale (“near me”)
+────────────────────────────────────────────────────────
+• Pour “Bridge Bearing Manufacturers near me”, Google considère la géolocalisation.  
+  – Créez une page “Localisation” ou “Contact” bien optimisée, indiquant votre adresse, votre zone de service, éventuellement un plan Google Maps (ou mentionnez dans le footer que vous servez les États-Unis avec un focus sur tel État).  
+  – Complétez votre Google Business Profile (si vous avez une adresse physique où vous accueillez des clients), pour apparaître dans le Local Pack.
+
+En regardant le texte de chaque composant, en modifiant les mots clés, j'aimerai que tu analyses et que tu me dises exactement ce que je dois changer afin d'optimiser ma page. Ce que je vais faire c'est que je vais tout te donner donc le code de la page et également ce qu'on affiche et j'aimerai que tu me fasses une liste de ce que je dois modifier afin de rendre la page optimale. 
+Il faudra donc Regrouper et hiérarchiser les mots-clés, Créer ou optimiser les pages dédiées (mapping des mots-clés), Optimiser la structure on-page (balises <title>, <meta>, headings, etc.), Enrichir le contenu texte et les éléments multimédia, Optimiser vos JSON-LD (Structured Data), Maillage interne (internal linking)…
+
+J'aimerai que tu analyses et que tu comprennes la page et le texte et que tu optimises. REDONNE MOI TOUT LE CODE CORRIG2 ET A LA FIN FAIS UNE LISTE DES CHANGEMENT QUE TU AS FAIT. 
+J'aimerai que tu me présentes chaque solutions de manière complète et bien rédiger. 
+Dernière règle, tu vas voir parfois les pages contiennent beaucoup de texte. Ton travail est de les analyser et de me proposer des modifications complètes et bien structurées toujours dans l'optique d'être sur les mots clés.
+
+Voici maintenant tout le code de ma page à me redonner parfaitement otpimisée : 
+
+
+

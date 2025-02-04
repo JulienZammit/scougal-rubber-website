@@ -55,21 +55,21 @@ const HeroProduct = ({ title, subtitle, certifications }) => {
         animate={controls}
         initial="hidden"
         variants={containerVariants}
-        className="relative z-10 flex flex-col items-center justify-center h-full px-4 text-center"
+        className="relative z-10 flex flex-col items-center justify-center h-full px-4 my-6 text-center w-10/12 mx-auto"
       >
         <motion.h1
           variants={itemVariants}
-          className="mb-6 text-4xl font-extrabold tracking-tight text-white md:text-7xl"
+          className="mb-6 text-4xl font-extrabold tracking-tight text-white md:text-4xl"
         >
           {title}
         </motion.h1>
 
-        <motion.p
+        <motion.h2
           variants={itemVariants}
           className="max-w-2xl mb-12 text-lg font-medium text-slate-100 md:text-2xl"
         >
           {subtitle}
-        </motion.p>
+        </motion.h2>
 
         <motion.div
           variants={containerVariants}
@@ -84,9 +84,9 @@ const HeroProduct = ({ title, subtitle, certifications }) => {
               <Image
                 src={cert.src}
                 alt={cert.alt}
-                loading="lazy"
-                width={cert.defaultWidth || 80}   // Use the passed width, or fallback to 80
-                height={cert.defaultHeight || 48} // Use the passed height, or fallback to 48
+                priority
+                width={cert.defaultWidth || 80}
+                height={cert.defaultHeight || 48}
                 className="object-contain transition-transform duration-300 rounded-[5px]"
               />
             </motion.div>

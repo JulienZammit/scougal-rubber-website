@@ -2,9 +2,10 @@
 import CallToAction from "@/components/CallToAction";
 import FaqSection from "@/components/FaqSection";
 import ProductDisplay from "../../components/ProductDisplay";
-import {TextContentProduct} from "../../components/TextContentProduct";
+import { TextContentProduct } from "../../components/TextContentProduct";
 import HeroProduct from "../../components/HeroProduct";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function RampsClient() {
   const faqs = [
@@ -19,7 +20,7 @@ export default function RampsClient() {
       id: 2,
       question: "What are your quality assurance standards?",
       answer:
-        "At Scougal Rubber Corporation, we uphold rigorous quality assurance standards, certified through the American Institute of Steel Construction (AISC). Our AISC certification reflects our commitment to producing high-quality products that meet or exceed industry requirements. Our comprehensive quality assurance process includes detailed inspection plans (IP), non-destructive testing (NDT), and destructive testing, along with full material traceability to ensure compliance with both customer specifications and regulatory standards. We are also fully aligned with the 'Buy American'standard, ensuring that all materials used in our products are sourced domestically, supporting U.S. manufacturing and infrastructure projects. In addition to our stringent inspection processes, we operate a world-class laboratory that performs both destructive and non-destructive testing to guarantee the integrity of the materials used in our finished products. This testing ensures that our components deliver optimal performance and durability. Our QA professionals carefully monitor each step of production, from raw material verification to final product inspection, ensuring that our customers receive products built to the highest standards of excellence and reliability.",
+        "At Scougal Rubber Corporation, we uphold rigorous quality assurance standards, certified through the American Institute of Steel Construction (AISC). Our AISC certification reflects our commitment to producing high-quality products that meet or exceed industry requirements. Our comprehensive quality assurance process includes detailed inspection plans (IP), non-destructive testing (NDT), and destructive testing, along with full material traceability to ensure compliance with both customer specifications and regulatory standards. We are also fully aligned with the 'Buy American' standard, ensuring that all materials used in our products are sourced domestically, supporting U.S. manufacturing and infrastructure projects. In addition to our stringent inspection processes, we operate a world-class laboratory that performs both destructive and non-destructive testing to guarantee the integrity of the materials used in our finished products. This testing ensures that our components deliver optimal performance and durability. Our QA professionals carefully monitor each step of production, from raw material verification to final product inspection, ensuring that our customers receive products built to the highest standards of excellence and reliability.",
       href: "#",
     },
     {
@@ -41,9 +42,9 @@ export default function RampsClient() {
   const image = [
     {
       src: "/ramps/ramps.webp",
-      alt: "ramps scougal",
-      defaultWidth: 700,
-      defaultHeight: 291,
+      alt: "Scougal Ramps for Efficient Road Plate Management",
+      defaultWidth: 350,
+      defaultHeight: 145,
       rounded: false,
     },
   ];
@@ -52,23 +53,23 @@ export default function RampsClient() {
     {
       title: "Ramp up your productivity.",
       description:
-        "The Scougal Ramp clips quickly onto a steel road plate and stays securely in place. No more shoveling cold mix. The covering process is faster, so you can keep a hole open later and work longer into the day. It’s neat, clean, safe, and stands up beautifully to traffic.",
+        "The Scougal Ramp clips quickly onto a steel road plate and stays securely in place. No more shoveling cold mix – the covering process is faster, letting you keep a hole open longer and work deeper into the day. It’s neat, clean, safe, and built to withstand heavy traffic.",
     },
     {
       title: "Clean up your worksite.",
       description:
-        "Scougal Ramps are durable and pay for themselves in weeks. Use them on job after job. One standard 60” length will save laying down cold mix every evening and pulling it up the next day. See how quickly that adds up.",
+        "Scougal Ramps are engineered for durability and pay for themselves in weeks. A single standard 60” ramp reduces the need to lay down cold mix every evening and remove it the next day, significantly streamlining your workflow.",
     },
     {
       title: "Be green and eliminate disposal issues.",
       description:
-        "The Scougal Ramp is reusable reducing the need to properly dispose of cold mix. The reduction of oil-based material at your construction site is a bonus.",
+        "Our reusable Scougal Ramp minimizes the need for disposing of cold mix, helping to reduce oil-based material waste at your construction site.",
     },
     {
       title: "Save cold cash on cold mix and eliminate claims.",
       description:
-        "The Scougal Ramp remains intact and will not break apart, eliminating damage claims from flying asphalt.",
-    }
+        "The Scougal Ramp’s robust design prevents breakage and fragmentation, thereby eliminating damage claims related to flying asphalt.",
+    },
   ];
 
   const content = [
@@ -76,28 +77,28 @@ export default function RampsClient() {
       ImageMain: "/ramps/ramps-slogan.webp",
       ImageMainHeight: 121,
       ImageMainWidth: 385,
-      title : "Ramp up your productivity.",
+      title: "Ramp up your productivity.",
       images: [
         "/ramps/ramp1.webp",
         "/ramps/ramp2.webp",
         "/ramps/ramp3.webp"
       ],
       paragraphs: [
-        "The Scougal Ramp is designed to revolutionize your workflow, offering a durable, easy-to-use solution for managing road plates efficiently and safely."
+        "The Scougal Ramp is designed to revolutionize your workflow by offering a durable, easy-to-use solution for managing road plates efficiently and safely. Its innovative design reduces cold mix usage and enhances overall site safety."
       ],
     },
   ];
 
   useEffect(() => {
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
       <HeroProduct
-        title="Scougal Ramps"
-        subtitle="Ramp up your productivity with Scougal Ramps"
+        title="Scougal Ramps - Efficient Road Plate Management"
+        subtitle="Ramp up your productivity with our durable, reusable ramps"
         certifications={image}
       />
       <ProductDisplay content={content} />
@@ -105,9 +106,14 @@ export default function RampsClient() {
       <div className="p-10 md:mb-0 mb-32">
         <CallToAction />
       </div>
-
       <div className="p-10">
         <FaqSection faqs={faqs} />
+      </div>
+      <div className="text-center py-8">
+        <p className="text-lg text-slate-700">
+          Looking for Ramps near you? Contact Scougal Rubber, located at 885 Denmark Drive Suite 103, McCarran, NV – proudly serving clients across the US.
+        </p>
+        <Link href="/contact-us" className="text-blue-500 underline">Get in Touch</Link>
       </div>
     </>
   );

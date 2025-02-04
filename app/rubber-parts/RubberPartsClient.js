@@ -2,9 +2,10 @@
 import CallToAction from "@/components/CallToAction";
 import HeroProduct from "../../components/HeroProduct";
 import ProductDisplay from "../../components/ProductDisplay";
-import {TextContentProduct} from "../../components/TextContentProduct";
+import { TextContentProduct } from "../../components/TextContentProduct";
 import FaqSection from "@/components/FaqSection";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function RubberPartsClient() {
   const faqs = [
@@ -19,7 +20,7 @@ export default function RubberPartsClient() {
       id: 2,
       question: "What are your quality assurance standards?",
       answer:
-        "At Scougal Rubber Corporation, we uphold rigorous quality assurance standards, certified through the American Institute of Steel Construction (AISC). Our AISC certification reflects our commitment to producing high-quality products that meet or exceed industry requirements. Our comprehensive quality assurance process includes detailed inspection plans (IP), non-destructive testing (NDT), and destructive testing, along with full material traceability to ensure compliance with both customer specifications and regulatory standards. We are also fully aligned with the 'Buy American'standard, ensuring that all materials used in our products are sourced domestically, supporting U.S. manufacturing and infrastructure projects. In addition to our stringent inspection processes, we operate a world-class laboratory that performs both destructive and non-destructive testing to guarantee the integrity of the materials used in our finished products. This testing ensures that our components deliver optimal performance and durability. Our QA professionals carefully monitor each step of production, from raw material verification to final product inspection, ensuring that our customers receive products built to the highest standards of excellence and reliability.",
+        "At Scougal Rubber Corporation, we uphold rigorous quality assurance standards, certified through the American Institute of Steel Construction (AISC). Our AISC certification reflects our commitment to producing high-quality products that meet or exceed industry requirements. Our comprehensive quality assurance process includes detailed inspection plans (IP), non-destructive testing (NDT), and destructive testing, along with full material traceability to ensure compliance with both customer specifications and regulatory standards. We are also fully aligned with the 'Buy American' standard, ensuring that all materials used in our products are sourced domestically, supporting U.S. manufacturing and infrastructure projects. In addition to our stringent inspection processes, we operate a world-class laboratory that performs both destructive and non-destructive testing to guarantee the integrity of the materials used in our finished products. This testing ensures that our components deliver optimal performance and durability. Our QA professionals carefully monitor each step of production, from raw material verification to final product inspection, ensuring that our customers receive products built to the highest standards of excellence and reliability.",
       href: "#",
     },
     {
@@ -39,9 +40,6 @@ export default function RubberPartsClient() {
   ];
 
   const certifications = [
-    // {
-    //   src: "/certification/aisc.webp",
-    //   alt: "AISC Certification",
     {
       src: "/certification/as9100.webp",
       alt: "AS9100 Certification",
@@ -64,20 +62,19 @@ export default function RubberPartsClient() {
     {
       title: "Versatile Applications of Scougal Rubber’s Parts",
       description:
-        "Scougal Rubber’s parts can be found everywhere from playground equipment to ski lifts to food processing factories. We supply cabin pressure test kits for commercial aircraft and custom floor mats for military vehicles. Whether you need ten parts or ten thousand, our team of experienced professionals is ready to assist during the design phase of your next project.",
-      
+        "Scougal Rubber’s parts are used in diverse industries including automotive, marine, aerospace, food processing, and military applications. Our products meet the rigorous standards required for government projects and advanced industrial manufacturing.",
     },
     {
       title: "Expert Assistance and Material Selection",
       description:
-        "We can offer suggestions regarding molding and polymer selection. Our experienced team is equipped to help you choose the best materials and techniques for your specific application, ensuring durability and performance. This expertise is crucial during the design phase to meet the unique requirements of each project.",
+        "Our experienced team offers expert guidance on molding techniques and polymer selection. We help you choose the best materials and manufacturing processes to ensure durability, performance, and compliance with industry standards.",
     },
     {
       title: "Responsive Inventory Programs",
       description:
-        "In addition, we offer inventory programs to support your just-in-time manufacturing requirements. We pride ourselves on our ability to respond quickly in order to meet our customers’ tight deadlines on time-critical projects. Our commitment to timely delivery and customer satisfaction is at the core of our operations, ensuring that your production schedule remains on track.",
+        "We provide inventory programs tailored to your just-in-time manufacturing needs. Our rapid response and commitment to timely delivery ensure that your production schedule remains on track, even under the most demanding circumstances.",
     },
-  ]
+  ];
 
   const content = [
     {
@@ -90,8 +87,8 @@ export default function RubberPartsClient() {
         "/molded/image2.webp",
       ],
       paragraphs: [
-        "Scougal Rubber supplies molded parts to a variety of industries, including automotive, marine, food processing, aerospace, military and many more. We specialize in vulcanizing rubber to metal. Our experienced team can guide you through the process of rubber compound selection to molding. We have the ability to respond quickly to meet all of your needs. In addition, we offer inventory programs to support your just-in-time manufacturing requirements.",
-        "Scougal stocks a wide variety of proven house rubber compounds. Some of our house compounds are Natural Rubber, Neoprene, EPDM, Nitrile, Urethane and SBR which are offered in a variety of hardnesses. Custom compounds can be formulated to meet your exact specifications. If you own a mold, maximize your profits by contacting us for a competitive quote. With over 100 years of manufacturing experience, Scougal Rubber will exceed your expectations.",
+        "Scougal Rubber supplies molded parts to a variety of industries, including automotive, marine, food processing, aerospace, military and more. We specialize in vulcanizing rubber to metal and offer custom molded rubber solutions designed to meet government project requirements and aerospace standards.",
+        "Our wide range of proven house rubber compounds, including Natural Rubber, Neoprene, EPDM, Nitrile, Urethane, and SBR, can be tailored to your exact specifications. With over 100 years of manufacturing experience, our expertise in industrial rubber manufacturing ensures precision, durability, and compliance with industry standards.",
       ],
     },
     {
@@ -104,7 +101,7 @@ export default function RubberPartsClient() {
         "/rollers/image2.webp",
       ],
       paragraphs: [
-        "Scougal custom covers new and used rolls for variety of industries. We will re-cover your rolls to exact dimensions with a long list of industry leading materials. The material is hot vulcanized to the core, then machined to your specifications ensuring the longest service life possible. We also offer a variety of grooving options."
+        "Scougal Rubber offers custom rubber rollers that are hot vulcanized to ensure long-lasting performance. Engineered to exact dimensions with a variety of industry-leading materials, our rubber rollers are ideal for aerospace, marine, and food processing applications.",
       ],
     },
     {
@@ -118,22 +115,22 @@ export default function RubberPartsClient() {
         "/mandrel/image3.webp",
       ],
       paragraphs: [
-        "Our experienced craftsmen can wrap and cure a variety of rubber compounds on a mandrel to form custom rubber boots, tubes and a variety of other shapes. We stock a comprehensive range of mandrels for common diameters. Hand-Built and Mandrel Items are autoclave-cured. Scougal can also form and bond rubber to nearly any metal surface. In addition to rollers, we can vulcanize rubber to steel or aluminum on hand-built parts. Fabric with reinforcing plies can be incorporated into the rubber wall according to your specifications. Scougal has produced hand-built conical boots for cable-stayed bridges throughout North America, South America and Europe. And the next time you eat a french fry, know that the potatoes were most likely sorted with a Scougal spinner and sliced through a Scougal built tube."
+        "Our experienced craftsmen wrap and cure various rubber compounds on a mandrel to produce custom rubber boots, tubes, and other shapes. We stock a comprehensive range of mandrels for common diameters. Hand-built mandrel products are autoclave-cured and demonstrate our commitment to high-performance, custom rubber solutions.",
+        "Scougal also offers the capability to vulcanize rubber to steel or aluminum, incorporating reinforcing plies as needed. Our hand-built solutions are trusted in demanding environments, from industrial manufacturing to government projects and aerospace applications.",
       ],
     },
   ];
 
   useEffect(() => {
-    document.body.style.overflow = 'unset';
+    document.body.style.overflow = "unset";
     window.scrollTo(0, 0);
   }, []);
 
-
   return (
     <>
-    <HeroProduct
-        title="Industrial Rubber Parts" 
-        subtitle="Quality, service, and reliability, have been the 'Scougal Standard'"
+      <HeroProduct
+        title="Industrial Rubber Parts & Custom Molded Solutions"
+        subtitle="High-performance rubber components for aerospace, transportation & industrial applications"
         certifications={certifications}
       />
       <ProductDisplay content={content} />
@@ -141,9 +138,14 @@ export default function RubberPartsClient() {
       <div className="p-10 md:mb-0 mb-32">
         <CallToAction />
       </div>
-
       <div className="p-10">
         <FaqSection faqs={faqs} />
+      </div>
+      <div className="text-center py-8">
+        <p className="text-lg text-slate-700">
+          Looking for Rubber Parts near you? Contact Scougal Rubber, located at 885 Denmark Drive Suite 103, McCarran, NV – proudly serving clients across the US.
+        </p>
+        <Link href="/contact-us" className="text-blue-500 underline">Get in Touch</Link>
       </div>
     </>
   );
