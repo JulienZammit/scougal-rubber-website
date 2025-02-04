@@ -184,7 +184,7 @@ export default function ProjectsClient() {
             layout="responsive"
             width={800}
             height={600}
-            priority
+            loading="lazy"
             objectFit="contain"
             className="rounded-[5px]"
           />
