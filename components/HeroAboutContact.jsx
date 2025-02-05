@@ -20,7 +20,7 @@ export default function HeroAboutContact({ backgroundImage, title, subtitle }) {
           layout="fill"
           objectFit="cover"
           className="opacity-40"
-          priority
+          loading="eager"
         />
       </div>
       <motion.h1

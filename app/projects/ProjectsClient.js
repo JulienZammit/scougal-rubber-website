@@ -154,7 +154,7 @@ export default function ProjectsClient() {
                   src={src}
                   alt={`${project.name} image ${imgIndex + 1}`}
                   fill
-                  priority
+                  loading="eager"
                   className="object-cover rounded-[5px] cursor-pointer"
                   onClick={() => openModal(src)}
                 />
