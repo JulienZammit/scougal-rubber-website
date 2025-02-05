@@ -399,7 +399,7 @@ export default function ContactUsClient() {
 
   const socialLinks = {
     linkedin: "https://www.linkedin.com/company/scougal-rubber-corporation", // Remplacez par votre URL LinkedIn
-    facebook: "https://www.facebook.com/scougalrubbercorp/"
+    facebook: "https://www.facebook.com/scougalrubbercorp/",
   };
 
   return (
@@ -407,7 +407,7 @@ export default function ContactUsClient() {
       <HeroAboutContact
         backgroundImage="/banner2/Banner1.webp"
         title="Contact Us"
-        subtitle="Expert advice on molding, polymers, inventory, and time-sensitive projects"
+        subtitle="Industry-leading expertise in rubber manufacturing, precision engineering, and infrastructure solutions"
       />
 
       <div className="md:p-20 px-4 py-10 flex flex-col items-center justify-center w-full space-y-12">
