@@ -298,7 +298,6 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                         fill
                         loading="lazy"
                         className="object-cover"
-                        priority
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     </div>
