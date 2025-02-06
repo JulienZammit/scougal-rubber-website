@@ -115,14 +115,7 @@ const nextConfig = {
         source: '/index.html',
         destination: '/',
         permanent: true,
-      },
-
-      // 3) Tout autre chemin => page 404 (soft 404)
-      {
-        source: '/:path*',
-        destination: '/404',
-        permanent: false,
-      },
+      }
     ];
   },
 };
