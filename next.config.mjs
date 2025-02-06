@@ -3,19 +3,19 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  output: "standalone",
+  output: 'standalone',
 
   async redirects() {
     return [
       {
-        source: "/", 
+        source: '/:path*',
         has: [
           {
-            type: "host",
-            value: "scougalrubber.com",
+            type: 'host',
+            value: 'scougalrubber.com',
           },
         ],
-        destination: "https://www.scougalrubber.com",
+        destination: 'https://www.scougalrubber.com/',
         permanent: true,
       },
     ];
