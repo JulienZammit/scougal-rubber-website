@@ -44,7 +44,9 @@ jobs:
         with:
           name: node-app
       - name: Clean wwwroot folder
-        run: rm -rf wwwroot/*
+        run: |
+          # Supprime tous les fichiers et dossiers dans wwwroot, y compris les fichiers cachés
+          find wwwroot -mindepth 1 -delete
       - name: Unzip artifact for deployment
         run: unzip release.zip -d wwwroot
       - name: Login to Azure
