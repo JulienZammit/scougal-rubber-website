@@ -64,7 +64,7 @@ export default async function sitemap() {
       lastModified: "2025-02-07T11:07:45.253Z",
       changefreq: "weekly",
       priority: 0.9,
-    },
+    }
   ];
 
   const blogIndex = {
