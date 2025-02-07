@@ -14,7 +14,7 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: '20.x'
+          node-version: "20.x"
       - name: npm install and build
         run: |
           npm ci
@@ -30,12 +30,11 @@ jobs:
         with:
           name: node-app
           path: release.zip
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
     environment:
-      name: 'Production'
+      name: "Production"
     permissions:
       id-token: write
     steps:
@@ -45,8 +44,11 @@ jobs:
           name: node-app
       - name: Clean wwwroot folder
         run: |
-          # Supprime tous les fichiers et dossiers dans wwwroot, y compris les fichiers cachés
-          find wwwroot -mindepth 1 -delete
+          if [ -d wwwroot ]; then
+            find wwwroot -mindepth 1 -delete
+          else
+            mkdir -p wwwroot
+          fi
       - name: Unzip artifact for deployment
         run: unzip release.zip -d wwwroot
       - name: Login to Azure
@@ -58,5 +60,5 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'scougalrubber'
-          package: './wwwroot'
+          app-name: "scougalrubber"
+          package: "./wwwroot"
