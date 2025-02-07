@@ -9,7 +9,7 @@ import { notFound } from "next/navigation";
    1) GÉNÉRATION DES MÉTADONNÉES DYNAMIQUES
    -------------------------------------------------- */
 export async function generateMetadata({ params }) {
-  const post = await getPostBySlug(params.slug); // on attend le post
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     return {
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }) {
   const baseUrl =
     process.env.NEXT_PUBLIC_BASE_URL || "https://www.scougalrubber.com";
   const postUrl = `${baseUrl}/blog/${post.slug}`;
-  const ogImage = post.ogImage || `${baseUrl}/default-og-image.jpg`;
+  const ogImage = post.ogImage || `${baseUrl}/logo.webp`;
 
   return {
     title: post.title,
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
       authors: [post.author?.name || "Scougal Rubber"],
       tags: post.tags,
     },
-    twitter: {
+    linkedin: {
       card: "summary_large_image",
       title: post.title,
       description: post.description,

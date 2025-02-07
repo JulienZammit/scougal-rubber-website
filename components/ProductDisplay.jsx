@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaTimes, FaInfoCircle, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from "next/link";
+import Image from "next/image";
 
 const ProductDisplay = ({ content }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -61,7 +62,7 @@ const ProductDisplay = ({ content }) => {
         <div className="flex flex-col lg:flex-row">
           <div className="lg:w-3/5 p-8 relative">
             <div className="relative group max-w-2xl mx-auto overflow-hidden rounded-[5px]">
-              <img
+              <Image
                 src={product.ImageMain}
                 alt={product.title}
                 width={product.ImageMainWidth}
@@ -74,7 +75,7 @@ const ProductDisplay = ({ content }) => {
             <div className="mt-6 grid grid-cols-4 gap-4">
               {product.images.map((img, index) => (
                 <div key={index} className="relative group overflow-hidden rounded-[5px]">
-                  <img
+                  <Image
                     src={img}
                     alt={`${product.title} - ${index + 1}`}
                     className="w-full h-24 object-cover cursor-pointer transition-transform duration-300 group-hover:scale-105"
@@ -121,7 +122,7 @@ const ProductDisplay = ({ content }) => {
           onClick={closeExpandedImage}
         >
           <div className="max-w-5xl max-h-full p-4 relative" onClick={(e) => e.stopPropagation()}>
-            <img
+            <Image
               src={expandedImage}
               alt="Expanded view"
               className="max-w-full max-h-full object-contain rounded-[5px]"

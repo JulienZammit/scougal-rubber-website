@@ -1,9 +1,0 @@
-# *
-User-agent: *
-Allow: /
-
-# Host
-Host: https://www.scougalrubber.com/
-
-# Sitemaps
-Sitemap: https://www.scougalrubber.com/sitemap.xml

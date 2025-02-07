@@ -1,6 +1,7 @@
 "use client";
 import { useRef, useState } from "react";
 import { Bold, Link as LinkIcon, ChevronUp, ChevronDown, X, Upload, Image as ImageIcon } from "lucide-react";
+import Image from "next/image";
 
 export default function BlockItem({
   block,
@@ -182,7 +183,7 @@ export default function BlockItem({
                 </div>
               ) : (
                 <div className="relative">
-                  <img
+                  <Image
                     src={block.url}
                     alt={block.alt || "image preview"}
                     className="max-w-full h-auto rounded-md"

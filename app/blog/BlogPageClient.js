@@ -22,18 +22,14 @@ export default function BlogPageClient({ allPosts }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState("grid");
 
-  // 1) Filter out draft posts upfront
   const publishedPosts = (allPosts || []).filter(
     (post) => post.status !== "draft"
   );
 
-  // 2) Unique categories (including "All")
   const categories = ["All", ...new Set(publishedPosts.map((p) => p.category))];
 
-  // 3) Latest posts: just take the first 3 published
   const latestPosts = publishedPosts.slice(0, 3);
 
-  // 4) Filtering by category + search
   const filteredPosts = publishedPosts
     .filter(
       (post) =>
@@ -46,7 +42,6 @@ export default function BlogPageClient({ allPosts }) {
         post.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-  // 5) Pagination
   const currentPosts = filteredPosts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
     currentPage * POSTS_PER_PAGE
@@ -55,13 +50,11 @@ export default function BlogPageClient({ allPosts }) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    // Reset to page 1 if category or search changes
     setCurrentPage(1);
   }, [selectedCategory, searchTerm]);
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
-      {/* Hero Section with Geometric Background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br ">
         <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-40" />
       </div>
@@ -83,7 +76,6 @@ export default function BlogPageClient({ allPosts }) {
               Rubber's expert team.
             </p>
 
-            {/* Latest News Section */}
             <div className="mb-16 mt-12">
               <div className="flex items-center justify-center gap-2 mb-8">
                 <Bell className="w-5 h-5 text-blue-500" />
@@ -122,7 +114,6 @@ export default function BlogPageClient({ allPosts }) {
               </div>
             </div>
 
-            {/* Search and Filter Section */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 relative">
               <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-md blur opacity-70" />
               <div className="relative">
@@ -147,8 +138,8 @@ export default function BlogPageClient({ allPosts }) {
                     onChange={(e) =>
                       setSelectedCategory(e.target.value.toLowerCase())
                     }
-                    onFocus={() => setIsOpen(true)} // Trigger when the select gets focus (opened)
-                    onBlur={() => setTimeout(() => setIsOpen(false), 150)} // Add delay to detect closure
+                    onFocus={() => setIsOpen(true)}
+                    onBlur={() => setTimeout(() => setIsOpen(false), 150)}
                     className="pl-10 pr-8 py-3 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white/80 backdrop-blur-sm cursor-pointer transition-shadow w-full sm:w-48"
                   >
                     {categories.map((category) => (
@@ -205,7 +196,6 @@ export default function BlogPageClient({ allPosts }) {
           </header>
         </FadeInAnimation>
 
-        {/* List of posts (grid or list) */}
         <div
           key={`page-${currentPage}`}
           className={
@@ -219,17 +209,14 @@ export default function BlogPageClient({ allPosts }) {
               key={`page-${currentPage}-${post.slug}`}
               delay={index * 0.1}
             >
-              {/* Wrap the article in a Link to make it clickable */}
               <Link
                 href={`/blog/${post.slug}`}
                 className={`group relative bg-white rounded-md shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden ${
                   viewMode === "list" ? "flex" : "block"
                 }`}
               >
-                {/* Overlay gradient on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
-                {/* Image */}
                 <div
                   className={`relative ${
                     viewMode === "list" ? "w-1/3" : "h-48"
@@ -252,7 +239,6 @@ export default function BlogPageClient({ allPosts }) {
                   )}
                 </div>
 
-                {/* Text Content */}
                 <div className={`p-6 ${viewMode === "list" ? "w-2/3" : ""}`}>
                   <div className="flex items-center gap-4 mb-4 text-sm text-gray-500">
                     <time>
@@ -268,19 +254,15 @@ export default function BlogPageClient({ allPosts }) {
                     </div>
                   </div>
 
-                  {/* Title */}
                   <h2 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2 group-hover:text-blue-500 transition-colors">
                     {post.title}
                   </h2>
 
-                  {/* Description */}
                   <p className="text-gray-600 mb-4 line-clamp-3">
                     {post.description}
                   </p>
 
-                  {/* Footer: author + share button */}
                   <div className="flex items-center justify-between mt-6">
-                    {/* Author */}
                     {post.author && (
                       <div className="flex items-center">
                         {post.author.avatar && (
@@ -304,11 +286,10 @@ export default function BlogPageClient({ allPosts }) {
                       </div>
                     )}
 
-                    {/* Share button */}
                     <button
                       onClick={(e) => {
-                        e.stopPropagation(); // stop Link
-                        e.preventDefault(); // no redirect
+                        e.stopPropagation();
+                        e.preventDefault();
                         navigator.share({
                           title: post.title,
                           text: post.description,
@@ -326,7 +307,6 @@ export default function BlogPageClient({ allPosts }) {
           ))}
         </div>
 
-        {/* Pagination */}
         {filteredPosts.length > POSTS_PER_PAGE && (
           <div className="mt-12">
             <Pagination
@@ -337,7 +317,6 @@ export default function BlogPageClient({ allPosts }) {
           </div>
         )}
 
-        {/* Categories Section */}
         <div className="mt-16 bg-white/80 backdrop-blur-sm rounded-md shadow-sm border border-gray-100">
           <div className="p-6">
             <h3 className="text-xl font-semibold mb-6 flex items-center text-gray-900">

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Upload, Plus, X } from "lucide-react";
+import Image from "next/image";
 
 export default function MetadataForm({ metadata, setMetadata }) {
   const [categories, setCategories] = useState([]);
@@ -144,7 +145,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
               </label>
               {metadata._coverLocalUrl && (
                 <div className="mt-2 relative">
-                  <img
+                  <Image
                     src={metadata._coverLocalUrl}
                     alt="Cover preview"
                     className="w-24 h-24 object-cover rounded"
@@ -173,7 +174,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
               </label>
               {metadata._ogLocalUrl && (
                 <div className="mt-2 relative">
-                  <img
+                  <Image
                     src={metadata._ogLocalUrl}
                     alt="OG preview"
                     className="w-24 h-24 object-cover rounded"

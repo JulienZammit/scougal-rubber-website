@@ -33,7 +33,7 @@ const Hero = () => {
             muted
             playsInline
             preload="metadata"
-            poster="/logo-placeholder.webp"
+            poster="/logo.webp"
             className="w-[300px] h-[180px] max-w-full md:w-[500px] md:h-[300px]"
           >
             <source src="/logo-animated.webm" type="video/webm" />

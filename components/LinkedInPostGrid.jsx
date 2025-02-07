@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Calendar, ExternalLink } from 'lucide-react';
+import Image from "next/image";
 
 const LinkedInPostGrid = ({ posts }) => {
   const [hoveredId, setHoveredId] = useState(null);
@@ -79,7 +80,7 @@ const LinkedInPostGrid = ({ posts }) => {
                     <div className={`border border-gray-200 rounded-lg overflow-hidden transition-transform duration-300 ${hoveredId === index ? 'transform scale-[1.02]' : ''}`}>
                       {media.thumbnails && (
                         <div className="relative h-32">
-                          <img
+                          <Image
                             src={media.thumbnails[0].url}
                             alt={media.title?.text || "Article thumbnail"}
                             className="absolute inset-0 w-full h-full object-cover"
@@ -106,7 +107,7 @@ const LinkedInPostGrid = ({ posts }) => {
                   {shareMediaCategory === 'IMAGE' && (
                     <div className={`rounded-lg overflow-hidden transition-all duration-300 ${hoveredId === index ? 'transform scale-[1.02]' : ''}`}>
                       <div className="relative h-64">
-                        <img
+                        <Image
                           src={media.thumbnails[0].url}
                           alt={media.description?.text || "Post image"}
                           className="absolute inset-0 w-full h-full object-cover rounded-lg"

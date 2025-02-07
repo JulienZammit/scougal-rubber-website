@@ -12,6 +12,7 @@ import {
   Briefcase,
   Linkedin,
 } from "lucide-react";
+import Image from "next/image";
 
 const companyStats = [
   { number: "100+", label: "Years of Expertise", icon: Trophy },
@@ -188,7 +189,7 @@ const ExperienceClient = () => {
                 className="group relative overflow-hidden rounded-lg bg-white shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full"
               >
                 <div className="aspect-w-3 aspect-h-3 md:aspect-h-4 overflow-hidden">
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
