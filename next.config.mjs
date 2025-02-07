@@ -7,7 +7,6 @@ const nextConfig = {
 
   async redirects() {
     return [
-      // 1) Unifier le domaine scougalrubber.com vers www.scougalrubber.com
       {
         source: '/:path*',
         has: [
@@ -17,10 +16,9 @@ const nextConfig = {
           },
         ],
         destination: 'https://www.scougalrubber.com/:path*',
-        permanent: true, // 301
+        permanent: true,
       },
 
-      // 2) Redirections spécifiques (on est maintenant sur www.scougalrubber.com)
       {
         source: '/contact.html',
         destination: '/contact-us',
