@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public && rm -f .next/standalone/public/sitemap.xml .next/standalone/public/sitemap-0.xml && rm -rf .next/standalone/public/public",
+    "build": "next build && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public && rm -f .next/standalone/public/sitemap.xml .next/standalone/public/sitemap-0.xml && rm -rf .next/standalone/public/public && rm -f .next/standalone/public/robots.txt",
     "start": "PORT=8080 node .next/standalone/server.js",
     "lint": "next lint"
   },
