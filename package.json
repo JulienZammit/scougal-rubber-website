@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npx copyfiles -f .next/static .next/standalone/.next/static && npx copyfiles -f public .next/standalone/public",
-    "start": "cross-env PORT=8080 node .next/standalone/server.js",
+    "build": "next build && cp -r .next/static .next/standalone/.next/static && cp -r public .next/standalone/public",
+    "start": "PORT=8080 node .next/standalone/server.js",
     "lint": "next lint"
   },
   "dependencies": {
