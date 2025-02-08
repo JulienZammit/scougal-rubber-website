@@ -1,11 +1,8 @@
 import { getAllPosts } from "@/service/postsAzure";
-
 export const dynamic = "force-dynamic";
-
 export default async function sitemap() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
   const allPosts = await getAllPosts();
-
   const staticUrls = [
     {
       url: `${baseUrl}/`,
@@ -41,7 +38,7 @@ export default async function sitemap() {
       url: `${baseUrl}/steel`,
       lastModified: "2025-02-07T11:07:45.253Z",
       changefreq: "weekly",
-      priority: 0.9, 
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/employment`,
@@ -66,22 +63,19 @@ export default async function sitemap() {
       lastModified: "2025-02-07T11:07:45.253Z",
       changefreq: "weekly",
       priority: 0.9,
-    }
+    },
   ];
-
   const blogIndex = {
     url: `${baseUrl}/blog`,
     lastModified: "2025-02-07T11:07:45.253Z",
     changefreq: "weekly",
     priority: 0.8,
   };
-
   const blogPosts = allPosts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.lastModifiedified || "2025-02-07T11:07:45.253Z",
+    lastModified: post.lastModified || "2025-02-07T11:07:45.253Z",
     changefreq: "weekly",
     priority: 0.7,
   }));
-
   return [...staticUrls, blogIndex, ...blogPosts];
 }
