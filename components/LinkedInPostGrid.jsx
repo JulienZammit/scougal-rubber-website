@@ -83,6 +83,8 @@ const LinkedInPostGrid = ({ posts }) => {
                           <Image
                             src={media.thumbnails[0].url}
                             alt={media.title?.text || "Article thumbnail"}
+                            width={media.thumbnails[0].width}
+                            height={media.thumbnails[0].height}
                             className="absolute inset-0 w-full h-full object-cover"
                           />
                         </div>
@@ -110,6 +112,8 @@ const LinkedInPostGrid = ({ posts }) => {
                         <Image
                           src={media.thumbnails[0].url}
                           alt={media.description?.text || "Post image"}
+                          width={media.thumbnails[0].width}
+                            height={media.thumbnails[0].height}
                           className="absolute inset-0 w-full h-full object-cover rounded-lg"
                         />
                       </div>

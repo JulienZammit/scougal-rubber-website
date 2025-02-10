@@ -225,7 +225,7 @@ export default function BlogPageClient({ allPosts }) {
                   <Image
                     src={post.coverImage || "/placeholder-blog.jpg"}
                     alt={post.title}
-                    fill
+                    layout="fill"
                     loading="lazy"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

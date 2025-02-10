@@ -192,6 +192,8 @@ const ExperienceClient = () => {
                   <Image
                     src={member.image}
                     alt={member.name}
+                    width={400}
+                    height={400}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                   />

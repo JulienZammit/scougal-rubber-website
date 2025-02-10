@@ -68,8 +68,8 @@ const AnimatedModal = ({
                 <Image
                   src={image}
                   alt={title}
-                  width="500"
-                  height="500"
+                  width={500}
+                  height={500}
                   loading="lazy"
                   className="rounded-[5px] h-20 w-20 md:h-40 md:w-40 object-cover flex-shrink-0"
                 />

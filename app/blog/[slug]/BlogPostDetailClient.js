@@ -133,7 +133,7 @@ function RelatedPosts({ currentPost, posts }) {
               <Image
                 src={post.coverImage}
                 alt={post.title}
-                fill
+                layout="fill"
                 loading="lazy"
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
@@ -295,7 +295,7 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                       <Image
                         src={post.coverImage}
                         alt={post.title}
-                        fill
+                        layout="fill"
                         loading="lazy"
                         className="object-cover"
                       />
