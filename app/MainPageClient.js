@@ -229,7 +229,7 @@ export default function MainPageClient() {
                 {" "}| Phone: (206) 763-2650
               </p>
             </div>
-            <Link href="/ramps" scroll={false}>
+            <Link href="/rubber-parts" scroll={false}>
               <ModalButton>
                 Explore Industrial Products
               </ModalButton>

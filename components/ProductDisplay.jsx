@@ -65,8 +65,8 @@ const ProductDisplay = ({ content }) => {
               <Image
                 src={product.ImageMain}
                 alt={product.title}
-                width={product.ImageMainWidth}
-                height={product.ImageMainHeight}
+                width={product.ImageMainWidth || 400}
+                height={product.ImageMainHeight || 400}
                 className="object-contain rounded-[5px] shadow-lg cursor-pointer transition-transform duration-500 group-hover:scale-105"
                 onClick={() => setExpandedImage(product.ImageMain)}
                 style={{ width: `${product.ImageMainWidth}px`, height: `${product.ImageMainHeight}px`, maxWidth: '100%', margin: 'auto' }}
@@ -77,6 +77,8 @@ const ProductDisplay = ({ content }) => {
                 <div key={index} className="relative group overflow-hidden rounded-[5px]">
                   <Image
                     src={img}
+                    width={100}
+                    height={100}
                     alt={`${product.title} - ${index + 1}`}
                     className="w-full h-24 object-cover cursor-pointer transition-transform duration-300 group-hover:scale-105"
                     onClick={() => setExpandedImage(img)}
@@ -124,6 +126,8 @@ const ProductDisplay = ({ content }) => {
           <div className="max-w-5xl max-h-full p-4 relative" onClick={(e) => e.stopPropagation()}>
             <Image
               src={expandedImage}
+              width={400}
+              height={400}
               alt="Expanded view"
               className="max-w-full max-h-full object-contain rounded-[5px]"
             />

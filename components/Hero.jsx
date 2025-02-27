@@ -20,6 +20,13 @@ const Hero = () => {
       defaultHeight: 35,
       rounded: true,
     },
+    {
+      src: "/logo/logo_eswp.jpg",
+      alt: "ESWP Certification",
+      defaultWidth: 63,
+      defaultHeight: 75,
+      rounded: true,
+    },
   ];
 
   return (
@@ -65,7 +72,6 @@ const Hero = () => {
                 alt={cert.alt}
                 width={cert.defaultWidth}
                 height={cert.defaultHeight}
-                loading="lazy"
                 priority={index === 2}
                 sizes="(max-width: 640px) 40px, (max-width: 768px) 60px, 80px"
                 style={{
