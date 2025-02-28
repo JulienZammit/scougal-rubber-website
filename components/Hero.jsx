@@ -21,7 +21,7 @@ const Hero = () => {
       rounded: true,
     },
     {
-      src: "/logo/logo_eswp.jpg",
+      src: "/logo/logo_eswp.png",
       alt: "ESWP Certification",
       defaultWidth: 63,
       defaultHeight: 75,
