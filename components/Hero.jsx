@@ -21,10 +21,10 @@ const Hero = () => {
       rounded: true,
     },
     {
-      src: "/logo/logo_eswp.png",
-      alt: "ESWP Certification",
-      defaultWidth: 63,
-      defaultHeight: 75,
+      src: "logo_bridge_conference.png",
+      alt: "Bridge conference logo",
+      defaultWidth: 80,
+      defaultHeight: 30,
       rounded: true,
     },
   ];
