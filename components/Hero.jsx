@@ -1,7 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Highlight } from "./ui/hero-highlight";
 import { AuroraBackground } from "./ui/aurora-background";
 
 const Hero = () => {
@@ -64,7 +63,9 @@ const Hero = () => {
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className={`m-2 ${cert.rounded ? "rounded-[5px]" : ""} certification-logo`}
+              className={`m-2 ${
+                cert.rounded ? "rounded-[5px]" : ""
+              } certification-logo`}
               style={{ width: cert.defaultWidth, height: cert.defaultHeight }}
             >
               <Image
