@@ -36,31 +36,32 @@ async function getAccessToken() {
 
 export async function GET() {
   try {
-    // Obtenez un nouvel access token en utilisant le refresh token
     const accessToken = await getAccessToken();
 
-    // Utilisez l'access token pour récupérer les posts LinkedIn
     const orgId = "urn:li:organization:15962711";
     const encodedOrgId = encodeURIComponent(orgId);
-    const url = `https://api.linkedin.com/v2/ugcPosts?q=authors&authors=List(${encodedOrgId})`;
+    
+    const url = `https://api.linkedin.com/v2/ugcPosts?q=authors&authors=List(${encodedOrgId})&sortBy=LAST_MODIFIED&count=2`;
 
     const postsResponse = await fetch(url, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${accessToken}`,
         "X-Restli-Protocol-Version": "2.0.0",
+        "Content-Type": "application/json",
+        "Accept": "application/json",
       },
     });
 
     if (!postsResponse.ok) {
+      const errorText = await postsResponse.text();
       throw new Error(
-        `Failed to fetch LinkedIn posts: ${postsResponse.statusText}`
+        `Failed to fetch LinkedIn posts (${postsResponse.status}): ${errorText}`
       );
     }
 
     const postsData = await postsResponse.json();
-
-    // Filtrer pour renvoyer uniquement les 2 derniers posts
+    
     const latestPosts = postsData.elements.slice(0, 2);
 
     return new Response(JSON.stringify(latestPosts), {
@@ -70,6 +71,7 @@ export async function GET() {
       },
     });
   } catch (error) {
+    console.error("LinkedIn API error:", error);
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
