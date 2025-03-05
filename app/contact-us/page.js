@@ -16,7 +16,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.scougalrubber.com/logo.webp",
+        url: "https://www.scougalrubber.com/logo/logo-grey.ico",
         alt: "Scougal Rubber Company Logo",
       },
     ],
@@ -25,7 +25,7 @@ export const metadata = {
     canonical: "https://www.scougalrubber.com/contact-us",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "https://www.scougalrubber.com/logo/logo-grey.ico",
   },
   other: {
     "contact:phone_number": "+1 (775) 284-8500",
@@ -42,7 +42,7 @@ const structuredData = {
   "@type": "Organization",
   name: "Scougal Rubber Corporation",
   url: "https://www.scougalrubber.com",
-  logo: "https://www.scougalrubber.com/logo.webp",
+  logo: "https://www.scougalrubber.com/logo/logo-grey.ico",
   contactPoint: [
     {
       "@type": "ContactPoint",

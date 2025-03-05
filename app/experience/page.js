@@ -16,7 +16,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.scougalrubber.com/logo.webp",
+        url: "https://www.scougalrubber.com/logo/logo-grey.ico",
         alt: "Scougal Rubber Company Logo",
       },
     ],
@@ -25,7 +25,7 @@ export const metadata = {
     canonical: "https://www.scougalrubber.com/experience",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "https://www.scougalrubber.com/logo/logo-grey.ico",
   },
   other: {
     "contact:email": "info@scougalrubber.com",
@@ -71,7 +71,7 @@ const structuredData = {
   "@type": "Organization",
   name: "Scougal Rubber Corporation",
   url: "https://www.scougalrubber.com",
-  logo: "https://www.scougalrubber.com/logo.webp",
+  logo: "https://www.scougalrubber.com/logo/logo-grey.ico",
   description:
     "Scougal Rubber is a leader in custom rubber products and industrial solutions, driven by a team of experts with decades of experience in elastomeric bearings and rubber manufacturing.",
   sameAs: [
