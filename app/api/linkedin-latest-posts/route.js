@@ -1,6 +1,9 @@
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+import { unstable_cache } from 'next/cache'
+
+// Variables d'environnement
+const CLIENT_ID = process.env.CLIENT_ID
+const CLIENT_SECRET = process.env.CLIENT_SECRET
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN
 
 async function getAccessToken() {
   try {
@@ -34,14 +37,15 @@ async function getAccessToken() {
   }
 }
 
-export async function GET() {
-  try {
+const getLatestLinkedInPosts = unstable_cache(
+  async () => {
+    // Récupération du token
     const accessToken = await getAccessToken();
 
     const orgId = "urn:li:organization:15962711";
     const encodedOrgId = encodeURIComponent(orgId);
-    
-    const url = `https://api.linkedin.com/v2/ugcPosts?q=authors&authors=List(${encodedOrgId})&sortBy=LAST_MODIFIED&count=2`;
+
+    const url = `https://api.linkedin.com/v2/ugcPosts?q=authors&authors=List(${encodedOrgId})&sortBy=LAST_MODIFIED&count=5`;
 
     const postsResponse = await fetch(url, {
       method: "GET",
@@ -49,7 +53,7 @@ export async function GET() {
         Authorization: `Bearer ${accessToken}`,
         "X-Restli-Protocol-Version": "2.0.0",
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
     });
 
@@ -61,9 +65,21 @@ export async function GET() {
     }
 
     const postsData = await postsResponse.json();
-    
     const latestPosts = postsData.elements.slice(0, 2);
 
+    return latestPosts;
+  },
+  ['linkedin-latest-posts'],
+  { revalidate: 5, tags: ['linkedinPosts'] }
+);
+
+// Le Handler GET principal
+export async function GET() {
+  try {
+    // On récupère les 2 derniers posts via la fonction cachée
+    const latestPosts = await getLatestLinkedInPosts();
+
+    // On renvoie une réponse JSON
     return new Response(JSON.stringify(latestPosts), {
       status: 200,
       headers: {
