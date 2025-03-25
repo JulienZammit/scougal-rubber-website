@@ -11,7 +11,7 @@ import Modal from "react-modal";
 
 const projects = [
   {
-    name: "Bayway & Caloosahatchee Bridge",
+    name: "Bay Bridge, San Francisco, California",
     slides: [
       { type: "video", src: "https://myblogimages.blob.core.windows.net/videos/Bay_Bridge.webm" },
       { type: "image", src: "/Bayway/bw1.webp" },

@@ -3,7 +3,7 @@ import ProjectsClient from './ProjectsClient';
 export const metadata = {
   title: 'Our Projects - Scougal Rubber | Bridge & Industrial Rubber Solutions',
   description:
-    'Explore the key projects completed by Scougal Rubber, including bridge construction and industrial rubber solutions. Discover how our expertise has been applied in projects like the Bayway & Caloosahatchee Bridge, Hood Canal, and more.',
+    'Explore the key projects completed by Scougal Rubber, including bridge construction and industrial rubber solutions. Discover how our expertise has been applied in projects like the Bay Bridge, San Francisco, California, Hood Canal, and more.',
   keywords:
     'Scougal Rubber projects, bridge construction projects, industrial rubber projects, elastomeric bearings projects, custom rubber solutions, Bayway Bridge, Hood Canal, Advanced American project, Lynn Lake project',
   robots: 'index, follow',
@@ -11,7 +11,7 @@ export const metadata = {
   openGraph: {
     title: 'Our Projects - Scougal Rubber | Bridge & Industrial Rubber Solutions',
     description:
-      "See how Scougal Rubber's expertise has been applied in various bridge and industrial projects. Explore our completed projects including Bayway & Caloosahatchee Bridge and Advanced American.",
+      "See how Scougal Rubber's expertise has been applied in various bridge and industrial projects. Explore our completed projects including Bay Bridge, San Francisco, California and Advanced American.",
     url: 'https://www.scougalrubber.com/projects',
     type: 'website',
     images: [
@@ -36,9 +36,9 @@ export const metadata = {
 // Define key projects with project-specific information
 const projects = [
   {
-    name: 'Bayway & Caloosahatchee Bridge',
+    name: 'Bay Bridge, San Francisco, California',
     description:
-      'Scougal Rubber supplied elastomeric bearings for the Bayway & Caloosahatchee Bridge, ensuring long-lasting, durable support for critical infrastructure.',
+      'Scougal Rubber supplied elastomeric bearings for the Bay Bridge, San Francisco, California, ensuring long-lasting, durable support for critical infrastructure.',
     image: 'https://www.scougalrubber.com/Bayway/bw1.webp',
     date: '2020-05-01',
     location: {
