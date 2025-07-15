@@ -11,30 +11,58 @@ export default function RubberPartsClient() {
   const faqs = [
     {
       id: 1,
-      question: "What are the lead times for your products?",
+      question: "What types of industrial rubber products do you manufacture?",
       answer:
-        "Our lead times for products related to bridge and elevated roadway construction are aligned with your specific project timelines and site scheduling requirements. With construction set dates being a key factor, we are fully transparent and upfront with customers regarding delivery schedules and milestones. To further enhance our service, our dedicated project coordinator will work closely with you, ensuring that all aspects of the project are in sync with your site plans and timelines. As the #1 company in the industry for customer service, we pride ourselves on being highly responsive and focused on meeting the needs of our clients. Customers can expect a response from our staff within 24 hours or sooner, ensuring seamless communication and coordination throughout the project. Our goal is to not only meet your deadlines but also exceed expectations by delivering high-quality products exactly when you need them, keeping your construction schedule on track.",
+        "Scougal Rubber designs and produces a wide range of custom-molded rubber components for industrial, marine, aerospace, military, and food processing applications. Our product capabilities include vibration isolators, shock mounts, bumpers, gaskets, bushings, molded sleeves, and more. Each product is engineered for the specific performance, environmental, and regulatory requirements of its application.",
       href: "#",
     },
     {
       id: 2,
-      question: "What are your quality assurance standards?",
+      question: "Do you offer engineering support for custom parts?",
       answer:
-        "At Scougal Rubber Corporation, we uphold rigorous quality assurance standards, certified through the American Institute of Steel Construction (AISC). Our AISC certification reflects our commitment to producing high-quality products that meet or exceed industry requirements. Our comprehensive quality assurance process includes detailed inspection plans (IP), non-destructive testing (NDT), and destructive testing, along with full material traceability to ensure compliance with both customer specifications and regulatory standards. We are also fully aligned with the 'Buy American' standard, ensuring that all materials used in our products are sourced domestically, supporting U.S. manufacturing and infrastructure projects. In addition to our stringent inspection processes, we operate a world-class laboratory that performs both destructive and non-destructive testing to guarantee the integrity of the materials used in our finished products. This testing ensures that our components deliver optimal performance and durability. Our QA professionals carefully monitor each step of production, from raw material verification to final product inspection, ensuring that our customers receive products built to the highest standards of excellence and reliability.",
+        "Yes. Our in-house engineering team works directly with clients to provide material recommendations, design consultation, and manufacturing feasibility guidance. From initial concept to production tooling, we help ensure every component meets your durability, compliance, and cost-efficiency goals.",
       href: "#",
     },
     {
       id: 3,
-      question: "What are your production capabilities?",
+      question: "What are your quality assurance and certification standards?",
       answer:
-        "Scougal Rubber Corporation has significantly expanded its capabilities by incorporating steel fabrication into its portfolio, now equipped with advanced CNC machinery designed for handling larger, more complex projects. This strategic addition enables the company to tackle an even wider range of industrial demands, providing precision and efficiency for both small-scale and large-scale fabrications. Alongside this, Scougal has invested in a state-of-the-art welding department, which ensures perfect traceability on all products from start to finish, a crucial factor for industries requiring high-quality standards and accountability. With these new resources, Scougal can deliver projects of increased scale and complexity, meeting its customers' evolving needs without compromising on quality or precision. By enhancing its production capacity and introducing cutting-edge steel fabrication technologies, Scougal Rubber Corporation continues to prioritize customer satisfaction. The company’s commitment to meeting tight deadlines and maintaining the highest levels of product quality positions it as a reliable partner for industries that demand both excellence and speed. The seamless integration of CNC machining and a robust welding department allows Scougal to meet the ever-growing requirements of its clients while ensuring every product is meticulously crafted and delivered on time. This expansion underscores Scougal’s dedication to innovation and its resolve to exceed customer expectations in terms of both quality and service.",
+        "Scougal Rubber is CAGE Code registered and adheres to strict quality protocols for both commercial and government contracts. We maintain certifications with ISO9001, AS9100, NTPEP, PennDOT, and other regulatory bodies as required. For industrial clients, we offer full traceability, material certifications, and custom testing solutions upon request.",
       href: "#",
     },
     {
       id: 4,
-      question: "Do you offer inventory programs?",
+      question: "What materials do you work with?",
       answer:
-        "Scougal Rubber Corporation stands out for metal fabrication needs due to our ability to deliver precision and efficiency at scale. Our team is not only skilled in handling complex fabrication but is also dedicated to adapting to the unique requirements of each project. From start to finish, we ensure seamless collaboration, with clear communication and fast response times that keep your project on track. With our advanced CNC machinery and highly skilled welding teams, we are equipped to take on challenging metal fabrication tasks while maintaining strict adherence to industry standards. What truly sets us apart is our customer-first approach, ensuring we’re not just a vendor but a reliable partner in your project’s success. We provide full transparency throughout the process, delivering quality materials and expert craftsmanship that meets your specifications. Our long-standing reputation for excellent service and our ability to handle both large and small-scale projects make us the ideal choice for your metal fabrication needs. When you choose Scougal, you’re opting for a company that values precision, reliability, and a commitment to exceeding your expectations.",
+        "We mold and bond a broad range of elastomers including natural rubber, EPDM, neoprene, nitrile, SBR, silicone, and high-performance compounds such as Viton®. We also offer rubber-to-metal bonding, fabric-reinforced elastomers, and specialty formulations tailored to extreme temperature, chemical, or load-bearing environments.",
+      href: "#",
+    },
+    {
+      id: 5,
+      question: "What are your lead times?",
+      answer:
+        "Lead times depend on part complexity, order volume, and current production load. Standard molded components typically ship in 4 to 6 weeks. Custom parts requiring tooling or testing may take longer. We're happy to provide project-specific lead time estimates upon review.",
+      href: "#",
+    },
+    {
+      id: 6,
+      question: "Can you support government or defense-related projects?",
+      answer:
+        "Yes. Scougal Rubber holds a valid CAGE Code and has a long-standing history of supporting defense, aerospace, and government infrastructure projects. Our team understands the compliance, documentation, and procurement requirements specific to federal and defense-related work.",
+      href: "#",
+    },
+    {
+      id: 7,
+      question: "Do you offer stocking or fulfillment programs?",
+      answer:
+        "We offer flexible inventory programs for high-volume and recurring orders. Whether you need just-in-time fulfillment, safety stock solutions, or multi-site drop shipments, our team can develop a stocking program tailored to your operational needs.",
+      href: "#",
+    },
+    {
+      id: 8,
+      question: "How do I get started with a custom part?",
+      answer:
+        "Simply contact us with your drawings, specs, or a sample. Our engineering team will evaluate your requirements and respond with recommendations, quotes, and next steps. We're equipped to handle both prototype development and full-scale production.",
       href: "#",
     },
   ];

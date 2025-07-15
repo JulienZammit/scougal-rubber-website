@@ -2,12 +2,11 @@
 import Head from "next/head";
 import Hero from "../components/Hero";
 import { ImagesSlider } from "../components/ui/images-slider";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { ImprovedModal, ModalButton, NavigationLink } from "../components/ui/modal-components";
 import CallToAction from "@/components/CallToAction";
 import FaqSection from "@/components/FaqSection";
 
@@ -51,28 +50,31 @@ const faqs = [
   {
     id: 1,
     question: "What are the lead times for your products?",
-    answer: "Scougal Rubber is committed to providing the fastest lead times in the industry. No matter the size or scope of your project, we have the expertise to deliver exceptional results. Our dedicated outreach program ensures that our customer service team responds to every inquiry within 24 hours, demonstrating our commitment to your satisfaction.",
+    answer: "Lead times depend on product type and order volume, but our integrated production model enables efficient scheduling. Standard elastomeric bearings and stock components typically ship within 4 to 8 weeks. Specialized civil and military-grade components—fabricated in Seattle—or large-scale bridge bearings—manufactured in Reno—may require additional engineering review. With in-house steel machining and fabrication, we reduce external dependencies and keep your project moving forward.",
   },
   {
     id: 2,
     question: "What are your quality assurance standards?",
-    answer: "Scougal Rubber maintains a strict quality assurance program in order to exceed your expectations with the adaptation of ISO 9001:2015 and AS9100.",
+    answer: "Scougal Rubber's quality system is built around precision, compliance, and accountability. Across both sites, we proudly meet or exceed standards set by AS9100, ISO9001, AISC, AASHTO, NT-PEP, and various DOT agencies such as Bulletin15, across the US, with government procurement requirements—including CAGE code qualification for federal contracts. From elastomer molding to precision steel fabrication, our QA teams in both Reno and Seattle conduct strict dimensional, performance, and material inspections at every step. Whether your project involves seismic isolation, aerospace-grade components, or military applications, quality is never optional.",
   },
   {
     id: 3,
     question: "What are your production capabilities?",
-    answer: "Scougal Rubber has the capability to produce and test steel reinforced and plain elastomeric bearings for bridges and buildings.",
+    answer: "Our Reno facility specializes in the production of structural bridge bearings, expansion devices, and elastomeric systems used throughout North America. Meanwhile, our Seattle operation focuses on advanced rubber molding, specialty solutions for civil infrastructure, and government and aerospace projects requiring tight tolerances and full compliance documentation. With newly added steel plate machining and fabrication, we now deliver complete assembly solutions tailored for next-generation bridge construction and advanced industrial needs. Scougal Rubber's products are also found in diverse industries including automotive, marine, aerospace, food processing, and military applications. Our ability to meet highly specialized requirements positions us as a trusted partner across sectors demanding performance, durability, and regulatory compliance.",
   },
   {
     id: 4,
     question: "Do you offer inventory programs?",
-    answer: "Yes, Scougal Rubber offers inventory programs to support your just-in-time manufacturing requirements.",
+    answer: "Yes. We offer custom stocking solutions to support large infrastructure rollouts and long-term contracts. These programs are ideal for DOT-approved product lines and specialty components where guaranteed availability and just-in-time delivery are essential. Let's tailor an inventory program to meet your operational and logistical needs.",
+  },
+  {
+    id: 5,
+    question: "Expert Assistance and Material Selection",
+    answer: "Scougal Rubber's engineering team brings decades of experience in polymer chemistry, molding techniques, and structural integration. Whether you're selecting elastomers for seismic isolation or rubber-metal bonds for aerospace assemblies, we help you choose the right materials and manufacturing approach for maximum performance, lifecycle efficiency, and compliance with all relevant standards.",
   },
 ];
 
 export default function MainPageClient() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -158,31 +160,19 @@ export default function MainPageClient() {
                 {" "}| Phone: (775) 284-8500
               </p>
             </div>
-            <ModalButton onClick={() => setIsModalOpen(true)}>
-              Explore Our Products
-            </ModalButton>
+            <Link href="/bearing-pads">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative px-4 py-2 rounded-lg bg-blue-500 text-white transition-colors hover:bg-blue-500"
+              >
+                <span className="relative z-10">Explore Our Products</span>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </motion.button>
+            </Link>
           </motion.div>
         </ImagesSlider>
       </div>
-
-      <ImprovedModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-        <div className="space-y-6">
-          <h3 className="text-2xl font-bold text-gray-900">
-            Rubber Pads & Bearings
-          </h3>
-          <p className="text-gray-600">
-            Explore our high-quality rubber solutions tailored for various industrial applications.
-          </p>
-          <div className="grid grid-cols-2 gap-4">
-            <NavigationLink href="/rubber-parts">
-              Rubber Pads
-            </NavigationLink>
-            <NavigationLink href="/bearing-pads">
-              Bearings
-            </NavigationLink>
-          </div>
-        </div>
-      </ImprovedModal>
 
       <div className="flex flex-col md:p-20 p-4 gap-4">
         <motion.div
@@ -230,9 +220,14 @@ export default function MainPageClient() {
               </p>
             </div>
             <Link href="/rubber-parts" scroll={false}>
-              <ModalButton>
-                Explore Industrial Products
-              </ModalButton>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative px-4 py-2 rounded-lg bg-blue-500 text-white transition-colors hover:bg-blue-500"
+              >
+                <span className="relative z-10">Explore Industrial Products</span>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </motion.button>
             </Link>
           </motion.div>
         </ImagesSlider>
