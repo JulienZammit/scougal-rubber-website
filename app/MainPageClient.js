@@ -50,7 +50,7 @@ const faqs = [
   {
     id: 1,
     question: "What are the lead times for your products?",
-    answer: "Lead times depend on product type and order volume, but our integrated production model enables efficient scheduling. Standard elastomeric bearings and stock components typically ship within 4 to 8 weeks. Specialized civil and military-grade components—fabricated in Seattle—or large-scale bridge bearings—manufactured in Reno—may require additional engineering review. With in-house steel machining and fabrication, we reduce external dependencies and keep your project moving forward.",
+    answer: "Lead times depend on product type and order volume, but our integrated production model enables efficient scheduling. Standard elastomeric bearings and stock components typically ship within 4 to 8 weeks. Specialized civil and military-grade components—fabricated in Seattle—or large-scale bridge bearings—manufactured in Reno—may require additional fabrication time. With in-house steel machining and fabrication, we reduce external dependencies and keep your project moving forward.",
   },
   {
     id: 2,
@@ -60,17 +60,12 @@ const faqs = [
   {
     id: 3,
     question: "What are your production capabilities?",
-    answer: "Our Reno facility specializes in the production of structural bridge bearings, expansion devices, and elastomeric systems used throughout North America. Meanwhile, our Seattle operation focuses on advanced rubber molding, specialty solutions for civil infrastructure, and government and aerospace projects requiring tight tolerances and full compliance documentation. With newly added steel plate machining and fabrication, we now deliver complete assembly solutions tailored for next-generation bridge construction and advanced industrial needs. Scougal Rubber's products are also found in diverse industries including automotive, marine, aerospace, food processing, and military applications. Our ability to meet highly specialized requirements positions us as a trusted partner across sectors demanding performance, durability, and regulatory compliance.",
-  },
-  {
-    id: 4,
-    question: "Do you offer inventory programs?",
-    answer: "Yes. We offer custom stocking solutions to support large infrastructure rollouts and long-term contracts. These programs are ideal for DOT-approved product lines and specialty components where guaranteed availability and just-in-time delivery are essential. Let's tailor an inventory program to meet your operational and logistical needs.",
+    answer: "Our Reno facility specializes in the production of structural bridge bearings, and elastomeric systems used throughout North America. Meanwhile, our Seattle operation focuses on advanced rubber molding, specialty solutions for civil infrastructure, and government and aerospace projects requiring tight tolerances and full compliance documentation. With newly added steel plate machining and fabrication, we now deliver complete assembly solutions tailored for next-generation bridge construction and advanced industrial needs. Scougal Rubber's products are also found in diverse industries including automotive, marine, aerospace, food processing, and military applications. Our ability to meet highly specialized requirements positions us as a trusted partner across sectors demanding performance, durability, and regulatory compliance.",
   },
   {
     id: 5,
     question: "Expert Assistance and Material Selection",
-    answer: "Scougal Rubber's engineering team brings decades of experience in polymer chemistry, molding techniques, and structural integration. Whether you're selecting elastomers for seismic isolation or rubber-metal bonds for aerospace assemblies, we help you choose the right materials and manufacturing approach for maximum performance, lifecycle efficiency, and compliance with all relevant standards.",
+    answer: "Scougal Rubber's team brings decades of experience in steel fabrication, rubber molding techniques, and structural integration. Whether you're selecting elastomers for seismic isolation or rubber-metal bonds for aerospace assemblies, we help you choose the right materials and manufacturing approach for maximum performance, lifecycle efficiency, and compliance with all relevant standards.",
   },
 ];
 

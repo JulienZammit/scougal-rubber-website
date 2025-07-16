@@ -13,7 +13,7 @@ export default function BearingPadsClient() {
       id: 1,
       question: "What are the lead times for your products?",
       answer:
-        "Lead times vary depending on the complexity and volume of the order, but we strive to maintain competitive turnaround times across all product lines. Our vertically integrated operations and in-house machining, fabrication, and molding allow us to control production schedules and reduce delays. For standard elastomeric bearings and commonly ordered components, lead times typically range from 4 to 8 weeks. Custom steel-fabricated products may require additional engineering and scheduling time—please contact us for an accurate estimate.",
+        "Lead times vary depending on the complexity and volume of the order, but we strive to maintain competitive turnaround times across all product lines. Our vertically integrated operations and in-house machining, fabrication, and molding allow us to control production schedules and reduce delays. For standard elastomeric bearings and commonly ordered components, lead times typically range from 4 to 8 weeks. Custom steel-fabricated products may require additional scheduling time—please contact us for an accurate estimate.",
       href: "#",
     },
     {
@@ -27,16 +27,9 @@ export default function BearingPadsClient() {
       id: 3,
       question: "What are your production capabilities?",
       answer:
-        "We specialize in manufacturing elastomeric bearings, laminated bearing pads, seismic isolation systems, and expansion joints—now complemented by advanced metalworking capabilities. With the integration of steel plate machining and fabrication into our infrastructure, we are now positioned to deliver complete bearing assemblies and structural components tailored for modern bridge construction, heavy civil projects, and specialty applications. Whether you're sourcing high-load multi-rotational bearings or need precision-fabricated plates for structural integration, we can support your project from design through delivery.",
+        "We specialize in manufacturing elastomeric bearings, laminated bearing pads, seismic isolation systems, —now complemented by advanced metalworking capabilities. With the integration of steel plate machining and fabrication into our infrastructure, we are now positioned to deliver complete bearing assemblies and structural components tailored for modern bridge construction, heavy civil projects, and specialty applications.",
       href: "#",
-    },
-    {
-      id: 4,
-      question: "Do you offer inventory programs?",
-      answer:
-        "Yes. Scougal Rubber offers customized inventory and stocking programs to help clients reduce lead times and manage project logistics more efficiently. Our programs are ideal for multi-phase infrastructure projects and long-term partnerships where consistent availability is critical. Let us work with your project timeline to ensure the materials you need are ready when and where you need them.",
-      href: "#",
-    },
+    }
   ];
 
   const certifications = [

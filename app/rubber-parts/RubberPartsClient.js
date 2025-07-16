@@ -62,7 +62,7 @@ export default function RubberPartsClient() {
       id: 8,
       question: "How do I get started with a custom part?",
       answer:
-        "Simply contact us with your drawings, specs, or a sample. Our engineering team will evaluate your requirements and respond with recommendations, quotes, and next steps. We're equipped to handle both prototype development and full-scale production.",
+        "Simply contact us with your drawings, specs, or a sample. Our team will evaluate your requirements and respond with recommendations, quotes, and next steps. We're equipped to handle both prototype development and full-scale production.",
       href: "#",
     },
   ];
