@@ -73,12 +73,6 @@ export default async function sitemap() {
       changefreq: "weekly",
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/ramps`,
-      lastModified: toISODate("2025-02-07T11:07:45.253Z"),
-      changefreq: "weekly",
-      priority: 0.9,
-    },
   ];
 
   const blogIndex = {

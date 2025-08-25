@@ -142,23 +142,6 @@ const structuredData = {
         availability: "https://schema.org/InStock",
       },
     },
-    // =========== PRODUCT 4 ===========
-    {
-      "@type": "Product",
-      "@id": "https://www.scougalrubber.com/ramps",
-      name: "Scougal Ramps",
-      description:
-        "Reusable, durable ramps designed for efficient road plate management, reducing cold mix usage and improving road safety.",
-      url: "https://www.scougalrubber.com/ramps",
-      image: "https://www.scougalrubber.com/ramps/ramp1.webp",
-      offers: {
-        "@type": "Offer",
-        url: "https://www.scougalrubber.com/ramps",
-        priceCurrency: "USD",
-        price: 0,
-        availability: "https://schema.org/InStock",
-      },
-    },
   ],
 };
 

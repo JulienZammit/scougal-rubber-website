@@ -1,19 +1,13 @@
 import RampsClient from "./RampsClient";
 
 export const metadata = {
-  title:
-    "Scougal Ramps - Efficient Road Plate Management & Cold Mix Reduction | Scougal Rubber",
+  title: "Archived: Scougal Ramps (Discontinued Product)",
   description:
-    "Boost productivity with Scougal Ramps, durable and reusable solutions for efficient road plate management. Our ramps reduce cold mix usage, prevent site damage, and enhance road safety on construction sites.",
-  keywords:
-    "Scougal Rubber ramps, road plate management, construction ramps, reusable ramps, cold mix reduction, road safety solutions, durable ramps, efficient road plate handling, prevent damage claims",
-  robots: "index, follow",
-  author: "Scougal Rubber Corporation",
+    "This page is archived. Scougal Ramps are no longer offered.",
+  robots: "noindex, nofollow",
   openGraph: {
-    title:
-      "Scougal Ramps - Efficient Road Plate Management & Cold Mix Reduction | Scougal Rubber",
-    description:
-      "Enhance your construction workflow with Scougal Ramps. Our reusable ramps streamline road plate management, reduce cold mix usage, and protect worksites, ensuring enhanced road safety and productivity.",
+    title: "Archived: Scougal Ramps (Discontinued)",
+    description: "Scougal Ramps are no longer available.",
     url: "https://www.scougalrubber.com/ramps",
     type: "website",
     images: [
@@ -23,77 +17,22 @@ export const metadata = {
       },
     ],
   },
-  alternates: {
-    canonical: "https://www.scougalrubber.com/ramps",
-  },
-  icons: {
-    icon: "https://www.scougalrubber.com/logo/logo-grey.ico",
-  },
-  other: {
-    "contact:email": "info@scougalrubber.com",
-    "contact:phone_number": "+1 (775) 284-8500",
-  },
+  alternates: { canonical: "https://www.scougalrubber.com/ramps" },
+  icons: { icon: "https://www.scougalrubber.com/logo/logo-grey.ico" },
 };
 
+// Minimal structured data indicating archival (no Product rich result)
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Product",
-  "@id": "https://www.scougalrubber.com/ramps",
-  name: "Scougal Ramps - Efficient Road Plate Management",
-  description:
-    "Reusable, durable ramps designed for efficient road plate management. Scougal Ramps reduce cold mix usage, prevent site damage, and enhance road safety on construction sites.",
+  "@type": "WebPage",
+  name: "Archived: Scougal Ramps",
+  description: "Archived page for a discontinued product.",
   url: "https://www.scougalrubber.com/ramps",
-  image: "https://www.scougalrubber.com/ramps/ramp1.webp",
-  offers: {
-    "@type": "Offer",
-    url: "https://www.scougalrubber.com/ramps",
-    priceCurrency: "USD",
-    price: 0,
-    availability: "https://schema.org/InStock",
-  },
-  additionalProperty: [
-    {
-      "@type": "PropertyValue",
-      name: "Durability",
-      value: "Reusable for long-term projects",
-    },
-    {
-      "@type": "PropertyValue",
-      name: "Efficiency",
-      value: "Reduces cold mix and eliminates disposal issues",
-    },
-    {
-      "@type": "PropertyValue",
-      name: "Safety",
-      value: "Prevents site damage and enhances road safety",
-    },
-  ],
-  provider: {
-    "@type": "Organization",
+  isPartOf: {
+    "@type": "WebSite",
     name: "Scougal Rubber Corporation",
-    url: "https://www.scougalrubber.com",
-    logo: "https://www.scougalrubber.com/logo/logo-grey.ico",
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+1-775-284-8500",
-      contactType: "Customer Service",
-      email: "info@scougalrubber.com",
-      availableLanguage: ["English"],
-      areaServed: "US",
-    },
-  },
-  areaServed: {
-    "@type": "Place",
-    name: "US",
-  },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+1-775-284-8500",
-    contactType: "Customer Service",
-    email: "info@scougalrubber.com",
-    availableLanguage: ["English"],
-    areaServed: "US",
-  },
+    url: "https://www.scougalrubber.com"
+  }
 };
 
 export default function Ramps() {
@@ -103,7 +42,12 @@ export default function Ramps() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <RampsClient />
+      <div className="max-w-3xl mx-auto px-6 py-20 text-center">
+        <h1 className="text-3xl font-bold mb-6">Scougal Ramps (Discontinued)</h1>
+        <p className="text-slate-600 mb-4">This product line has been retired and is no longer available for purchase.</p>
+        <p className="text-slate-600 mb-8">For current solutions please explore our other offerings or contact us for assistance.</p>
+        <a href="/" className="inline-block bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-500 transition">Return to Home</a>
+      </div>
     </>
   );
 }

@@ -13,7 +13,6 @@ const menuItems = [
     links: [
       { href: "/bearing-pads", text: "Bearing Pads" },
       { href: "/rubber-parts", text: "Industrial Rubber Parts" },
-      { href: "/ramps", text: "Ramps" },
       { href: "/steel", text: "Steel Fabrication" },
     ],
   },
@@ -23,6 +22,7 @@ const menuItems = [
       { href: "/company", text: "Company" },
       { href: "/experience", text: "Experience" },
       { href: "/projects", text: "Projects" },
+      { href: "/behind-the-process", text: "Behind the Process" },
     ],
   },
 ];
@@ -131,29 +131,25 @@ const Header = () => {
                   e.preventDefault();
                   toggleMenu(index);
                 }}
-                className={`${styles.dropdown} ${
-                  isActive(item) ? styles.active : ""
-                }`}
+                className={`${styles.dropdown} ${isActive(item) ? styles.active : ""
+                  }`}
               >
                 {item.title}
                 <span
-                  className={`${styles.arrow} ${
-                    activeMenu === index ? styles.active : ""
-                  }`}
+                  className={`${styles.arrow} ${activeMenu === index ? styles.active : ""
+                    }`}
                 >
                   <MdKeyboardArrowDown
                     size={24}
-                    className={`${styles.arrow} ${
-                      activeMenu === index ? "rotate" : ""
-                    }`}
+                    className={`${styles.arrow} ${activeMenu === index ? "rotate" : ""
+                      }`}
                   />
                 </span>
               </a>
               {activeMenu === index && (
                 <ul
-                  className={`${styles.submenu} ${
-                    activeMenu === index ? styles.active : ""
-                  }`}
+                  className={`${styles.submenu} ${activeMenu === index ? styles.active : ""
+                    }`}
                 >
                   {item.links.map((link, linkIndex) => (
                     <li key={linkIndex}>

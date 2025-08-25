@@ -79,6 +79,17 @@ const projects = [
       country: 'USA',
     },
   },
+  {
+    name: 'Interstate 95 Rehab, Pennsylvania',
+    description:
+      'Scougal Rubber supplied elastomeric components for the Interstate 95 rehabilitation in Pennsylvania, supporting critical structural performance and longevity.',
+    image: 'https://www.scougalrubber.com/project/i95-rehab-thumbnail.webp', // placeholder thumbnail
+    date: '2024-06-01',
+    location: {
+      city: 'Pennsylvania',
+      country: 'USA',
+    },
+  },
 ];
 
 // Generate structured data for the projects

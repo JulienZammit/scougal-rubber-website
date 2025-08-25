@@ -50,8 +50,41 @@ const projects = [
       { type: "image", src: "/lynnlake/ll3.webp" },
       { type: "image", src: "/lynnlake/ll4.webp" }
     ]
+  },
+  {
+    name: "Interstate 95 Rehab, Pennsylvania",
+    slides: [
+      { type: "video", src: "/project/interstate-95-rehab.webm" }, // primary video (upload expected)
+      { type: "image", src: "/project/i95-1.webp" }, // image placeholders (safe fallback added)
+      { type: "image", src: "/project/i95-2.webp" }
+    ]
   }
 ];
+
+function ImageSlide({ src, alt, onClick }) {
+  const [error, setError] = useState(false);
+  return (
+    <div className="relative w-full h-full">
+      {!error ? (
+        <Image
+          src={src}
+          alt={alt}
+          layout="fill"
+          loading="eager"
+          className="object-cover rounded-[5px] cursor-pointer"
+          onClick={() => onClick && onClick(src)}
+          onError={() => setError(true)}
+        />
+      ) : (
+        <div className="w-full h-full flex flex-col items-center justify-center bg-slate-800 rounded-[5px] text-slate-200 gap-3">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-80"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><path d="M3 14l4-4a2 2 0 0 1 3 0l7 7" /><path d="M14 14l1-1a2 2 0 0 1 3 0l3 3" /></svg>
+          <p className="text-sm font-medium">Image placeholder</p>
+          <p className="text-[11px] uppercase tracking-wide text-slate-400">Upload: {src}</p>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function NextArrow(props) {
   const { onClick } = props;
@@ -142,15 +175,14 @@ export default function ProjectsClient() {
                         loop
                         playsInline
                         preload="auto"
-                      />
+                      >
+                        Your browser does not support the video tag.
+                      </video>
                     ) : (
-                      <Image
+                      <ImageSlide
                         src={slide.src}
                         alt={project.name + " " + (slideIndex + 1)}
-                        layout="fill"
-                        loading="eager"
-                        className="object-cover rounded-[5px] cursor-pointer"
-                        onClick={() => openModal(slide.src)}
+                        onClick={openModal}
                       />
                     )}
                   </div>
