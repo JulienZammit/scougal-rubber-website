@@ -4,9 +4,10 @@ import HeroAboutContact from "@/components/HeroAboutContact";
 import Image from "next/image";
 import { useState } from "react";
 
-// Asset paths (update if filenames differ once uploaded)
-const UNIVERSITY_ICON = "/logo/scougal-rubber-university.webp"; // placeholder
-const MIXING_VIDEO = "/videos/mixing-a-batch.webm"; // placeholder
+// Asset paths (updated with provided real files)
+const UNIVERSITY_ICON = "/logo-scogual-university.png";
+// Mixing video mis en pause (client raccourcit la vidéo) => garder la constante si besoin futur, mais non utilisée tant que placeholder actif
+const MIXING_VIDEO = "/mixing-a-batch.mp4"; // TEMP: not rendered (UNDER CONSTRUCTION)
 
 // Minimal, non-speculative neutral copy (client will supply more later)
 const INTRO_TEXT = `A growing collection of short clips from our production floor. We’ll add more segments over time.`;
@@ -16,9 +17,9 @@ const CLIPS = [
     {
         id: "mixing",
         title: "Mixing",
-        note: "Clip available",
-        available: true,
-        src: MIXING_VIDEO,
+        note: "Under Construction",
+        available: false, // désactivé jusqu'à réception de la version finale
+        // src: MIXING_VIDEO, // retiré pour empêcher tout chargement précoce
         poster: "/project/banner.webp",
     },
     {
@@ -105,9 +106,16 @@ export default function BehindTheProcessClient() {
                                             <video
                                                 key={currentClip.id}
                                                 src={currentClip.src}
-                                                className="w-full h-full object-cover"
+                                                width={1920}
+                                                height={1080}
+                                                className="w-full h-full object-contain bg-black"
+                                                style={{ aspectRatio: '16 / 9' }}
                                                 controls
                                                 playsInline
+                                                onLoadedMetadata={(e) => {
+                                                    const video = e.currentTarget;
+                                                    const ar = video.videoWidth && video.videoHeight ? (video.videoWidth / video.videoHeight) : (16 / 9);
+                                                }}
                                                 onError={() => setVideoError(true)}
                                                 poster={currentClip.poster || "/project/banner.webp"}
                                             >
@@ -119,6 +127,14 @@ export default function BehindTheProcessClient() {
                                                 <p className="text-sm opacity-70">Could not load video file.</p>
                                             </div>
                                         )
+                                    ) : currentClip.id === 'mixing' ? (
+                                        <div className="flex flex-col items-center justify-center gap-4 text-white/85 p-10">
+                                            <span className="px-4 py-1.5 text-xs font-semibold tracking-widest bg-amber-500/20 text-amber-200 border border-amber-400/40 rounded-full">
+                                                UNDER CONSTRUCTION
+                                            </span>
+                                            <p className="text-lg font-semibold">Updated Mixing clip coming soon</p>
+                                            <p className="text-sm max-w-md text-center opacity-75">We’re preparing a concise version of this process demonstration. Please check back shortly.</p>
+                                        </div>
                                     ) : (
                                         <div className="flex flex-col items-center justify-center text-white/80 p-10">
                                             <p className="text-lg font-medium mb-2">Not available yet</p>
@@ -149,8 +165,8 @@ export default function BehindTheProcessClient() {
                                     viewport={{ once: true }}
                                     transition={{ duration: 0.45, delay: i * 0.05, ease: "easeOut" }}
                                     className={`group relative text-left rounded-xl p-5 w-full border backdrop-blur-sm transition-all duration-300 overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 ${selected
-                                            ? "border-blue-500 bg-gradient-to-br from-white to-blue-50 shadow-md"
-                                            : "border-slate-200 bg-white/95 hover:border-blue-400 hover:shadow-md hover:-translate-y-1"
+                                        ? "border-blue-500 bg-gradient-to-br from-white to-blue-50 shadow-md"
+                                        : "border-slate-200 bg-white/95 hover:border-blue-400 hover:shadow-md hover:-translate-y-1"
                                         } ${!clip.available ? "opacity-75" : ""}`}
                                     aria-pressed={selected}
                                     aria-current={selected ? "true" : undefined}
@@ -159,8 +175,8 @@ export default function BehindTheProcessClient() {
                                     <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 via-sky-50/0 to-blue-100/0 opacity-0 group-hover:opacity-100 transition-colors duration-300 pointer-events-none" />
                                     <div className="relative flex items-start gap-3">
                                         <div className={`flex h-8 w-8 items-center justify-center rounded-md text-white text-xs font-medium shadow-sm ${clip.available
-                                                ? (selected ? "bg-gradient-to-br from-blue-600 to-sky-500" : "bg-gradient-to-br from-blue-500 to-sky-400")
-                                                : "bg-slate-300"
+                                            ? (selected ? "bg-gradient-to-br from-blue-600 to-sky-500" : "bg-gradient-to-br from-blue-500 to-sky-400")
+                                            : "bg-slate-300"
                                             }`}>
                                             {clip.available ? (
                                                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -177,8 +193,10 @@ export default function BehindTheProcessClient() {
                                             <h2 className="text-base font-semibold tracking-wide text-slate-800 mb-1 flex items-center flex-wrap gap-2">
                                                 {clip.title}
                                                 {!clip.available && (
-                                                    <span className="text-[10px] font-medium uppercase tracking-wider text-slate-500 border border-slate-300 px-1.5 py-0.5 rounded bg-white/70">
-                                                        Soon
+                                                    <span className={`text-[10px] font-medium uppercase tracking-wider px-1.5 py-0.5 rounded border ${clip.id === 'mixing'
+                                                        ? 'bg-amber-50 text-amber-600 border-amber-300'
+                                                        : 'text-slate-500 border-slate-300 bg-white/70'}`}>
+                                                        {clip.id === 'mixing' ? 'Under Construction' : 'Soon'}
                                                     </span>
                                                 )}
                                                 {selected && (

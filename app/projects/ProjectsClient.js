@@ -54,9 +54,7 @@ const projects = [
   {
     name: "Interstate 95 Rehab, Pennsylvania",
     slides: [
-      { type: "video", src: "/project/interstate-95-rehab.webm" }, // primary video (upload expected)
-      { type: "image", src: "/project/i95-1.webp" }, // image placeholders (safe fallback added)
-      { type: "image", src: "/project/i95-2.webp" }
+      { type: "video", src: "https://myblogimages.blob.core.windows.net/videos/I95RollerBearingsPA.mp4" },
     ]
   }
 ];
@@ -219,3 +217,4 @@ export default function ProjectsClient() {
     </>
   );
 }
+
