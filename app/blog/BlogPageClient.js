@@ -1,5 +1,6 @@
 "use client";
 import FadeInAnimation from "@/components/FadeInAnimation";
+import LinkedInPostGrid from "@/components/LinkedInPostGrid";
 import Pagination from "@/components/Pagination";
 import {
   ArrowRight,
@@ -12,7 +13,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const POSTS_PER_PAGE = 6;
 
@@ -21,6 +22,7 @@ export default function BlogPageClient({ allPosts }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [viewMode, setViewMode] = useState("grid");
+  const [posts, setPosts] = useState([]);
 
   const publishedPosts = (allPosts || []).filter(
     (post) => post.status !== "draft"
@@ -52,6 +54,15 @@ export default function BlogPageClient({ allPosts }) {
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedCategory, searchTerm]);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const res = await fetch("/api/linkedin-latest-posts");
+      const data = await res.json();
+      setPosts(data || []);
+    }
+    fetchPosts();
+  }, []);
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
@@ -149,9 +160,8 @@ export default function BlogPageClient({ allPosts }) {
                     ))}
                   </select>
                   <div
-                    className={`absolute top-1/2 right-3 transform -translate-y-1/2 transition-transform duration-200 pointer-events-none ${
-                      isOpen ? "rotate-180" : "rotate-0"
-                    }`}
+                    className={`absolute top-1/2 right-3 transform -translate-y-1/2 transition-transform duration-200 pointer-events-none ${isOpen ? "rotate-180" : "rotate-0"
+                      }`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -173,21 +183,19 @@ export default function BlogPageClient({ allPosts }) {
               <div className="flex gap-2">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`p-3 rounded-md border ${
-                    viewMode === "grid"
+                  className={`p-3 rounded-md border ${viewMode === "grid"
                       ? "bg-blue-500 text-white border-blue-500"
                       : "bg-white/80 border-gray-200 hover:bg-gray-50"
-                  } transition-colors backdrop-blur-sm`}
+                    } transition-colors backdrop-blur-sm`}
                 >
                   Grid View
                 </button>
                 <button
                   onClick={() => setViewMode("list")}
-                  className={`p-3 rounded-md border ${
-                    viewMode === "list"
+                  className={`p-3 rounded-md border ${viewMode === "list"
                       ? "bg-blue-500 text-white border-blue-500"
                       : "bg-white/80 border-gray-200 hover:bg-gray-50"
-                  } transition-colors backdrop-blur-sm`}
+                    } transition-colors backdrop-blur-sm`}
                 >
                   List View
                 </button>
@@ -211,16 +219,14 @@ export default function BlogPageClient({ allPosts }) {
             >
               <Link
                 href={`/blog/${post.slug}`}
-                className={`group relative bg-white rounded-md shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden ${
-                  viewMode === "list" ? "flex" : "block"
-                }`}
+                className={`group relative bg-white rounded-md shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden ${viewMode === "list" ? "flex" : "block"
+                  }`}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
 
                 <div
-                  className={`relative ${
-                    viewMode === "list" ? "w-1/3" : "h-48"
-                  } overflow-hidden`}
+                  className={`relative ${viewMode === "list" ? "w-1/3" : "h-48"
+                    } overflow-hidden`}
                 >
                   <Image
                     src={post.coverImage || "/placeholder-blog.jpg"}
@@ -329,11 +335,10 @@ export default function BlogPageClient({ allPosts }) {
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat.toLowerCase())}
-                    className={`px-4 py-2 rounded-md text-sm font-medium ${
-                      selectedCategory === cat.toLowerCase()
+                    className={`px-4 py-2 rounded-md text-sm font-medium ${selectedCategory === cat.toLowerCase()
                         ? "bg-blue-500 text-white shadow-sm"
                         : "bg-gray-100/80 text-gray-700 hover:bg-gray-200/80"
-                    } transition-all duration-300`}
+                      } transition-all duration-300`}
                   >
                     {cat}
                   </button>
@@ -342,6 +347,17 @@ export default function BlogPageClient({ allPosts }) {
             </div>
           </div>
         </div>
+
+        {posts.length > 0 && (
+          <section className="w-full py-16">
+            <div className="max-w-7xl mx-auto px-4">
+              <h2 className="text-4xl font-bold text-center mb-16">
+                Latest Updates on LinkedIn
+              </h2>
+              <LinkedInPostGrid posts={posts} />
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

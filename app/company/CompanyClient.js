@@ -1,10 +1,8 @@
 "use client";
 import HeroAboutContact from "@/components/HeroAboutContact";
-import LinkedInPostGrid from "@/components/LinkedInPostGrid";
 import { motion } from "framer-motion";
 import { Award, Building, Calendar, Globe, Users } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 const companyHighlights = [
   {
@@ -61,7 +59,6 @@ const timelineEvents = [
 ];
 
 export default function CompanyClient() {
-  const [posts, setPosts] = useState([]);
   const maps = [
     {
       address: "885 Denmark Dr, McCarran, NV 89437, United States",
@@ -78,15 +75,6 @@ export default function CompanyClient() {
     "Driven by our dedication to engineering excellence and a passion for quality, we strive to exceed customer expectations by delivering products that withstand the test of time and environmental challenges. Our highly skilled team of professionals, state-of-the-art technologies, and a culture of continuous improvement enable us to consistently meet the evolving needs of our clients.",
     "We are committed to contributing positively to the communities we serve by ensuring the safety and reliability of the projects that our products support. With a history of pride in excellence coupled with a strong vision for the future, SRC is a leader in the world of rubber fabrication.",
   ];
-
-  useEffect(() => {
-    async function fetchPosts() {
-      const res = await fetch("/api/linkedin-latest-posts");
-      const data = await res.json();
-      setPosts(data || []);
-    }
-    fetchPosts();
-  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen overflow-x-hidden">
@@ -125,9 +113,8 @@ export default function CompanyClient() {
                 initial={{ opacity: 0, x: index % 2 === 0 ? -25 : 25 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 * index, duration: 0.5 }}
-                className={`flex flex-col md:flex-row items-center justify-between gap-12 ${
-                  index % 2 === 0 ? "md:flex-row-reverse" : ""
-                }`}
+                className={`flex flex-col md:flex-row items-center justify-between gap-12 ${index % 2 === 0 ? "md:flex-row-reverse" : ""
+                  }`}
               >
                 <div className="w-full md:w-1/2">
                   <Image
@@ -167,15 +154,13 @@ export default function CompanyClient() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`flex ${
-                    index % 2 === 0 ? "justify-start" : "justify-end"
-                  } relative`}
+                  className={`flex ${index % 2 === 0 ? "justify-start" : "justify-end"
+                    } relative`}
                 >
                   <div className="w-5/12">
                     <div
-                      className={`bg-white p-4 md:p-6 rounded-lg shadow-md ${
-                        index % 2 === 0 ? "mr-4 md:mr-6" : "ml-4 md:ml-6"
-                      }`}
+                      className={`bg-white p-4 md:p-6 rounded-lg shadow-md ${index % 2 === 0 ? "mr-4 md:mr-6" : "ml-4 md:ml-6"
+                        }`}
                     >
                       <div className="flex items-center mb-2">
                         <Calendar className="w-4 h-4 md:w-5 md:h-5 text-blue-500 mr-2" />
@@ -226,16 +211,6 @@ export default function CompanyClient() {
           </div>
         </div>
       </section>
-      {posts.length > 0 && (
-        <section className="w-full py-16">
-          <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold text-center mb-16">
-              Latest Updates on LinkedIn
-            </h2>
-            <LinkedInPostGrid posts={posts} />
-          </div>
-        </section>
-      )}
       <div className="w-full py-16">
         <h2 className="text-4xl font-bold text-center mb-16">Our Locations</h2>
         <div className="max-w-7xl mx-auto px-4">
