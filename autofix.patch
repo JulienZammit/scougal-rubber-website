@@ -1,0 +1,12 @@
+diff --git a/components/NTPEPIcon.jsx b/components/NTPEPIcon.jsx
+--- a/components/NTPEPIcon.jsx
++++ b/components/NTPEPIcon.jsx
+@@ -9,7 +9,7 @@
+ 
+     const script2 = document.createElement('script');
+     script2.type = 'text/javascript';
+-    script2.innerHTML = `var _mcode = "${mcode}"; var _prkey = "${prkey}"; var _stype = "1";`;
++    script2.textContent = `var _mcode = "${mcode}"; var _prkey = "${prkey}"; var _stype = "1";`;
+     document.body.appendChild(script2);
+ 
+     const script3 = document.createElement('script');
