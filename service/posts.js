@@ -33,7 +33,15 @@ export function getAllPosts() {
 }
 
 export function getPostBySlug(slug) {
-  const fullPath = path.join(postsDirectory, slug + '.md');
+  // Validate slug to prevent path traversal
+  if (typeof slug !== 'string' || slug.includes('..') || slug.includes('/') || slug.includes('\\')) {
+    throw new Error('Invalid slug: path traversal attempt detected');
+  }
+  const normalizedPath = path.normalize(path.join(postsDirectory, slug + '.md'));
+  if (!normalizedPath.startsWith(postsDirectory)) {
+    throw new Error('Invalid path: path traversal attempt detected');
+  }
+  const fullPath = normalizedPath;
   if (!fs.existsSync(fullPath)) {
     console.error(`File not found: ${fullPath}`);
     return null;
