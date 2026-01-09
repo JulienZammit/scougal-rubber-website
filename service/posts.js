@@ -33,6 +33,10 @@ export function getAllPosts() {
 }
 
 export function getPostBySlug(slug) {
+  // Validate slug to prevent path traversal
+  if (typeof slug !== 'string' || /(^|\/|\.\.)/.test(slug)) {
+    throw new Error('Invalid slug');
+  }
   const fullPath = path.join(postsDirectory, slug + '.md');
   if (!fs.existsSync(fullPath)) {
     console.error(`File not found: ${fullPath}`);
