@@ -11,6 +11,11 @@ export function getAllPosts() {
   // 2. Récupérer les données de chaque fichier
   const allPostsData = fileNames.map((fileName) => {
     const slug = fileName.replace(/\.md$/, '');
+    // Validate filename to prevent path traversal
+    if (fileName.includes('..') || fileName.startsWith('/') || fileName.startsWith('\\')) {
+      console.error(`Invalid filename: ${fileName}`);
+      return null;
+    }
     const fullPath = path.join(postsDirectory, fileName);
     if (!fs.existsSync(fullPath)) {
       console.error(`File not found: ${fullPath}`);
@@ -33,6 +38,10 @@ export function getAllPosts() {
 }
 
 export function getPostBySlug(slug) {
+  // Validate slug to prevent path traversal
+  if (slug.includes('..') || slug.includes('/') || slug.includes('\\')) {
+    throw new Error('Invalid slug');
+  }
   const fullPath = path.join(postsDirectory, slug + '.md');
   if (!fs.existsSync(fullPath)) {
     console.error(`File not found: ${fullPath}`);
