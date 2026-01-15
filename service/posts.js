@@ -17,7 +17,7 @@ export function getAllPosts() {
       return null;
     }
     const fileContents = fs.readFileSync(fullPath, 'utf8');
-    
+
     // Utilisation de gray-matter pour extraire le front matter
     const { data, content } = matter(fileContents);
 
@@ -30,20 +30,4 @@ export function getAllPosts() {
 
   // 3. On peut trier par date si besoin (facultatif)
   return allPostsData.sort((a, b) => new Date(b.date) - new Date(a.date));
-}
-
-export function getPostBySlug(slug) {
-  const fullPath = path.join(postsDirectory, slug + '.md');
-  if (!fs.existsSync(fullPath)) {
-    console.error(`File not found: ${fullPath}`);
-    return null;
-  }
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(fileContents);
-
-  return {
-    slug,
-    ...data,
-    content,
-  };
 }

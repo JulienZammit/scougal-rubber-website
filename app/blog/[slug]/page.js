@@ -132,12 +132,13 @@ export default async function BlogPostPage({ params }) {
   const allPosts = await getAllPosts();
 
   const structuredData = generateJSONLD(post);
+  const sanitizedData = DOMPurify.sanitize(JSON.stringify(structuredData));
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        dangerouslySetInnerHTML={{ __html: sanitizedData }}
       />
       <BlogPostDetailClient post={post} allPosts={allPosts} />
     </>
