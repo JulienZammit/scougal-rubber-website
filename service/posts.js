@@ -9,8 +9,11 @@ export function getAllPosts() {
   const fileNames = fs.readdirSync(postsDirectory);
 
   // 2. Récupérer les données de chaque fichier
-  const allPostsData = fileNames.map((fileName) => {
-    const slug = fileName.replace(/\.md$/, '');
+    // Validate filename to prevent path traversal
+    if (fileName.includes('..') || fileName.startsWith('/') || fileName.startsWith('\\')) {
+      console.error(`Invalid filename: ${fileName}`);
+      return null;
+    }
     const fullPath = path.join(postsDirectory, fileName);
     if (!fs.existsSync(fullPath)) {
       console.error(`File not found: ${fullPath}`);
