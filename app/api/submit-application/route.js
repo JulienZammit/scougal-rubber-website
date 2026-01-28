@@ -20,10 +20,16 @@ export async function POST(request) {
   }
 
   try {
+    // Check for required environment variables
+    if (!process.env.SMTP_HOST || !process.env.SMTP_PORT || !process.env.SMTP_USER || !process.env.SMTP_PASS) {
+      console.error('Missing SMTP configuration. Please set SMTP_HOST, SMTP_PORT, SMTP_USER, and SMTP_PASS environment variables.');
+      return NextResponse.json({ message: 'Server email configuration error. Please contact the administrator.' }, { status: 500 });
+    }
+
     // Création du transport Nodemailer
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
+      port: parseInt(process.env.SMTP_PORT, 10),
       secure: process.env.SMTP_SECURE === 'true', // utilisation TLS
       auth: {
         user: process.env.SMTP_USER,
@@ -37,11 +43,17 @@ export async function POST(request) {
     // Conversion du base64 en buffer
     const resumeBuffer = Buffer.from(resumeBase64, 'base64');
 
+    // Build location preference string for subject
+    const locationPreference = [
+      location.reno ? 'Reno' : '',
+      location.seattle ? 'Seattle' : ''
+    ].filter(Boolean).join(' & ') || 'Not specified';
+
     // Options de l'email
     const mailOptions = {
       from: process.env.FROM_EMAIL,
-      to: 'info@scogualrubber.com',
-      subject: 'New Job Application',
+      to: 'info@scougalrubber.com, scougal.rubber@gmail.com',
+      subject: `ONLINE APPLICANT – ${locationPreference}`,
       text: `
         New job application received:
 
