@@ -1,10 +1,9 @@
 "use client";
 import FadeInAnimation from "@/components/FadeInAnimation";
-import LinkedInPostGrid from "@/components/LinkedInPostGrid";
+import CompanyNewsSection from "@/components/CompanyNewsSection";
 import Pagination from "@/components/Pagination";
 import {
   ArrowRight,
-  Bell,
   Clock,
   Filter,
   Search,
@@ -57,9 +56,19 @@ export default function BlogPageClient({ allPosts }) {
 
   useEffect(() => {
     async function fetchPosts() {
-      const res = await fetch("/api/linkedin-latest-posts");
-      const data = await res.json();
-      setPosts(data || []);
+      try {
+        const res = await fetch("/api/linkedin-latest-posts");
+        if (!res.ok) {
+          console.warn("LinkedIn API returned an error, showing fallback");
+          setPosts([]);
+          return;
+        }
+        const data = await res.json();
+        setPosts(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.warn("Could not fetch LinkedIn posts:", error.message);
+        setPosts([]);
+      }
     }
     fetchPosts();
   }, []);
@@ -86,46 +95,16 @@ export default function BlogPageClient({ allPosts }) {
               industrial rubber, and manufacturing solutions from Scougal
               Rubber's expert team.
             </p>
+          </header>
+        </FadeInAnimation>
 
-            <div className="mb-16 mt-12">
-              <div className="flex items-center justify-center gap-2 mb-8">
-                <Bell className="w-5 h-5 text-blue-500" />
-                <h2 className="text-2xl font-semibold text-gray-900">
-                  Latest Updates
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {latestPosts.map((post) => (
-                  <div
-                    key={post.slug}
-                    className="relative bg-white/80 backdrop-blur-sm p-6 rounded-md shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100"
-                  >
-                    <div className="absolute top-0 right-0 -mt-2 -mr-2">
-                      <span className="px-3 py-1 bg-blue-500 text-white text-xs font-medium rounded-full">
-                        New
-                      </span>
-                    </div>
-                    <Link href={`/blog/${post.slug}`}>
-                      <h3 className="font-semibold text-gray-900 hover:text-blue-500 transition-colors line-clamp-2 mb-3">
-                        {post.title}
-                      </h3>
-                      <div className="flex items-center text-sm text-gray-500 mb-3">
-                        <Clock className="w-4 h-4 mr-1" />
-                        {post.readingTime} min read
-                      </div>
-                      <p className="text-gray-600 line-clamp-2 mb-4">
-                        {post.description}
-                      </p>
-                      <span className="text-blue-500 flex items-center text-sm font-medium hover:gap-2 transition-all">
-                        Read more <ArrowRight className="w-4 h-4 ml-1" />
-                      </span>
-                    </Link>
-                  </div>
-                ))}
-              </div>
-            </div>
+        {/* Company News Section - LinkedIn + Latest Articles */}
+        <CompanyNewsSection linkedInPosts={posts} blogPosts={latestPosts} />
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 relative">
+        {/* Search and Filter Section */}
+        <FadeInAnimation>
+          <div className="mt-16 mb-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center relative">
               <div className="absolute inset-0 -z-10 bg-gradient-to-r from-blue-50 via-white to-blue-50 rounded-md blur opacity-70" />
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -184,8 +163,8 @@ export default function BlogPageClient({ allPosts }) {
                 <button
                   onClick={() => setViewMode("grid")}
                   className={`p-3 rounded-md border ${viewMode === "grid"
-                      ? "bg-blue-500 text-white border-blue-500"
-                      : "bg-white/80 border-gray-200 hover:bg-gray-50"
+                    ? "bg-blue-500 text-white border-blue-500"
+                    : "bg-white/80 border-gray-200 hover:bg-gray-50"
                     } transition-colors backdrop-blur-sm`}
                 >
                   Grid View
@@ -193,15 +172,15 @@ export default function BlogPageClient({ allPosts }) {
                 <button
                   onClick={() => setViewMode("list")}
                   className={`p-3 rounded-md border ${viewMode === "list"
-                      ? "bg-blue-500 text-white border-blue-500"
-                      : "bg-white/80 border-gray-200 hover:bg-gray-50"
+                    ? "bg-blue-500 text-white border-blue-500"
+                    : "bg-white/80 border-gray-200 hover:bg-gray-50"
                     } transition-colors backdrop-blur-sm`}
                 >
                   List View
                 </button>
               </div>
             </div>
-          </header>
+          </div>
         </FadeInAnimation>
 
         <div
@@ -336,8 +315,8 @@ export default function BlogPageClient({ allPosts }) {
                     key={cat}
                     onClick={() => setSelectedCategory(cat.toLowerCase())}
                     className={`px-4 py-2 rounded-md text-sm font-medium ${selectedCategory === cat.toLowerCase()
-                        ? "bg-blue-500 text-white shadow-sm"
-                        : "bg-gray-100/80 text-gray-700 hover:bg-gray-200/80"
+                      ? "bg-blue-500 text-white shadow-sm"
+                      : "bg-gray-100/80 text-gray-700 hover:bg-gray-200/80"
                       } transition-all duration-300`}
                   >
                     {cat}
@@ -347,17 +326,6 @@ export default function BlogPageClient({ allPosts }) {
             </div>
           </div>
         </div>
-
-        {posts.length > 0 && (
-          <section className="w-full py-16">
-            <div className="max-w-7xl mx-auto px-4">
-              <h2 className="text-4xl font-bold text-center mb-16">
-                Latest Updates on LinkedIn
-              </h2>
-              <LinkedInPostGrid posts={posts} />
-            </div>
-          </section>
-        )}
       </div>
     </div>
   );

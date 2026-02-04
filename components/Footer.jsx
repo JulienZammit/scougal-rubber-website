@@ -15,6 +15,12 @@ const footerNavigation = {
     { name: "Experience", href: "/experience" },
     { name: "Contact Us", href: "/contact-us" },
     { name: "Employment", href: "/employment" },
+    {
+      name: "Remote Support",
+      href: "https://my.splashtop.com/sos/packages/download/PXSLXX7KHS3Z",
+      external: true,
+      subtle: true
+    },
   ],
 };
 
@@ -86,12 +92,23 @@ const Footer = () => {
               <ul className="mt-6 space-y-4">
                 {footerNavigation.company.map((item) => (
                   <li key={item.name}>
-                    <Link
-                      href={item.href}
-                      className="text-sm leading-6 hover:underline"
-                    >
-                      {item.name}
-                    </Link>
+                    {item.external ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`text-sm leading-6 hover:underline ${item.subtle ? 'text-gray-400 hover:text-gray-600' : ''}`}
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="text-sm leading-6 hover:underline"
+                      >
+                        {item.name}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>

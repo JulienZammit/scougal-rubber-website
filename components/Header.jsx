@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { MdMenu, MdClose, MdKeyboardArrowDown } from "react-icons/md";
-import { FaFacebook, FaLinkedin } from "react-icons/fa";
+import { FaInstagram, FaLinkedin } from "react-icons/fa";
 import styles from "./Header.module.css";
 
 const menuItems = [
@@ -212,13 +212,13 @@ const Header = () => {
             <FaLinkedin size={24} />
           </a>
           <a
-            href="https://www.facebook.com/scougalrubbercorp/"
+            href="https://www.instagram.com/scougal.rubber/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Facebook"
+            aria-label="Instagram"
             className="hover:text-gray-500 transition"
           >
-            <FaFacebook size={24} />
+            <FaInstagram size={24} />
           </a>
         </div>
         <Link

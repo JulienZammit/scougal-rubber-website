@@ -3,10 +3,54 @@ import { toast } from "react-toastify";
 import { Upload, Plus, X } from "lucide-react";
 import Image from "next/image";
 
+// Authors data
+const AUTHORS = [
+  {
+    id: "scott-nelson",
+    name: "Scott Nelson",
+    title: "Industry Expert",
+    avatar: "/employees/sn.jpg",
+    bio: "Expert in elastomeric bearings and industrial rubber solutions with decades of experience in bridge construction and infrastructure projects.",
+  },
+  {
+    id: "justin-joyce",
+    name: "Justin Joyce",
+    title: "Technical Specialist",
+    avatar: "/employees/jj.png",
+    bio: "Expert in elastomeric bearings and industrial rubber solutions with decades of experience in bridge construction and infrastructure projects.",
+  },
+];
+
 export default function MetadataForm({ metadata, setMetadata }) {
   const [categories, setCategories] = useState([]);
   const [showNewCategory, setShowNewCategory] = useState(false);
   const [newCategoryName, setNewCategoryName] = useState("");
+  const [selectedAuthorId, setSelectedAuthorId] = useState("");
+
+  // Initialize author selection based on metadata
+  useEffect(() => {
+    if (metadata.authorName) {
+      const foundAuthor = AUTHORS.find(a => a.name === metadata.authorName);
+      if (foundAuthor) {
+        setSelectedAuthorId(foundAuthor.id);
+      }
+    }
+  }, [metadata.authorName]);
+
+  // Handle author selection
+  function handleAuthorSelect(authorId) {
+    setSelectedAuthorId(authorId);
+    const author = AUTHORS.find(a => a.id === authorId);
+    if (author) {
+      setMetadata((prev) => ({
+        ...prev,
+        authorName: author.name,
+        authorTitle: author.title,
+        authorBio: author.bio,
+        authorAvatar: author.avatar,
+      }));
+    }
+  }
 
   // Keeping all existing functions unchanged
   useEffect(() => {
@@ -70,7 +114,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
   const inputClass = "w-full px-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200";
   const labelClass = "block text-sm font-medium text-gray-700 mb-2";
   const sectionClass = "bg-white p-6 rounded-lg border border-gray-100 shadow-sm";
-  
+
   return (
     <div className="space-y-8">
       <div className={sectionClass}>
@@ -136,7 +180,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
                 id="cover-image"
                 onChange={(e) => handleImageSelect(e, "coverImage")}
               />
-              <label 
+              <label
                 htmlFor="cover-image"
                 className="flex items-center justify-center px-4 py-2 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors duration-200"
               >
@@ -155,7 +199,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
               )}
             </div>
           </div>
-          
+
           <div>
             <label className={labelClass}>OG Image (for sharing)</label>
             <div className="relative">
@@ -165,7 +209,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
                 id="og-image"
                 onChange={(e) => handleImageSelect(e, "ogImage")}
               />
-              <label 
+              <label
                 htmlFor="og-image"
                 className="flex items-center justify-center px-4 py-2 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors duration-200"
               >
@@ -200,7 +244,7 @@ export default function MetadataForm({ metadata, setMetadata }) {
             ))}
             <option value="__new__">+ Add new category</option>
           </select>
-          
+
           {showNewCategory && (
             <div className="mt-3 flex gap-2">
               <input
@@ -293,51 +337,59 @@ export default function MetadataForm({ metadata, setMetadata }) {
         {/* Author Information */}
         <div className="border-t border-gray-100 pt-8">
           <h4 className="text-lg font-medium text-gray-800 mb-6">Author Information</h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div>
-              <label className={labelClass}>Author Name</label>
-              <input
-                type="text"
-                placeholder="John Smith"
-                className={inputClass}
-                value={metadata.authorName}
-                onChange={(e) => setMetadata((prev) => ({ ...prev, authorName: e.target.value }))}
-              />
-            </div>
-            <div>
-              <label className={labelClass}>Author Title</label>
-              <input
-                type="text"
-                placeholder="Expert in Manufacturing"
-                className={inputClass}
-                value={metadata.authorTitle}
-                onChange={(e) => setMetadata((prev) => ({ ...prev, authorTitle: e.target.value }))}
-              />
+
+          {/* Author Selection Cards */}
+          <div className="mb-8">
+            <label className={labelClass}>Select Author</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+              {AUTHORS.map((author) => (
+                <button
+                  key={author.id}
+                  type="button"
+                  onClick={() => handleAuthorSelect(author.id)}
+                  className={`relative flex items-center gap-4 p-4 rounded-xl border-2 transition-all duration-200 text-left ${selectedAuthorId === author.id
+                      ? 'border-blue-500 bg-blue-50 shadow-md'
+                      : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
+                    }`}
+                >
+                  {/* Selection indicator */}
+                  {selectedAuthorId === author.id && (
+                    <div className="absolute top-2 right-2">
+                      <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
+                        <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Avatar */}
+                  <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-gray-100 flex-shrink-0">
+                    <Image
+                      src={author.avatar}
+                      alt={author.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {/* Author Info */}
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-gray-900">{author.name}</p>
+                    <p className="text-sm text-gray-500">{author.title}</p>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div>
-              <label className={labelClass}>Author Bio</label>
-              <input
-                type="text"
-                placeholder="Short intro for author..."
-                className={inputClass}
-                value={metadata.authorBio}
-                onChange={(e) => setMetadata((prev) => ({ ...prev, authorBio: e.target.value }))}
-              />
+          {/* Selected Author Preview */}
+          {selectedAuthorId && (
+            <div className="bg-gray-50 rounded-lg p-4 mb-8">
+              <p className="text-sm text-gray-500 mb-2">Selected author bio (shown on article):</p>
+              <p className="text-sm text-gray-700 italic">{metadata.authorBio}</p>
             </div>
-            <div>
-              <label className={labelClass}>Author Avatar</label>
-              <input
-                type="text"
-                className={inputClass}
-                value={metadata.authorAvatar}
-                onChange={(e) => setMetadata((prev) => ({ ...prev, authorAvatar: e.target.value }))}
-              />
-              <p className="text-xs text-gray-400 mt-1">Default: /employees/sn.jpg</p>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Additional Information */}
