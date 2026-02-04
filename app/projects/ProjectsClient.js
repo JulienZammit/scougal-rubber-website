@@ -78,103 +78,112 @@ const projects = [
 // Unified Hero + Featured Project Component
 function ProjectsHero({ project }) {
   return (
-    <section className="relative w-full min-h-screen">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          src={project.slides[0].src}
-          className="absolute inset-0 w-full h-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
+    <section className="relative w-full">
+      {/* Full Screen Hero with Background Image */}
+      <div className="relative min-h-screen">
+        {/* Background Image - Full Screen */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('/project/banner.webp')` }}
         />
-        {/* Multi-layer overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/30 via-transparent to-transparent" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/70" />
 
-      {/* Content */}
-      <div className="relative z-10 min-h-screen flex flex-col justify-center">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-32">
-          {/* Page Title */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 tracking-tight">
-              Our Projects
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 font-light">
-              Engineering Excellence in Every Detail
-            </p>
-          </motion.div>
+        {/* Content Container */}
+        <div className="relative z-10 min-h-screen flex flex-col">
+          {/* Title Section - Top */}
+          <div className="pt-32 pb-8 text-center px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+            >
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight drop-shadow-lg">
+                Our Projects
+              </h1>
+              <p className="text-lg md:text-xl text-gray-200 max-w-2xl mx-auto">
+                Engineering Excellence in Every Detail
+              </p>
+            </motion.div>
+          </div>
 
-          {/* Featured Project Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="relative bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden">
-              {/* Featured Badge */}
-              <div className="absolute top-4 left-4 z-10">
-                <span className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-full shadow-lg">
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                  Featured Project
-                </span>
+          {/* Video Card - Centered */}
+          <div className="flex-1 flex items-center justify-center px-4 pb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="w-full max-w-5xl"
+            >
+              {/* Featured Label */}
+              <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-full shadow-lg">
+                  <Play className="w-4 h-4 text-white" fill="white" />
+                  <span className="text-white text-sm font-semibold">Latest Project</span>
+                </div>
+                <div className="h-px flex-1 bg-white/30" />
               </div>
 
-              {/* Project Content */}
-              <div className="p-8 md:p-10">
-                <div className="pt-8">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                    {project.name}
-                  </h2>
+              {/* Video Card */}
+              <div className="bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl">
+                {/* Video */}
+                <div className="relative aspect-video bg-black">
+                  <video
+                    src={project.slides[0].src}
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    controls
+                    preload="auto"
+                  />
+                </div>
 
-                  <p className="text-lg md:text-xl text-gray-200 mb-6 max-w-2xl">
-                    {project.description}
-                  </p>
+                {/* Project Details */}
+                <div className="p-5 md:p-6">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                    <div className="flex-1">
+                      <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">
+                        {project.name}
+                      </h2>
+                      <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
 
-                  {/* Meta info */}
-                  <div className="flex flex-wrap items-center gap-6 text-gray-300">
-                    <span className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-                      <MapPin className="w-4 h-4" />
-                      {project.location}
-                    </span>
-                    <span className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full">
-                      <Calendar className="w-4 h-4" />
-                      {project.year}
-                    </span>
+                    {/* Meta Info */}
+                    <div className="flex md:flex-col gap-4 md:gap-2 md:items-end shrink-0">
+                      <div className="flex items-center gap-2 text-gray-500 text-sm">
+                        <MapPin className="w-4 h-4 text-blue-600" />
+                        <span className="font-medium">{project.location}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-500 text-sm">
+                        <Calendar className="w-4 h-4 text-blue-600" />
+                        <span className="font-medium">{project.year}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Decorative gradient line */}
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600"></div>
-            </div>
-          </motion.div>
-
-          {/* Scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          >
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-2 text-white/60"
-            >
-              <span className="text-sm">Explore more projects</span>
-              <ChevronRight className="w-5 h-5 rotate-90" />
+              {/* Scroll indicator */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="flex justify-center mt-6"
+              >
+                <motion.div
+                  animate={{ y: [0, 8, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  className="flex flex-col items-center gap-2 text-white/70 cursor-pointer hover:text-white transition-colors"
+                >
+                  <span className="text-sm font-medium">Explore More Projects</span>
+                  <ChevronRight className="w-5 h-5 rotate-90" />
+                </motion.div>
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
