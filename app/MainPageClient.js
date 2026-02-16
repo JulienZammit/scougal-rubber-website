@@ -82,7 +82,7 @@ export default function MainPageClient() {
   return (
     <div className="min-h-screen">
       <Head>
-        <title>America's Custom Molded Rubber Company</title>
+        <title>Americas Trusted Bridge Bearing and Custom Molded Rubber Company</title>
         <meta
           name="description"
           content="Leading provider of custom molded rubber solutions since 1916. Discover our products and services."
@@ -93,7 +93,7 @@ export default function MainPageClient() {
         />
         <meta
           property="og:title"
-          content="America's Custom Molded Rubber Company"
+          content="Americas Trusted Bridge Bearing and Custom Molded Rubber Company"
         />
         <meta
           property="og:description"

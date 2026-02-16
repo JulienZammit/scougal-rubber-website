@@ -81,7 +81,7 @@ export default function CompanyClient() {
       <HeroAboutContact
         backgroundImage="/compagny/banner.webp"
         title="Our Company"
-        subtitle="America's Custom Molded Rubber Company Since 1916"
+        subtitle="Americas Trusted Bridge Bearing and Custom Molded Rubber Company Since 1916"
       />
       <section className="w-full py-16">
         <div className="max-w-7xl mx-auto px-4">

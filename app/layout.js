@@ -9,13 +9,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   metadataBase: new URL("https://www.scougalrubber.com"),
-  title: "America's Custom Molded Rubber Company",
+  title: "Americas Trusted Bridge Bearing and Custom Molded Rubber Company",
   description: "Leading provider of custom molded rubber solutions since 1916.",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://www.scougalrubber.com/",
-    site_name: "America's Custom Molded Rubber Company",
+    site_name: "Americas Trusted Bridge Bearing and Custom Molded Rubber Company",
   },
   additionalMetaTags: [
     {

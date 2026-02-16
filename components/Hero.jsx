@@ -15,7 +15,7 @@ const Hero = () => {
       name: "Compliasure",
     },
     {
-      src: "logo_bridge_conference.png",
+      src: "/logo_bridge_conference.png",
       alt: "Bridge conference logo",
       name: "Bridge Conference",
     },
@@ -48,15 +48,15 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
-          className="mb-6"
+          className="mb-8"
         >
           <Image
             src="/logo_resized.webp"
             alt="Scougal Rubber Logo"
-            width={280}
-            height={120}
+            width={400}
+            height={170}
             priority
-            className="w-[200px] md:w-[280px] h-auto drop-shadow-2xl brightness-0 invert"
+            className="w-[260px] md:w-[360px] lg:w-[400px] h-auto drop-shadow-2xl brightness-0 invert"
           />
         </motion.div>
 
@@ -65,9 +65,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-3xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight text-center mb-4"
+          className="text-xl md:text-3xl lg:text-4xl font-bold text-white max-w-4xl leading-tight text-center mb-4"
         >
-          America&apos;s Custom Molded Rubber Company
+          America&apos;s Trusted Bridge Bearing and Custom Molded Rubber Company
         </motion.h1>
 
         {/* Subtitle */}
@@ -91,7 +91,7 @@ const Hero = () => {
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
-              className="flex flex-col items-center gap-2 group"
+              className="relative flex flex-col items-center group w-20 md:w-24"
             >
               <div className="relative w-16 h-16 md:w-20 md:h-20 bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20 shadow-lg group-hover:bg-white/20 transition-all duration-300">
                 <Image
@@ -102,7 +102,7 @@ const Hero = () => {
                   sizes="80px"
                 />
               </div>
-              <span className="text-xs md:text-sm text-white/80 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs md:text-sm text-white/80 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                 {cert.name}
               </span>
             </motion.div>
