@@ -69,10 +69,6 @@ export default function RubberPartsClient() {
 
   const certifications = [
     {
-      src: "/certification/as9100.webp",
-      alt: "AS9100 Certification",
-    },
-    {
       src: "/certification/cage.webp",
       alt: "CAGE Certification",
     },
