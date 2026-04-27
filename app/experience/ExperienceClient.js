@@ -53,7 +53,7 @@ const teamMembers = [
     name: "Rob Anderson",
     position: "President",
     description: `Rob joined Scougal in 1992 and has contributed to every aspect of the company. His expertise in steel-reinforced elastomeric bearings has made him a respected figure in the bridge bearing industry.`,
-    image: "/employees/ra.jpg",
+    image: "/employees/ra.png",
     expertise: [
       "Strategic Leadership",
       "Innovation in Engineering",
@@ -65,7 +65,7 @@ const teamMembers = [
     name: "Scott Nelson",
     position: "Vice President Sales & Marketing",
     description: `Since 2006, Scott has played a vital role in overseeing sales and marketing, as well as guiding Scougal’s transition to a state-of-the-art facility in Nevada.`,
-    image: "/employees/sn.jpg",
+    image: "/employees/sn.png",
     expertise: ["Sales Strategy", "Market Expansion", "Client Relations"],
     linkedin: "https://www.linkedin.com/in/scott-nelson-5a573b94/",
   },
@@ -73,7 +73,7 @@ const teamMembers = [
     name: "Ahsan Ativalu",
     position: "Plant Manager - Reno",
     description: `Starting in 1999, Ahsan has been instrumental in Scougal's manufacturing advancements and the relocation of critical equipment to the Reno facility.`,
-    image: "/employees/aa.jpg",
+    image: "/employees/aa.png",
     expertise: [
       "Production Management",
       "Process Optimization",
@@ -85,7 +85,7 @@ const teamMembers = [
     name: "Brad Streeter",
     position: "Quality Manager",
     description: `Brad oversees quality assurance, ensuring compliance with rigorous AISC standards and implementing continuous improvement initiatives.`,
-    image: "/employees/bs.jpg",
+    image: "/employees/bs.png",
     expertise: [
       "Quality Control",
       "Process Improvement",
