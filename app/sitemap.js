@@ -1,4 +1,4 @@
-import { getAllPosts } from "@/service/postsAzure";
+import { getAllPosts } from "@/service/sanity";
 
 export const dynamic = "force-dynamic";
 
@@ -82,9 +82,9 @@ export default async function sitemap() {
     priority: 0.8,
   };
 
-  const blogPosts = allPosts.map((post) => ({
+  const blogPosts = (allPosts || []).map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: toISODate(post.lastModified),
+    lastModified: toISODate(post.date || post.lastModified),
     changefreq: "weekly",
     priority: 0.7,
   }));

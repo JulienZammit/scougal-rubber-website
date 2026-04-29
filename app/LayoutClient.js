@@ -8,16 +8,15 @@ import Footer from "../components/Footer";
 export default function LayoutClient({ children }) {
   // This is a client component, so we can use client hooks
   const segments = useSelectedLayoutSegments();
-  const isBlogManagement = segments.includes("blog-management");
+  const hideChrome = segments.includes("blog-management") || segments.includes("studio");
 
   return (
     <>
-      {/* Conditionally render header/footer */}
-      {!isBlogManagement && <Header />}
+      {!hideChrome && <Header />}
       <div id="__next">
         <main>{children}</main>
       </div>
-      {!isBlogManagement && <Footer />}
+      {!hideChrome && <Footer />}
     </>
   );
 }

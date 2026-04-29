@@ -6,18 +6,38 @@ import { Play, ChevronRight, X, ChevronLeft, MapPin, Calendar } from "lucide-rea
 
 const projects = [
   {
+    id: "seattle-520",
+    name: "Seattle SR 520 Bridge Project",
+    description: "Scougal Rubber engineered elastomeric bearings for Seattle's SR 520 — one of the longest floating bridges in the world — delivering durability and seismic resilience for the Pacific Northwest.",
+    location: "Seattle, WA",
+    year: "2024",
+    featured: true,
+    slides: [
+      { type: "video", src: "/videos/seattle-520.mp4" },
+    ]
+  },
+  {
     id: "bay-bridge",
     name: "Bay Bridge, San Francisco, California",
     description: "Scougal Rubber supplied elastomeric bearings for the Bay Bridge, ensuring long-lasting, durable support for critical infrastructure.",
     location: "San Francisco, CA",
     year: "2020",
-    featured: true,
     slides: [
       { type: "video", src: "https://myblogimages.blob.core.windows.net/videos/Bay_Bridge.webm" },
       { type: "image", src: "/Bayway/bw1.webp" },
       { type: "image", src: "/Bayway/bw2.webp" },
       { type: "image", src: "/Bayway/bw3.webp" },
       { type: "image", src: "/Bayway/bw4.webp" }
+    ]
+  },
+  {
+    id: "seattle-soundtransit",
+    name: "Seattle Sound Transit Project",
+    description: "Custom-engineered bearings delivered for Sound Transit's expansion of the Seattle regional rail network, supporting heavy-rail performance and longevity.",
+    location: "Seattle, WA",
+    year: "2024",
+    slides: [
+      { type: "video", src: "/videos/seattle-soundtransit-720.mp4" },
     ]
   },
   {

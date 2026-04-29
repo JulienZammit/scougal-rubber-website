@@ -16,7 +16,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import ReactMarkdown from "react-markdown";
+import PortableTextRenderer, { extractHeadings } from "@/components/PortableTextRenderer";
 
 /* ---------------------------------------------------
    Table of Contents
@@ -45,10 +45,8 @@ function TableOfContents({ content }) {
     return () => observer.disconnect();
   }, []);
 
-  // Extrait tous les titres h2/h3 du contenu
-  const headings = content.match(/#{2,3}\s+([^\n]+)/g) || [];
+  const headings = extractHeadings(content);
 
-  // Gère le scroll en douceur lors du clic sur un lien du ToC
   const handleClick = (e, slug) => {
     e.preventDefault();
     const element = document.getElementById(slug);
@@ -69,36 +67,30 @@ function TableOfContents({ content }) {
           </h3>
         </div>
         <nav className="space-y-3">
-          {headings.map((heading, index) => {
-            const level = heading.match(/#{2,3}/)[0].length;
-            const text = heading.replace(/#{2,3}\s+/, "").trim();
-            const slug = text.toLowerCase().replace(/[^\w]+/g, "-");
-
-            return (
-              <a
-                key={index}
-                href={`#${slug}`}
-                onClick={(e) => handleClick(e, slug)}
-                className={`group flex items-center transition-all duration-200
-                  ${level === 2 ? "font-medium" : "ml-4"}
-                  ${
-                    activeId === slug
-                      ? "text-blue-500 transform translate-x-2"
-                      : "text-gray-600 hover:text-blue-500"
-                  }
-                `}
-              >
-                <ChevronRight
-                  className={`w-4 h-4 mr-2 transition-transform duration-200 ${
-                    activeId === slug
-                      ? "opacity-100"
-                      : "opacity-0 group-hover:opacity-100"
-                  }`}
-                />
-                <span className="text-sm">{text}</span>
-              </a>
-            );
-          })}
+          {headings.map((heading, index) => (
+            <a
+              key={index}
+              href={`#${heading.slug}`}
+              onClick={(e) => handleClick(e, heading.slug)}
+              className={`group flex items-center transition-all duration-200
+                ${heading.level === 2 ? "font-medium" : "ml-4"}
+                ${
+                  activeId === heading.slug
+                    ? "text-blue-500 transform translate-x-2"
+                    : "text-gray-600 hover:text-blue-500"
+                }
+              `}
+            >
+              <ChevronRight
+                className={`w-4 h-4 mr-2 transition-transform duration-200 ${
+                  activeId === heading.slug
+                    ? "opacity-100"
+                    : "opacity-0 group-hover:opacity-100"
+                }`}
+              />
+              <span className="text-sm">{heading.text}</span>
+            </a>
+          ))}
         </nav>
       </div>
     </div>
@@ -303,55 +295,8 @@ export default function BlogPostDetailClient({ post, allPosts }) {
                     </div>
                   )}
 
-                  {/* Contenu markdown */}
                   <div className="prose prose-lg max-w-none prose-headings:scroll-mt-20 prose-headings:font-bold prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-600 prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline prose-img:rounded-md prose-strong:text-gray-900">
-                    <ReactMarkdown
-                      components={{
-                        h2: ({ node, children }) => {
-                          const text = children.toString().trim();
-                          const slug = text
-                            .toLowerCase()
-                            .replace(/[^\w]+/g, "-");
-                          return (
-                            <h2
-                              id={slug}
-                              className="flex items-center gap-4 group"
-                            >
-                              {children}
-                              {/* Permet un lien direct en hover */}
-                              <a
-                                href={`#${slug}`}
-                                className="opacity-0 group-hover:opacity-100 transition-opacity"
-                              >
-                                #
-                              </a>
-                            </h2>
-                          );
-                        },
-                        h3: ({ node, children }) => {
-                          const text = children.toString().trim();
-                          const slug = text
-                            .toLowerCase()
-                            .replace(/[^\w]+/g, "-");
-                          return (
-                            <h3
-                              id={slug}
-                              className="flex items-center gap-4 group"
-                            >
-                              {children}
-                              <a
-                                href={`#${slug}`}
-                                className="opacity-0 group-hover:opacity-100 transition-opacity"
-                              >
-                                #
-                              </a>
-                            </h3>
-                          );
-                        },
-                      }}
-                    >
-                      {post.content}
-                    </ReactMarkdown>
+                    <PortableTextRenderer value={post.content} />
                   </div>
 
                   {/* Footer de l'article */}

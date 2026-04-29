@@ -22,41 +22,30 @@ GitHub Actions (`main_scougalrubber.yml`) auto-deploys `main` to Azure Web App *
 
 ### Page pattern: server `page.js` + client `XxxClient.js`
 
-Every route under `app/` follows the same split: `page.js` is a server component that exports `metadata` and renders an inlined JSON-LD `<script type="application/ld+json">`, then delegates UI to a `"use client"` sibling (e.g., `app/bearing-pads/page.js` → `BearingPadsClient.js`). When adding/editing a page, update **both**: SEO metadata + structured data live in `page.js`, all interactive UI in the client component. Many product pages set `dynamic = "force-dynamic"` to avoid stale caches.
+Every route under `app/` follows the same split: `page.js` is a server component that exports `metadata` and renders an inlined JSON-LD `<script type="application/ld+json">`, then delegates UI to a `"use client"` sibling (e.g., `app/bearing-pads/page.js` → `BearingPadsClient.js`). When adding/editing a page, update **both**: SEO metadata + structured data live in `page.js`, all interactive UI in the client component. Many product pages set `dynamic = "force-dynamic"` to avoid stale caches. The exception is `app/studio/[[...tool]]/page.jsx` — this is the Sanity Studio mounted as a client component.
 
 ### Layout & header/footer suppression
 
-`app/layout.js` wraps everything in `Providers` (NextAuth `SessionProvider`) → `LayoutClient`. `LayoutClient` uses `useSelectedLayoutSegments()` to **hide `Header` and `Footer` on `/blog-management`** routes — the admin UI is intentionally chrome-less. Don't add a header/footer there.
+`app/layout.js` wraps everything in `Providers` (passthrough) → `LayoutClient`. `LayoutClient` uses `useSelectedLayoutSegments()` to **hide `Header` and `Footer` on `/studio`** routes — the Sanity Studio is intentionally chrome-less. Don't add a header/footer there.
 
-### Blog: Azure Blob Storage as CMS
+### Blog: Sanity CMS (project `cisq1pi5`, dataset `production`)
 
-There is no database. Posts are Markdown files with `gray-matter` frontmatter stored in Azure Blob Storage:
+The blog is powered by Sanity. There is no in-house admin and no Azure Blob CMS.
 
-- Container `posts` — `.md` files (slug = blob name without `.md`).
-- Container `images` — uploaded post images (blob name = UUID + extension).
+- **Studio** is embedded at `app/studio/[[...tool]]/page.jsx` and reachable at `/studio`. Auth is delegated to Sanity (Google sign-in). The Studio config lives at `sanity.config.js` (basePath `/studio`).
+- **Schemas** are in `sanity/schemas/` (`post`, `blockContent`). The post schema covers title, slug, description, cover image, OG image, category, date, reading time, embedded author, Portable Text body, SEO meta fields, and a `status` field (`draft` / `published`). Only `status == "published"` posts are returned to the public site.
+- **Read client + queries** live in `service/sanity.js`. Public reads use the CDN (`useCdn: true`) with `revalidate: 60`. Used by `app/blog/page.js`, `app/blog/[slug]/page.js`, and `app/sitemap.js`.
+- **Portable Text rendering**: `components/PortableTextRenderer.jsx` renders the article body. It generates anchored h2/h3 (used by the in-page table of contents via `extractHeadings`) and renders inline images through Sanity's image URL builder.
+- **Images** are uploaded to Sanity's asset store and served via `cdn.sanity.io`.
 
-`service/postsAzure.js` is the live reader (`getAllPosts`, `getPostBySlug`) used by `app/blog/page.js`, `app/blog/[slug]/page.js`, and `app/sitemap.js`. **`service/posts.js` is a legacy filesystem reader (`process.cwd()/posts/`) and is not wired into any route — do not introduce new callers; use `postsAzure.js`.**
+### Migration (one-shot, archived)
 
-API routes under `app/api/` implement the CMS:
-
-- `list-posts` (GET) — public, lists frontmatter-stripped post metadata.
-- `get-post?slug=…` (GET) — public, returns frontmatter + raw markdown.
-- `generate-post` (POST) — auth-gated, creates/updates a post. Builds the YAML frontmatter from a `metadata` object plus a `blocks` array (`h1|h2|h3|text|image`) and uploads the result. **Image GC**: before overwriting, parses old image URLs from frontmatter (`coverImage`, `ogImage`) and inline `![](...)` markdown, diffs against the new content, and deletes any old image blob whose URL contains `IMAGE_DOMAIN` (default `myblogimages.blob.core.windows.net`).
-- `delete-post` (POST) — auth-gated, deletes the `.md` and all referenced images on the same domain.
-- `upload-image` (POST) — auth-gated, multipart via `busboy` (forces `runtime = "nodejs"`), writes to `images` container, returns the blob URL.
-- `ai/generate-post-data` (POST) — auth-gated, calls OpenAI `gpt-4o-mini` to draft a `{ metadata, blocks }` JSON for a given LinkedIn excerpt and slug.
-- `linkedin-latest-posts` (GET) — public, refreshes the LinkedIn org access token (via `CLIENT_ID`/`CLIENT_SECRET`/`REFRESH_TOKEN`) and fetches the 2 most recent posts for org `urn:li:organization:15962711`. Wrapped in `unstable_cache` with a 5-second `revalidate`.
-
-Any new write API in this area must (a) call `getServerSession(authOptions)` and (b) preserve image GC if it mutates post content.
-
-### Auth
-
-`app/api/auth/[...nextauth]/route.js` exports `authOptions` (JWT strategy) with a single `CredentialsProvider`. Valid credentials are env-driven (`BLOG_BUILD_USERNAME` / `BLOG_BUILD_PASSWORD`); the user object is `{ id: "internal-user", role: "admin" }`. There is no DB user table — this is admin-only access for the in-app blog editor. Other API routes import `authOptions` from this path; keep that re-export stable.
+`scripts/migrate-blog-to-sanity.mjs` migrated the original 11 markdown blogs from Azure Blob (container `posts`) to Sanity. It converts markdown → HTML → Portable Text via `marked` + `@sanity/block-tools` and uploads images to Sanity assets. Re-running the script will overwrite existing documents (`createOrReplace`).
 
 ### SEO infra (load-bearing)
 
-- `app/sitemap.js` is `force-dynamic`, lists static product/marketing pages plus `/blog` and every blog post from `getAllPosts()`. `NEXT_PUBLIC_APP_URL` is the base URL.
-- `app/robots.js` is `force-dynamic`, **disallows `/blog-management`** and points at `${NEXT_PUBLIC_APP_URL}/sitemap.xml`.
+- `app/sitemap.js` is `force-dynamic`, lists static product/marketing pages plus `/blog` and every blog post from `getAllPosts()` (Sanity). `NEXT_PUBLIC_APP_URL` is the base URL.
+- `app/robots.js` is `force-dynamic`, **disallows `/blog-management` and `/studio`** and points at `${NEXT_PUBLIC_APP_URL}/sitemap.xml`.
 - `next.config.mjs` redirects (permanent):
   - apex `scougalrubber.com` → `www.scougalrubber.com` (host-based).
   - Many legacy `.html` and old slugs → current clean URLs (`/contact.html` → `/contact-us`, `/bearingPads.html` → `/bearing-pads`, `/molded-products` → `/rubber-parts`, `/steel-laminated-elastomeric-bearings` → `/steel`, etc.). When renaming a route, **add a redirect here** to preserve SEO equity.
@@ -68,16 +57,13 @@ Any new write API in this area must (a) call `getServerSession(authOptions)` and
 
 ## Environment
 
-`.env.local.example` documents SMTP + NextAuth keys. The full set used by the codebase:
+`.env.local.example` documents SMTP keys. The full set used by the codebase:
 
-- `AZURE_STORAGE_CONNECTION_STRING` — required for the entire blog CMS.
-- `IMAGE_DOMAIN` — host used to identify "our" image blobs eligible for GC (default `myblogimages.blob.core.windows.net`).
-- `NEXTAUTH_SECRET`, `NEXTAUTH_URL`.
-- `BLOG_BUILD_USERNAME`, `BLOG_BUILD_PASSWORD` — admin login.
-- `OPENAI_API_KEY` — AI draft endpoint.
-- `CLIENT_ID`, `CLIENT_SECRET`, `REFRESH_TOKEN` — LinkedIn OAuth.
-- `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `FROM_EMAIL` — application emails.
-- `NEXT_PUBLIC_APP_URL` — used by sitemap/robots; `NEXT_PUBLIC_BASE_URL` — used by blog post canonicals (defaults to `https://www.scougalrubber.com`).
+- **Sanity (blog)**: `NEXT_PUBLIC_SANITY_PROJECT_ID` (= `cisq1pi5`), `NEXT_PUBLIC_SANITY_DATASET` (= `production`), `SANITY_API_TOKEN` (Editor token, only needed for migration scripts; not needed at runtime since the public site reads from CDN).
+- **LinkedIn integration**: `CLIENT_ID`, `CLIENT_SECRET`, `REFRESH_TOKEN`, `LINKEDIN_ACCESS_TOKEN` (fallback if refresh fails), `LINKEDIN_ORGANIZATION_ID`.
+- **SMTP (application emails)**: `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `FROM_EMAIL`.
+- **URLs**: `NEXT_PUBLIC_APP_URL` (sitemap/robots), `NEXT_PUBLIC_BASE_URL` (blog post canonicals; defaults to `https://www.scougalrubber.com`).
+- **Legacy (no longer required at runtime, kept for reference)**: `AZURE_STORAGE_CONNECTION_STRING` was used by the old Azure Blob blog backend; it is now only needed if re-running the migration script.
 
 ## Styling
 

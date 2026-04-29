@@ -113,7 +113,7 @@ function LinkedInPostCard({ post, index }) {
     );
 }
 
-// Blog Post Card Component  
+// Blog Post Card Component
 function BlogPostCard({ post, index }) {
     return (
         <motion.div

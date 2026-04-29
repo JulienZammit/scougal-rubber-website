@@ -1,90 +1,91 @@
-import { unstable_cache } from 'next/cache'
+import { unstable_cache } from "next/cache";
 
-// Variables d'environnement
-const CLIENT_ID = process.env.CLIENT_ID
-const CLIENT_SECRET = process.env.CLIENT_SECRET
-const REFRESH_TOKEN = process.env.REFRESH_TOKEN
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
+const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+const STATIC_ACCESS_TOKEN = process.env.LINKEDIN_ACCESS_TOKEN;
+const ORG_URN =
+  process.env.LINKEDIN_ORGANIZATION_ID || "urn:li:organization:15962711";
 
-async function getAccessToken() {
-  try {
-    const tokenResponse = await fetch(
-      "https://www.linkedin.com/oauth/v2/accessToken",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          grant_type: "refresh_token",
-          refresh_token: REFRESH_TOKEN,
-          client_id: CLIENT_ID,
-          client_secret: CLIENT_SECRET,
-        }),
-      }
-    );
-
-    if (!tokenResponse.ok) {
-      throw new Error(
-        `Failed to refresh access token: ${tokenResponse.statusText}`
-      );
-    }
-
-    const tokenData = await tokenResponse.json();
-    return tokenData.access_token;
-  } catch (error) {
-    console.error("Error refreshing access token:", error);
-    throw error;
+async function refreshAccessToken() {
+  if (!REFRESH_TOKEN || !CLIENT_ID || !CLIENT_SECRET) {
+    throw new Error("Missing LinkedIn OAuth env vars");
   }
+  const res = await fetch("https://www.linkedin.com/oauth/v2/accessToken", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      grant_type: "refresh_token",
+      refresh_token: REFRESH_TOKEN,
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET,
+    }),
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`refresh_token failed (${res.status}): ${text}`);
+  }
+  const data = await res.json();
+  return data.access_token;
+}
+
+async function fetchPostsWithToken(accessToken) {
+  const encodedOrg = encodeURIComponent(ORG_URN);
+  const url = `https://api.linkedin.com/v2/ugcPosts?q=authors&authors=List(${encodedOrg})&sortBy=LAST_MODIFIED&count=5`;
+
+  const res = await fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "X-Restli-Protocol-Version": "2.0.0",
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`ugcPosts (${res.status}): ${text}`);
+  }
+  const data = await res.json();
+  return (data?.elements || []).slice(0, 2);
 }
 
 const getLatestLinkedInPosts = unstable_cache(
   async () => {
-    // Récupération du token
-    const accessToken = await getAccessToken();
+    let lastError = null;
 
-    const orgId = "urn:li:organization:15962711";
-    const encodedOrgId = encodeURIComponent(orgId);
-
-    const url = `https://api.linkedin.com/v2/ugcPosts?q=authors&authors=List(${encodedOrgId})&sortBy=LAST_MODIFIED&count=5`;
-
-    const postsResponse = await fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-        "X-Restli-Protocol-Version": "2.0.0",
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-
-    if (!postsResponse.ok) {
-      const errorText = await postsResponse.text();
-      throw new Error(
-        `Failed to fetch LinkedIn posts (${postsResponse.status}): ${errorText}`
-      );
+    if (REFRESH_TOKEN && CLIENT_ID && CLIENT_SECRET) {
+      try {
+        const token = await refreshAccessToken();
+        return await fetchPostsWithToken(token);
+      } catch (err) {
+        lastError = err;
+        console.warn("LinkedIn refresh flow failed, falling back:", err.message);
+      }
     }
 
-    const postsData = await postsResponse.json();
-    const latestPosts = postsData.elements.slice(0, 2);
+    if (STATIC_ACCESS_TOKEN) {
+      try {
+        return await fetchPostsWithToken(STATIC_ACCESS_TOKEN);
+      } catch (err) {
+        lastError = err;
+        console.error("LinkedIn static token also failed:", err.message);
+      }
+    }
 
-    return latestPosts;
+    throw lastError || new Error("No LinkedIn credentials configured");
   },
-  ['linkedin-latest-posts'],
-  { revalidate: 5, tags: ['linkedinPosts'] }
+  ["linkedin-latest-posts-v2"],
+  { revalidate: 300, tags: ["linkedinPosts"] }
 );
 
-// Le Handler GET principal
 export async function GET() {
   try {
-    // On récupère les 2 derniers posts via la fonction cachée
     const latestPosts = await getLatestLinkedInPosts();
-
-    // On renvoie une réponse JSON
     return new Response(JSON.stringify(latestPosts), {
       status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
     console.error("LinkedIn API error:", error);
