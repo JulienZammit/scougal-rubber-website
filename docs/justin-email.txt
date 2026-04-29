@@ -1,0 +1,74 @@
+Subject: New blog editor — quick how-to
+
+
+Hi Justin,
+
+Following our call, here's the quick guide for the new blog editor.
+
+
+1. LOG IN
+
+   https://www.scougalrubber.com/studio
+   → "Continue with Google" with your scougalrubber.com account.
+
+
+2. CREATE A POST
+
+   Sidebar → "Blog Post" → "+ Create"
+   Fill in the fields → set Status to "Published" → click "Publish"
+   Live on the website within 1 minute.
+
+
+3. FIELDS THAT MATTER
+
+   - Title: 50–70 characters
+   - Slug: auto from title (click Generate if needed)
+   - Short description: 150–160 characters with main keyword
+   - Cover image: drag-and-drop, ALWAYS fill in Alt text
+   - Category: dropdown
+   - Author: dropdown — already loaded with the team
+       (Rob Anderson, Scott Nelson, Alfredo Shanklin, Ahsan Ativalu, Brad Streeter)
+   - Article body: rich-text editor (works like Google Docs)
+       Use H2 for main sections, H3 for sub-sections — they auto-build the table of contents.
+
+
+4. ADD A NEW AUTHOR
+
+   Sidebar → "Author" → "+ Create" → name, job title, photo → Publish.
+   The new author then shows up in the dropdown for any post.
+
+
+5. IMAGE LIBRARY
+
+   Every image you upload is reusable. Click any image field → "Select existing" to pick from prior uploads.
+
+
+6. QUICK SEO CHECKLIST (1 min before publishing)
+
+   [ ] Title 50–70 chars
+   [ ] Description 150–160 chars with main keyword
+   [ ] Cover image with Alt text
+   [ ] At least one H2 in the body
+   [ ] Category set
+   [ ] Author selected
+   [ ] All inline images have Alt text
+
+
+7. EDIT / DELETE / RESTORE
+
+   - Edit: open the post, change anything, click Publish again.
+   - Delete: three-dot menu top-right → Delete.
+   - Unpublish without deleting: change Status to "Draft".
+   - Restore deleted: three-dot menu → Review changes → restore.
+
+
+8. NOTES
+
+   - Auto-saves as you type. No save button.
+   - Drafts are NOT visible on the website.
+   - Image upload limit: 20 MB (JPG, PNG, WEBP).
+
+
+Anything weird, ping me.
+
+— Julien
