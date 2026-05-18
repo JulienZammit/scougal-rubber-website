@@ -92,6 +92,16 @@ const projects = [
       { type: "image", src: "/lynnlake/ll3.webp" },
       { type: "image", src: "/lynnlake/ll4.webp" }
     ]
+  },
+  {
+    id: "ballard-leary",
+    name: "15th Ave NW / Ballard & Leary Bridges",
+    description: "Scougal Rubber supplied elastomeric bearings for the 15th Ave NW corridor — supporting the Ballard and Leary bridges in Seattle with engineered components built for heavy urban traffic and long-term durability.",
+    location: "Seattle, WA",
+    year: "2025",
+    slides: [
+      { type: "video", src: "/videos/ballard-leary.mp4" },
+    ]
   }
 ];
 
