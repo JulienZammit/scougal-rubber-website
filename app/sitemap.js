@@ -1,7 +1,10 @@
+import { getAllPosts } from "@/service/blog";
+
 export const dynamic = "force-dynamic";
 
-export default async function sitemap() {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+export default function sitemap() {
+  const baseUrl =
+    process.env.NEXT_PUBLIC_APP_URL || "https://www.scougalrubber.com";
 
   function toISODate(dateString) {
     if (!dateString) {
@@ -71,5 +74,19 @@ export default async function sitemap() {
     },
   ];
 
-  return staticUrls;
+  const blogIndex = {
+    url: `${baseUrl}/blog`,
+    lastModified: toISODate("2025-02-07T11:07:45.253Z"),
+    changefreq: "weekly",
+    priority: 0.8,
+  };
+
+  const blogPosts = getAllPosts().map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: toISODate(post.lastModified || post.date),
+    changefreq: "weekly",
+    priority: 0.7,
+  }));
+
+  return [...staticUrls, blogIndex, ...blogPosts];
 }
