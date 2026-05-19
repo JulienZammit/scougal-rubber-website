@@ -33,15 +33,10 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const pathname = usePathname();
-  const isBlogPage = pathname === "/blog" || pathname.startsWith("/blog/");
   const menuRef = useRef(null);
 
   // Gérer le style scrolled
   useEffect(() => {
-    if (isBlogPage) {
-      setScrolled(true);
-      return;
-    }
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setScrolled(true);
@@ -53,7 +48,7 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isBlogPage]);
+  }, []);
 
   // Fermer tous les menus si on clique en dehors
   useEffect(() => {
@@ -175,15 +170,6 @@ const Header = () => {
               onClick={handleLinkClick}
             >
               Employment
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/blog"
-              className={pathname === "/blog" ? styles.active : ""}
-              onClick={handleLinkClick}
-            >
-              Insights
             </Link>
           </li>
           {/* Lien mobile uniquement : "Contact" */}
