@@ -73,10 +73,6 @@ export default function RubberPartsClient() {
       alt: "CAGE Certification",
     },
     {
-      src: "/certification/iso9001.webp",
-      alt: "ISO 9001 Certification",
-    },
-    {
       src: "/certification/Seal-Compliassure_Confirm.webp",
       alt: "Seal Compliasure Confirm Certification",
     },
