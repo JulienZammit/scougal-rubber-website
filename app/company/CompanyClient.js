@@ -1,7 +1,7 @@
 "use client";
 import HeroAboutContact from "@/components/HeroAboutContact";
 import { motion } from "framer-motion";
-import { Award, Building, Calendar, Globe, Users } from "lucide-react";
+import { Award, Building, Calendar, ExternalLink, Globe, Users } from "lucide-react";
 import Image from "next/image";
 
 const companyHighlights = [
@@ -55,6 +55,14 @@ const timelineEvents = [
     title: "Innovation",
     description:
       "Integration of advanced manufacturing technologies to enhance precision and efficiency.",
+  },
+  {
+    year: "2025",
+    title: "Solar Project",
+    description:
+      "Scougal Rubber invests in clean energy with a new solar installation, advancing our commitment to sustainable manufacturing.",
+    link: "https://www.freedomsolar.iaapi.io/dealership/COM-41858",
+    linkText: "Freedom Solar",
   },
 ];
 
@@ -174,6 +182,17 @@ export default function CompanyClient() {
                       <p className="text-sm md:text-base text-gray-600">
                         {event.description}
                       </p>
+                      {event.link && (
+                        <a
+                          href={event.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 mt-3 text-sm md:text-base font-semibold text-blue-600 hover:text-blue-700"
+                        >
+                          {event.linkText || "Learn more"}
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -204,6 +223,17 @@ export default function CompanyClient() {
                       {event.title}
                     </h3>
                     <p className="text-sm text-gray-600">{event.description}</p>
+                    {event.link && (
+                      <a
+                        href={event.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 mt-3 text-sm font-semibold text-blue-600 hover:text-blue-700"
+                      >
+                        {event.linkText || "Learn more"}
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               ))}
