@@ -6,6 +6,7 @@ export default function robots() {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/blog-management", "/api/blog-admin"],
         crawlDelay: 10,
         cleanParam: "ref /articles",
       },

@@ -1,163 +1,97 @@
-# Email to Justin
+# Blog editor — how to publish
 
-**To:** justin.joyce@scougalrubber.com
-**Subject:** Your new blog editor — log in and start publishing
-
----
-
-Hi Justin,
-
-The blog has been moved to a brand-new editor — much simpler than before. No more copy-pasting; you write, you publish.
-
-I've already invited you to access it. Once you sign in for the first time, you'll have full Editor access.
+The blog has a simple built-in editor. You log in, write in a Markdown editor
+with a live preview, add images, and hit **Publish**. No GitHub, no copy-paste.
 
 ---
 
-## 1. Log in (one-time, ~30 seconds)
+## Part A — For the writer
 
-Open this link: **https://www.scougalrubber.com/studio**
+### 1. Log in
+Open **https://www.scougalrubber.com/blog-management** and sign in with the
+username and password you were given.
 
-Click **"Continue with Google"** and use your `justin.joyce@scougalrubber.com` Google account.
+### 2. The article list
+After login you see all articles (published and drafts). From here you can:
+- **New article** — start a fresh post.
+- **Edit** (pencil) — open an existing post.
+- **Delete** (trash) — remove a post.
+- **View live** (arrow) — open the published article in a new tab.
 
-That's it — no password to remember, and the system will recognize you on every device after that.
-
-> If for some reason it says "no access," reply to this email and I'll fix it within minutes.
-
----
-
-## 2. Publish a new article (the 30-second flow)
-
-1. On the left sidebar, click **"Blog Post"** → **"+ Create"** at the top
-2. Fill in the fields (see breakdown below)
-3. Change **Status** from "Draft" to **"Published"**
-4. Click the green **"Publish"** button at the bottom-right
-
-The article appears at https://www.scougalrubber.com/blog within ~1 minute.
-
----
-
-## 3. Field-by-field guide
-
-The editor has three tabs at the top: **Content**, **SEO**, and **Settings**. Most of the time, only **Content** matters.
-
-### Content tab
+### 3. Write an article
+Click **New article**. Fill in the top form:
 
 | Field | What to put |
 |---|---|
 | **Title** | The headline (50–70 characters works best for Google). |
-| **Slug (URL)** | Auto-generated from the title. Click **"Generate"** if it doesn't update. This becomes the URL: `/blog/your-slug`. |
-| **Short description** | 1–2 sentences shown in the blog list and used by Google. 150–160 characters is the sweet spot. |
-| **Cover image** | The main image. Drag-and-drop or click. **Always fill in the "Alt text"** — describe what's on the image. Required for SEO. |
-| **Category** | Pick from the dropdown. |
-| **Publish date** | Defaults to today. |
-| **Author** | Click the author field — you'll get a dropdown of the team (Rob, Scott, Alfredo, Ahsan, Brad). Pick the one that fits. |
-| **Article body** | The main content (see next section). |
+| **Slug (URL)** | Auto-fills from the title → `/blog/your-slug`. Edit it if you want. |
+| **Description** | 1–2 sentences for Google & the blog list. 150–160 characters is ideal. |
+| **Cover image** | The main image. Click “Choose cover image”. |
+| **Category / Tags** | Pick a category, add comma-separated tags. |
+| **Publish date** | Defaults to now. |
+| **Status** | Draft (hidden) or Published (live). |
+| **Author** | Click a team member card. |
 
-### Article body — how to write content
+Then write the body in the **Markdown editor**:
+- Toolbar buttons for **Heading 2/3**, **bold**, *italic*, lists, links, code.
+- **H2** and **H3** headings automatically become the table of contents on the
+  article page.
+- **Insert image** (picture icon): pick a file — it’s uploaded and the image is
+  inserted where your cursor is. Always keep the `![alt text](...)` description.
+- The **right pane is a live preview** — it looks like the real article.
 
-The content area is a rich-text editor — works exactly like Google Docs:
+### 4. Save or publish
+- **Save draft** — keeps it hidden from the website.
+- **Publish** — makes it public.
 
-- **Bold / italic / code**: select text, use the toolbar.
-- **Headings**: dropdown (Normal → H2 → H3). Use **H2** for main sections and **H3** for sub-sections. They become the table of contents on the article page automatically.
-- **Bullet/numbered lists**: toolbar buttons.
-- **Links**: select text → click the link icon → paste URL.
-- **Images**: click the image icon (or paste/drag an image). **Always add Alt text.** Once you upload an image, it's reusable for any future article — just click "Select existing" instead of "Upload" the next time.
-- **Quote**: dropdown → "Quote".
+> On the live site, after you click Publish the article goes live in about
+> **1–2 minutes** (the site rebuilds and redeploys automatically). It’s not a bug —
+> just wait a minute and refresh.
 
-### SEO tab (optional but recommended)
-
-| Field | What to put |
-|---|---|
-| **Meta title** | Optional. Falls back to the article title. |
-| **Meta description** | Optional. Falls back to the short description. |
-| **Social preview image** | Optional. Image shown when shared on LinkedIn / Facebook. Falls back to cover image. |
-
-### Settings tab
-
-| Field | What to put |
-|---|---|
-| **Reading time (minutes)** | Estimated reading time. |
-| **Status** | **"Draft"** while working, **"Published"** when ready. **Drafts are NOT visible on the website.** |
-
----
-
-## 4. Authors — picking from the team
-
-When you click the **Author** field on a post, you'll see a dropdown of the 5 team members already in the system:
-
-- Rob Anderson — President
-- Scott Nelson — VP Sales & Marketing
-- Alfredo Shanklin — Plant Manager, Seattle
-- Ahsan Ativalu — Plant Manager, Reno
-- Brad Streeter — Quality Manager
-
-Each one has a photo and bio attached. To add a new author:
-
-1. Sidebar → **"Author"**
-2. Click **"+ Create"**
-3. Fill in name, job title, photo, optional bio
-4. Click **Publish**
-
-The new author will then appear in the dropdown for any future post.
-
----
-
-## 5. Reusing images
-
-Every time you upload an image, it's saved in a shared library. The next article you write, you can pick from any image you've already uploaded — no need to upload twice. Click any image field → **"Select existing"** to browse the library.
-
----
-
-## 6. Saving and publishing
-
-The editor **auto-saves** as you type — no save button to forget.
-
-- **Draft** → not on the website
-- **Published** → live within 1 minute
-
-To go from draft to live: change Status → "Published" → click **"Publish"** (bottom-right).
-
----
-
-## 7. Editing or deleting a post
-
-- **Edit:** click the post → change anything → click "Publish" again. Updates within a minute.
-- **Delete:** open the post → three-dot menu (top-right) → **"Delete"**. Confirm. Removed from the website immediately.
-- **Unpublish without deleting:** change Status to "Draft". Stays in the editor but hidden from the website.
-
----
-
-## 8. Quick SEO checklist (1 minute per article)
-
-Before clicking Publish:
-
+### 5. Quick SEO checklist (1 min)
 - ✅ Title 50–70 characters
-- ✅ Short description 150–160 characters with your main keyword
-- ✅ Cover image high-quality and Alt text describing it
-- ✅ At least one **H2** heading in the body
-- ✅ Category set
-- ✅ Author selected
-- ✅ All inline images have Alt text
-
-If those are good, the article will perform well on Google.
+- ✅ Description 150–160 characters with your main keyword
+- ✅ Cover image set
+- ✅ At least one **H2** in the body
+- ✅ Category + author selected
+- ✅ Every image has alt text
 
 ---
 
-## 9. Troubleshooting
+## Part B — Admin / deployment setup (one-time, for Julien)
 
-| Problem | Solution |
+The editor stores articles as Markdown files in this repo
+(`content/blog/*.md`) and images under `public/blog/<slug>/`. It has two modes,
+chosen automatically by whether `GITHUB_TOKEN` is set.
+
+### Local mode (development)
+With **no `GITHUB_TOKEN`**, the editor writes files directly to disk. Great for
+testing: run `npm run dev`, open `/blog-management`, and articles appear under
+`content/blog/` instantly. Local credentials live in `.env.local`.
+
+### GitHub mode (production)
+Set these in **Azure App Service → Configuration → Application settings**:
+
+| Variable | Value |
 |---|---|
-| "No access" when logging in | Email me — I'll grant you access immediately. |
-| Article doesn't appear on the website | Check Status is "Published" (not "Draft"). Wait 1 minute. |
-| Can't upload an image | File must be under 20 MB. Use JPG, PNG, or WEBP. |
-| Deleted something by mistake | The system keeps full version history. Open the post → three-dot menu → **"Review changes"** → restore. |
+| `BLOG_ADMIN_USERNAME` | the editor login |
+| `BLOG_ADMIN_PASSWORD` | the editor password |
+| `BLOG_SESSION_SECRET` | random string — `openssl rand -hex 32` |
+| `GITHUB_TOKEN` | fine-grained PAT, **Contents: Read and write**, this repo only |
+| `GITHUB_OWNER` | `JulienZammit` |
+| `GITHUB_REPO` | `scougal-rubber-website` |
+| `GITHUB_BRANCH` | `main` |
 
----
+With the token set, **Publish** creates a single commit (article + images) on
+`main`, which the existing GitHub Actions pipeline auto-deploys. That’s the
+~1–2 minute delay writers see.
 
-## 10. That's it!
+**Creating the PAT:** github.com → Settings → Developer settings → Fine-grained
+tokens → only this repository → Repository permissions → **Contents: Read and
+write**. Paste the value into `GITHUB_TOKEN` on Azure. Never commit it.
 
-If anything feels off, reply to this email — the whole point of this new system is that you should never feel blocked by tech.
-
-Welcome to the new editor.
-
-— Julien
+### Security notes
+- `/blog-management` and `/api/blog-admin/*` are `noindex` + disallowed in
+  `robots.txt`.
+- The GitHub token lives only on the server; every write route re-checks the
+  signed session cookie. The browser never sees the token.
