@@ -93,6 +93,17 @@ const teamMembers = [
     ],
     linkedin: "https://www.linkedin.com/in/brad-streeter-560193153/",
   },
+  {
+    name: "Eva Price",
+    position: "Controller",
+    description: `Eva coordinates and oversees the workflow of the Accounting Department — A/R, A/P, Payroll, Cash & Banking, Multi-state Sales Tax Filings, G/L, Fixed Assets, and Financial Statements.`,
+    image: "/employees/ep.png",
+    expertise: [
+      "Accounting & Finance",
+      "Payroll & Tax",
+      "Financial Reporting",
+    ],
+  },
 ];
 
 const ExperienceClient = () => {
@@ -220,18 +231,20 @@ const ExperienceClient = () => {
                       ))}
                     </div>
                   </div>
-                  <a
-                    href={member.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-4 md:mt-auto pt-2 md:pt-4 flex items-center justify-center text-blue-500 hover:text-blue-800 transition-colors group"
-                  >
-                    <span className="flex items-center text-sm md:text-base">
-                      <Linkedin className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
-                      View Profile
-                    </span>
-                    <ArrowRight className="ml-1 md:ml-2 w-3 h-3 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform" />
-                  </a>
+                  {member.linkedin && (
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-4 md:mt-auto pt-2 md:pt-4 flex items-center justify-center text-blue-500 hover:text-blue-800 transition-colors group"
+                    >
+                      <span className="flex items-center text-sm md:text-base">
+                        <Linkedin className="w-4 h-4 md:w-5 md:h-5 mr-1 md:mr-2" />
+                        View Profile
+                      </span>
+                      <ArrowRight className="ml-1 md:ml-2 w-3 h-3 md:w-4 md:h-4 transform group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}

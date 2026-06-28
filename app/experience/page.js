@@ -64,6 +64,12 @@ const teamMembers = [
     description: `Brad oversees quality management with over 30 years of experience in formal quality systems and continuous improvement, ensuring top-notch product standards.`,
     image: "/employees/bs.jpg",
   },
+  {
+    name: "Eva Price",
+    position: "Controller",
+    description: `Eva coordinates and oversees the workflow of the Accounting Department — A/R, A/P, Payroll, Cash & Banking, Multi-state Sales Tax Filings, G/L, Fixed Assets, and Financial Statements.`,
+    image: "/employees/ep.png",
+  },
 ];
 
 const structuredData = {
