@@ -5,10 +5,14 @@ description: >-
   providing custom-engineered bearings that accommodate structural movement,
   distribute loads efficiently, and help ensure decades of reliable service.
 slug: fanny-bridge-community-revitalization-project-receives-statewide-award
+coverImage: >-
+  /blog/fanny-bridge-community-revitalization-project-receives-statewide-award/348s-mrz18o4d.jpg
+ogImage: >-
+  /blog/fanny-bridge-community-revitalization-project-receives-statewide-award/348s-mrz18o4d.jpg
 twitterCard: summary_large_image
 twitterCreator: '@scougalrubber'
 date: '2026-07-24T14:14:18.768Z'
-lastModified: '2026-07-24T14:23:41.958Z'
+lastModified: '2026-07-24T14:25:37.054Z'
 status: published
 featured: false
 trending: false
