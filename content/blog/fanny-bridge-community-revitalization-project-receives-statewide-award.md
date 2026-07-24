@@ -6,13 +6,13 @@ description: >-
   distribute loads efficiently, and help ensure decades of reliable service.
 slug: fanny-bridge-community-revitalization-project-receives-statewide-award
 coverImage: >-
-  /blog/fanny-bridge-community-revitalization-project-receives-statewide-award/348s-mrz18o4d.jpg
+  /blog/fanny-bridge-community-revitalization-project-receives-statewide-award/fly-fishewrman-2048x1536-mrz1wy3f.jpeg
 ogImage: >-
   /blog/fanny-bridge-community-revitalization-project-receives-statewide-award/348s-mrz18o4d.jpg
 twitterCard: summary_large_image
 twitterCreator: '@scougalrubber'
 date: '2026-07-24T14:14:18.768Z'
-lastModified: '2026-07-24T14:25:37.054Z'
+lastModified: '2026-07-24T14:44:29.746Z'
 status: published
 featured: false
 trending: false
