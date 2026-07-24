@@ -8,8 +8,8 @@ slug: fanny-bridge-community-revitalization-project-receives-statewide-award
 twitterCard: summary_large_image
 twitterCreator: '@scougalrubber'
 date: '2026-07-24T14:14:18.768Z'
-lastModified: '2026-07-24T14:23:23.904Z'
-status: draft
+lastModified: '2026-07-24T14:23:41.958Z'
+status: published
 featured: false
 trending: false
 author:
