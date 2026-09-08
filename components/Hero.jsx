@@ -15,9 +15,14 @@ const Hero = () => {
       name: "Compliasure",
     },
     {
-      src: "/logo_bridge_conference.png",
-      alt: "Bridge conference logo",
-      name: "Bridge Conference",
+      src: "/certification/PennDOT.webp",
+      alt: "PennDOT Bulletin 15 Approved",
+      name: "PennDOT Bulletin 15",
+    },
+    {
+      src: "/certification/NTPEP.webp",
+      alt: "NTPEP DataMine Tested",
+      name: "NTPEP Tested",
     },
   ];
 
@@ -85,7 +90,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex items-center justify-center gap-6 md:gap-10"
+          className="flex flex-wrap items-center justify-center gap-6 md:gap-10"
         >
           {certifications.map((cert, index) => (
             <motion.div
